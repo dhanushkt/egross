@@ -1,3 +1,24 @@
+<?php
+include_once '../access/connection.php';
+
+//button name: register
+if (isset($_POST['register'])) {
+    $cname = $_POST['cname'];
+    $cemail = $_POST['cemail'];
+    $cmobile = $_POST['cmobile'];
+    $cpassword = $_POST['cpassword'];
+
+    $query = mysqli_query($con, "INSERT INTO customer (custid,cname,cemail,cmobile,cpassword) VALUES '$cusid','$cname','$cemail','$cmobile','$cpassword'");
+    if ($query) 
+    { 
+        echo "Record inserted";
+    }
+    else
+    {
+        echo(mysqli_error($con));
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
