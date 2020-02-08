@@ -386,15 +386,20 @@ if (isset($_POST['register'])) {
 								<label>Check Password *</label>
 								<input class="full-width" type="text" name="cpassword">
 							</div>
-						</div><br><br><br><br><br><br>
+                        </div>
 						<!--creating account-->
 						<!--shipping details-->
 						<!--order note-->
-					</div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                        <div class="relative justify-content form-login-checkout">
+							<button type="submit" class="animate-default button-hover-red" name="register">REGISTER</button>
+                        </div>
+                    </div>
 					<!-- End Content Shoping Cart -->
 					<!-- Content Right -->
 					<!-- End Content Right -->
-				</div>
+				</div><br><br><br><br>
 			</div>
 		</div>
 		<!-- End Content Checkout -->
