@@ -1,21 +1,31 @@
 <?php
-include_once '../access/connection.php';
+include_once './access/connection.php';
 
 //button name: register
-if (isset($_POST['register'])) {
+if (isset($_POST['register'])) 
+{
     $cname = $_POST['cname'];
     $cemail = $_POST['cemail'];
     $cmobile = $_POST['cmobile'];
     $cpassword = $_POST['cpassword'];
 
-    $query = mysqli_query($con, "INSERT INTO customer (custid,cname,cemail,cmobile,cpassword) VALUES '$cusid','$cname','$cemail','$cmobile','$cpassword'");
-    if ($query) 
-    { 
-        echo "Record inserted";
+    $check=mysqli_query($con,"SELECT * from customer WHERE cemail='$cemail'");
+    $count=mysqli_num_rows($check);
+    if($count>0)
+    {
+        echo $msg="User already Exists";
     }
     else
     {
-        echo(mysqli_error($con));
+        $query = mysqli_query($con, "INSERT INTO customer (cname,cemail,cmobile,cpassword) VALUES ('$cname','$cemail','$cmobile','$cpassword')");
+        if ($query) 
+        { 
+            $msg="User Registered";
+        }
+        else
+        {
+            echo(mysqli_error($con));
+        }
     }
 }
 ?>
@@ -343,65 +353,68 @@ if (isset($_POST['register'])) {
 		</div>
 		<!-- End Breadcrumb -->
 		<!-- Content Checkout -->
-		<div class="relative container-web">
-			<div class="container">
-				<div class="row relative">
-					<div class="full-width relative top-checkout-box overfollow-hidden top-margin-default">
-						<div class="col-md-6 col-sm-12 col-xs-12 clear-padding-left left-top-checkout">
-							<!--login-->
-						</div>
-						<!--coupon code-->
-					</div>
-					<!-- Content Shoping Cart -->
-					<div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-						<!--<p class="title-shoping-cart">Billing Details</p>-->
-						<div class="relative clearfix full-width">
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-								<label>Enter the Name *</label>
-								<input class="full-width" type="text" name="cname">
-							</div>
-						</div>
-						<div class="relative clearfix full-width">
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-								<label>Email Address *</label>
-								<input class="full-width" type="text" name="cemail">
-							</div>
+        <form method="POST">
+            <?php $msg ?>
+            <div class="relative container-web">
+                <div class="container">
+                    <div class="row relative">
+                        <div class="full-width relative top-checkout-box overfollow-hidden top-margin-default">
+                            <div class="col-md-6 col-sm-12 col-xs-12 clear-padding-left left-top-checkout">
+                                <!--login-->
+                            </div>
+                            <!--coupon code-->
                         </div>
-                        <div>
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-								<label>Phone *</label>
-								<input class="full-width" type="text" name="cmobile">
-							</div><br>
-						</div>
-						
-						
-						<div class="relative full-width clearfix">
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-								<label>Enter new Password *</label>
-								<input class="full-width" type="text" name="apassword">
-							</div>
+                        <!-- Content Shoping Cart -->
+                        <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                            <!--<p class="title-shoping-cart">Billing Details</p>-->
+                            <div class="relative clearfix full-width">
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                    <label>Enter the Name *</label>
+                                    <input class="full-width" type="text" name="cname">
+                                </div>
+                            </div>
+                            <div class="relative clearfix full-width">
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                    <label>Email Address *</label>
+                                    <input class="full-width" type="text" name="cemail">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                    <label>Phone *</label>
+                                    <input class="full-width" type="text" name="cmobile">
+                                </div><br>
+                            </div>
+                            
+                            
+                            <div class="relative full-width clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                    <label>Enter Password *</label>
+                                    <input class="full-width" type="text" name="apassword">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                    <label>Re-Enter Password *</label>
+                                    <input class="full-width" type="text" name="cpassword">
+                                </div>
+                            </div>
+                            <!--creating account-->
+                            <!--shipping details-->
+                            <!--order note-->
                         </div>
-                        <div>
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-								<label>Check Password *</label>
-								<input class="full-width" type="text" name="cpassword">
-							</div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                            <div class="relative justify-content form-login-checkout">
+                                <button type="submit" class="animate-default button-hover-red" name="register">REGISTER</button>
+                            </div>
                         </div>
-						<!--creating account-->
-						<!--shipping details-->
-						<!--order note-->
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                        <div class="relative justify-content form-login-checkout">
-							<button type="submit" class="animate-default button-hover-red" name="register">REGISTER</button>
-                        </div>
-                    </div>
-					<!-- End Content Shoping Cart -->
-					<!-- Content Right -->
-					<!-- End Content Right -->
-				</div><br><br><br><br>
-			</div>
-		</div>
+                        <!-- End Content Shoping Cart -->
+                        <!-- Content Right -->
+                        <!-- End Content Right -->
+                    </div><br><br><br><br>
+                </div>
+            </div>
+        </form>
 		<!-- End Content Checkout -->
 		<!-- Support -->
 		<div class=" support-box full-width bg-red support_box_v2">
