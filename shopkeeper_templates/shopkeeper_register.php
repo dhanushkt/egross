@@ -1,3 +1,36 @@
+<?php
+include './../access/connection.php';
+if(isset($_POST['register']))
+{
+    $sname=$_POST['sname'];
+    $soname=$_POST['soname'];
+    $soemail=$_POST['soemail'];
+    $somobile=$_POST['somobile'];
+    $saddress=$_POST['saddress'];
+    $scity=$_POST['scity'];
+    $spin=$_POST['spin'];
+    $sstate=$_POST['sstate'];
+    $scontact=$_POST['scontact'];
+    $sgstno=$_POST['sgstno'];
+    $scategory=$_POST['scategory'];
+    $spassword=md5($_POST['spassword']);
+    $qry=mysqli_query($con,"select * from shopkeeper where soemail='$soemail' or scontact='$scontact'");
+    $count=mysqli_num_rows($qry);
+    if($count>0)
+    {
+        $emsg="User already Exists";
+    }
+    else
+   {
+        $qury=mysqli_query($con,"insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword')");
+        $cmsg="User Registered";
+        if(!$qury)
+        {
+            echo mysqli_error($con);
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,6 +55,7 @@
     <body class="account-body">
 
         <!-- Log In page -->
+        <form method="POST">
         <div class="row">
             <div class="col-lg-12"  style="padding: 20px">
                 <div class="card">
@@ -33,15 +67,6 @@
                             <div class="col-lg-6">
                             
                                 
-                                <div class="form-group">
-                                    <label for="username">ShopID</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="Shopid" placeholder="Enter ShopID">
-                                    </div>                                    
-                                </div>
 
                                 <div class="form-group">
                                     <label for="username">ShopName</label>
@@ -49,7 +74,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="text" class="form-control" id="ShopName" placeholder="Enter ShopName">
+                                        <input type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter ShopName">
                                     </div>                                    
                                 </div>
 
@@ -59,7 +84,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="text" class="form-control" id="Ownername" placeholder="Enter Ownername">
+                                        <input type="text" class="form-control" name="soname" id="Ownername" placeholder="Enter Ownername">
                                     </div>                                    
                                 </div>
 
@@ -69,7 +94,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="text" class="form-control" id="E-mail" placeholder="Enter E-mail">
+                                        <input type="text" class="form-control" name="soemail" id="E-mail" placeholder="Enter E-mail">
                                     </div>                                    
                                 </div>
 
@@ -79,7 +104,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" id="Mobile" placeholder="Enter Mobile">
+                                        <input type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Mobile">
                                     </div>                                    
                                 </div>
 
@@ -89,7 +114,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <textarea class="form-control" id="Address" placeholder="Enter Address" rows="4" cols="50"></textarea>
+                                        <textarea class="form-control" id="Address" name="saddress" placeholder="Enter Address" rows="4" cols="50"></textarea>
                                     </div>                                    
                                 </div>
 
@@ -104,7 +129,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="text" class="form-control" id="City" placeholder="Enter City">
+                                        <input type="text" class="form-control" name="scity" id="City" placeholder="Enter City">
                                     </div>                                    
                                 </div>
 
@@ -114,7 +139,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" id="PinCode" placeholder="Enter PinCode">
+                                        <input type="number" class="form-control" id="PinCode" name="spin" placeholder="Enter PinCode">
                                     </div>                                    
                                 </div>
 
@@ -124,7 +149,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" id="State" placeholder="Enter State">
+                                        <input type="text" class="form-control" name="sstate" id="State" placeholder="Enter State">
                                     </div>                                    
                                 </div>
 
@@ -134,7 +159,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" id="Contact" placeholder="Enter Contact">
+                                        <input type="number" class="form-control" name="scontact"  id="Contact" placeholder="Enter Contact">
                                     </div>                                    
                                 </div>
 
@@ -144,7 +169,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" id="Sgstno" placeholder="Enter GST Number">
+                                        <input type="number" class="form-control" name="sgstno" placeholder="Enter GST Number">
                                     </div>                                    
                                 </div>
 
@@ -156,7 +181,7 @@
                                             
                                         </div>
 
-                                        <input type="text" class="form-control" id="Category" placeholder="Category">
+                                        <input type="text" class="form-control" id="Category" name="scategory" placeholder="Category">
                                     </div>                                
                                 </div>
 
@@ -166,7 +191,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon2"></span>
                                         </div>
-                                        <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                        <input type="password" class="form-control" name="spassword" id="password" placeholder="Enter password">
                                     </div>                                
                                 </div>
     
@@ -178,11 +203,12 @@
                 </div><!--end card-->
                 <div class="form-group mb-0 row">
                     <div class="col-12 mt-2" style="padding-left:35%;">
-                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
+                        <button name="register" class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
                     </div>
                 </div>      
             </div><!--end col-->
         </div>
+</form>
         
         <!-- <div class="row vh-100">
             <div class="col-lg-3  pr-0" style="padding: 100px;">
