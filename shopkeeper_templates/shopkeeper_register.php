@@ -21,7 +21,7 @@ if(isset($_POST['register']))
         $emsg="User already Exists";
     }
     else
-   {
+    {
         $qury=mysqli_query($con,"insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword')");
         $cmsg="User Registered";
         if(!$qury)
@@ -60,9 +60,32 @@ if(isset($_POST['register']))
             <div class="col-lg-12"  style="padding: 20px">
                 <div class="card">
                     <div class="card-body">        
-                        <h1 class="mt-0 header-title">Registeration</h1>
-                    
-                        
+                        <h1 class="mt-0 header-title">Registeration</h1><!--error message start-->
+                        <?php if(isset($cmsg)){ ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <strong>Well done!</strong><?php echo $cmsg ?> 
+                            </div>                                            
+                        </div>
+                        <?php }?>
+                        <?php if(isset($emsg)){ ?>
+                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                            </button>
+                            <strong>Oh snap!</strong> <?php echo $emsg ?>
+                        </div>
+                        <?php }?>
+
+                        <!--
+                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                            </button>
+                            <strong>Oh snap!</strong>
+                        </div>-->
+                        <!--Error messages end-->
                         <div class="row">
                             <div class="col-lg-6">
                             
@@ -118,11 +141,6 @@ if(isset($_POST['register']))
                                     </div>                                    
                                 </div>
 
-                               </div>
-
-
-                            <div class="col-lg-6">
-                               
                                 <div class="form-group">
                                     <label for="username">City</label>
                                     <div class="input-group mb-3">
@@ -132,6 +150,12 @@ if(isset($_POST['register']))
                                         <input type="text" class="form-control" name="scity" id="City" placeholder="Enter City">
                                     </div>                                    
                                 </div>
+
+                               </div>
+
+
+                            <div class="col-lg-6">
+                               
 
                                 <div class="form-group">
                                     <label for="username">PinCode</label>
@@ -169,7 +193,7 @@ if(isset($_POST['register']))
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"></span>
                                         </div>
-                                        <input type="number" class="form-control" name="sgstno" placeholder="Enter GST Number">
+                                        <input type="text" class="form-control" name="sgstno" placeholder="Enter GST Number">
                                     </div>                                    
                                 </div>
 
