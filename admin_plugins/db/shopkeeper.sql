@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 07:08 PM
+-- Generation Time: Feb 15, 2020 at 07:59 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -37,6 +37,7 @@ CREATE TABLE `shopkeeper` (
   `saddress` varchar(200) NOT NULL,
   `scity` varchar(100) NOT NULL,
   `spin` int(10) NOT NULL,
+  `sstate` varchar(100) NOT NULL,
   `scontact` bigint(12) NOT NULL,
   `sgstno` bigint(20) NOT NULL,
   `scatagory` varchar(100) NOT NULL,
