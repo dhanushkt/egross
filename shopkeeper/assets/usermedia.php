@@ -11,7 +11,7 @@
                 <a href="javascript: void(0);" class=""><i class="mdi mdi-settings"></i></a>
             </li>
             <li class="list-inline-item">
-                <a href="javascript: void(0);" class=""><i class="mdi mdi-power"></i></a>
+                <a href="../access/logout.php" class=""><i class="mdi mdi-power"></i></a>
             </li>
         </ul>
     </div>
