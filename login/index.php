@@ -13,9 +13,19 @@ if (isset($_POST['login'])) {
         $_SESSION['auname'] = $getadmindata['auname'];
         $smsg = "Login Successful, Redirecting in 2 seconds..";
         echo "<script> window.setTimeout(function(){ window.location.href='../admin/' }, 2000); </script>";
-    }
-    else{
-        $fmsg = "Invalid username or password";
+    } else {
+
+        $adminquery = mysqli_query($con, "SELECT * FROM shopkeeper WHERE (soemail='$uname' OR somobile='$uname') AND spassword = '$pwd'");
+        $getadmindata = mysqli_fetch_assoc($adminquery);
+        $getadminrow = mysqli_num_rows($adminquery);
+        if ($getadminrow == 1) {
+            $_SESSION['sid'] = $getadmindata['sid'];
+            $_SESSION['sname'] = $getadmindata['sname'];
+            $smsg = "Login Successful, Redirecting in 2 seconds..";
+            echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/' }, 2000); </script>";
+        } else {
+            $fmsg = "Invalid username or password";
+        }
     }
 }
 ?>
@@ -63,7 +73,7 @@ if (isset($_POST['login'])) {
                                     <strong>Well done!</strong> <?php echo $smsg ?>
                                 </div>
                             </div>
-                        <?php } else if(isset($fmsg)) { ?>
+                        <?php } else if (isset($fmsg)) { ?>
                             <div class="alert icon-custom-alert alert-outline-pink b-round fade show mb-0" role="alert">
                                 <i class="mdi mdi-alert-outline alert-icon"></i>
                                 <div class="alert-text">
