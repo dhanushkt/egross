@@ -5,35 +5,18 @@
         <li class="menu-title">Main</li>
 
         <li>
-            <a href="javascript: void(0);"><i class="mdi mdi-monitor"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
-            <ul class="nav-second-level" aria-expanded="false">
-                <li><a href="index.html">Dashboard 1</a></li>
-                <li><a href="index-2.html">Dashboard 2</a></li>
-                <li><a href="index-3.html">Dashboard 3</a></li>
-            </ul>
+            <a href="index.php"><i class="mdi mdi-monitor"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
         </li>
 
         <li>
-            <a href="javascript: void(0);"><i class="mdi mdi-apps"></i><span>App</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <a href="javascript: void(0);"><i class="mdi mdi-cart-plus"></i><span>Items </span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li><a href="app-chat.html"><span>Chat</span></a></li>
-                <li><a href="app-calendar.html"><span>Calendar</span></a></li>
-
-                <li>
-                    <a href="javascript: void(0);">ECommerce <span class="menu-arrow left-has-menu"><i class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="app-ecommerce-product.html">Product</a></li>
-                        <li><a href="app-ecommerce-product-list.html">Product List</a></li>
-                        <li><a href="app-ecommerce-product-detail.html">Product Detail</a></li>
-                        <li><a href="app-ecommerce-cart.html">Cart</a></li>
-                        <li><a href="app-ecommerce-checkout.html">Checkout</a></li>
-                    </ul>
-                </li>
-                <li><a href="app-contact-list.html"><span>Contact List</span></a></li>
+                <li><a href="add-item.php"><span>Add Item</span></a></li>
+                <li><a href="view-items.php"><span>View Items</span></a></li>
             </ul>
         </li>
 
-        <li>
+        <!-- <li>
             <a href="javascript: void(0);"><i class="mdi mdi-email-variant"></i><span>Email</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li><a href="email-inbox.html">Inbox</a></li>
@@ -190,7 +173,7 @@
                 <li><a href="email-templates-alert.html">Alert Email</a></li>
                 <li><a href="email-templates-billing.html">Billing Email</a></li>
             </ul>
-        </li>
+        </li> -->
 
     </ul>
 </div>
