@@ -1,3 +1,6 @@
+<?php
+include '../access/shopaccesscontrol.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

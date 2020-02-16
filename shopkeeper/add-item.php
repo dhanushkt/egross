@@ -1,5 +1,5 @@
 <?php
-include './../access/connection.php';
+include '../access/shopaccesscontrol.php';
 if (isset($_POST['additem'])) {
     $isid = 0;
     $iname = $_POST['iname'];
@@ -125,7 +125,7 @@ if (isset($_POST['additem'])) {
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
-                                    <form>
+                                    <form method="POST">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
