@@ -126,41 +126,49 @@ if (isset($_POST['additem'])) {
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
                                     <form>
+
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <label for="exampleInputEmail1">Brand</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand">
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                                            <label for="exampleFormControlTextarea1">Description</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
+
                                         <div class="form-group mb-0 row">
                                             <label class="col-md-2 control-label">State of item: </label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-9" style="margin-top:-15px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="customRadio7" name="customRadio" class="custom-control-input">
-                                                        <label class="custom-control-label" for="customRadio7">HTML</label>
+                                                        <label class="custom-control-label" for="customRadio7">Visible</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="customRadio8" name="customRadio" class="custom-control-input">
-                                                        <label class="custom-control-label" for="customRadio8">css</label>
+                                                        <label class="custom-control-label" for="customRadio8">Not visible</label>
                                                     </div>
                                                 </div>
-                                                <div class="form-check-inline my-1">
-                                                    <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio9" name="customRadio" class="custom-control-input">
-                                                        <label class="custom-control-label" for="customRadio9">Javascript</label>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                         </div>
+
+                                      
+
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Price</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter price in ₹">
+                                        </div>
+                                       
+                                       
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="button" class="btn btn-danger">Cancel</button>
                                     </form>
