@@ -69,28 +69,6 @@ if (isset($_POST['additem'])) {
         <!--end page-wrapper-img-inner-->
     </div>
     <!--end page-wrapper-img-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="page-wrapper">
         <div class="page-wrapper-inner">
 
