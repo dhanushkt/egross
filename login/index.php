@@ -1,6 +1,6 @@
 <?php
 include_once '../access/connection.php';
-
+session_start();
 if (isset($_POST['login'])) {
     $uname = $_POST['uname'];
     $pwd = md5($_POST['password']);
@@ -15,12 +15,12 @@ if (isset($_POST['login'])) {
         echo "<script> window.setTimeout(function(){ window.location.href='../admin/' }, 2000); </script>";
     } else {
 
-        $adminquery = mysqli_query($con, "SELECT * FROM shopkeeper WHERE (soemail='$uname' OR somobile='$uname') AND spassword = '$pwd'");
-        $getadmindata = mysqli_fetch_assoc($adminquery);
-        $getadminrow = mysqli_num_rows($adminquery);
-        if ($getadminrow == 1) {
-            $_SESSION['sid'] = $getadmindata['sid'];
-            $_SESSION['sname'] = $getadmindata['sname'];
+        $shopquery = mysqli_query($con, "SELECT * FROM shopkeeper WHERE (soemail='$uname' OR somobile='$uname') AND spassword = '$pwd'");
+        $getshopdata = mysqli_fetch_assoc($shopquery);
+        $getshoprow = mysqli_num_rows($shopquery);
+        if ($getshoprow == 1) {
+            $_SESSION['sid'] = $getshopdata['sid'];
+            $_SESSION['sname'] = $getshopdata['sname'];
             $smsg = "Login Successful, Redirecting in 2 seconds..";
             echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/' }, 2000); </script>";
         } else {

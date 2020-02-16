@@ -1,5 +1,5 @@
 <?php
-include './../access/connection.php';
+include '../access/shopaccesscontrol.php';
 if (isset($_POST['additem'])) {
     $isid = 0;
     $iname = $_POST['iname'];
@@ -69,28 +69,6 @@ if (isset($_POST['additem'])) {
         <!--end page-wrapper-img-inner-->
     </div>
     <!--end page-wrapper-img-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="page-wrapper">
         <div class="page-wrapper-inner">
 
@@ -125,8 +103,12 @@ if (isset($_POST['additem'])) {
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
+<<<<<<< HEAD
                                     <form>
 
+=======
+                                    <form method="POST">
+>>>>>>> 89eead17f6e19a02ca7bc19019bd047973482faa
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
