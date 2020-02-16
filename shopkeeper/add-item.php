@@ -103,12 +103,11 @@ if (isset($_POST['additem'])) {
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
-<<<<<<< HEAD
+
                                     <form>
 
-=======
+
                                     <form method="POST">
->>>>>>> 89eead17f6e19a02ca7bc19019bd047973482faa
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
@@ -126,7 +125,7 @@ if (isset($_POST['additem'])) {
 
                                         <div class="form-group mb-0 row">
                                             <label class="col-md-2 control-label">State of item: </label>
-                                            <div class="col-md-9" style="margin-top:-15px">
+                                            <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="customRadio7" name="customRadio" class="custom-control-input">
