@@ -1,7 +1,7 @@
 <?php
 include '../access/shopaccesscontrol.php';
 if (isset($_POST['additem'])) {
-    $isid = 0;
+    $isid = $globalshopid;
     $iname = $_POST['iname'];
     $ibrand = $_POST['ibrand'];
     $idesc = $_POST['idesc'];
@@ -104,23 +104,23 @@ if (isset($_POST['additem'])) {
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
 
-                                    <form>
+                                
 
 
                                     <form method="POST">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand">
+                                            <input type="text" class="form-control" name="ibrand" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" name="idesc" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
 
                                         <div class="form-group mb-0 row">
@@ -128,13 +128,13 @@ if (isset($_POST['additem'])) {
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio7" name="customRadio" class="custom-control-input">
+                                                        <input type="radio" id="customRadio7" name="istatus" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio7">Visible</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio8" name="customRadio" class="custom-control-input">
+                                                        <input type="radio" id="customRadio8" name="istatus" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio8">Not visible</label>
                                                     </div>
                                                 </div>
@@ -146,11 +146,11 @@ if (isset($_POST['additem'])) {
 
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Price</label>
-                                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Enter price in ₹">
+                                            <input type="number" class="form-control" id="exampleInputPassword1" name="iprice" placeholder="Enter price in ₹">
                                         </div>
                                        
                                        
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" name="additem" class="btn btn-primary">Submit</button>
                                         <button type="button" class="btn btn-danger">Cancel</button>
                                     </form>
                                 </div>

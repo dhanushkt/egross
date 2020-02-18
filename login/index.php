@@ -62,8 +62,8 @@ if (isset($_POST['login'])) {
                         <div class="media">
                             <a href="index.html" class="logo logo-admin"><img src="../admin_plugins/images/egross_logo.png" height="55" alt="logo" class="my-3"></a>
                             <div class="media-body ml-3 align-self-center">
-                                <h4 class="mt-0 mb-1">Login on Frogetor</h4>
-                                <p class="text-muted mb-0">Sign in to continue to Frogetor.</p>
+                                <h4 class="mt-0 mb-1">Login to EGrross</h4>
+                                <p class="text-muted mb-0">Sign in to continue to Egross.</p>
                             </div>
                         </div>
                         <?php if (isset($smsg)) { ?>
@@ -90,12 +90,12 @@ if (isset($_POST['login'])) {
                         <form class="form-horizontal my-4" method="post">
 
                             <div class="form-group">
-                                <label for="username">Username</label>
+                                <label for="username">Email</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                                     </div>
-                                    <input required autocomplete="off" name="uname" type="text" class="form-control" id="username" placeholder="Enter username">
+                                    <input required autocomplete="off" name="uname" type="text" class="form-control" id="username" placeholder="Enter email">
                                 </div>
                             </div>
 
@@ -151,7 +151,7 @@ if (isset($_POST['login'])) {
                     <div class="m-3 text-center bg-banner p-3 text-primary">
                         <h5 class="">Don't have an account ? </h5>
                         <p class="font-13">Join <span>EGross</span> Now</p>
-                        <a href="register.php" class="btn btn-primary btn-round waves-effect waves-light">Free Resister</a>
+                        <a href="register.php" class="btn btn-primary btn-round waves-effect waves-light">Free Register</a>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@ if (isset($_POST['login'])) {
             <div class="accountbg d-flex align-items-center">
                 <div class="account-title text-white text-center">
                     <img src="../admin_plugins/images/logo-sm.png" alt="" class="thumb-sm">
-                    <h4 class="mt-3">Welcome To Frogetor</h4>
+                    <h4 class="mt-3">Welcome To EGrosss</h4>
                     <div class="border w-25 mx-auto border-primary"></div>
                     <h1 class="">Let's Get Started</h1>
                     <p class="font-14 mt-3">Don't have an account ? <a href="" class="text-primary">Sign up</a></p>
