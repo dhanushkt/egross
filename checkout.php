@@ -7,17 +7,17 @@ if (isset($_POST['register']))
     $cname = $_POST['cname'];
     $cemail = $_POST['cemail'];
     $cmobile = $_POST['cmobile'];
-    $cpassword = $_POST['cpassword'];
+    $cpassword = md5($_POST['cpassword']);
 
-    $check=mysqli_query($con,"SELECT * from customer WHERE cemail='$cemail'");
+    $check=mysqli_query($con,"SELECT uemail,umobile from user WHERE uemail='$cemail' OR umobile='$cmobile'");
     $count=mysqli_num_rows($check);
     if($count>0)
     {
-        echo $msg="User already Exists";
+        echo $emsg="User already Exists";
     }
     else
     {
-        $query = mysqli_query($con, "INSERT INTO customer (cname,cemail,cmobile,cpassword) VALUES ('$cname','$cemail','$cmobile','$cpassword')");
+        $query = mysqli_query($con, "INSERT INTO user (uname,uemail,umobile,upassword) VALUES ('$cname','$cemail','$cmobile','$cpassword')");
         if ($query) 
         { 
             $msg="User Registered";
@@ -364,6 +364,7 @@ if (isset($_POST['register']))
                             </div>
                             <!--coupon code-->
                         </div>
+                       
                         <!-- Content Shoping Cart -->
                         <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
                             <!--<p class="title-shoping-cart">Billing Details</p>-->
