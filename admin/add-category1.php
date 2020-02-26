@@ -165,7 +165,6 @@ if(isset($_POST['addmain']))
                                                     </div>
                                                 </div>
 
-<<<<<<< HEAD
                                                 <div class="row">
                                                     <div class="col-md-10">                            
                                                         <div class="form-group">
@@ -176,9 +175,8 @@ if(isset($_POST['addmain']))
                                                 </div>
 
                                                 <div class="row">
-=======
+
                                                 <div class="row" style="float:left">
->>>>>>> cf7412795e10e5ab6efbb4324fea67114738bd98
                                                     <div class="col-sm-10 text-right">
                                                         <button type="submit" class="btn btn-primary px-5 py-1" name="addmain">SUBMIT</button>
                                                     </div>
