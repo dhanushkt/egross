@@ -1,3 +1,34 @@
+<?php
+include './../access/connection.php';
+
+if(isset($_POST['addsub']))
+{
+    $smcid=1;
+    $scname=$_POST['scname'];
+    $scactive=$_POST['scactive'];
+    $scdesc=$_POST['scdesc'];
+    $scimg=2;
+    $scimgdesc=$_POST['scimgdesc'];
+    $qry=mysqli_query($con,"SELECT scname FROM scat where scname='$scname'");
+    $count=mysqli_num_rows($qry);
+    if($count>0)
+    {
+        $emsg="Item already Exists";
+    }
+    else
+    {
+        $query=mysqli_query($con,"INSERT into scat (smcid,scname,scactive,scdesc,scimg,scimgdesc) VALUES ('$smcid','$scname','$scactive','$scdesc','$scimg','$scimgdesc')");
+        if($query)
+        {
+            $msg="Category inserted";
+        }
+        else
+        {
+            echo mysqli_error($con);
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -64,15 +95,33 @@
                     <div class="container-fluid"> 
                         <div class="row">
                             <div class="col-lg-12">
+                            <form method="post">
                                 <div class="card">
                                     <div class="card-body">        
                                     <h4 class="mt-0 header-title">Add Category</h4>
                                     <hr>
+                                    <?php if (isset($msg)) { ?>
+                                    <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                                        <i class="mdi mdi-check-all alert-icon"></i>
+                                        <div class="alert-text">
+                                            <strong>Well done!</strong><?php echo $msg ?>
+                                        </div>
+                                    </div>
+                                    <?php  } ?>
+
+                                    <?php if (isset($emsg)) { ?>
+                                    <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                                        </button>
+                                        <strong>Oh snap!</strong> <?php echo $emsg ?>
+                                    </div>
+                                    <?php } ?>
                                         <div class="row">
                                             <div class="col-lg-7">
 
                                                 <div class="form-group row">
-                                                    <label for="example-text-input" class="col-sm-4 col-form-label text-right">Sellect main Categorys</label>
+                                                    <label for="example-text-input" class="col-sm-4 col-form-label text-right">Select main Categorys</label>
                                                     <div class="col-sm-10">
                                                         <select class="form-control form-control-lg mb-0">
                                                             <option>Select Category</option>
@@ -83,7 +132,7 @@
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-sm-3 col-form-label text-right">Category name</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" value="Enter Category name here" id="example-text-input" name=" ">
+                                                        <input class="form-control" type="text" placeholder="Enter Category name here" id="example-text-input" name="scname">
                                                     </div>
                                                 </div>
 
@@ -92,13 +141,13 @@
                                                     <div class="col-md-9" style="margin-top:3px">
                                                         <div class="form-check-inline my-1">
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio7" name="istatus" class="custom-control-input">
+                                                                <input type="radio" id="customRadio7" name="scactive" class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio7">Visible</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-check-inline my-1">
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="customRadio8" name="istatus" class="custom-control-input">
+                                                                <input type="radio" id="customRadio8" name="scactive class="custom-control-input">
                                                                 <label class="custom-control-label" for="customRadio8">Not visible</label>
                                                             </div>
                                                         </div>
@@ -109,7 +158,7 @@
                                                     <div class="col-md-10">                            
                                                         <div class="form-group">
                                                             <label for="example-text-input" class="col-sm-5 col-form-label text-right">Category description</label>
-                                                            <textarea class="form-control" rows="5" id="message"></textarea>
+                                                            <textarea class="form-control" name="scdesc" rows="5" id="message"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,12 +176,22 @@
                                                 </div>
 
                                                 <div class="row">
+                                                    <div class="col-md-10">                            
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="col-sm-5 col-form-label text-right">Image description</label>
+                                                            <textarea class="form-control" name="scimgdesc" rows="5" id="message"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
                                                     <div class="col-sm-10 text-right">
-                                                        <button type="submit" class="btn btn-primary px-5 py-1">SUBMIT</button>
+                                                        <button type="submit" class="btn btn-primary px-5 py-1" name="addsub">SUBMIT</button>
                                                     </div>
                                                 </div>                               
                                             </div>
-                                        </div>                                                                      
+                                        </div> 
+                                        </form>                                                                     
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->
