@@ -121,7 +121,11 @@ if(isset($_POST['addsub']))
                                             <div class="col-lg-7">
 
                                                 <div class="form-group row">
+<<<<<<< HEAD
                                                     <label for="example-text-input" class="col-sm-4 col-form-label text-right">Select main Categorys</label>
+=======
+                                                    <label for="example-text-input" class="col-sm-4 col-form-label text-right">Select main Category</label>
+>>>>>>> cf7412795e10e5ab6efbb4324fea67114738bd98
                                                     <div class="col-sm-10">
                                                         <select class="form-control form-control-lg mb-0">
                                                             <option>Select Category</option>
@@ -175,6 +179,7 @@ if(isset($_POST['addsub']))
                                                     </div>
                                                 </div>
 
+<<<<<<< HEAD
                                                 <div class="row">
                                                     <div class="col-md-10">                            
                                                         <div class="form-group">
@@ -187,6 +192,11 @@ if(isset($_POST['addsub']))
                                                 <div class="row">
                                                     <div class="col-sm-10 text-right">
                                                         <button type="submit" class="btn btn-primary px-5 py-1" name="addsub">SUBMIT</button>
+=======
+                                                <div class="row" style="float:left">
+                                                    <div class="col-sm-10 text-right" >
+                                                        <button type="submit" class="btn btn-primary px-5 py-1">SUBMIT</button>
+>>>>>>> cf7412795e10e5ab6efbb4324fea67114738bd98
                                                     </div>
                                                 </div>                               
                                             </div>
