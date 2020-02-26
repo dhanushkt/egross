@@ -72,7 +72,7 @@
                                             <div class="col-lg-7">
 
                                                 <div class="form-group row">
-                                                    <label for="example-text-input" class="col-sm-4 col-form-label text-right">Sellect main Categorys</label>
+                                                    <label for="example-text-input" class="col-sm-4 col-form-label text-right">Select main Category</label>
                                                     <div class="col-sm-10">
                                                         <select class="form-control form-control-lg mb-0">
                                                             <option>Select Category</option>
@@ -126,8 +126,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="col-sm-10 text-right">
+                                                <div class="row" style="float:left">
+                                                    <div class="col-sm-10 text-right" >
                                                         <button type="submit" class="btn btn-primary px-5 py-1">SUBMIT</button>
                                                     </div>
                                                 </div>                               

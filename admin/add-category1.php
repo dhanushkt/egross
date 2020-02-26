@@ -116,7 +116,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                <div class="row" style="float:left">
                                                     <div class="col-sm-10 text-right">
                                                         <button type="submit" class="btn btn-primary px-5 py-1">SUBMIT</button>
                                                     </div>
