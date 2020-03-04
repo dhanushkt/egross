@@ -1,3 +1,35 @@
+<?php
+include './../access/connection.php';
+
+if(isset($_POST['addsubcat']))
+{
+    $smcid=6;
+    $scname=$_POST['scname'];
+    $scactive=$_POST['scactive'];
+    $scdesc=$_POST['scdesc'];
+    $scimg=2;
+    $scimgdesc=1;
+    $qry=mysqli_query($con,"SELECT * FROM scat where scname='$scname'");
+    $count=mysqli_num_rows($qry);
+    if($count>0)
+    {
+        $emsg=mysqli_error($con);
+    }
+    else
+    {
+        $query=mysqli_query($con,"INSERT into scat (smcid,scname,scactive,scdesc,scimg,scimgdesc) VALUES ('$smcid','$scname','$scactive','$scdesc','$scimg','$scimgdesc')");
+        if($query)
+        {
+            $msg="Category inserted";
+        }
+        else
+        {
+            $emsg = mysqli_error($con);
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,8 +99,24 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title">Add Item</h4>
+                                    <h4 class="mt-0 header-title">Add Category</h4>
                                     <hr>
+                                    <?php if (isset($msg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <strong>Well done!</strong><?php echo $msg ?>
+                            </div>
+                        </div>
+                    <?php  } ?>
+                    <?php if (isset($emsg)) { ?>
+                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                            </button>
+                            <strong>Oh snap!</strong><?php echo $emsg; ?>
+                        </div>
+                    <?php } ?>
                                     <form method="POST">
 
                                         <div class="form-group">                                
@@ -81,7 +129,7 @@
 
                                         <div class="form-group">                                
                                             <label for="example-text-input" >Category name</label>
-                                            <input class="form-control" type="text" value="Enter Category name here" id="example-text-input" name=" ">
+                                            <input class="form-control" type="text" placeholder="Enter Category name here" id="example-text-input" name="scname">
                                         </div>
 
                                         <div class="form-group mb-0 row">
@@ -89,13 +137,13 @@
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio7" name="istatus" class="custom-control-input">
+                                                        <input value="1" type="radio" id="customRadio7" name="scactive" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio7">Active</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio8" name="istatus" class="custom-control-input">
+                                                        <input value="0" type="radio" id="customRadio8" nname="scactive" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio8">Inactive</label>
                                                     </div>
                                                 </div>
@@ -105,7 +153,7 @@
 
                                         <div class="form-group">
                                             <label for="example-text-input" >Category description</label>
-                                            <textarea class="form-control" rows="5" id="message"></textarea>
+                                            <textarea class="form-control" rows="5" id="message" name="scdesc"></textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -117,7 +165,7 @@
                                         </div>
                                        
                                        
-                                        <button type="submit" name="additem" class="btn btn-primary">Submit</button>
+                                        <button type="submit" name="addsubcat" class="btn btn-primary">Submit</button>
                                     </form>
                                 </div>
                                 <!--end card-body-->

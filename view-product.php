@@ -639,7 +639,7 @@ include 'access/connection.php';
 											</ul>
 										</div>
 										<h3 class="title-product clearfix full-width title-hover-black"><a href="#"><?php echo $itemdata['iname']; ?></a></h3>
-										<p class="clearfix price-product"><span class="price-old">$700</span> <?php echo $itemdata['iprice']; ?></p>
+										<p class="clearfix price-product"><!-- <span class="price-old">$700</span> --> <?php echo $itemdata['iprice']; ?></p>
 										<div class="clearfix ranking-product-category ranking-color">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
