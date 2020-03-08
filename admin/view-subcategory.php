@@ -75,6 +75,12 @@
                                                 <td>Active</td>
                                                 <td>Used to store any liquid</td>
                                                 <td>image</td>
+                                                <td style="white-space: nowrap; width: 15%;"><div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
+                                                <div class="btn-group btn-group-sm" style="float: none;"><button type="button" class="tabledit-edit-button btn btn-sm btn-success" style="float: none; margin: 4px;"><span class="ti-pencil"></span></button><button type="button" class="tabledit-delete-button btn btn-sm btn-danger" style="float: none; margin: 4px;"><span class="ti-trash"></span></button></div>
+                                                <button type="button" class="tabledit-save-button btn btn-sm btn-success" style="display: none; float: none; margin: 4px;">Save</button>
+                                                <button type="button" class="tabledit-confirm-button btn btn-sm btn-danger" style="display: none; margin: 4px; float: none;">Confirm</button>
+                                                <button type="button" class="tabledit-restore-button btn btn-sm btn-warning" style="display: none; float: none; margin: 4px;">Restore</button>
+                                                </div></td>
                                             </tr>
                                            
                                             </tbody>
