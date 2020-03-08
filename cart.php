@@ -1,128 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Cart Page</title>
-	<meta name="format-detection" content="telephone=no">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:100,300,400,500,700,900%7CRoboto+Condensed:100,300,400,500,700" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/icon-font-linea.css">
-	<link rel="stylesheet" type="text/css" href="css/multirange.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="css/themify-icons.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/effect.css">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/cartpage.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <base href="lander_plugins/" >
+    <?php include 'lander-pages/csslink.php'; ?>
 </head>
 <body>
-	    <!-- push menu-->
-    <div class="pushmenu menu-home5">
-        <div class="menu-push">
-            <span class="close-left js-close"><i class="fa fa-times f-20"></i></span>
-            <div class="clearfix"></div>
-            <form role="search" method="get" id="searchform" class="searchform" action="/search">
-                <div>
-                    <label class="screen-reader-text" for="q"></label>
-                    <input type="text" placeholder="Search for products" value="" name="q" id="q" autocomplete="off">
-                    <input type="hidden" name="type" value="product">
-                    <button type="submit" id="searchsubmit"><i class="ion-ios-search-strong"></i></button>
-                </div>
-            </form>
-            <ul class="nav-home5 js-menubar">
-                <li class="level1 active dropdown">
-                    <a href="#">Home</a>
-                    <span class="icon-sub-menu"></span>
-                    <ul class="menu-level1 js-open-menu">
-                        <li class="level2"><a href="home_v1.html" title="">Home 1</a></li>
-                        <li class="level2"><a href="home_v2.html" title="">Home 2</a></li>
-                        <li class="level2"><a href="home_v3.html" title="">Home 3</a></li>
-                    </ul>
-                </li>
-                <li class="level1 active dropdown"><a href="#">Shop</a>
-                    <span class="icon-sub-menu"></span>
-                    <div class="menu-level1 js-open-menu">
-                        <ul class="level1">
-                            <li class="level2">
-                                <a href="#">Shop Type</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="category_v1.html" title="">Category V1</a></li>
-                                    <li class="level3"><a href="category_v1_2.html" title="">Category V1.2</a></li>
-                                    <li class="level3"><a href="category_v2.html" title="">Category V2</a></li>
-                                    <li class="level3"><a href="category_v2_2.html" title="">Category V2.2</a></li>
-                                    <li class="level3"><a href="category_v3.html" title="">Category V3</a></li>
-                                    <li class="level3"><a href="category_v3_2.html" title="">Category V3.2</a></li>
-                                    <li class="level3"><a href="category_v4.html" title="">Category V4</a></li>
-                                    <li class="level3"><a href="category_v4_2.html" title="">Category V4.2</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2">
-                                <a href="#">Single Product Type</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="product_v1.html" title="">Product Single 1</a></li>
-                                    <li class="level3"><a href="product_v2.html" title="">Product Single 2</a></li>
-                                    <li class="level3"><a href="product_v3.html" title="">Product Single 3</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2">
-                                <a href="#">Order Page</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="cartpage.html" title="">Cart Page</a></li>
-                                    <li class="level3"><a href="checkout.html" title="">Checkout</a></li>
-                                    <li class="level3"><a href="compare.html" title="">Compare</a></li>
-                                    <li class="level3"><a href="quickview.html" title="">Quickview</a></li>
-                                    <li class="level3"><a href="trackyourorder.html">Track Order</a></li>
-                                    <li class="level3"><a href="wishlist.html">WishList</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-                <li class="level1">
-                    <a href="#">Pages</a>
-                    <span class="icon-sub-menu"></span>
-                    <ul class="menu-level1 js-open-menu">
-                        <li class="level2"><a href="about.html" title="About Us ">About Us </a></li>
-                        <li class="level2"><a href="contact.html" title="Contact">Contact</a></li>
-                        <li class="level2"><a href="404.html" title="404">404</a></li>
-                    </ul>
-                </li>
-                <li class="level1">
-                    <a href="#">Blog</a>
-                    <span class="icon-sub-menu"></span>
-                    <ul class="menu-level1 js-open-menu">
-                        <li class="level2"><a href="blog.html" title="Blog Standar">Blog Category</a></li>
-                        <li class="level2"><a href="blogdetail.html" title="Blog Gird">Blog Detail</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+	<!-- push menu-->
+    <?php include 'lander-pages/pushmenu.php'; ?>
     <!-- end push menu-->
 	<!-- Menu Mobile -->
-	<div class="menu-mobile-left-content menu-bg-white">
-		<ul>
-			<li><a href="#"><img src="img/icon_hot_gray.png" alt="Icon Hot Deals" /> <p>Hot Deals</p></a></li>
-			<li><a href="#"><img src="img/icon_food_gray.png" alt="Icon Food" /> <p>Food</p></a></li>
-			<li><a href="#"><img src="img/icon_mobile_gray.png" alt="Icon Mobile & Tablet" /> <p>Mobile & Tablet</p></a></li>
-			<li><a href="#"><img src="img/icon_electric_gray.png" alt="Icon Electric Appliances" /> <p>Electric Appliances</p></a></li>
-			<li><a href="#"><img src="img/icon_computer_gray.png" alt="Icon Electronics & Technology" /> <p>Electronics & Technology</p></a></li>
-			<li><a href="#"><img src="img/icon_fashion_gray.png" alt="Icon Fashion" /> <p>Fashion</p></a></li>
-			<li><a href="#"><img src="img/icon_health_gray.png" alt="Icon Health & Beauty" /> <p>Health & Beauty</p></a></li>
-			<li><a href="#"><img src="img/icon_mother_gray.png" alt="Icon Mother & Baby" /> <p>Mother & Baby</p></a></li>
-			<li><a href="#"><img src="img/icon_book_gray.png" alt="Icon Books & Stationery" /> <p>Books & Stationery</p></a></li>
-			<li><a href="#"><img src="img/icon_home_gray.png" alt="Icon Home & Life" /> <p>Home & Life</p></a></li>
-			<li><a href="#"><img src="img/icon_sport_gray.png" alt="Icon Sports & Outdoors" /> <p>Sports & Outdoors</p></a></li>
-			<li><a href="#"><img src="img/icon_auto_gray.png" alt="Icon Auto & Moto" /> <p>Auto & Moto</p></a></li>
-			<li><a href="#"><img src="img/icon_voucher_gray.png" alt="Icon Voucher Service" /> <p>Voucher Service</p></a></li>
-		</ul>
-	</div>
+	<?php include 'lander-pages/mobilemenu.php'; ?>
 	<!-- Header Box -->
 	<div class="wrappage">
         <header class="relative full-width">
@@ -561,102 +448,9 @@
 	</div>
 	<!-- End Content Box -->
 	<!-- Footer Box -->
-	<footer class="relative full-width">
-		<div class=" top-footer full-width">
-			<div class="clearfix container-web relative">
-				<div class=" container">
-					<div class="row">
-						<div class="clearfix col-md-9 col-sm-12 clear-padding col-xs-12">
-							<div class="clearfix text-subscribe">
-								<i class="fa fa-envelope-o" aria-hidden="true"></i>
-								<p>sign up for newsletter</p>
-								<p>Get updates on discount & counpons.</p>
-							</div>
-							<div class="clearfix form-subscribe">
-								<input type="text" name="email-subscribe" placeholder="Enter your email . . .">
-								<button class="animate-default button-hover-red">subscribe</button>
-							</div>
-						</div>
-						<div class="clearfix col-md-3 col-sm-12 col-xs-12 clear-padding social-box text-right">
-							<a href="#"><img src="img/social_tw-min.png" alt="Icon Social Twiter"></a>
-							<a href="#"><img src="img/social_fa-min.png" alt="Icon Social Facebook"></a>
-							<a href="#"><img src="img/social_int-min.png" alt="Icon Social Instagram"></a>
-							<a href="#"><img src="img/social_yt-min.png" alt="Icon Social Youtube" /></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix container-web relative">
-			<div class=" container clear-padding">
-				<div class="row">
-					<div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
-						<p>my account</p>
-						<ul class="list-footer">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Login</a></li>
-							<li><a href="#">My Cart</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">My Compare</a></li>
-						</ul>
-					</div>
-					<div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
-						<p>information</p>
-						<ul class="list-footer">
-							<li><a href="#">Information</a></li>
-							<li><a href="#">Orders History</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Site Map</a></li>
-						</ul>
-					</div>
-					<div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
-						<p>our services</p>
-						<ul class="list-footer">
-							<li><a href="#">Product Recall</a></li>
-							<li><a href="#">Gift Vouchers</a></li>
-							<li><a href="#">Returns And Exchanges</a></li>
-							<li><a href="#">Shipping Options</a></li>
-							<li><a href="#">Terms Of Use</a></li>
-						</ul>
-					</div>
-					<div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
-						<p>contact us</p>
-						<ul class="icon-footer">
-							<li><i class="fa fa-home" aria-hidden="true"></i> 262 Milacina Mrest, Behansed, Paris</li>
-							<li><i class="fa fa-envelope" aria-hidden="true"></i> contact@yourcompany.com</li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i> 070-7782-9137</li>
-							<li><i class="fa fa-fax" aria-hidden="true"></i> 070-7782-9138</li>
-							<li><i class="fa fa-clock-o" aria-hidden="true"></i> 09:00 AM - 18:00 PM</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class=" bottom-footer full-width">
-			<div class="clearfix container-web">
-				<div class=" container">
-					<div class="row">
-						<div class="clearfix col-md-7 clear-padding copyright">
-							<p class="clear-margin">Copyright © 2018 by EngoCreative. All Rights Reserved.</p>
-						</div>
-						<div class="clearfix footer-icon-bottom col-md-5 float-right clear-padding">
-							<div class="icon_logo_footer float-right">
-								<img src="img/image_payment_footer-min.png" alt="">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<?php include 'lander-pages/footer.php'; ?>
 </div>
 	<!-- End Footer Box -->
-	<script src="js/jquery-3.3.1.min.js" defer=""></script>
-	<script src="js/bootstrap.min.js" defer=""></script>
-	<script src="js/multirange.js" defer=""></script>
-	<script src="js/owl.carousel.min.js" defer=""></script>
-	<script src="js/sync_owl_carousel.js" defer=""></script>
-	<script src="js/scripts.js" defer=""></script>
+	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
 </html>
