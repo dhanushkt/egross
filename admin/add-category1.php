@@ -1,12 +1,12 @@
 <?php
 include './../access/connection.php';
-if(isset($_POST['addmain']))
+if(isset($_POST['additem']))
 {
     $mcname=$_POST['mcname'];
     $mcactive=$_POST['mcactive'];
     $mcdesc=$_POST['mcdesc'];
     $mcimg=1;
-    $mcimgdesc=$_POST['mcimgdesc'];
+    $mcimgdesc=2;
     $qry=mysqli_query($con,"SELECT mcname FROM mcat where mcname='$mcname'");
     $count=mysqli_num_rows($qry);
     if($count>0)
@@ -86,11 +86,27 @@ if(isset($_POST['addmain']))
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title">Add Category</h4>
+                                    <?php if (isset($msg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <strong>Well done!</strong><?php echo $msg ?>
+                            </div>
+                        </div>
+                    <?php  } ?>
+                    <?php if (isset($emsg)) { ?>
+                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                            </button>
+                            <strong>Oh snap!</strong><?php echo $emsg; ?>
+                        </div>
+                    <?php } ?>
                                     <hr>
                                     <form method="POST">
                                         <div class="form-group">                                
                                             <label for="example-text-input" >Category name</label>
-                                            <input class="form-control" type="text" value="Enter Category name here" id="example-text-input" name=" ">
+                                            <input class="form-control" type="text" placeholder="Enter Category name here" id="example-text-input" name="mcname">
                                         </div>
 
                                         <div class="form-group mb-0 row">
@@ -98,13 +114,13 @@ if(isset($_POST['addmain']))
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio7" name="istatus" class="custom-control-input">
+                                                        <input type="radio" id="customRadio7" name="mcactive" value="1" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio7">Active</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio8" name="istatus" class="custom-control-input">
+                                                        <input type="radio" id="customRadio8" name="mcactive" value="0" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio8">Inactive</label>
                                                     </div>
                                                 </div>
@@ -114,7 +130,7 @@ if(isset($_POST['addmain']))
 
                                         <div class="form-group">
                                             <label for="example-text-input" >Category description</label>
-                                            <textarea class="form-control" rows="5" id="message"></textarea>
+                                            <textarea class="form-control" rows="5" id="message" name="mcdesc"></textarea>
                                         </div>
 
                                         <div class="form-group">
