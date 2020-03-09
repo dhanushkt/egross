@@ -128,7 +128,7 @@ if(isset($_POST['addsubcat']))
  
 
                                         <div class="form-group">                                
-                                            <label for="example-text-input" >Category name</label>
+                                            <label for="example-text-input" >Item name</label>
                                             <input class="form-control" type="text" placeholder="Enter Category name here" id="example-text-input" name="scname">
                                         </div>
 
@@ -137,13 +137,13 @@ if(isset($_POST['addsubcat']))
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input value="1" type="radio" id="customRadio7" name="scactive" class="custom-control-input">
+                                                        <input value="1" type="radio" id="customRadio7" name="scactive" value="1" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio7">Active</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input value="0" type="radio" id="customRadio8" nname="scactive" class="custom-control-input">
+                                                        <input value="0" type="radio" id="customRadio8" name="scactive" value="0" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio8">Inactive</label>
                                                     </div>
                                                 </div>
