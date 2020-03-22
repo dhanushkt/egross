@@ -114,6 +114,16 @@ if (isset($_POST['additem'])) {
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Category</label>
+                                            <select name="datatable_length" aria-controls="datatable" class="form-control form-control-sm"><option value="Consumable">Consumable</option><option value="Consumable">Medicine</option></select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Sub-Category</label>
+                                            <select name="datatable_length" aria-controls="datatable" class="form-control form-control-sm"><option value="Water">Water</option><option value="Water">Juice</option><option value="Water">Biscuit</option></select>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Brand</label>
                                             <input type="text" class="form-control" name="ibrand" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand">
                                         </div>
