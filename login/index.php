@@ -1,7 +1,8 @@
 <?php
 include_once '../access/connection.php';
 session_start();
-if (isset($_POST['login'])) {
+if (isset($_POST['login'])) 
+{
     $uname = $_POST['uname'];
     $pwd = md5($_POST['password']);
 
