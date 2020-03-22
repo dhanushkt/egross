@@ -3,7 +3,7 @@ include './../access/connection.php';
 
 if(isset($_POST['addsubcat']))
 {
-    $smcid=6;
+    $smcid=$_POST['smcid'];
     $scname=$_POST['scname'];
     $scactive=$_POST['scactive'];
     $scdesc=$_POST['scdesc'];
@@ -121,8 +121,15 @@ if(isset($_POST['addsubcat']))
 
                                         <div class="form-group">                                
                                             <label for="example-text-input">Sellect main Categorys</label>
-                                            <select class="form-control form-control-lg mb-0">
+                                            <select class="form-control form-control-lg mb-0" name="smcid">
                                                 <option>Select Category</option>
+                                                <?php
+                                                $query=mysqli_query($con,"SELECT * from mcat"); 
+                                                while($row=mysqli_fetch_assoc($query))
+                                                {
+                                                ?>
+                                                <option value="<?php echo $row["mcid"];?>" ><?php echo $row["mcname"];?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
  
