@@ -114,13 +114,31 @@ if (isset($_POST['additem'])) {
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Category</label>
-                                            <select name="datatable_length" aria-controls="datatable" class="form-control form-control-sm"><option value="Consumable">Consumable</option><option value="Consumable">Medicine</option></select>
+                                            <label for="exampleInputEmail1">Select Main Category</label>
+                                            <select name="datatable_length" aria-controls="datatable" name="mcid" class="form-control form-control-sm">
+                                                <option value="Consumable">Select item</option>
+                                                <?php
+                                                $stat=mysqli_query($con,"select * from mcat");
+                                                while($row=mysqli_fetch_assoc($stat))
+                                                {
+                                                ?>
+                                                <option value="<?php echo $row["mcid"];?>"><?php echo $row["mcname"];?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Sub-Category</label>
-                                            <select name="datatable_length" aria-controls="datatable" class="form-control form-control-sm"><option value="Water">Water</option><option value="Water">Juice</option><option value="Water">Biscuit</option></select>
+                                            <label for="exampleInputEmail1">Select Sub-Category</label>
+                                            <select name="datatable_length" aria-controls="datatable" name="scid" class="form-control form-control-sm">
+                                                <option value="Water">Select category</option>
+                                                <?php
+                                                $stat2=mysqli_query($con,"select * from scat");
+                                                while($row=mysqli_fetch_assoc($stat2))
+                                                {
+                                                ?>
+                                                <option value="<?php echo $row["scid"];?>"><?php echo $row["scname"];?></option> 
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
