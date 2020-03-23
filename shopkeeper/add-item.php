@@ -1,7 +1,7 @@
 <?php
 include '../access/shopaccesscontrol.php';
 if (isset($_POST['additem'])) {
-    $isid = $globalshopid;
+    $isid = $_POST['isid'];
     $iname = $_POST['iname'];
     $ibrand = $_POST['ibrand'];
     $idesc = $_POST['idesc'];
@@ -113,32 +113,29 @@ if (isset($_POST['additem'])) {
                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname">
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Select Main Category</label>
-                                            <select name="datatable_length" aria-controls="datatable" name="mcid" class="form-control form-control-sm">
-                                                <option value="Consumable">Select item</option>
-                                                <?php
-                                                $stat=mysqli_query($con,"select * from mcat");
-                                                while($row=mysqli_fetch_assoc($stat))
-                                                {
-                                                ?>
-                                                <option value="<?php echo $row["mcid"];?>"><?php echo $row["mcname"];?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Select Sub-Category</label>
-                                            <select name="datatable_length" aria-controls="datatable" name="scid" class="form-control form-control-sm">
-                                                <option value="Water">Select category</option>
-                                                <?php
-                                                $stat2=mysqli_query($con,"select * from scat");
-                                                while($row=mysqli_fetch_assoc($stat2))
-                                                {
-                                                ?>
-                                                <option value="<?php echo $row["scid"];?>"><?php echo $row["scname"];?></option> 
-                                                <?php } ?>
-                                            </select>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6 class="input-title mt-0">Select Category</h6>
+                                                <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" style="width: 100%; height:36px;" tabindex="-1" name="isid" aria-hidden="true">
+                                                    <option>Select</option>
+                                                    <?php
+                                                    $main=mysqli_query($con,"select * from mcat");
+                                                    while($row=mysqli_fetch_assoc($main))
+                                                    {
+                                                        $id=$row["mcid"];
+                                                    ?>
+                                                    <optgroup label="<?php echo $row["mcname"];?>">
+                                                        <?php 
+                                                        $sub=mysqli_query($con,"select * from scat where smcid='$id'");
+                                                        while($row2=mysqli_fetch_assoc($sub))
+                                                        {
+                                                        ?>
+                                                        <option value="<?php echo $row2["scid"];?>"><?php echo $row2["scname"];?></option>
+                                                        <?php }?>
+                                                    </optgroup>
+                                                    <?php }?>
+                                                </select>
+                                            </div>                                                
                                         </div>
 
                                         <div class="form-group">
