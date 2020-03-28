@@ -78,7 +78,6 @@ if (isset($_POST['register']))
                         </div>
                     </div>
                     <div class="row">
-                    
                         <div class="clearfix header-content full-width relative">
                             <div class="clearfix icon-menu-bar">
                                 <i class="data-icon data-icon-arrows icon-arrows-hamburger-2 icon-pushmenu js-push-menu"></i>
