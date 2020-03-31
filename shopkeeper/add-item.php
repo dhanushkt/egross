@@ -1,24 +1,34 @@
 <?php
 include '../access/shopaccesscontrol.php';
+
+//get todays date
+date_default_timezone_set('Asia/Kolkata');
+$iadate = date('m/d/Y h:i a');
+
 if (isset($_POST['additem'])) {
-    $isid = $_POST['isid'];
+    //shop id
+    $isid = $globalshopid;
+    //subcat id
+    $iscid = $_POST['isid'];
+
     $iname = $_POST['iname'];
     $ibrand = $_POST['ibrand'];
     $idesc = $_POST['idesc'];
-    $istatus = 1;
-    date_default_timezone_set('Asia/Kolkata');
-    $iadate = date('m/d/Y h:i a');
+    $istatus = $_POST['istatus'];
+    
     $iimg = 2;
     $iprice = $_POST['iprice'];
+
+    //search strings
     $isearch = 3;
-    date_default_timezone_set('Asia/Kolkata');
-    $date = date('m/d/Y h:i a');
+    
     $query = mysqli_query($con, "select * from itemmaster where iname='$iname' and ibrand='$ibrand'");
     $count = mysqli_num_rows($query);
+
     if ($count > 0) {
         $emsg = "Item already Exists";
     } else {
-        $qry = mysqli_query($con, "insert into itemmaster (isid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,isearch) values ('$isid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$isearch')");
+        $qry = mysqli_query($con, "insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,isearch) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$isearch')");
         if ($qry) {
             $ismsg = "Item Inserted successfully";
         } else {
@@ -84,7 +94,7 @@ if (isset($_POST['additem'])) {
                         <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
                             <i class="mdi mdi-check-all alert-icon"></i>
                             <div class="alert-text">
-                                <strong>Well done!</strong><?php echo $ismsg ?>
+                                <strong>Well done! </strong> <?php echo $ismsg ?>
                             </div>
                         </div>
                     <?php  } ?>
@@ -93,7 +103,7 @@ if (isset($_POST['additem'])) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
                             </button>
-                            <strong>Oh snap!</strong><?php echo $emsg; ?>
+                            <strong>Oh snap! </strong> <?php echo $emsg; ?>
                         </div>
                     <?php } ?>
                     <!--end of error msg-->
@@ -103,10 +113,6 @@ if (isset($_POST['additem'])) {
                                 <div class="card-body">
                                     <h4 class="mt-0 header-title">Add Item</h4>
                                     <hr>
-
-                                
-
-
                                     <form method="POST">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
@@ -114,28 +120,26 @@ if (isset($_POST['additem'])) {
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <h6 class="input-title mt-0">Select Category</h6>
-                                                <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" style="width: 100%; height:36px;" tabindex="-1" name="isid" aria-hidden="true">
-                                                    <option>Select</option>
+                                                <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" name="isid" aria-hidden="true">
+                                                    <option selected hidden>Select Category</option>
                                                     <?php
-                                                    $main=mysqli_query($con,"select * from mcat");
-                                                    while($row=mysqli_fetch_assoc($main))
-                                                    {
-                                                        $id=$row["mcid"];
+                                                    $main = mysqli_query($con, "select * from mcat");
+                                                    while ($row = mysqli_fetch_assoc($main)) {
+                                                        $id = $row["mcid"];
                                                     ?>
-                                                    <optgroup label="<?php echo $row["mcname"];?>">
-                                                        <?php 
-                                                        $sub=mysqli_query($con,"select * from scat where smcid='$id'");
-                                                        while($row2=mysqli_fetch_assoc($sub))
-                                                        {
-                                                        ?>
-                                                        <option value="<?php echo $row2["scid"];?>"><?php echo $row2["scname"];?></option>
-                                                        <?php }?>
-                                                    </optgroup>
-                                                    <?php }?>
+                                                        <optgroup label="<?php echo $row["mcname"]; ?>">
+                                                            <?php
+                                                            $sub = mysqli_query($con, "select * from scat where smcid='$id'");
+                                                            while ($row2 = mysqli_fetch_assoc($sub)) {
+                                                            ?>
+                                                                <option value="<?php echo $row2["scid"]; ?>"><?php echo $row2["scname"]; ?></option>
+                                                            <?php } ?>
+                                                        </optgroup>
+                                                    <?php } ?>
                                                 </select>
-                                            </div>                                                
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -153,30 +157,29 @@ if (isset($_POST['additem'])) {
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio7" name="istatus" class="custom-control-input">
+                                                        <input type="radio" id="customRadio7" name="istatus" class="custom-control-input" value="1">
                                                         <label class="custom-control-label" for="customRadio7">Visible</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="customRadio8" name="istatus" class="custom-control-input">
+                                                        <input type="radio" id="customRadio8" name="istatus" class="custom-control-input" value="0">
                                                         <label class="custom-control-label" for="customRadio8">Not visible</label>
                                                     </div>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
 
-                                      
+
 
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Price</label>
                                             <input type="number" class="form-control" id="exampleInputPassword1" name="iprice" placeholder="Enter price in ₹">
                                         </div>
-                                       
-                                       
-                                        <button type="submit" name="additem" class="btn btn-primary">Submit</button>
-                                        <button type="button" class="btn btn-danger">Cancel</button>
+
+
+                                        <button type="submit" name="additem" class="btn btn-primary">Add</button>                    
                                     </form>
                                 </div>
                                 <!--end card-body-->
