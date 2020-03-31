@@ -4,6 +4,43 @@
 <head>
     <base href="lander_plugins/">
     <?php include 'lander-pages/csslink.php'; ?>
+    <style>
+    table,
+    th,
+    td,
+    tr {
+        border: 1px solid black;
+
+    }
+
+    th {
+        padding: 35px;
+        font-size: 20px;
+
+    }
+
+    td {
+        padding: 20px;
+        font-size: 15px;
+    }
+
+    .colmn {
+        column-count: 3;
+        column-gap: 40px;
+    }
+
+    .but {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 6px 6px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+       
+    }
+    </style>
 
 </head>
 
@@ -265,173 +302,35 @@
 
                         <!-- Content Shoping Cart -->
                         <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                            <p class="title-shoping-cart">Add a new address</p>
+                            <p class="title-shoping-cart">View Address</p>
 
-                            <div class="relative clearfix full-width">
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Name</label>
-                                    <input class="full-width" type="text" name="name">
-                                </div>
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
-                                    <label>Email</label>
-                                    <input class="full-width" type="text" name="email">
-                                </div>
-							</div>
-							
-							<div class="relative clearfix full-width">
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Number</label>
-                                    <input class="full-width" type="text" name="number">
-                                </div>
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
-                                    <label>Alternate Number</label>
-                                    <input class="full-width" type="text" name="alnumber">
-                                </div>
+
+                            <div class="col-md-4"
+                                style="border:1px solid black; height: 250px; padding:15px; word-wrap: break-word;">
+                                Address1
+
+                                <button class="but">Edit</button>
+                                <button class="but">Delete</button>
                             </div>
 
+                            <div class="col-md-4"
+                                style="border:1px solid black; height: 250px; padding:15px; word-wrap: break-word;">
+                                Address2
+                                <button class="but">Edit</button>
+                                <button class="but">Delete</button>
 
-                            <div class="form-input full-width clearfix relative">
-                                <label>House No, Building name*</label>
-                                <input class="full-width" type="text" name="houseno">
                             </div>
 
-                            <div class="form-input full-width clearfix relative">
-                                <label>Road Name,Area,Colony*</label>
-                                <input class="full-width" type="text" name="area">
-                            </div>
+                            <div class="col-md-4"
+                                style="border:1px solid black; height: 250px; padding:15px; word-wrap: break-word;">
+                                Address3
+                                <button class="but">Edit</button>
+                                <button class="but">Delete</button>
 
-                            <div class="relative clearfix full-width">
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>City *</label>
-									<input class="full-width" type="text" name="city">
-                                </div>
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
-                                    <label>District</label>
-                                    <input class="full-width" type="text" name="district">
-                                </div>
                             </div>
 
 
 
-                            <div class="relative clearfix full-width">
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>State</label>
-                                    <input class="full-width" type="text" name="state">
-                                </div>
-                                <div
-                                    class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
-                                    <label>Pincode</label>
-                                    <input class="full-width" type="text" name="pincode">
-                                </div>
-							</div>
-							
-							<div class="form-input full-width clearfix relative">
-                                <label>Set as default</label>
-                                <input type="checkbox" name="def" style="width: 18px; height: 18px;">
-                            </div>
-
-                            <button
-                                class="align=center btn-proceed-checkout col-md-4 col-sm-12 col-xs-12 form-input top-margin-15-default bottom-margin-20-default">add
-                                address</button>
-
-
-                            <!-- End Content Shoping Cart -->
-                            <!-- Content Right -->
-                            <!--<div class="col-md-4 col-sm-12 col-xs-12 right-content-shoping relative clear-padding-right">
-						<p class="title-shoping-cart">Your Order</p>
-						<div class="full-width relative overfollow-hidden">
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
-								<div class="image-product-order-sidebar center-vertical-image">
-									<img src="img/product_home_5-min.png" alt="" />
-								</div>
-								<div class="relative info-product-order-sidebar">
-									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Endeavor Daytrip Backpack x1</a></p>
-									<p class="price-product">$350.00</p>
-								</div>
-							</div>
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
-								<div class="image-product-order-sidebar center-vertical-image">
-									<img src="img/img_product_small_9-min.png" alt="" />
-								</div>
-								<div class="relative info-product-order-sidebar">
-									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Diam Special08 x1</a></p>
-									<p class="price-product">$350.00</p>
-								</div>
-							</div>
-						</div>
-						<p class="title-shoping-cart">Cart Total</p>
-						<div class="full-width relative cart-total bg-gray  clearfix">
-							<div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
-								<p>Subtotal</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
-							</div>
-							<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
-								<p class="bottom-margin-15-default">Shipping</p>
-								<div class="relative justify-content">
-									<ul class="check-box-custom title-check-box-black clear-margin clear-margin">
-										<li>
-											<label>Free Shipping
-												<input type="radio" name="shiping-order" checked="">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-										<li>
-											<label>Standard
-												<input type="radio" name="shiping-order">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-										<li>
-											<label>Local Pickup
-												<input type="radio" name="shiping-order">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-									</ul>
-									<p class="price-gray-sidebar">$20.00</p>
-								</div>
-								<div onclick="optionShiping(this)" class="relative full-width select-ship-option justify-content top-margin-15-default">
-									<p class="border no-border-r no-border-l no-border-t">Calculate Shipping</p>
-									<i class="fa fa-caret-down" aria-hidden="true"></i>
-									<ul class="clear-margin absolute full-width">
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 1</li>
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 2</li>
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 3</li>
-									</ul>
-								</div>
-							</div>
-							<div class="relative justify-content top-margin-15-default">
-								<p class="bold">Total</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
-							</div>
-						</div>
-						<div class="full-width relative payment-box bg-gray top-margin-15-default clearfix">
-							<ul class="check-box-custom list-radius title-check-box-black clear-margin clear-margin">
-								<li>
-									<label class="">Check Payment
-										<input type="radio" name="payment" checked="">
-	  									<span class="checkmark"></span>
-	  								</label>
-	  								<br><p class="info-payment">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-								</li>
-								<li>
-									<label class="">Paypal <img class="left-margin-15-default" src="img/logo_payment-min.png" alt="Logo Paypal" />
-										<input type="radio" name="payment">
-	  									<span class="checkmark"></span>
-	  								</label>
-								</li>
-							</ul>
-						</div>
-						<button class="btn-proceed-checkout full-width top-margin-15-default">Proceed to Checkout</button>
-					</div>-->
-                            <!-- End Content Right -->
 
                         </div>
                     </div>
