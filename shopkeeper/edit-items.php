@@ -48,14 +48,13 @@ if (isset($_POST['additem'])) {
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <div class="float-right align-item-center mt-2">
-                            <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
+                            <a href=edit-items.php><button class="btn btn-info px-4 align-self-center report-btn"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                            </button>
                         </div>
-                        <h4 class="page-title mb-2"><i class="mdi mdi-monitor-dashboard mr-2"></i>Dashboard</h4>
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">App</a></li>
-                                <li class="breadcrumb-item active">Dashboard-3</li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Items</a></li>
+                                <li class="breadcrumb-item active">Edit Items</li>
                             </ol>
                         </div>
                     </div>

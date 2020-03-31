@@ -12,8 +12,8 @@ if (isset($_POST['login']))
     if ($getadminrow == 1) {
         $_SESSION['aid'] = $getadmindata['adminid'];
         $_SESSION['auname'] = $getadmindata['auname'];
-        $smsg = "Login Successful, Redirecting in 2 seconds..";
-        echo "<script> window.setTimeout(function(){ window.location.href='../admin/' }, 2000); </script>";
+        $smsg = "Login Successful, Redirecting in 1 seconds..";
+        echo "<script> window.setTimeout(function(){ window.location.href='../admin/' }, 1000); </script>";
     } else {
 
         $shopquery = mysqli_query($con, "SELECT * FROM shopkeeper WHERE (soemail='$uname' OR somobile='$uname') AND spassword = '$pwd'");
@@ -22,8 +22,8 @@ if (isset($_POST['login']))
         if ($getshoprow == 1) {
             $_SESSION['sid'] = $getshopdata['sid'];
             $_SESSION['sname'] = $getshopdata['sname'];
-            $smsg = "Login Successful, Redirecting in 2 seconds..";
-            echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/' }, 2000); </script>";
+            $smsg = "Login Successful, Redirecting in 1 seconds..";
+            echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/' }, 1000); </script>";
         } else {
             $fmsg = "Invalid username or password";
         }

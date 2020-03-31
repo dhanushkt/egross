@@ -60,12 +60,10 @@ if (isset($_POST['additem'])) {
                         <div class="float-right align-item-center mt-2">
                             <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
                         </div>
-                        <h4 class="page-title mb-2"><i class="mdi mdi-monitor-dashboard mr-2"></i>Dashboard</h4>
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">App</a></li>
-                                <li class="breadcrumb-item active">Dashboard-3</li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Items</a></li>
+                                <li class="breadcrumb-item active">Add Item</li>
                             </ol>
                         </div>
                     </div>
@@ -94,7 +92,7 @@ if (isset($_POST['additem'])) {
                         <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
                             <i class="mdi mdi-check-all alert-icon"></i>
                             <div class="alert-text">
-                                <strong>Well done! </strong> <?php echo $ismsg ?>
+                                <!--<strong>Well done! </strong>--><?php echo $ismsg ?>
                             </div>
                         </div>
                     <?php  } ?>
