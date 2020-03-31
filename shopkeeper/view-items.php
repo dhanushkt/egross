@@ -62,7 +62,7 @@ include '../access/shopaccesscontrol.php';
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>Item Name</th>
+                                                <th>Item-Name</th>
                                                 <th>Brand</th>
                                                 <!-- <th>Description</th> -->
                                                 <th>Price</th>
@@ -96,8 +96,11 @@ include '../access/shopaccesscontrol.php';
                                                 
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-outline-secondary btn-sm"><i class="far fa-trash-alt"></i></button>
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm">
+                                                        <a href="edit-items.php?id=<?php echo $itemdata['itmid']; ?>"><i class="far fa-edit"></a></i></button>
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm">
+                                                        <a href="delete.php?id=<?php echo $itemdata['itmid']; ?>">
+                                                        <i class="far fa-trash-alt"></a></i></button>
                                                       </div>
                                                 </td>
                                             <tr>
