@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("remotemysql.com","DZN6883t7x","Yvx6TN8I7Y","DZN6883t7x");
+$con = mysqli_connect("85.187.128.23","evehiin_egross","(T;9bkEo4K]L","evehiin_egross");
 if(!$con)
 {
     echo "DB Connection error";
