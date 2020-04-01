@@ -71,7 +71,7 @@ if (isset($_POST['login']))
                             <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
                                 <i class="mdi mdi-check-all alert-icon"></i>
                                 <div class="alert-text">
-                                    <strong>Well done!</strong> <?php echo $smsg ?>
+                                <?php echo $smsg ?>
                                 </div>
                             </div>
                         <?php } else if (isset($fmsg)) { ?>
