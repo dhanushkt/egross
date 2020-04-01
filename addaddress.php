@@ -276,7 +276,7 @@
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                     <label>Email</label>
-                                    <input class="full-width" type="text" name="email">
+                                    <input class="full-width" type="text" name="aemail">
                                 </div>
 							</div>
 							
@@ -284,36 +284,36 @@
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                     <label>Number</label>
-                                    <input class="full-width" type="text" name="number">
+                                    <input class="full-width" type="text" name="arphone">
                                 </div>
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                     <label>Alternate Number</label>
-                                    <input class="full-width" type="text" name="alnumber">
+                                    <input class="full-width" type="text" name="aaphone">
                                 </div>
                             </div>
 
 
                             <div class="form-input full-width clearfix relative">
                                 <label>House No, Building name*</label>
-                                <input class="full-width" type="text" name="houseno">
+                                <input class="full-width" type="text" name="addrline1">
                             </div>
 
                             <div class="form-input full-width clearfix relative">
                                 <label>Road Name,Area,Colony*</label>
-                                <input class="full-width" type="text" name="area">
+                                <input class="full-width" type="text" name="addrline2">
                             </div>
 
                             <div class="relative clearfix full-width">
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                     <label>City *</label>
-									<input class="full-width" type="text" name="city">
+									<input class="full-width" type="text" name="acity">
                                 </div>
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                     <label>District</label>
-                                    <input class="full-width" type="text" name="district">
+                                    <input class="full-width" type="text" name="adistrict">
                                 </div>
                             </div>
 
@@ -323,18 +323,18 @@
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                     <label>State</label>
-                                    <input class="full-width" type="text" name="state">
+                                    <input class="full-width" type="text" name="astate">
                                 </div>
                                 <div
                                     class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                     <label>Pincode</label>
-                                    <input class="full-width" type="text" name="pincode">
+                                    <input class="full-width" type="text" name="apin">
                                 </div>
 							</div>
 							
 							<div class="form-input full-width clearfix relative">
                                 <label>Set as default</label>
-                                <input type="checkbox" name="def" style="width: 18px; height: 18px;">
+                                <input type="checkbox" name="adefault" style="width: 18px; height: 18px;">
                             </div>
 
                             <button
