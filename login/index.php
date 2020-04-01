@@ -13,7 +13,7 @@ if (isset($_POST['login']))
         $_SESSION['aid'] = $getadmindata['adminid'];
         $_SESSION['auname'] = $getadmindata['auname'];
         $smsg = "Login Successful, Redirecting in 1 seconds..";
-        echo "<script> window.setTimeout(function(){ window.location.href='../admin/' }, 1000); </script>";
+        echo "<script> window.setTimeout(function(){ window.location.href='../admin/index.php' }, 1000); </script>";
     } else {
 
         $shopquery = mysqli_query($con, "SELECT * FROM shopkeeper WHERE (soemail='$uname' OR somobile='$uname') AND spassword = '$pwd'");
@@ -23,7 +23,7 @@ if (isset($_POST['login']))
             $_SESSION['sid'] = $getshopdata['sid'];
             $_SESSION['sname'] = $getshopdata['sname'];
             $smsg = "Login Successful, Redirecting in 1 seconds..";
-            echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/' }, 1000); </script>";
+            echo "<script> window.setTimeout(function(){ window.location.href='../shopkeeper/index.php' }, 1000); </script>";
         } else {
             $fmsg = "Invalid username or password";
         }
@@ -96,7 +96,7 @@ if (isset($_POST['login']))
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                                     </div>
-                                    <input required autocomplete="off" name="uname" type="text" class="form-control" id="username" placeholder="Enter email">
+                                    <input required autocomplete="off" name="uname" type="text" class="form-control" id="username" placeholder="Enter Email" autofocus tabindex="1">
                                 </div>
                             </div>
 
@@ -106,7 +106,7 @@ if (isset($_POST['login']))
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-key font-16"></i></span>
                                     </div>
-                                    <input required name="password" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                    <input required name="password" type="password" class="form-control" id="userpassword" placeholder="Enter Password" tabindex="2">
                                 </div>
                             </div>
 
@@ -118,7 +118,7 @@ if (isset($_POST['login']))
                                     </div>
                                 </div>
                                 <div class="col-sm-6 text-right">
-                                    <a href="pages-recoverpw-2.html" class="text-muted font-13"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                    <a href="#" class="text-muted font-13"><i class="mdi mdi-lock"></i> Forgot your password?</a>
                                 </div>
                             </div>
 
@@ -163,7 +163,7 @@ if (isset($_POST['login']))
                     <img src="../admin_plugins/images/logo-sm.png" alt="" class="thumb-sm">
                     <h4 class="mt-3">Welcome To EGrosss</h4>
                     <div class="border w-25 mx-auto border-primary"></div>
-                    <h1 class="">Let's Get Started</h1>
+                    <!-- <h1 class="">Let's Get Started</h1> -->
                     <p class="font-14 mt-3">Don't have an account ? <a href="" class="text-primary">Sign up</a></p>
 
                 </div>
