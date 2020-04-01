@@ -67,14 +67,11 @@ if(isset($_POST['addsubcat']))
                     <div class="col-sm-12">
                         <div class="page-title-box">
                             <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
                             </div>
-                            <h4 class="page-title mb-2"><i class="mdi mdi-format-list-bulleted mr-2"></i>Form Elements</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
-                                    <li class="breadcrumb-item active">Form Elements</li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Sub-Category</a></li>
+                                    <li class="breadcrumb-item active">Add Sub-Category</li>
                                 </ol>
                             </div>                                      
                         </div><!--end page title box-->
