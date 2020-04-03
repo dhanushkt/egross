@@ -5,11 +5,11 @@
         <li class="menu-title">Main</li>
 
         <li>
-            <a href="index.php"><i class="dripicons-view-thumb"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
+            <a href="index.php"><i class="mdi mdi-view-dashboard-outline"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
         </li>
 
         <li>
-            <a href="javascript: void(0);"><i class="ti-shopping-cart-full"></i><span>Items </span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+            <a href="javascript: void(0);"><i class="mdi mdi-basket"></i><span>Items </span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li><a href="add-item.php"><span>Add Item</span></a></li>
                 <li><a href="view-items.php"><span>View Items</span></a></li>
