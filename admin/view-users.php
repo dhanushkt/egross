@@ -1,11 +1,19 @@
+<?php
+  include './../access/connection.php';  
+  $query ="select * FROM user ORDER BY uid DESC";  
+  $result = mysqli_query($con, $query);  
+ ?>  
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <?php include 'assets/csslink.php'; ?>
+    <?php include 'assets/csslink.php'; ?>   
+    <!-- DataTables -->
+    <link href="../admin_plugins/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../admin_plugins/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="../admin_plugins/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
     </head>
-
-    <body>
-
+<body>
         <!-- Top Bar Start -->
         <?php include 'assets/topbar.php'; ?>
         <!-- Top Bar End -->
@@ -34,14 +42,15 @@
                     <div class="col-sm-12">
                         <div class="page-title-box">
                             <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
+                            <button class="btn btn-info" onClick="window.location.reload();">Refresh
+                            </button>
                             </div>
-                            <h4 class="page-title mb-2"><i class="mdi mdi-table-large mr-2"></i>Datatable</h4>  
+                            <h4 class="page-title mb-2"><i class="mdi mdi-table-large mr-2"></i>User Details</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Tables</a></li>
-                                    <li class="breadcrumb-item active">Datatable</li>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
+                                    <li class="breadcrumb-item active">User Details</li>
                                 </ol>
                             </div>                                      
                         </div><!--end page title box-->
@@ -66,64 +75,52 @@
                                 <div class="card">
                                     <div class="card-body">
         
-                                        <h4 class="mt-0 header-title">View Users</h4>
-                                        <!--<p class="text-muted mb-4 font-13">DataTables has most features enabled by
-                                            default, so all you need to do to use it with your own tables is to call
-                                            the construction function: <code>$().DataTable();</code>.
-                                        </p>-->
-        
+                                        <h4 class="mt-0 header-title">View User Details</h4>
+                                    
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
                                             </tr>
                                             </thead>
         
         
                                             <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                            </tr>
+                                            <?php  
+                                             while($row = mysqli_fetch_assoc($result))  
+                                            {  
+                                            echo '  
+                                            <tr>  
+                                            <td>'.$row["uname"].'</td>  
+                                            <td>'.$row["uemail"].'</td>  
+                                            <td>'.$row["umobile"].'</td>  
+                                            </tr>  
+                                            ';  
+                                              }  
+                                            ?>  
                                             </tbody>
                                         </table>
-        
                                     </div>
                                 </div>
                             </div> <!-- end col -->
                         </div> <!-- end row -->
-
-
                     </div><!-- container -->
-
                     <?php include 'assets/footer.php'; ?>
-                </div>
-                <!-- end page content -->
-            </div>
-            <!--end page-wrapper-inner -->
-        </div>
-        <!-- end page-wrapper -->
+                </div><!-- end page content -->
+            </div><!--end page-wrapper-inner -->
+        </div><!-- end page-wrapper -->
 
         <!-- jQuery  -->
         <?php include 'assets/jslink.php'; ?>
-        
 
-    </body>
+        <!-- Required datatable js -->
+        <script src="../admin_plugins/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../admin_plugins/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="../admin_plugins/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="../admin_plugins/plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <script src="../admin_plugins/pages/jquery.datatable.init.js"></script>
+</body>
 </html>
