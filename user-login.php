@@ -1,3 +1,30 @@
+<?php
+include 'access/useraccesscontrol.php';
+
+if($userlogin)
+{
+    echo "<script>window.location.href='index.php'; </script>";
+}
+
+if(isset($_POST['login']))
+{
+    $uname = $_POST['uname'];
+    $pwd = md5($_POST['password']);
+
+    $getuser = mysqli_query($con, "SELECT * FROM user WHERE (uname='$uname' OR uemail='$uname') AND upassword = '$pwd'");
+    $getuserdata = mysqli_fetch_assoc($getuser);
+    $getuserrow = mysqli_num_rows($getuser);
+    if ($getuserrow == 1) {
+        $_SESSION['userid'] = $getuserdata['uid'];
+        $_SESSION['uname'] = $getuserdata['uname'];
+        $smsg = "Login Successful, Redirecting in 1 seconds..";
+        echo "<script> window.setTimeout(function(){ window.location.href='index.php' }, 1000); </script>";
+    } else {
+        $fmsg = "Invalid Username or Password";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,24 +66,40 @@
                         <div class="cmargin-login full-width relative top-checkout-box overfollow-hidden top-margin-default">
                             <div class="col-md-6 col-sm-12 col-xs-12 clear-padding-left left-top-checkout">
                                 <div class="full-width box-btn-top-click">
+
+                                    <?php if(isset($fmsg)) { ?>
+                                    <!-- custom alert -->
+                                    <div class="alert" style="background-color: #eb1a21; color: white;">
+                                        <div class="alert-text">
+                                            <?php echo $fmsg; ?>
+                                        </div>
+                                    </div>
+                                    <?php } else if(isset($smsg)) { ?>
+                                    <div class="alert" style="background-color: #3cb878">
+                                        <div class="alert-text">
+                                            <?php echo $smsg; ?>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+
                                     <p>Don't have an account? <a href="user-registration.php" class="animate-default title-hover-red">Click here to register</a></p>
-                                    <p class="intro-top-click top-margin-default bottom-margin-default">If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing & Shipping div.</p>
+                                    <p class="intro-top-click top-margin-default bottom-margin-default">If you have an account with us, please log in.</p>
                                     <div class="relative">
-                                        <form method="POST" action="/" class="form-placeholde-animate">
+                                        <form method="POST" class="form-placeholde-animate">
                                             <div class="field-wrap">
                                                 <label>
                                                     Username or Email<span class="req">*</span>
                                                 </label>
-                                                <input type="text" name="name" required autocomplete="off" />
+                                                <input type="text" name="uname" required />
                                             </div>
                                             <div class="field-wrap">
                                                 <label>
                                                     Password<span class="req">*</span>
                                                 </label>
-                                                <input type="text" name="name" required autocomplete="off" />
+                                                <input type="password" name="password" required />
                                             </div>
                                             <div class="relative justify-content form-login-checkout">
-                                                <button type="submit" class="animate-default button-hover-red">LOGIN</button>
+                                                <button type="submit" name="login" class="animate-default button-hover-red">LOGIN</button>
                                                 <ul class="check-box-custom list-radius clear-margin clear-margin">
                                                     <li>
                                                         <label class="clear-margin">Remember me
