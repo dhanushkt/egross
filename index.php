@@ -1,3 +1,9 @@
+<?php 
+include 'access/useraccesscontrol.php';
+
+$menuslide = false;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +24,7 @@
         <!-- Content Box -->
         <div class="relative clearfix full-width">
             <!-- Menu & Slide -->
+            <?php if($menuslide) { ?>
             <div class="clearfix container-web relative">
                 <div class=" container relative">
                     <div class="row">
@@ -92,6 +99,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
             <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
                 <div class="clearfix container-web">
