@@ -38,54 +38,42 @@ if (isset($_POST['addsubcat'])) {
     <!-- Top Bar End -->
     <div class="page-wrapper-img">
         <div class="page-wrapper-img-inner">
-            <div class="sidebar-user media">
-                <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
-                <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
-                <div class="media-body align-item-center">
-                    <h5>Mr. Michael Hill </h5>
-                    <ul class="list-unstyled list-inline mb-0 mt-2">
-                        <li class="list-inline-item">
-                            <a href="javascript: void(0);" class=""><i class="mdi mdi-account"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="javascript: void(0);" class=""><i class="mdi mdi-settings"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="javascript: void(0);" class=""><i class="mdi mdi-power"></i></a>
-                        </li>
-                    </ul>
+            <?php include 'assets/usermedia.php'; ?>
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-right align-item-center mt-2">
+                        </div>
+                        <div class="">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active">Add Sub Category</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--end page title box-->
                 </div>
-                <!-- Page-Title -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-title-box">
-                            <div class="float-right align-item-center mt-2">
-                            </div>
-                            <div class="">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Sub-Category</a></li>
-                                    <li class="breadcrumb-item active">Add Sub-Category</li>
-                                </ol>
-                            </div>                                      
-                        </div><!--end page title box-->
-                    </div><!--end col-->
-                </div><!--end row-->
-                <!-- end page title end breadcrumb -->
-            </div><!--end page-wrapper-img-inner-->
-        </div><!--end page-wrapper-img-->
-        
-        <div class="page-wrapper">
-            <div class="page-wrapper-inner">
+                <!--end col-->
+            </div>
+            <!--end row-->
+            <!-- end page title end breadcrumb -->
+        </div>
+        <!--end page-wrapper-img-inner-->
+    </div>
+    <!--end page-wrapper-img-->
 
-                <!-- Left Sidenav -->
-                <?php include 'assets/leftnav.php'; ?>
-                <!-- end left-sidenav-->
+    <div class="page-wrapper">
+        <div class="page-wrapper-inner">
 
-                <!-- Page Content-->
-                <div class="page-content">
-                    <div class="container-fluid"> 
-                        
+            <!-- Left Sidenav -->
+            <?php include 'assets/leftnav.php'; ?>
+            <!-- end left-sidenav-->
+
+            <!-- Page Content-->
+            <div class="page-content">
+                <div class="container-fluid">
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
