@@ -257,7 +257,7 @@ if (isset($_POST['register'])) {
                         </div>
                         <div class="form-group mb-0 row">
                             <div class="col-12 mt-2 text-center">
-                                <button name="register" class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register Shop <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                <button style="padding-right: 30px; padding-left: 30px" name="register" class="btn btn-primary waves-effect waves-light" type="submit" style="width: 50%;">Register Shop <i class="fas fa-sign-in-alt ml-1"></i></button>
                             </div>
                         </div>
 
