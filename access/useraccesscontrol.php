@@ -4,7 +4,7 @@ session_start();
 if(isset($_SESSION['userid']))
 {
     $globaluserid = $_SESSION['userid'];
-    $globaladminuname = $_SESSION['uname'];
+    $globaluname = $_SESSION['uname'];
     $userlogin = true;
 }
 else
