@@ -450,7 +450,8 @@ header{
     
 }
 .mega-menu li,.mega-menu-v2 ul{
-	width: calc(100% / 3 - 20px);
+    /* removed to display categories */
+	/* width: calc(100% / 3 - 20px); */
 	float: left !important;
 	margin: 10px;
 	position: relative;
@@ -462,8 +463,9 @@ header{
 }
 .mega-menu-v2 ul li{
 	position: relative;
-	color: #333;
-	width: 100%;
+    color: #333;
+    /* removed to display categories */
+	/* width: 100%; */
 }
 .mega-menu-v2 ul li:first-child{
 	font-weight: bold;
