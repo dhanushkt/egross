@@ -28,23 +28,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
     @media only screen and (min-width: 600px) {
-            .cmargin-login {
-                margin-left: 25% !important
-            }
-            .hidden-desktop {
-                display: none;
-            }
-
+        .cmargin-login {
+            margin-left: 25% !important
         }
 
-        @media only screen and (max-width: 600px) {
-            .hidden-mobile {
-                display: none;
-            }
-
-            .custommobile-nav {
-                position: fixed !important;
-                background-color: rgba(24, 27, 46, 0.95) !important;
-            }
+        .hidden-desktop {
+            display: none;
         }
+
+    }
+
+    @media only screen and (max-width: 600px) {
+        .hidden-mobile {
+            display: none;
+        }
+
+        .custommobile-nav {
+            position: fixed !important;
+            background-color: rgba(24, 27, 46, 0.95) !important;
+        }
+    }
+
+    /* stick the header when scrolling in mobile */
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: white !important;
+    }
 </style>

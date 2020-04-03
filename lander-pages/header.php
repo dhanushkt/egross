@@ -1,29 +1,26 @@
-<header class="relative full-width box-shadow">
+<header class="relative full-width box-shadow" id="myHeader">
     <div class="clearfix container-web relative">
         <div class=" container">
             <div class="row">
                 <div class=" header-top">
-                    <p class="contact_us_header col-md-4 col-xs-12 col-sm-3 clear-margin">
-                        <img src="lander_plugins/img/icon_phone_top.png" alt="Icon Phone Top Header" /> Call us <span class="text-red bold">070-7782-7137</span>
+                    <p class="contact_us_header col-md-4 col-xs-12 col-sm-3 clear-margin hidden-mobile">
+                        <!-- <img src="lander_plugins/img/icon_phone_top.png" alt="Icon Phone Top Header" />  -->
+                        <?php if($userlogin) { ?> Welcome, <?php echo $globaluname; ?> <?php } ?>
                     </p>
                     <div class="clear-padding menu-header-top text-right col-md-8 col-xs-12 col-sm-6">
                         <ul class="clear-margin">
-                            <li class="relative"><a href="#">My Account</a></li>
+                            <?php if($userlogin) { ?>
+                            <li class="relative"><a href="user-account.php">My Account</a></li>
+                            <?php } else { ?>
+                            <li class="relative"><a href="user-login.php">Login</a></li>
+                            <?php } ?>
+                            <?php if($userlogin) { ?>
                             <li class="relative"><a href="#">Wishlist</a></li>
+                            <?php } ?>
                             <li class="relative">
-                                <a href="#">EN</a>
+                                <a href="#">English</a>
                                 <ul>
-                                    <li class="relative"><a href="#">JP</a></li>
-                                    <li class="relative"><a href="#">EN</a></li>
-                                    <li class="relative"><a href="#">CN</a></li>
-                                </ul>
-                            </li>
-                            <li class="relative">
-                                <a href="#">USD</a>
-                                <ul>
-                                    <li class="relative"><a href="#">AUD</a></li>
-                                    <li class="relative"><a href="#">USD</a></li>
-                                    <li class="relative"><a href="#">CAD</a></li>
+                                    <li class="relative"><a href="#">ಕನ್ನಡ</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -39,25 +36,20 @@
                         <a href="#"><img alt="Logo" src="lander_plugins/img/logo.png" /></a>
                     </div>
                     <div class="clearfix search-box relative float-left">
-                        <form method="GET" action="/" class="">
+                        <form method="GET" action="search.php" class="">
                             <div class="clearfix category-box relative">
-                                <select name="cate_search">
-                                    <option>All Category</option>
-                                    <option>Food</option>
-                                    <option>Mobile & Tablet</option>
-                                    <option>Electric Appliances</option>
-                                    <option>Electronics & Technology</option>
-                                    <option>Fashion</option>
-                                    <option>Health & Beauty</option>
-                                    <option>Mother & Baby</option>
-                                    <option>Books & Stationery</option>
-                                    <option>Home & Life</option>
-                                    <option>Sports & Outdoors</option>
-                                    <option>Auto & Moto</option>
-                                    <option>Voucher Service</option>
+                                <select name="mcat">
+                                    <option selected value="all">All Category</option>
+                                    <?php 
+                                    $header_getmcat = mysqli_query($con, "SELECT * FROM mcat");
+                                    while($header_mcat = mysqli_fetch_assoc($header_getmcat))
+                                    {
+                                    ?>
+                                    <option><?php echo $header_mcat['mcname']; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
-                            <input type="text" name="s" placeholder="Enter keyword here . . .">
+                            <input type="text" name="search" placeholder="Enter keyword here . . .">
                             <button type="submit" class="animate-default button-hover-red">Search</button>
                         </form>
                     </div>
@@ -113,76 +105,40 @@
     <div class="header-ontop">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <div class="clearfix logo">
                         <a href="#"><img alt="Logo" src="lander_plugins/img/logo.png" /></a>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-9">
                     <div class="menu-header">
                         <ul class="main__menu clear-margin">
                             <li class="title-hover-red">
-                                <a class="animate-default" href="#">home</a>
-                                <ul class="sub-menu mega-menu">
-                                    <li class="relative">
-                                        <a class="animate-default center-vertical-image" href="home_v1.html"><img src="lander_plugins/img/home_1_menu-min.png" alt=""></a>
-                                        <p><a href="home_v1.html">Home 1</a></p>
-                                    </li>
-                                    <li class="relative">
-                                        <a class="animate-default center-vertical-image" href="home_v2.html"><img src="lander_plugins/img/home_2_menu-min.png" alt=""></a>
-                                        <p><a href="home_v2.html">Home 2</a></p>
-                                    </li>
-                                    <li class="relative">
-                                        <a class="animate-default center-vertical-image" href="home_v3.html"><img src="lander_plugins/img/home_3_menu-min.png" alt=""></a>
-                                        <p><a href="home_v3.html">Home 3</a></p>
-                                    </li>
-                                </ul>
+                                <a class="animate-default" href="index.php">HOME</a>
                             </li>
                             <li class="title-hover-red">
-                                <a class="animate-default" href="#">shop</a>
-                                <div class="sub-menu mega-menu-v2">
+                                <a class="animate-default" href="javascript:void(0)">SHOP</a>
+                                <div class="sub-menu mega-menu-v2" style="min-width: 800px !important">
+                                    <?php 
+                                    $header_getmcat2 = mysqli_query($con, "SELECT * FROM mcat");
+                                    while($header_mcat2 = mysqli_fetch_assoc($header_getmcat2))
+                                    {
+                                        $header_mcatid = $header_mcat2['mcid'];
+                                    ?> 
                                     <ul>
-                                        <li>Catgory Type</li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1.html">Category v1</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1_2.html">Category v1.2</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2.html">Category v2</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2_2.html">Category v2.2</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3.html">Category v3</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3_2.html">Category v3.2</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4.html">Category v4</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4_2.html">Category v4.2</a></li>
+                                        <li><?php echo $header_mcat2['mcname'] ?></li>
+                                        <?php 
+                                        $header_getscat = mysqli_query($con, "SELECT * FROM scat WHERE smcid='$header_mcatid' LIMIT 5");
+                                        while($header_scat = mysqli_fetch_assoc($header_getscat)) {
+                                        ?>
+                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1.html"><?php echo $header_scat['scname']; ?></a></li>
+                                        <?php } ?>
                                     </ul>
-                                    <ul>
-                                        <li>Single Product Type</li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v1.html">Product Single 1</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v2.html">Product Single 2</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v3.html">Product Single 3</a></li>
-                                    </ul>
-                                    <ul>
-                                        <li>Order Page</li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="cartpage.html">Cart Page</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="checkout.html">Checkout</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="compare.html">Compare</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="quickview.html">QuickView</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="trackyourorder.html">Track Order</a></li>
-                                        <li class="title-hover-red"><a class="animate-default clear-padding" href="wishlist.html">WishList</a></li>
-                                    </ul>
+                                    <?php } ?>
                                 </div>
                             </li>
                             <li class="title-hover-red">
-                                <a class="animate-default" href="#">pages</a>
-                                <ul>
-                                    <li class="title-hover-red"><a class="animate-default" href="about.html">About Us</a></li>
-                                    <li class="title-hover-red"><a class="animate-default" href="contact.html">Contact</a></li>
-                                    <li class="title-hover-red"><a class="animate-default" href="404.html">404</a></li>
-                                </ul>
-                            </li>
-                            <li class="title-hover-red">
-                                <a class="animate-default" href="#">Blog</a>
-                                <ul>
-                                    <li class="title-hover-red"><a class="animate-default" href="blog.html">Blog Category</a></li>
-                                    <li class="title-hover-red"><a class="animate-default" href="blogdetail.html">Blog Detail</a></li>
-                                </ul>
+                                <a class="animate-default" href="about.php">ABOUT</a>
                             </li>
                         </ul>
                     </div>
