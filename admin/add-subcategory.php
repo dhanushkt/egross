@@ -55,7 +55,6 @@ if (isset($_POST['addsubcat'])) {
                         </li>
                     </ul>
                 </div>
-<<<<<<< HEAD
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
@@ -64,6 +63,7 @@ if (isset($_POST['addsubcat'])) {
                             </div>
                             <div class="">
                                 <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Sub-Category</a></li>
                                     <li class="breadcrumb-item active">Add Sub-Category</li>
                                 </ol>
@@ -86,47 +86,6 @@ if (isset($_POST['addsubcat'])) {
                 <div class="page-content">
                     <div class="container-fluid"> 
                         
-=======
-            </div>
-            <!-- Page-Title -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="page-title-box">
-                        <div class="float-right align-item-center mt-2">
-                            <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                        </div>
-                        <h4 class="page-title mb-2"><i class="mdi mdi-format-list-bulleted mr-2"></i>Form Elements</h4>
-                        <div class="">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Forms</a></li>
-                                <li class="breadcrumb-item active">Form Elements</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <!--end page title box-->
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-            <!-- end page title end breadcrumb -->
-        </div>
-        <!--end page-wrapper-img-inner-->
-    </div>
-    <!--end page-wrapper-img-->
-
-    <div class="page-wrapper">
-        <div class="page-wrapper-inner">
-
-            <!-- Left Sidenav -->
-            <?php include 'assets/leftnav.php'; ?>
-            <!-- end left-sidenav-->
-
-            <!-- Page Content-->
-            <div class="page-content">
-                <div class="container-fluid">
-
->>>>>>> 92d4cf02ee0a2488a38bb47c6d6d731e5ab683b7
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
