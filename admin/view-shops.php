@@ -39,9 +39,9 @@
                             <h4 class="page-title mb-2"><i class="mdi mdi-table-large mr-2"></i>Datatable</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Tables</a></li>
-                                    <li class="breadcrumb-item active">Datatable</li>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Shop</a></li>
+                                    <li class="breadcrumb-item active">Shop Details</li>
                                 </ol>
                             </div>                                      
                         </div><!--end page title box-->
