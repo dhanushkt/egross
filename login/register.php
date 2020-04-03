@@ -1,6 +1,7 @@
 <?php
 include './../access/connection.php';
 if (isset($_POST['register'])) {
+    $cmsg = "";
     $sname = $_POST['sname'];
     $soname = $_POST['soname'];
     $soemail = $_POST['soemail'];
@@ -15,18 +16,60 @@ if (isset($_POST['register'])) {
     $spassword = md5($_POST['spassword']);
     $cpassword = md5($_POST['cpassword']);
     if ($spassword != $cpassword) {
-        $emsg = "Passwords Do not match";
-        exit();
-    }
-    $qry = mysqli_query($con, "select * from shopkeeper where soemail='$soemail' or scontact='$scontact'");
-    $count = mysqli_num_rows($qry);
-    if ($count > 0) {
-        $emsg = " Shop with this details already Exists";
+        $fmsg = "Passwords Do not match";
     } else {
-        $qury = mysqli_query($con, "insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword')");
-        $cmsg = " Shop Registered";
-        if (!$qury) {
-            $emsg = "Error during registration";
+        $qry = mysqli_query($con, "select * from shopkeeper where soemail='$soemail'");
+        $count = mysqli_num_rows($qry);
+        if ($count > 0) {
+            $fmsg = " Shop with this details already Exists";
+        } else {
+            //check logo is uploaded or not
+            $slogo = $_FILES["fileToUpload"]["name"];
+            if(!empty($slogo))
+            {
+                $target_dir = "../uploads/slogo/";
+                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                //check if file already exists
+                if (file_exists($target_file)) {
+                    $fmsg .= "file already exists, ";
+                    $uploadOk = 0;
+                }
+                //check file size
+                elseif ($_FILES["fileToUpload"]["size"] > 1000000) {
+                    $fmsg .= "Image size is more then 1Mb, please upload smaller size image  ";
+                    $uploadOk = 0;
+                }
+
+                //allowing certain file formats
+                elseif ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                    $fmsg .= "Only JPG,JPEG,PNG & GIF files are allowed";
+                    $uploadOk = 0;
+                } else {
+                    //check if image is in actual size f fake size
+                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                    if ($check !== false) {
+                        //brought up the whole image upload code here
+                        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                            $cmsg .= "The File <small>" . basename($_FILES["fileToUpload"]["name"]) . " </small>has been uploaded.";
+
+                        } else {
+                            $fmsg = "Sorry,there was an error  in uploading your file.";
+                        }
+                    } else {
+                        $fmsg .= "File is not an image.";
+                        $uploadOk = 0;
+                    }
+                }
+            } else { $slogo = "default.png"; }
+            $qury = mysqli_query($con, "insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword,slogo) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword','$slogo')");
+            if ($qury) {
+                $cmsg .= " Shop Registered Successfully";
+            } else {
+                $fmsg = "Error during registration";
+            }
         }
     }
 }
@@ -45,8 +88,8 @@ if (isset($_POST['register'])) {
     <!-- App favicon -->
     <link rel="shortcut icon" href="admin_plugins/images/favicon.ico">
 
+    <link href="../admin_plugins/plugins/dropify/css/dropify.min.css" rel="stylesheet">
     <!-- App css -->
-
     <link href="../admin_plugins/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../admin_plugins/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="../admin_plugins/css/metismenu.min.css" rel="stylesheet" type="text/css" />
@@ -70,23 +113,23 @@ if (isset($_POST['register'])) {
                             </div>
                         </div>
                     <?php } ?>
-                    <?php if (isset($emsg)) { ?>
+                    <?php if (isset($fmsg)) { ?>
                         <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
                             <i class="mdi mdi-alert-outline alert-icon"></i>
                             <div class="alert-text">
-                                <?php echo $emsg ?>
+                                <?php echo $fmsg ?>
                             </div>
                         </div>
                     <?php } ?>
 
                     <h1 class="mt-0 header-title text-center">Register Your Shop </h1>
-                    <form method="POST">
+                    <form enctype="multipart/form-data" method="POST">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="username">ShopName</label>
+                                    <label for="username">Shop name</label>
 
-                                    <input required type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter ShopName">
+                                    <input required type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter Shop name">
 
                                 </div>
                             </div>
@@ -201,6 +244,17 @@ if (isset($_POST['register'])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Upload Shop Logo (optional) [ prefered size: 100x100, format: .png ]</label>
+                                    <div class="custom-file mb-4">
+                                        <input name="fileToUpload" type="file" id="input-file-now" class="dropify" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group mb-0 row">
                             <div class="col-12 mt-2 text-center">
                                 <button name="register" class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register Shop <i class="fas fa-sign-in-alt ml-1"></i></button>
@@ -229,6 +283,10 @@ if (isset($_POST['register'])) {
     <script src="../admin_plugins/plugins/parsleyjs/parsley.min.js"></script>
     <script src="../admin_plugins/pages/jquery.validation.init.js"></script>
     <script src="../admin_plugins/js/jquery.core.js"></script>
+    
+    <script src="../admin_plugins/plugins/dropify/js/dropify.min.js"></script>
+    <script src="../admin_plugins/pages/jquery.form-upload.init.js"></script>
+
     <!-- App js -->
     <script src="../admin_plugins/js/app.js"></script>
 
