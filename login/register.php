@@ -13,6 +13,11 @@ if (isset($_POST['register'])) {
     $sgstno = $_POST['sgstno'];
     $scategory = $_POST['scategory'];
     $spassword = md5($_POST['spassword']);
+    $cpassword = md5($_POST['cpassword']);
+    if ($spassword != $cpassword) {
+        $emsg = "Passwords Do not match";
+        exit();
+    }
     $qry = mysqli_query($con, "select * from shopkeeper where soemail='$soemail' or scontact='$scontact'");
     $count = mysqli_num_rows($qry);
     if ($count > 0) {
@@ -21,10 +26,11 @@ if (isset($_POST['register'])) {
         $qury = mysqli_query($con, "insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword')");
         $cmsg = " Shop Registered";
         if (!$qury) {
-            echo mysqli_error($con);
+            $emsg = "Error during registration";
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,397 +57,167 @@ if (isset($_POST['register'])) {
 <body class="account-body">
 
     <!-- Log In page -->
-    <form method="POST">
-        <div class="row">
-            <div class="col-lg-12" style="padding: 20px">
-                <div class="card">
-                    <div class="card-body">
-                        <?php if (isset($cmsg)) { ?>
-                            <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
-                                <i class="mdi mdi-check-all alert-icon"></i>
-                                <div class="alert-text">
-                                    <strong>Well done!</strong><?php echo $cmsg ?>
-                                    <a href="index.php">Click Here to LOGIN</a>
-                                </div>
+    <div class="row">
+        <div class="col-lg-12" style="padding: 20px">
+            <div class="card">
+                <div class="card-body">
+                    <?php if (isset($cmsg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <?php echo $cmsg ?>
+                                <a href="index.php">Click Here to login</a>
                             </div>
-                        <?php } ?>
-                        <?php if (isset($emsg)) { ?>
-                            <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-                                </button>
-                                <strong>Oh snap!</strong> <?php echo $emsg ?>
+                        </div>
+                    <?php } ?>
+                    <?php if (isset($emsg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
+                            <i class="mdi mdi-alert-outline alert-icon"></i>
+                            <div class="alert-text">
+                                <?php echo $emsg ?>
                             </div>
-                        <?php } ?>
+                        </div>
+                    <?php } ?>
 
-                        <h1 class="mt-0 header-title">Registeration</h1>
-                        <!--error message start-->
-
-
-                        <!--
-                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-                            </button>
-                            <strong>Oh snap!</strong>
-                        </div>-->
-                        <!--Error messages end-->
+                    <h1 class="mt-0 header-title text-center">Register Your Shop </h1>
+                    <form method="POST">
                         <div class="row">
-                            <div class="col-lg-6">
-
-
-
+                            <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label for="username">ShopName</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter ShopName">
-                                    </div>
+
+                                    <input required type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter ShopName">
+
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="username">Ownername</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="soname" id="Ownername" placeholder="Enter Ownername">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">E-mail</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="soemail" id="E-mail" placeholder="Enter E-mail">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">Mobile</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Mobile">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">Address</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <textarea class="form-control" id="Address" name="saddress" placeholder="Enter Address" rows="4" cols="50"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">City</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="scity" id="City" placeholder="Enter City">
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-lg-6">
-
-
-                                <div class="form-group">
-                                    <label for="username">PinCode</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="PinCode" name="spin" placeholder="Enter PinCode">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">State</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="sstate" id="State" placeholder="Enter State">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">Contact</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="number" class="form-control" name="scontact" id="Contact" placeholder="Enter Contact">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">GST Number</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="sgstno" placeholder="Enter GST Number">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="userpassword">Category</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2"></span>
-
-                                        </div>
-
-                                        <input type="text" class="form-control" id="Category" name="scategory" placeholder="Category">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="userpassword">Password</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2"></span>
-                                        </div>
-                                        <input type="password" class="form-control" name="spassword" id="password" placeholder="Enter password">
-                                    </div>
-                                </div>
-
-
-
-
                             </div>
                         </div>
-                        <!--end card-body-->
-                    </div>
-                    <!--end card-->
-                    <div class="form-group mb-0 row">
-                        <div class="col-12 mt-2" style="padding-left:35%;">
-                            <button name="register" class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-    </form>
-
-    <!-- <div class="row vh-100">
-            <div class="col-lg-3  pr-0" style="padding: 100px;">
-                <div class="card mb-0 shadow-none">
-                    <div class="card-body">
-                        
-                        <div class="px-3">
-                            <div class="media">
-                                <a href="#" class="logo logo-admin"><img src="../admin_plugins/images/logo-sm.png" height="55" alt="logo" class="my-3"></a>
-                                <div class="media-body ml-3 align-self-center">                                                                                                                       
-                                    <h4 class="mt-0 mb-1">Login on Frogetor</h4>
-                                    <p class="text-muted mb-0">Sign in to continue to Frogetor.</p>
-                                </div>
-                            </div>                            
-                            
-                            <form class="" action="index.html">
-    
-                                <div class="form-group">
-                                    <label for="username">ShopID</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="Shopid" placeholder="Enter ShopID">
-                                    </div>                                    
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">ShopName</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="ShopName" placeholder="Enter ShopName">
-                                    </div>                                    
-                                </div>
-
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label for="username">Ownername</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="Ownername" placeholder="Enter Ownername">
-                                    </div>                                    
-                                </div>
 
+                                    <input required type="text" class="form-control" name="soname" id="Ownername" placeholder="Enter Shop Ownername">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
-                                    <label for="username">E-mail</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="E-mail" placeholder="Enter E-mail">
-                                    </div>                                    
-                                </div>
+                                    <label for="username">E-mail (used for login)</label>
 
+                                    <input required type="text" class="form-control" name="soemail" id="E-mail" placeholder="Enter Shop e-mail">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label for="username">Mobile</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="Mobile" placeholder="Enter Mobile">
-                                    </div>                                    
-                                </div>
 
+                                    <input required type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Shop Mobile Number">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <label for="username">Address</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <textarea class="form-control" id="Address" placeholder="Enter Address" rows="4" cols="50"></textarea>
-                                    </div>                                    
+                                    <textarea required class="form-control" id="Address" name="saddress" placeholder="Enter Shop Address" rows="4" cols="50"></textarea>
                                 </div>
-    
-                               
-
-                                <div class="form-group">
-                                    <label for="username">City</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="text" class="form-control" id="City" placeholder="Enter City">
-                                    </div>                                    
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="username">PinCode</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="PinCode" placeholder="Enter PinCode">
-                                    </div>                                    
-                                </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
                                     <label for="username">State</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="State" placeholder="Enter State">
-                                    </div>                                    
-                                </div>
 
+                                    <input required type="text" class="form-control" name="sstate" id="State" placeholder="Enter State">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
-                                    <label for="username">Contact</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="Contact" placeholder="Enter Contact">
-                                    </div>                                    
-                                </div>
+                                    <label>City</label>
 
+                                    <input required type="text" class="form-control" name="scity" id="City" placeholder="Enter City">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
-                                    <label for="username">GST Number</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
-                                        </div>
-                                        <input type="number" class="form-control" id="Sgstno" placeholder="Enter GST Number">
-                                    </div>                                    
-                                </div>
+                                    <label>Pincode</label>
 
-                                <div class="form-group">
-                                    <label for="userpassword">Category</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-key font-16"></i></span>
-                                            
-                                        </div>
+                                    <input required type="number" class="form-control" id="PinCode" name="spin" placeholder="Enter Pincode">
 
-                                        <input type="text" class="form-control" id="Category" placeholder="Category">
-                                    </div>                                
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="userpassword">Password</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-key font-16"></i></span>
-                                        </div>
-                                        <input type="password" class="form-control" id="password" placeholder="Enter password">
-                                    </div>                                
-                                </div>
-    
-                                <div class="form-group mb-0 row">
-                                    <div class="col-12 mt-2">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register <i class="fas fa-sign-in-alt ml-1"></i></button>
-                                    </div>
-                                </div>                            
-                            </form>
+                            </div>
                         </div>
-                        <div class="account-social text-center">
-                            <h6 class="my-4">Or Login With</h6>
-                            <ul class="list-inline mb-4">
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-facebook-f facebook"></i>
-                                    </a>                                    
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-twitter twitter"></i>
-                                    </a>                                    
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-google google"></i>
-                                    </a>                                    
-                                </li>
-                            </ul>
+
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Personal Contact</label>
+
+                                    <input type="number" class="form-control" name="scontact" id="Contact" placeholder="Enter Owners Contact Number">
+
+                                </div>
+                            </div>
                         </div>
-                                     
-                    </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label>GST Number of shop</label>
+
+                                    <input required type="text" class="form-control" name="sgstno" placeholder="Enter shop GST Number">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Category</label>
+
+                                    <input type="text" class="form-control" id="Category" name="scategory" placeholder="Category">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+
+                                    <input required id="pass" type="password" class="form-control" name="spassword" id="password" placeholder="Enter password">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input required data-parsley-equalto="#pass" type="password" class="form-control" name="cpassword" id="password" placeholder="Enter password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0 row">
+                            <div class="col-12 mt-2 text-center">
+                                <button name="register" class="btn btn-primary btn-block waves-effect waves-light" type="submit" style="width: 50%;">Register Shop <i class="fas fa-sign-in-alt ml-1"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+
                 </div>
             </div>
-            <div class="col-lg-9 p-0 d-flex justify-content-center">
-                <div class="accountbg d-flex align-items-center"> 
-                    <div class="account-title text-white text-center">
-                        <img src="admin_plugins/images/logo-sm.png" alt="" class="thumb-sm">
-                        <h4 class="mt-3">Welcome To Frogetor</h4>
-                        <div class="border w-25 mx-auto border-primary"></div>
-                        <h1 class="">Let's Get Started</h1>
-                        <p class="font-14 mt-3">Don't have an account ? <a href="" class="text-primary">Sign up</a></p>
-                       
-                    </div>
-                </div>
-            </div>
+            <!--end card-body-->
+        </div>
+        <!--end card-->
 
-
-
-
-
-
-
-            
-
-        </div> -->
-    <!-- End Log In page -->
-
+    </div>
+    <!--end col-->
+    <!-- </div> -->
 
     <!-- jQuery  -->
     <script src="../admin_plugins/js/jquery.min.js"></script>
@@ -449,7 +225,10 @@ if (isset($_POST['register'])) {
     <script src="../admin_plugins/js/metisMenu.min.js"></script>
     <script src="../admin_plugins/js/waves.min.js"></script>
     <script src="../admin_plugins/js/jquery.slimscroll.min.js"></script>
-
+    <!-- Parsley js -->
+    <script src="../admin_plugins/plugins/parsleyjs/parsley.min.js"></script>
+    <script src="../admin_plugins/pages/jquery.validation.init.js"></script>
+    <script src="../admin_plugins/js/jquery.core.js"></script>
     <!-- App js -->
     <script src="../admin_plugins/js/app.js"></script>
 
