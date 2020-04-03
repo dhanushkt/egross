@@ -12,15 +12,9 @@
         </form>
         <ul class="nav-home5 js-menubar">
             <li class="level1 active dropdown">
-                <a href="#">Home</a>
-                <span class="icon-sub-menu"></span>
-                <ul class="menu-level1 js-open-menu">
-                    <li class="level2"><a href="home_v1.html" title="">Home 1</a></li>
-                    <li class="level2"><a href="home_v2.html" title="">Home 2</a></li>
-                    <li class="level2"><a href="home_v3.html" title="">Home 3</a></li>
-                </ul>
+                <a href="index.php">Home</a>
             </li>
-            <li class="level1 active dropdown"><a href="#">Shop</a>
+            <li class="level1 active dropdown"><a href="javascript:void(0)">Shop</a>
                 <span class="icon-sub-menu"></span>
                 <div class="menu-level1 js-open-menu">
                     <ul class="level1">

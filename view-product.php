@@ -1,5 +1,8 @@
 <?php
-include 'access/connection.php';
+include 'access/useraccesscontrol.php';
+
+$adbanner = false;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +61,7 @@ include 'access/connection.php';
 					<div class="row">
 						<div class="breadcrumb-web">
 							<ul class="clear-margin">
-								<li class="animate-default title-hover-red"><a href="#">Home</a></li>
+								<li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
 								<li class="animate-default title-hover-red"><a href="#">All Products</a></li>
 							</ul>
 						</div>
@@ -75,17 +78,11 @@ include 'access/connection.php';
 							<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold">CATEGORIES</p>
 								<ul class="clear-margin list-siderbar">
+									<?php 
+									
+									?>
 									<li><a href="#">Food</a></li>
-									<li><a href="#">Mobile & Tablet</a></li>
-									<li><a href="#">Electric Appliances</a></li>
-									<li><a href="#">Electronics & Technology</a></li>
-									<li><a href="#">Fashion</a></li>
-									<li><a href="#">Health & Beauty</a></li>
-									<li><a href="#">Mother & Baby</a></li>
-									<li><a href="#">Books & Stationery</a></li>
-									<li><a href="#">Home & Life</a></li>
-									<li><a href="#">Sports & Outdoors</a></li>
-									<li><a href="#">Auto & Moto</a></li>
+									<?php ?>
 								</ul>
 							</div>
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
@@ -274,12 +271,14 @@ include 'access/connection.php';
 									</ul>
 								</div>
 							</div>
+							<?php if($adbanner) { ?>
 							<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
 								<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
 									<img src="lander_plugins/img/banner_siderbar-min.png" alt="Siderbar" />
 									<a href="#"></a>
 								</div>
 							</div>
+							<?php } ?>
 						</div>
 						<!-- End Sider Bar Box -->
 						<!-- Content Category -->
@@ -287,10 +286,14 @@ include 'access/connection.php';
 							<div class="col-sm-12 col-xs-12 relative overfollow-hidden clear-padding button-show-sidebar">
 								<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
 							</div>
+
+							<?php if($adbanner) { ?>
 							<div class="banner-top-category-page bottom-margin-default effect-bubba zoom-image-hover overfollow-hidden relative full-width">
 								<img src="lander_plugins/img/image_banner_category_1-min.png" alt="" />
 								<a href="#"></a>
 							</div>
+							<?php } ?>
+
 							<div class="bar-category bottom-margin-default border no-border-r no-border-l no-border-t">
 								<div class="row">
 									<div class="col-md-5 col-sm-5 col-xs-4">
@@ -323,14 +326,14 @@ include 'access/connection.php';
 										</div>
 										<h3 class="title-product clearfix full-width title-hover-black"><a href="#"><?php echo $itemdata['iname']; ?></a></h3>
 										<p class="clearfix price-product">
-											<!-- <span class="price-old">$700</span> --> <?php echo $itemdata['iprice']; ?></p>
-										<div class="clearfix ranking-product-category ranking-color">
+											<!-- <span class="price-old">₹ 700</span> --> ₹ <?php echo $itemdata['iprice']; ?></p>
+										<!-- <div class="clearfix ranking-product-category ranking-color">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star-half" aria-hidden="true"></i>
 											<i class="fa fa-star-o" aria-hidden="true"></i>
-										</div>
+										</div> -->
 									</div>
 								<?php } ?>
 							</div>
