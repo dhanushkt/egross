@@ -31,10 +31,10 @@
                     <p>my account</p>
                     <ul class="list-footer">
                         <li><a href="#">My Account</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">My Cart</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">My Compare</a></li>
+                        <li><a href="user-login.php">Login</a></li>
+                        <li><a href="cart.php">My Cart</a></li>
+                        <li><a href="wishlist.php">My Wishlist</a></li>
+                        <li><a href="view-product.php">Products</a></li>
                     </ul>
                 </div>
                 <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
@@ -42,7 +42,6 @@
                     <ul class="list-footer">
                         <li><a href="#">Information</a></li>
                         <li><a href="#">Orders History</a></li>
-                        <li><a href="#">My Wishlist</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Site Map</a></li>
                     </ul>

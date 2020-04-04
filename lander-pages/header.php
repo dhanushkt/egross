@@ -15,14 +15,9 @@
                             <li class="relative"><a href="user-login.php">Login</a></li>
                             <?php } ?>
                             <?php if($userlogin) { ?>
-                            <li class="relative"><a href="#">Wishlist</a></li>
+                            <li class="relative"><a href="wishlist.php">Wishlist</a></li>
+                            <li class="relative"><a href="access/logoutuser.php">Logout   <i class="fa fa-sign-out"></i></a></li>
                             <?php } ?>
-                            <li class="relative">
-                                <a href="#">English</a>
-                                <ul>
-                                    <li class="relative"><a href="#">ಕನ್ನಡ</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -58,7 +53,7 @@
                     </div>
                     <div class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
                         <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" />
-                        <p class="count-total-shopping absolute">2</p>
+                        <p class="count-total-shopping absolute"></p>
                     </div>
                     <div class="cart-detail-header border">
                         <div class="relative">
@@ -68,26 +63,18 @@
                                 </div>
                                 <div class="info-product-cart float-left">
                                     <p class="title-product title-hover-black"><a class="animate-default" href="#">MH02-Black09</a></p>
-                                    <p class="clearfix price-product">$350 <span class="total-product-cart-son">(x1)</span></p>
+                                    <p class="clearfix price-product"> </p>
                                 </div>
                             </div>
-                            <div class="product-cart-son">
-                                <div class="image-product-cart float-left center-vertical-image">
-                                    <a href="#"><img src="lander_plugins/img/product_image_7-min.png" alt="" /></a>
-                                </div>
-                                <div class="info-product-cart float-left">
-                                    <p class="title-product title-hover-black"><a class="animate-default" href="#">Voyage Yoga Bag</a></p>
-                                    <p class="clearfix price-product">$350 <span class="total-product-cart-son">(x1)</span></p>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="relative border no-border-l no-border-r total-cart-header">
                             <p class="bold clear-margin">Subtotal:</p>
                             <p class=" clear-margin bold">$700</p>
                         </div>
                         <div class="relative btn-cart-header">
-                            <a href="#" class="uppercase bold animate-default">view cart</a>
-                            <a href="#" class="uppercase bold button-hover-red animate-default">checkout</a>
+                            <a href="cart.php" class="uppercase bold animate-default">view cart</a>
+                            <a href="checkout.php" class="uppercase bold button-hover-red animate-default">checkout</a>
                         </div>
                     </div>
                     <div class="mask-search absolute clearfix" onclick="hiddenBoxSearchMobile()"></div>
