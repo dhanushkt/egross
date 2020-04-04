@@ -12,6 +12,7 @@ if (mysqli_num_rows($getcartitem) >= 1)
 else
     $cart = false;
 
+$subtot = 0;
 
 //update care
 if (isset($_POST['updatecart'])) {
@@ -218,6 +219,10 @@ if (isset($_POST['delcart'])) {
                                                 <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹ <?php echo $getcartitem['ctotal']; ?></p>
                                             </div>
                                         </div>
+                                        <?php 
+                                            //calculate subtotal
+                                            $subtot = $subtot + $getcartitem['ctotal'];
+                                        ?>
                                     <?php } ?>
 
                                     <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
@@ -242,7 +247,7 @@ if (isset($_POST['delcart'])) {
                                 <div class="full-width relative cart-total bg-gray  clearfix">
                                     <div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
                                         <p>Subtotal</p>
-                                        <p class="text-red price-shoping-cart">$700.00</p>
+                                        <p class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
                                     </div>
                                     <div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
                                         <p class="bottom-margin-15-default">Shipping</p>
