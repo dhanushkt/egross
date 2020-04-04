@@ -3,23 +3,27 @@ include 'access/useraccesscontrol.php';
 
 $adbanner = false;
 
+$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<script src="js/toast.js"></script>
+	
 	<?php include 'lander-pages/csslink.php'; ?>
 </head>
 
 <body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="lander_plugins/js/toast.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('.wishlistItem').click(function() {
 				var options = {
 					style: {
 						main: {
-							background: "#2879fe",
+							background: "#e3171b",
 							color: "white",
 							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
 							'width': '200px'
@@ -37,8 +41,41 @@ $adbanner = false;
 					success: function() {
 						iqwerty.toast.Toast('Item added to wishlist', options);
 						window.setTimeout(function() {
-							window.location.replace("index.php");
-						}, 2000);
+							window.location.reload();
+						}, 1000);
+					}
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+			$('.addCart').click(function() {
+				var options = {
+					style: {
+						main: {
+							background: "#e3171b",
+							color: "white",
+							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+							'width': '200px'
+
+						}
+					}
+				};
+				var getid = $(this).attr('data-id');
+				var getqty = 1;
+				$.ajax({
+					url: 'add-cart.php',
+					type: 'POST',
+					data: {
+						id: getid,
+						qty: getqty
+					},
+					success: function() {
+						iqwerty.toast.Toast('Item added to cart', options);
+						window.setTimeout(function() {
+							window.location.reload();
+						}, 1000);
 					}
 				});
 			});
@@ -78,8 +115,8 @@ $adbanner = false;
 							<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold">CATEGORIES</p>
 								<ul class="clear-margin list-siderbar">
-									<?php 
-									
+									<?php
+
 									?>
 									<li><a href="#">Food</a></li>
 									<?php ?>
@@ -271,13 +308,13 @@ $adbanner = false;
 									</ul>
 								</div>
 							</div>
-							<?php if($adbanner) { ?>
-							<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
-								<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
-									<img src="lander_plugins/img/banner_siderbar-min.png" alt="Siderbar" />
-									<a href="#"></a>
+							<?php if ($adbanner) { ?>
+								<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
+									<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
+										<img src="lander_plugins/img/banner_siderbar-min.png" alt="Siderbar" />
+										<a href="#"></a>
+									</div>
 								</div>
-							</div>
 							<?php } ?>
 						</div>
 						<!-- End Sider Bar Box -->
@@ -287,11 +324,11 @@ $adbanner = false;
 								<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
 							</div>
 
-							<?php if($adbanner) { ?>
-							<div class="banner-top-category-page bottom-margin-default effect-bubba zoom-image-hover overfollow-hidden relative full-width">
-								<img src="lander_plugins/img/image_banner_category_1-min.png" alt="" />
-								<a href="#"></a>
-							</div>
+							<?php if ($adbanner) { ?>
+								<div class="banner-top-category-page bottom-margin-default effect-bubba zoom-image-hover overfollow-hidden relative full-width">
+									<img src="lander_plugins/img/image_banner_category_1-min.png" alt="" />
+									<a href="#"></a>
+								</div>
 							<?php } ?>
 
 							<div class="bar-category bottom-margin-default border no-border-r no-border-l no-border-t">
@@ -309,24 +346,70 @@ $adbanner = false;
 							<!-- Product Content Category -->
 							<div class="row">
 								<?php
-								$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 								while ($itemdata = mysqli_fetch_assoc($getalldata)) {
+									$itmid = $itemdata['itmid'];
+
+									$getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
+									if(mysqli_num_rows($getwishlist) == 1)
+										$wishlist = true;
+									else
+										$wishlist = false;
+
+									$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
+									if(mysqli_num_rows($getcartlist) == 1)
+										$cartlist = true;
+									else
+										$cartlist = false;
 								?>
 									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
 										<div class="image-product relative overfollow-hidden">
 											<div class="center-vertical-image">
-												<img src="lander_plugins/img/product_home_30-min.png" alt="Product">
+												<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
 											</div>
 											<a href="#"></a>
 											<ul class="option-product animate-default">
-												<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-												<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-												<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+												<?php if ($userlogin) { ?>
+
+													<?php if($cartlist) { ?>
+														<li class="relative">
+															<a href="javascript:void(0)">
+																<i style="color: red" class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i>
+															</a>
+														</li>
+													<?php } else { ?>
+														<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+													<?php } ?>
+													
+
+													<?php if($wishlist) { ?>
+														<li class="relative"><a href="javascript:void(0)">
+														<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+													</a></li>
+													<?php } else { ?>
+														<li class="relative"><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+													<?php } ?>
+
+													<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+												<?php } else { ?>
+													<li class="relative"><a href="user-login.php"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+
+													<li class="relative"><a href="user-login.php"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+
+													<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+												<?php } ?>
+
 											</ul>
 										</div>
 										<h3 class="title-product clearfix full-width title-hover-black"><a href="#"><?php echo $itemdata['iname']; ?></a></h3>
 										<p class="clearfix price-product">
 											<!-- <span class="price-old">₹ 700</span> --> ₹ <?php echo $itemdata['iprice']; ?></p>
+											<div style="float: right; padding-right: 10px;">
+												<?php if($cartlist){ ?>
+												<i class="fa fa-shopping-cart"></i>
+												<?php } if($wishlist) { ?>
+												<i class="fa fa-heart"></i>
+												<?php } ?>
+											</div>
 										<!-- <div class="clearfix ranking-product-category ranking-color">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>

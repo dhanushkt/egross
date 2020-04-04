@@ -25,7 +25,6 @@
 
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/category.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
     @media only screen and (min-width: 600px) {
         .cmargin-login {
@@ -40,7 +39,7 @@
 
     @media only screen and (max-width: 600px) {
         .hidden-mobile {
-            display: none;
+            display: none !important;
         }
 
         .custommobile-nav {
@@ -57,3 +56,4 @@
         background-color: white !important;
     }
 </style>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
