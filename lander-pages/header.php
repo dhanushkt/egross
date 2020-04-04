@@ -34,7 +34,7 @@
                                 </ul>
                             </li>
                             <?php if ($userlogin) { ?>
-                                <li class="relative"><a href="access/logoutuser.php">Logout   <i class="fa fa-sign-out"></i></a></li>
+                                <li class="relative"><a href="access/logoutuser.php">Logout <i class="fa fa-sign-out"></i></a></li>
                             <?php } ?>
                         </ul>
                     </div>
