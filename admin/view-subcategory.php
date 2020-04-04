@@ -84,6 +84,7 @@ $getmaincategory = mysqli_query($con, "SELECT * FROM mcat");
                                                 $query = mysqli_query($con, "SELECT * FROM scat WHERE smcid='$mcid'");
                                                 while ($row = mysqli_fetch_assoc($query)) {
                                                 ?>
+                                                
                                                     <tr>
                                                         <td><?php echo $row['scname']; ?></td>
 
