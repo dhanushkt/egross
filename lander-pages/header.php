@@ -15,7 +15,7 @@
                             <li class="relative"><a href="user-login.php">Login</a></li>
                             <?php } ?>
                             <?php if($userlogin) { ?>
-                            <li class="relative"><a href="wishlist.php">Wishlist</a></li>
+                            <li class="relative"><a href="#">Wishlist</a></li>
                             <?php } ?>
                             <li class="relative">
                                 <a href="#">English</a>
@@ -33,7 +33,7 @@
                         <i class="data-icon data-icon-arrows icon-arrows-hamburger-2 icon-pushmenu js-push-menu" aria-hidden="true"></i>
                     </div>
                     <div class="clearfix logo">
-                        <a href="#"><img width="200" height="100" alt="Logo" src="lander_plugins/img/logo.png" /></a>
+                        <a href="#"><img alt="Logo" src="lander_plugins/img/logo.png" /></a>
                     </div>
                     <div class="clearfix search-box relative float-left">
                         <form method="GET" action="search.php" class="">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="header-ontop" style="box-shadow: none;">
+    <div class="header-ontop">
         <div class="container">
             <div class="row">
                 <!-- <div class="col-md-3">
