@@ -2,6 +2,8 @@
 include 'access/useraccesscontrol.php';
 
 $adbanner = false;
+$wishlist = false;
+$cartlist = false;
 
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
@@ -348,18 +350,19 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 								<?php
 								while ($itemdata = mysqli_fetch_assoc($getalldata)) {
 									$itmid = $itemdata['itmid'];
+									if($userlogin){
+										$getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
+										if(mysqli_num_rows($getwishlist) == 1)
+											$wishlist = true;
+										else
+											$wishlist = false;
 
-									$getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
-									if(mysqli_num_rows($getwishlist) == 1)
-										$wishlist = true;
-									else
-										$wishlist = false;
-
-									$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
-									if(mysqli_num_rows($getcartlist) == 1)
-										$cartlist = true;
-									else
-										$cartlist = false;
+										$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
+										if(mysqli_num_rows($getcartlist) == 1)
+											$cartlist = true;
+										else
+											$cartlist = false;
+									}
 								?>
 									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
 										<div class="image-product relative overfollow-hidden">
