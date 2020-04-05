@@ -199,7 +199,7 @@ if (isset($_POST['delcart'])) {
                                                 <img src="uploads/item/<?php echo $getcartitem['iimg']; ?>" alt="">
                                             </div>
                                             <div class="relative product-in-cart-col-2">
-                                                <p class="title-hover-black"><a href="#" class="animate-default"><?php echo $getcartitem['iname']; ?></a></p>
+                                                <p class="title-hover-black"><a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default"><?php echo $getcartitem['iname']; ?></a></p>
                                             </div>
                                             <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
 

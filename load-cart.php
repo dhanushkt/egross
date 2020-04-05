@@ -11,7 +11,7 @@ if (mysqli_num_rows($header_getcart) >= 1) {
                     <a href="#"><img src="uploads/item/<?php echo $header_cart['iimg']; ?>" alt="" /></a>
                 </div>
                 <div class="info-product-cart float-left">
-                    <p class="title-product title-hover-black"><a class="animate-default" href="#"><?php echo $header_cart['iname']; ?></a></p>
+                    <p class="title-product title-hover-black"><a class="animate-default" href="product.php?id=<?php echo $header_cart['itmid']; ?>"><?php echo $header_cart['iname']; ?></a></p>
                     <p class="clearfix price-product">₹ <?php echo $header_cart['ctotal']; ?> <span class="total-product-cart-son">(x<?php echo $header_cart['cqty']; ?>)</span></p>
                 </div>
             </div>
