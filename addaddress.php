@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <base href="lander_plugins/">
+    
     <?php include 'lander-pages/csslink.php'; ?>
 
 </head>
