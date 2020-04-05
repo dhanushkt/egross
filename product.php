@@ -278,10 +278,12 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 												</li>
 											<?php } ?>
 										<?php } else { ?>
+											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">		
 											<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
 											<li class="relative"><a href="user-login.php">
 											<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 												</a></li>
+										</div>
 										<?php } ?>
 <!--for copy-->
 <style>
@@ -357,14 +359,14 @@ var msg = window.prompt("Copy this link", location.href);
 										{
 											$getwish = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
 											if(mysqli_num_rows($getwish) == 1)
-												$wish = true;
+												$wish1 = true;
 											else
-												$wish = false;
+												$wish1 = false;
 											$getcart = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
 											if(mysqli_num_rows($getcart) == 1)
-												$cart = true;
+												$cart1 = true;
 											else
-												$cart = false;
+												$cart1 = false;
 										}
 											?>
 											<div class="items">
@@ -376,7 +378,7 @@ var msg = window.prompt("Copy this link", location.href);
 														<a href="#"></a>
 														<ul class="option-product animate-default">
 												<?php if ($userlogin) { ?>
-												<?php if($cart) { ?>
+												<?php if($cart1) { ?>
 													<li class="relative">
 														<a href="javascript:void(0)">
 														<i style="color: red" class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i>
@@ -385,7 +387,7 @@ var msg = window.prompt("Copy this link", location.href);
 												<?php } else { ?>
 													<li class="relative"><a class="addCart" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
 												<?php } ?>
-												<?php if($wish) { ?>
+												<?php if($wish1) { ?>
 													<li class="relative"><a href="javascript:void(0)">
 													<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 													</a></li>
@@ -403,11 +405,13 @@ var msg = window.prompt("Copy this link", location.href);
 													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="product.php?id=<?php echo $row['itmid']; ?>"><?php echo $row['iname']; ?></a></h3>
 													<p class="clearfix price-product">₹<?php echo $row['iprice']; ?></p>
 													<div style="float: right; padding-right: 10px;">
-													<?php if($cart){ ?>
+													<?php 
+													if($userlogin){
+													if($cart1){ ?>
 													<i class="fa fa-shopping-cart"></i>
-													<?php } if($wish) { ?>
+													<?php } if($wish1) { ?>
 													<i class="fa fa-heart"></i>
-													<?php } ?>
+													<?php } } ?>
 													</div>
 												</div>
 											</div>
