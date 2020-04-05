@@ -1,10 +1,45 @@
 <?php
 include 'access/useraccesscontrol.php';
-
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
-
+$uquery = mysqli_query($con, "SELECT * FROM user WHERE uid='$globaluserid'");
+$userinfo = mysqli_fetch_assoc($uquery);
+$password = $userinfo['upassword'];
+if (isset($_POST['changepsw'])) {
+    $oldpass = md5($_POST['oldpsw']);
+    $newpsw1 = $_POST['newpsw1'];
+    $newpsw2 = $_POST['newpsw2'];
+    if ($oldpass != $password) {
+        $passemsg = "Old Password not matching";
+    } else {
+        $npsw = md5($newpsw1);
+        $updatepass = mysqli_query($con, "UPDATE user SET upassword='$npsw' WHERE uid='$globaluserid'");
+        if ($updatepass) {
+            $smsg = "Password Changed";
+        } else {
+            $emsg = "Error";
+        }
+    }
+    if ($newpsw1 != $newpsw2) {
+        $pswemsg = "Password Not Matching";
+    }
+}
+if(isset($_POST['update']))
+{
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $phno=$_POST['phno'];
+    $updatequery=mysqli_query($con,"UPDATE user SET uname='$name',uemail='$email',umobile='$phno'");
+    if($updatequery)
+    {
+        $success="Record Updated Successfully";
+    }
+    else
+    {
+        $error="Error!!..";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +80,7 @@ if (!$userlogin) {
         TD:nth-child(1) {
             font-weight: bold
         }
+
         .mycButton {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             font-family: 'Roboto', sans-serif;
@@ -67,6 +103,7 @@ if (!$userlogin) {
             background-color: transparent;
             color: #333;
         }
+
         .mycButtonaddr {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             font-family: 'Roboto', sans-serif;
@@ -125,32 +162,33 @@ if (!$userlogin) {
 
                         <!-- Content Shoping Cart -->
                         <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                            
-                                <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left text-center">
-                                    <h1>ACCOUNT</h1>
-                                </div>
-                        
-                                <h3>MY ACCOUNT</h3>
-                                <hr>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left text-center">
+                                <h1>ACCOUNT</h1>
+                            </div>
+
+                            <h3>MY ACCOUNT</h3>
+                            <hr>
                             <div style="margin-top: 5px">
                                 <h4>Account Details</h4>
-
-                                <div class="form-input full-width clearfix relative">
-                                    <label>Name</label>
-                                    <input class="full-width" type="text" name="addrline1">
-                                </div>
-                                <div class="form-input full-width clearfix relative">
-                                    <label>E-mail</label>
-                                    <input class="full-width" type="text" name="addrline1">
-                                </div>
-                                <div class="form-input full-width clearfix relative">
-                                    <label>Phone Number</label>
-                                    <input class="full-width" type="text" name="addrline1">
-                                </div>
-                                <div class="form-input full-width clearfix relative">
-                                    <button class="mycButton"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                                    <button class="mycButton"><i class="fa fa-check" aria-hidden="true"></i> Done</button>
-                                </div>
+                                <form method="POST">
+                                    <div class="form-input full-width clearfix relative">
+                                        <label>Name</label>
+                                        <input class="full-width" type="text" name="name" value="<?php echo $userinfo['uname']; ?>">
+                                    </div>
+                                    <div class="form-input full-width clearfix relative">
+                                        <label>E-mail</label>
+                                        <input class="full-width" type="text" name="email" value="<?php echo $userinfo['uemail']; ?>">
+                                    </div>
+                                    <div class="form-input full-width clearfix relative">
+                                        <label>Phone Number</label>
+                                        <input class="full-width" type="text" name="phone" value="<?php echo $userinfo['umobile']; ?>">
+                                    </div>
+                                    <div class="form-input full-width clearfix relative">
+                                        <button class="mycButton"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                                        <button class="mycButton" name="update"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+                                    </div>
+                                </form>
                             </div>
 
                             <div>
@@ -231,22 +269,51 @@ if (!$userlogin) {
                             <div>
                                 <div style="margin-top: 7%">
                                     <h4>Change Password</h4>
-
-                                    <div class="form-input full-width clearfix relative">
-                                        <label>Old password</label>
-                                        <input class="full-width" type="text" name="addrline1">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <label>New password</label>
-                                        <input class="full-width" type="text" name="addrline1">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <label>Confirm new password</label>
-                                        <input class="full-width" type="text" name="addrline1">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <button class="mycButton"><i class="fa fa-refresh" aria-hidden="true"></i> Change</button>
-                                    </div>
+                                    <form method="POST">
+                                        <?php if (isset($smsg)) { ?>
+                                            <div class="alert" style="background-color: #3cb878">
+                                                <div class="alert-text">
+                                                    <?php echo $smsg; ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if (isset($passemsg)) { ?>
+                                            <div class="alert" style="background-color: #eb1a21; color: white;">
+                                                <div class="alert-text">
+                                                    <?php echo $passemsg; ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if (isset($emsg)) { ?>
+                                            <div class="alert" style="background-color: #eb1a21; color: white;">
+                                                <div class="alert-text">
+                                                    <?php echo $emsg; ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if (isset($pswemsg)) { ?>
+                                            <div class="alert" style="background-color: #eb1a21; color: white;">
+                                                <div class="alert-text">
+                                                    <?php echo $pswemsg; ?>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>Old password</label>
+                                            <input class="full-width" type="text" name="oldpsw">
+                                        </div>
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>New password</label>
+                                            <input class="full-width" type="text" name="newpsw1">
+                                        </div>
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>Confirm new password</label>
+                                            <input class="full-width" type="text" name="newpsw2">
+                                        </div>
+                                        <div class="form-input full-width clearfix relative">
+                                            <button class="mycButton" name="changepsw"><i class="fa fa-refresh" aria-hidden="true"></i> Change</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
