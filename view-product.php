@@ -118,10 +118,12 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 								<p class="title-siderbar bold">CATEGORIES</p>
 								<ul class="clear-margin list-siderbar">
 									<?php
-
+										$query=mysqli_query($con,"SELECT * FROM mcat");
+										while($row=mysqli_fetch_assoc($query))
+										{
 									?>
-									<li><a href="#">Food</a></li>
-									<?php ?>
+									<li><a href="#"><?php echo $row['mcname'];?></a></li>
+										<?php }?>
 								</ul>
 							</div>
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
