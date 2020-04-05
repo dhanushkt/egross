@@ -274,7 +274,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 												<li class="relative"><a href="javascript:void(0)">
 												<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 												</a></li>
-												<li class="relative"><a href="#">
+												<li class="relative"><a href="#" title="Copy URL">
 												<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
 											</a></li>
 											</ul>
@@ -287,7 +287,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 											<li class="relative"><a href="user-login.php">
 											<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 											</a></li>
-											<li class="relative"><a href="#">
+											<li class="relative"><a href="#" title="Copy URL">
 											<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
 											</a></li>
 							<?php } ?>
