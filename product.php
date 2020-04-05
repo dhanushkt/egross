@@ -120,6 +120,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 			<div class="relative container-web">
 				<div class="container">
 					<div class="row ">
+						
 						<!-- Sider Bar -->
 						<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
 							<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
@@ -138,6 +139,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 									<li><a href="#">Auto & Moto</a></li>
 								</ul>
 							</div>
+							
 							<!-- Element Best Sellers -->
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold bottom-margin-15-default">PRODUCTS</p>
@@ -159,23 +161,23 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 								<?php
 								}
 								?>
-							<div class="button-product-list clearfix full-width clear-margin" >
-							<ul class="bottom-margin-default">	
-							<li class="button-hover-red">
-							<a href="view-product.php" class="animate-default">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							View Products
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-							</li>	
-							</ul>
-							</div>	
+								<div class="button-product-list clearfix full-width clear-margin" >
+									<ul class="bottom-margin-default">	
+									<li class="button-hover-red">
+									<a href="view-product.php" class="animate-default">
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									View Products
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+									</li>	
+									</ul>
+								</div>	
 							</div>
 						</div>
 						<!-- End Sider Bar Box -->
 						<!-- Content Category -->
-					<div class="col-md-9 relative clear-padding">
-						<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
-								<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
+						<div class="col-md-9 relative clear-padding">
+							<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
+							<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
 							</div>
 							<!-- Product Content Detail -->
 							<div class="top-product-detail relative ">
@@ -183,36 +185,38 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 									<!-- Slide Product Detail -->
 									<div class="col-md-7 relative col-sm-12 col-xs-12">
 										<div id="owl-big-slide" class="relative sync-owl-big-image">
-										  <div class="item center-vertical-image">
-										    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										  </div>
-										  <div class="item center-vertical-image">
-										    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										  </div>
-										  <div class="item center-vertical-image">
-										    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										  </div>
-										  <div class="item center-vertical-image">
-										    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										  </div>
+											<div class="item center-vertical-image">
+										  	  <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+										  	</div>
+										  	<div class="item center-vertical-image">
+										  		<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+										 	</div>
+										 	<div class="item center-vertical-image">
+										    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+											</div>
+											<div class="item center-vertical-image">
+										    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+											</div>
 										</div>
 										<div class="relative thumbnail-slide-detail">
 											<div id="owl-thumbnail-slide" class="sync-owl-thumbnail-image" data-items="3,4,3,2">
-											  <div class="item center-vertical-image">
-											    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
-											  </div>
-											  <div class="item center-vertical-image">
-											    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
-											  </div>
-											  <div class="item center-vertical-image">
-											    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
-											  </div>
-											  <div class="item center-vertical-image">
-											    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
-											  </div>
+												<div class="item center-vertical-image">
+											    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+												</div>
+												<div class="item center-vertical-image">
+											    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+												</div>
+												<div class="item center-vertical-image">
+											    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+												</div>
+												<div class="item center-vertical-image">
+												    <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+												</div>
 											</div>
-											<div class="relative nav-prev-detail btn-slide-detail"></div>
-											<div class="relative nav-next-detail btn-slide-detail"></div>
+											<div class="relative nav-prev-detail btn-slide-detail">
+											</div>
+											<div class="relative nav-next-detail btn-slide-detail">
+											</div>
 										</div>
 									</div>
 									<!-- Info Top Product -->
@@ -229,13 +233,12 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 											<p class="clearfix price-product">₹<?php echo $itemdata['iprice']; ?></p>
 											<div class="product-code clearfix full-width">
 											<p class="float-left clear-margin">Availability: <span class="text-green">In stock</span></p>
-											</div>
 										</div>
-										<div class="relative intro-product-detail bottom-margin-15-default bottom-padding-15-default border no-border-r no-border-t no-border-l">
+									</div>
+									<div class="relative intro-product-detail bottom-margin-15-default bottom-padding-15-default border no-border-r no-border-t no-border-l">
 											<p class="clear-margin">Description :<?php echo $itemdata['idesc']; ?></p>
-										</div>
-										
-										<div class="relative button-product-list clearfix full-width clear-margin">
+									</div>
+									<div class="relative button-product-list clearfix full-width clear-margin">
 										<?php
 										$itmid = $itemdata['itmid'];
 										if($userlogin)
@@ -252,9 +255,9 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 												$cartlist = false;
 										}
 										?>
+											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">
 											<?php if ($userlogin) { ?>
 												<?php if($cartlist) { ?>	
-											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">
 											<li class="button-hover-red"><a href="cart.php">Go to Cart</a></li>
 											<?php } else { ?>
 											<div class="relative option-product-detail bottom-padding-15-default border no-border-r no-border-t no-border-l">
@@ -265,73 +268,60 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 													</div>
 												</div>
 											</div>
-											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">	
 												<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)">Add to Cart</a></li>
 											<?php } ?>
 											<?php if($wishlist) { ?>
 												<li class="relative"><a href="javascript:void(0)">
 												<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 												</a></li>
+												<li class="relative"><a href="#">
+												<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
+											</a></li>
 											</ul>
 											<?php } else { ?>
 												<li><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
 												</li>
 											<?php } ?>
 										<?php } else { ?>
-											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">		
 											<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
 											<li class="relative"><a href="user-login.php">
 											<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
-												</a></li>
-										</div>
-										<?php } ?>
+											</a></li>
+											<li class="relative"><a href="#">
+											<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
+											</a></li>
+							<?php } ?>
+						</div>
 <!--for copy-->
 <style>
-.btn-copy{
-  background-color: #38AFDD;
-  border: transparent;
-  border-bottom: 2px solid #0086B7;
-  border-radius: 2px;
-  padding: 10px;
-  min-width: 100px;
-  color: #fff;
+input{
+  border: 0px;
+  border-bottom: 2px solid black;
+  outline: none;
+  background: transparent;
+  color: black;
+  width: 8cm;
 }
-.btn-copy:hover, .btn-copy:focus{
-  background-color: #48A1C1;
-  border-bottom: 2px solid #38AFDD;
-  /*transition cross browser*/
-  transition: all .3s ease-in;
-  -webkit-transition: all .3s ease-in;
-  -moz-transition:all .3s ease-in;
-  -o-transition: all .3s ease-in;
+input:focus{
+  border-bottom: 2px solid blue;
 }
 </style>
-<script>
-var clipboard = new Clipboard('.btn-copy', {
-    text: function() {
-        return document.querySelector('input[type=hidden]').value;
-    }
-});
-clipboard.on('success', function(e) {
-  alert("Copied!");
-  e.clearSelection();
-});
-$("#input-url").val(location.href);
-//safari
-if (navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent)) {
-   $('.btn-copy').on('click', function() {
-var msg = window.prompt("Copy this link", location.href);
-
-});
-  }
+<script type="text/javascript">
+        function Copy() 
+        {
+            var Url = document.getElementById("paste-box");
+            Url.value = window.location.href;
+            Url.focus();
+            Url.select();  
+            document.execCommand("Copy");
+        }
 </script>
-										<div class="">
-  										<input type="hidden" id="input-url" value="Copied!">
-  										<button class="btn-copy"><i class="fa fa-share-alt"></i>   &nbsp;&nbsp;Copy Link</button>
-										</div>
+									<div >
+    									<input type=text class="" id="paste-box" rows="1" cols="30"></input>
 									</div>
 								</div>
 							</div>
+	</div>
 							<div class="info-product-detail bottom-margin-default relative">
 								<div class="row">
 									<div class="col-md-12 relative overfollow-hidden">
@@ -419,7 +409,6 @@ var msg = window.prompt("Copy this link", location.href);
 									 }
 									?>
 										</div>
-									
 									</div>
 								</div>
 							</div>
