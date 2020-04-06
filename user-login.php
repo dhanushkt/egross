@@ -69,13 +69,13 @@ if(isset($_POST['login']))
 
                                     <?php if(isset($fmsg)) { ?>
                                     <!-- custom alert -->
-                                    <div class="alert" style="background-color: #eb1a21; color: white;">
+                                    <div class="alert" style="background-color: #eb1a21; color: white;border-radius: 0%;">
                                         <div class="alert-text">
                                             <?php echo $fmsg; ?>
                                         </div>
                                     </div>
                                     <?php } else if(isset($smsg)) { ?>
-                                    <div class="alert" style="background-color: #3cb878">
+                                    <div class="alert" style="background-color: #3cb878; border-radius: 0%;">
                                         <div class="alert-text">
                                             <?php echo $smsg; ?>
                                         </div>
