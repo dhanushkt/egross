@@ -28,7 +28,11 @@ if (isset($_POST['addsubcat'])) {
 
 <head>
     <?php include 'assets/csslink.php'; ?>
-
+    <link href="../admin_plugins/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+    <link href="../admin_plugins/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../admin_plugins/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="../admin_plugins/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+    <link href="../admin_plugins/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -141,11 +145,14 @@ if (isset($_POST['addsubcat'])) {
                                             <textarea class="form-control" rows="5" id="message" name="scdesc"></textarea>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="example-text-input">Category Image</label>
-                                            <div class="custom-file mb-4">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Upload Category Image (optional) [ prefered size: 100x100, format: .png ]</label>
+                                                    <div class="custom-file mb-4">
+                                                        <input name="fileToUpload" type="file" id="input-file-now" class="dropify" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -172,7 +179,8 @@ if (isset($_POST['addsubcat'])) {
 
     <!-- jQuery  -->
     <?php include 'assets/jslink.php'; ?>
-
+    <script src="../admin_plugins/plugins/dropify/js/dropify.min.js"></script>
+    <script src="../admin_plugins/pages/jquery.form-upload.init.js"></script>
 
 </body>
 

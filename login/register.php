@@ -250,7 +250,6 @@ if (isset($_POST['register'])) {
                                     <label>Upload Shop Logo (optional) [ prefered size: 100x100, format: .png ]</label>
                                     <div class="custom-file mb-4">
                                         <input name="fileToUpload" type="file" id="input-file-now" class="dropify" />
-                                        
                                     </div>
                                 </div>
                             </div>
