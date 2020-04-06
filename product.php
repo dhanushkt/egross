@@ -1,13 +1,5 @@
 <?php
 include 'access/useraccesscontrol.php';
-$t_id = $_GET['id'];
-$getallitem = mysqli_query($con, "SELECT * FROM itemmaster where itmid='$t_id' ");
-$itemdata = mysqli_fetch_assoc($getallitem);
-$getallitems = mysqli_query($con, "SELECT * FROM itemmaster");
-//for Product side bar
-$getprod = mysqli_query($con,"SELECT * FROM itemmaster ORDER BY itmid DESC LIMIT 3");
-//all DBdata
-$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
 if (!isset($_GET['product'])) {
 	echo "<script>window.location.href='view-product.php'; </script>";
@@ -131,34 +123,33 @@ if (!isset($_GET['product'])) {
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-			</div>
-			<!-- End Breadcrumb -->
-			<!-- Content Category -->
-			<div class="relative container-web">
-				<div class="container">
-					<div class="row ">
-						
-						<!-- Sider Bar -->
-						<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
-							<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-								<p class="title-siderbar bold">CATEGORIES</p>
-								<ul class="clear-margin list-siderbar">
-									<li><a href="#">Food</a></li>
-									<li><a href="#">Mobile & Tablet</a></li>
-									<li><a href="#">Electric Appliances</a></li>
-									<li><a href="#">Electronics & Technology</a></li>
-									<li><a href="#">Fashion</a></li>
-									<li><a href="#">Health & Beauty</a></li>
-									<li><a href="#">Mother & Baby</a></li>
-									<li><a href="#">Books & Stationery</a></li>
-									<li><a href="#">Home & Life</a></li>
-									<li><a href="#">Sports & Outdoors</a></li>
-									<li><a href="#">Auto & Moto</a></li>
-								</ul>
-							</div>
-							
-							<!-- Element Best Sellers -->
+				<!-- End Breadcrumb -->
+				<!-- Content Category -->
+				<div class="relative container-web">
+					<div class="container">
+						<div class="row ">
+
+							<!-- Sider Bar -->
+							<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
+								<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+									<p class="title-siderbar bold">CATEGORIES</p>
+									<ul class="clear-margin list-siderbar">
+										<li><a href="#">Food</a></li>
+										<li><a href="#">Mobile & Tablet</a></li>
+										<li><a href="#">Electric Appliances</a></li>
+										<li><a href="#">Electronics & Technology</a></li>
+										<li><a href="#">Fashion</a></li>
+										<li><a href="#">Health & Beauty</a></li>
+										<li><a href="#">Mother & Baby</a></li>
+										<li><a href="#">Books & Stationery</a></li>
+										<li><a href="#">Home & Life</a></li>
+										<li><a href="#">Sports & Outdoors</a></li>
+										<li><a href="#">Auto & Moto</a></li>
+									</ul>
+								</div>
+
+								<!-- Element Best Sellers -->
+								<!-- Element Best Sellers -->
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold bottom-margin-15-default">BEST SELLERS</p>
 								<div class="clearfix relative best-sellers-product">
@@ -210,9 +201,9 @@ if (!isset($_GET['product'])) {
 									</div>
 								</div>
 							</div>
-	                   	
-						<!-- End Sider Bar Box -->
-						<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+							<!-- End Element Best Sale -->
+							<!-- Element On Sale -->
+							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold bottom-margin-default">ON SALE</p>
 								<div class="slide-on-sale-sidebar relative">
 									<div class="owl-theme owl-carousel">
@@ -266,88 +257,12 @@ if (!isset($_GET['product'])) {
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<!-- Content Category -->
-						<div class="col-md-9 relative clear-padding">
-							<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
-							<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
-							</div>
-							<!-- Product Content Detail -->
-							<div class="top-product-detail relative ">
-								<div class="row">
-									<!-- Slide Product Detail -->
-									<div class="col-md-7 relative col-sm-12 col-xs-12">
-										<div id="owl-big-slide" class="relative sync-owl-big-image">
-											<div class="item center-vertical-image">
-										  	  <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										  	</div>
-										  	<div class="item center-vertical-image">
-										  		<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-										 	</div>
-										 	<div class="item center-vertical-image">
-										    	<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-=======
-				<!-- End Breadcrumb -->
-				<!-- Content Category -->
-				<div class="relative container-web">
-					<div class="container">
-						<div class="row ">
-
-							<!-- Sider Bar -->
-							<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
-								<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-									<p class="title-siderbar bold">CATEGORIES</p>
-									<ul class="clear-margin list-siderbar">
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Mobile & Tablet</a></li>
-										<li><a href="#">Electric Appliances</a></li>
-										<li><a href="#">Electronics & Technology</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Health & Beauty</a></li>
-										<li><a href="#">Mother & Baby</a></li>
-										<li><a href="#">Books & Stationery</a></li>
-										<li><a href="#">Home & Life</a></li>
-										<li><a href="#">Sports & Outdoors</a></li>
-										<li><a href="#">Auto & Moto</a></li>
-									</ul>
-								</div>
-
-								<!-- Element Best Sellers -->
-								<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-									<p class="title-siderbar bold bottom-margin-15-default">PRODUCTS</p>
-									<?php
-									while ($prod = mysqli_fetch_assoc($getprod)) { ?>
-										<div class="clearfix relative best-sellers-product">
-											<div class="image-product-sellers-sidebar float-left">
-												<a href="#"><img src="uploads/item/<?php echo $prod['iimg']; ?>" alt="" /></a>
->>>>>>> 007d1d396b0fbf06ba2f090ffde246ef76c18e9f
-											</div>
-											<div class="info-product-sellers-sidebar float-left">
-												<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="product.php?id=<?php echo $prod['itmid']; ?>">
-														<?php echo $prod['iname']; ?>
-													</a></p>
-
-												<p class="clearfix price-product">₹ <?php echo $prod['iprice']; ?></p>
-											</div>
-										</div>
-									<?php
-									}
-									?>
-									<div class="button-product-list clearfix full-width clear-margin">
-										<ul class="bottom-margin-default">
-											<li class="button-hover-red">
-												<a href="view-product.php" class="animate-default">
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													View Products
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- End Sider Bar Box -->
-							<!-- Content Category -->
+                            </div>
+    </div>
+							<!-- End ELement On Sale -->
+                    	<!-- End Sider Bar Box -->
+                        
+                        <!-- Content Category -->
 							<div class="col-md-9 relative clear-padding">
 								<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
 									<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
@@ -371,24 +286,6 @@ if (!isset($_GET['product'])) {
 													<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
 												</div>
 											</div>
-<<<<<<< HEAD
-											<div class="relative nav-prev-detail btn-slide-detail">
-											</div>
-											<div class="relative nav-next-detail btn-slide-detail">
-											</div>
-										</div>
-									</div>
-									<!-- Info Top Product -->
-									<div class="col-md-5 col-sm-12 col-xs-12">
-										<div class="name-ranking-product relative bottom-padding-15-default bottom-margin-15-default border no-border-r no-border-t no-border-l">
-											<h1 class="name-product" ><?php echo $itemdata['iname']; ?></h1>
-											<div class=" ranking-color ">
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star" aria-hidden="true"></i>
-												<i class="fa fa-star-half" aria-hidden="true"></i>
-												<i class="fa fa-star-o" aria-hidden="true"></i>
-=======
 											<div class="relative thumbnail-slide-detail">
 												<div id="owl-thumbnail-slide" class="sync-owl-thumbnail-image" data-items="3,4,3,2">
 													<div class="item center-vertical-image">
@@ -408,60 +305,8 @@ if (!isset($_GET['product'])) {
 												</div>
 												<div class="relative nav-next-detail btn-slide-detail">
 												</div>
->>>>>>> 007d1d396b0fbf06ba2f090ffde246ef76c18e9f
 											</div>
 										</div>
-<<<<<<< HEAD
-									</div>
-									<div class="relative intro-product-detail bottom-margin-15-default bottom-padding-15-default border no-border-r no-border-t no-border-l">
-											<p class="clear-margin">Description :<?php echo $itemdata['idesc']; ?></p>
-									</div>
-									<div class="relative button-product-list clearfix full-width clear-margin">
-										<?php
-										$itmid = $itemdata['itmid'];
-										if($userlogin)
-										{
-											$getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
-											if(mysqli_num_rows($getwishlist) == 1)
-												$wishlist = true;
-											else
-												$wishlist = false;
-											$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
-											$item = mysqli_fetch_assoc($getcartlist);
-											if(mysqli_num_rows($getcartlist) == 1)
-												$cartlist = true;
-											else
-												$cartlist = false;
-										}
-										?>
-											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">
-											<?php if ($userlogin) { ?>
-												<?php if($cartlist) { ?>	
-											<li class="button-hover-red"><a href="cart.php">Go to Cart</a></li>
-											<?php } else { ?>
-											<div class="relative option-product-detail bottom-padding-15-default border no-border-r no-border-t no-border-l">
-												<div class="relative option-product-2 clearfix">
-													<div class="option-product-son float-left right-margin-default">
-														<p class="float-left">Qty:</p>
-														<input type="number" class="left-margin-10-default" min="01" step="1" 	max="10" value="1" id="myNumber" name="qty">
-														<input type="hidden" value="<?php echo $itemdata['cartid']?>" name="cartid">
-													</div>
-												</div>
-											</div>
-											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">	
-											<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" name="addtocart" href="javascript:void(0)">
-											<input type="hidden" name="addtocart">
-											Add to Cart</a></li>
-											<?php } ?>
-											<?php if($wishlist) { ?>
-												<li class="relative"><a href="javascript:void(0)">
-												<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
-												</a></li>
-												<li class="relative"><a href="#" title="Copy URL">
-												<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
-											</a></li>
-											</ul>
-=======
 										<!-- Info Top Product -->
 										<div class="col-md-5 col-sm-12 col-xs-12">
 											<div class="name-ranking-product relative bottom-padding-15-default bottom-margin-15-default border no-border-r no-border-t no-border-l">
@@ -475,6 +320,7 @@ if (!isset($_GET['product'])) {
 												</div>
 												<p class="clearfix price-product">₹<?php echo $itemdata['iprice']; ?></p>
 												<div class="product-code clearfix full-width">
+                                                    <p class="float-left relative"><?php echo $itemdata['itmid']; ?></p>
 													<p class="float-left clear-margin">Availability: <span class="text-green">In stock</span></p>
 												</div>
 											</div>
@@ -482,6 +328,49 @@ if (!isset($_GET['product'])) {
 												<p class="clear-margin">Description :<?php echo $itemdata['idesc']; ?></p>
 											</div>
 											<div class="relative button-product-list clearfix full-width clear-margin">
+                                            <p class="bold clear-margin bottom-margin-15-default">Available Options:</p>
+											<div class="relative option-product-1 bottom-margin-15-default">
+												<p class="float-left">Color:</p>
+												<ul class="check-box-custom list-color clearfix clear-margin">
+													<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+					  								<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+					  								<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+					  								<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+					  								<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+					  								<li>
+														<label>
+															<input type="checkbox" >
+					  										<span class="checkmark"></span>
+					  									</label>
+					  								</li>
+												</ul>
+											</div>
+											
 												<?php
 												$itmid = $itemdata['itmid'];
 												if ($userlogin) {
@@ -506,10 +395,11 @@ if (!isset($_GET['product'])) {
 																<div class="relative option-product-2 clearfix">
 																	<div class="option-product-son float-left right-margin-default">
 																		<p class="float-left">Qty:</p>
-																		<input type="number" class="left-margin-15-default" min="01" step="1" max="10" value="1" name="num">
+																		<input type="number" class="left-margin-15-default" min="01" step="1" max="10" value="1" id="myNumber" name="num">
 																	</div>
 																</div>
-															</div>
+                                                            </div>
+                                                            <ul class="clear-margin top-margin-default clearfix bottom-margin-default">
 															<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)">Add to Cart</a></li>
 														<?php } ?>
 														<?php if ($wishlist) { ?>
@@ -520,13 +410,9 @@ if (!isset($_GET['product'])) {
 																	<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
 																</a></li>
 												</ul>
->>>>>>> 007d1d396b0fbf06ba2f090ffde246ef76c18e9f
 											<?php } else { ?>
 												<li><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
 												</li>
-												<li class="relative"><a href="#" title="Copy URL">
-												<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
-											</a></li>
 											<?php } ?>
 										<?php } else { ?>
 											<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
@@ -534,45 +420,13 @@ if (!isset($_GET['product'])) {
 													<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 												</a></li>
 											<li class="relative"><a href="#" title="Copy URL">
-<<<<<<< HEAD
-											<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
-											</a></li>
-							<?php } ?>
-						</div>
-<!--for copy-->
-<style>
-.input{
-  border: 0px;
-  border-bottom: 2px solid black;
-  outline: none;
-  background: transparent;
-  color: black;
-  width: 8cm;
-}
-.input:focus{
-  border-bottom: 2px solid blue;
-}
-</style>
-<script type="text/javascript">
-        function Copy() 
-        {
-            var Url = document.getElementById("paste-box");
-            Url.value = window.location.href;
-            Url.focus();
-            Url.select();  
-            document.execCommand("Copy");
-        }
-</script>
-									<div >
-    									<input type=text class="input" id="paste-box" rows="1" cols="30"></input>
-=======
 													<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
 												</a></li>
 										<?php } ?>
 											</div>
 											<!--for copy-->
 											<style>
-												input {
+												.input {
 													border: 0px;
 													border-bottom: 2px solid black;
 													outline: none;
@@ -581,7 +435,7 @@ if (!isset($_GET['product'])) {
 													width: 8cm;
 												}
 
-												input:focus {
+												.input:focus {
 													border-bottom: 2px solid blue;
 												}
 											</style>
@@ -595,10 +449,9 @@ if (!isset($_GET['product'])) {
 												}
 											</script>
 											<div>
-												<input type=text class="" id="paste-box" rows="1" cols="30"></input>
+												<input type=text class="input" id="paste-box" rows="1" cols="30"></input>
 											</div>
 										</div>
->>>>>>> 007d1d396b0fbf06ba2f090ffde246ef76c18e9f
 									</div>
 								</div>
 								<div class="info-product-detail bottom-margin-default relative">
@@ -616,7 +469,7 @@ if (!isset($_GET['product'])) {
 								<div class="slide-product-bottom relative">
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12 relative bottom slide-related-product">
-											<p class="bold title-slide-product-bottom">OUR PRODUCTS</p>
+											<p class="bold title-slide-product-bottom">RELATED PRODUCTS</p>
 											<div class="button-slide-related" id="btn-slide-1"></div>
 											<div class="owl-theme owl-carousel" data-items="1,2,3">
 												<?php
@@ -690,12 +543,8 @@ if (!isset($_GET['product'])) {
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- End Product Content Category -->
-							</div>
-<<<<<<< HEAD
-							<!-- End Product Content Category -->
-							<div class="col-md-12 col-sm-12 col-xs-12 relative slide-related-product">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 relative slide-related-product">
 										<p class="bold title-slide-product-bottom">YOU MIGHT ALSO LIKE</p>
 										<div class="button-slide-related" id="btn-slide-2"></div>
 										<div class="owl-theme owl-carousel" data-items="1,2,3">
@@ -775,8 +624,8 @@ if (!isset($_GET['product'])) {
 									</div>
 								</div>
 							</div>
-=======
->>>>>>> 007d1d396b0fbf06ba2f090ffde246ef76c18e9f
+								<!-- End Product Content Category -->
+							</div>
 						</div>
 					</div>
 				</div>
