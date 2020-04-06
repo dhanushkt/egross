@@ -8,7 +8,6 @@ $getallitems = mysqli_query($con, "SELECT * FROM itemmaster");
 $getprod = mysqli_query($con,"SELECT * FROM itemmaster ORDER BY itmid DESC LIMIT 3");
 //all DBdata
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
-
 ?>
 <!DOCTYPE html>
 
@@ -69,7 +68,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 					}
 				};
 				var getid = $(this).attr('data-id');
-				var getqty = 1;
+				var getqty = document.getElementById("myNumber").value;
 				$.ajax({
 					url: 'add-cart.php',
 					type: 'POST',
@@ -142,38 +141,114 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 							
 							<!-- Element Best Sellers -->
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-								<p class="title-siderbar bold bottom-margin-15-default">PRODUCTS</p>
-								<?php
-								while($prod=mysqli_fetch_assoc($getprod))
-								{?>
+								<p class="title-siderbar bold bottom-margin-15-default">BEST SELLERS</p>
 								<div class="clearfix relative best-sellers-product">
 									<div class="image-product-sellers-sidebar float-left">
-										<a href="#"><img src="uploads/item/<?php echo $prod['iimg']; ?>" alt="" /></a>
+										<a href="#"><img src="img/product_image_6-min.png" alt="" /></a>
 									</div>
 									<div class="info-product-sellers-sidebar float-left">
-										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="product.php?id=<?php echo $prod['itmid']; ?>">
-										<?php echo $prod['iname']; ?>
-										</a></p>
-
-										<p class="clearfix price-product">₹ <?php echo $prod['iprice']; ?></p>
+										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">MH02-Black09</a></p>
+										<div class="clearfix ranking-product-sidebar ranking-color">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star-half" aria-hidden="true"></i>
+											<i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
 									</div>
 								</div>
-								<?php
-								}
-								?>
-								<div class="button-product-list clearfix full-width clear-margin" >
-									<ul class="bottom-margin-default">	
-									<li class="button-hover-red">
-									<a href="view-product.php" class="animate-default">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									View Products
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-									</li>	
-									</ul>
-								</div>	
+								<div class="clearfix relative best-sellers-product">
+									<div class="image-product-sellers-sidebar float-left">
+										<a href="#"><img src="img/product_image_7-min.png" alt="" /></a>
+									</div>
+									<div class="info-product-sellers-sidebar float-left">
+										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Voyage Bag</a></p>
+										<div class="clearfix ranking-product-sidebar ranking-color">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star-half" aria-hidden="true"></i>
+											<i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+									</div>
+								</div>
+								<div class="clearfix relative best-sellers-product">
+									<div class="image-product-sellers-sidebar float-left">
+										<a href="#"><img src="img/product_image_8-min.png" alt="" /></a>
+									</div>
+									<div class="info-product-sellers-sidebar float-left">
+										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Impulse</a></p>
+										<div class="clearfix ranking-product-sidebar ranking-color">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star" aria-hidden="true"></i>
+											<i class="fa fa-star-half" aria-hidden="true"></i>
+											<i class="fa fa-star-o" aria-hidden="true"></i>
+										</div>
+										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+									</div>
+								</div>
+							</div>
+	                   	
+						<!-- End Sider Bar Box -->
+						<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+								<p class="title-siderbar bold bottom-margin-default">ON SALE</p>
+								<div class="slide-on-sale-sidebar relative">
+									<div class="owl-theme owl-carousel">
+										<div class="items">
+											<div class="product-category relative">
+												<p class="absolute label-on-sale">-50%<br>off</p>
+												<div class="image-product relative overfollow-hidden">
+													<img src="img/product_image_4-min.png" alt="Product">
+													<a href="#"></a>
+													<ul class="option-product animate-default">
+														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+														<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">MH01-Black</a></p>
+												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+												<div class="clearfix ranking-product-category ranking-color">
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star-half" aria-hidden="true"></i>
+													<i class="fa fa-star-o" aria-hidden="true"></i>
+												</div>
+												<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
+											</div>
+										</div>
+										<div class="items">
+											<div class="product-category relative">
+												<p class="absolute label-on-sale">-42%<br>off</p>
+												<div class="image-product relative overfollow-hidden">
+													<img src="img/product_home_26-min.png" alt="Product">
+													<a href="#"></a>
+													<ul class="option-product animate-default">
+														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+														<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">Impulse Duffle</a></p>
+												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+												<div class="clearfix ranking-product-category ranking-color">
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star-half" aria-hidden="true"></i>
+													<i class="fa fa-star-o" aria-hidden="true"></i>
+												</div>
+												<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<!-- End Sider Bar Box -->
 						<!-- Content Category -->
 						<div class="col-md-9 relative clear-padding">
 							<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
@@ -222,7 +297,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 									<!-- Info Top Product -->
 									<div class="col-md-5 col-sm-12 col-xs-12">
 										<div class="name-ranking-product relative bottom-padding-15-default bottom-margin-15-default border no-border-r no-border-t no-border-l">
-											<h1 class="name-product"><?php echo $itemdata['iname']; ?></h1>
+											<h1 class="name-product" ><?php echo $itemdata['iname']; ?></h1>
 											<div class=" ranking-color ">
 												<i class="fa fa-star" aria-hidden="true"></i>
 												<i class="fa fa-star" aria-hidden="true"></i>
@@ -249,6 +324,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 											else
 												$wishlist = false;
 											$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
+											$item = mysqli_fetch_assoc($getcartlist);
 											if(mysqli_num_rows($getcartlist) == 1)
 												$cartlist = true;
 											else
@@ -264,11 +340,15 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 												<div class="relative option-product-2 clearfix">
 													<div class="option-product-son float-left right-margin-default">
 														<p class="float-left">Qty:</p>
-														<input type="number" class="left-margin-15-default" min="01" step="1" 	max="10" value="1" name="num">
+														<input type="number" class="left-margin-10-default" min="01" step="1" 	max="10" value="1" id="myNumber" name="qty">
+														<input type="hidden" value="<?php echo $itemdata['cartid']?>" name="cartid">
 													</div>
 												</div>
 											</div>
-												<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)">Add to Cart</a></li>
+											<ul class="clear-margin top-margin-default clearfix bottom-margin-default">	
+											<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" name="addtocart" href="javascript:void(0)">
+											<input type="hidden" name="addtocart">
+											Add to Cart</a></li>
 											<?php } ?>
 											<?php if($wishlist) { ?>
 												<li class="relative"><a href="javascript:void(0)">
@@ -281,6 +361,9 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 											<?php } else { ?>
 												<li><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
 												</li>
+												<li class="relative"><a href="#" title="Copy URL">
+												<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
+											</a></li>
 											<?php } ?>
 										<?php } else { ?>
 											<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
@@ -294,7 +377,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 						</div>
 <!--for copy-->
 <style>
-input{
+.input{
   border: 0px;
   border-bottom: 2px solid black;
   outline: none;
@@ -302,7 +385,7 @@ input{
   color: black;
   width: 8cm;
 }
-input:focus{
+.input:focus{
   border-bottom: 2px solid blue;
 }
 </style>
@@ -317,7 +400,7 @@ input:focus{
         }
 </script>
 									<div >
-    									<input type=text class="" id="paste-box" rows="1" cols="30"></input>
+    									<input type=text class="input" id="paste-box" rows="1" cols="30"></input>
 									</div>
 								</div>
 							</div>
@@ -413,6 +496,86 @@ input:focus{
 								</div>
 							</div>
 							<!-- End Product Content Category -->
+							<div class="col-md-12 col-sm-12 col-xs-12 relative slide-related-product">
+										<p class="bold title-slide-product-bottom">YOU MIGHT ALSO LIKE</p>
+										<div class="button-slide-related" id="btn-slide-2"></div>
+										<div class="owl-theme owl-carousel" data-items="1,2,3">
+											<div class="items">
+												<div class="full-width product-category relative">
+													<div class="image-product  relative overfollow-hidden">
+														<div class="center-vertical-image">
+															<img src="img/product_home_14-min.png" alt="Product">
+														</div>
+														<a href="#"></a>
+														<ul class="option-product animate-default">
+															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Rival Field Messenger</a></h3>
+													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+													<div class="clearfix ranking-product-category ranking-color">
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star-half" aria-hidden="true"></i>
+														<i class="fa fa-star-o" aria-hidden="true"></i>
+													</div>
+												</div>
+											</div>
+											<div class="items">
+												<div class="full-width product-category relative">
+													<div class="image-product  relative overfollow-hidden">
+														<div class="center-vertical-image">
+															<img src="img/product_home_23-min.png" alt="Product">
+														</div>
+														<a href="#"></a>
+														<ul class="option-product animate-default">
+															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Endeavor Daytrip Backpack</a></h3>
+													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+													<div class="clearfix ranking-product-category ranking-color">
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star-half" aria-hidden="true"></i>
+														<i class="fa fa-star-o" aria-hidden="true"></i>
+													</div>
+												</div>
+											</div>
+											<div class="items">
+												<div class="full-width product-category relative">
+													<div class="image-product  relative overfollow-hidden">
+														<div class="center-vertical-image">
+															<img src="img/product_home_24-min.png" alt="Product">
+														</div>
+														<a href="#"></a>
+														<ul class="option-product animate-default">
+															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Diam Special1</a></h3>
+													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+													<div class="clearfix ranking-product-category ranking-color">
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star-half" aria-hidden="true"></i>
+														<i class="fa fa-star-o" aria-hidden="true"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
