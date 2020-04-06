@@ -20,7 +20,7 @@
                     <div class="clear-padding menu-header-top text-right col-md-8 col-xs-12 col-sm-6">
                         <ul class="clear-margin">
                             <?php if ($userlogin) { ?>
-                                <li class="relative"><a href="user-account.php">My Account</a></li>
+                                <li class="relative"><a href="account.php">My Account</a></li>
                             <?php } else { ?>
                                 <li class="relative"><a href="user-login.php">Login</a></li>
                             <?php } ?>

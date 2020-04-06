@@ -405,7 +405,7 @@ $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
 											</ul>
 										</div>
-										<h3 class="title-product clearfix full-width title-hover-black"><a href="product.php?id=<?php echo $itemdata['itmid']; ?>"><?php echo $itemdata['iname']; ?></a></h3>
+										<h3 class="title-product clearfix full-width title-hover-black"><a href="product.php?product=<?php echo $itemdata['itmid']; ?>"><?php echo $itemdata['iname']; ?></a></h3>
 										<p class="clearfix price-product">
 										₹ <?php echo $itemdata['iprice']; ?></p>
 											<div style="float: right; padding-right: 10px;">
