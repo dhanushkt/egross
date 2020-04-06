@@ -5,39 +5,39 @@ if (!$userlogin) {
 }
 $uquery = mysqli_query($con, "SELECT * FROM user WHERE uid='$globaluserid'");
 $userinfo = mysqli_fetch_assoc($uquery);
-$password = $userinfo['upassword'];
+
 if (isset($_POST['changepsw'])) {
+    $password = $userinfo['upassword'];
     $oldpass = md5($_POST['oldpsw']);
-    $newpsw1 = $_POST['newpsw1'];
-    $newpsw2 = $_POST['newpsw2'];
+    $newpsw1 = md5($_POST['newpsw1']);
+    $newpsw2 = md5($_POST['newpsw2']);
     if ($oldpass != $password) {
-        $passemsg = "Old Password not matching";
+        $fmsg = "Old password does not match";
     } else {
-        $npsw = md5($newpsw1);
-        $updatepass = mysqli_query($con, "UPDATE user SET upassword='$npsw' WHERE uid='$globaluserid'");
-        if ($updatepass) {
-            $smsg = "Password Changed";
+        if ($newpsw1 != $newpsw2) {
+            $fmsg = "Password does not match";
         } else {
-            $emsg = "Error";
+            $updatepass = mysqli_query($con, "UPDATE user SET upassword='$npsw' WHERE uid='$globaluserid'");
+            if ($updatepass) {
+                $smsg = "Password Changed";
+            } else {
+                $fmsg = "Error";
+            }
         }
     }
-    if ($newpsw1 != $newpsw2) {
-        $pswemsg = "Password Not Matching";
-    }
 }
-if(isset($_POST['update']))
-{
-    $name=$_POST['name'];
-    $email=$_POST['email'];
-    $phno=$_POST['phno'];
-    $updatequery=mysqli_query($con,"UPDATE user SET uname='$name',uemail='$email',umobile='$phno'");
-    if($updatequery)
-    {
-        $success="Record Updated Successfully";
-    }
-    else
-    {
-        $error="Error!!..";
+if (isset($_POST['update'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phno = $_POST['phno'];
+    $updatequery = mysqli_query($con, "UPDATE user SET uname='$name',uemail='$email',umobile='$phno'");
+    if ($updatequery) {
+        $uquery = mysqli_query($con, "SELECT * FROM user WHERE uid='$globaluserid'");
+        $userinfo = mysqli_fetch_assoc($uquery);
+        $_SESSION['uname'] = $userinfo['uname'];
+        $smsg = "Record Updated Successfully";
+    } else {
+        $fmsg = "Error!!..";
     }
 }
 ?>
@@ -140,6 +140,14 @@ if(isset($_POST['update']))
         <?php include 'lander-pages/header.php'; ?>
         <!-- End Header Box -->
         <!-- Content Box -->
+        <script>
+            function undisableField() {
+                document.getElementById("myFieldset").disabled = false;
+                document.getElementById("savebtn").removeAttribute("hidden");
+                document.getElementById("editbtn").setAttribute("hidden", true);
+                document.getElementById("tempdiv").setAttribute("hidden", true);
+            }
+        </script>
         <div class="relative full-width">
             <!-- Breadcrumb -->
             <div class="container-web relative">
@@ -163,6 +171,21 @@ if(isset($_POST['update']))
                         <!-- Content Shoping Cart -->
                         <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
 
+                            <?php if (isset($fmsg)) { ?>
+                                <!-- custom alert -->
+                                <div class="alert" style="background-color: #eb1a21; color: white; border-radius: 0%;">
+                                    <div class="alert-text">
+                                        <?php echo $fmsg; ?>
+                                    </div>
+                                </div>
+                            <?php } else if (isset($smsg)) { ?>
+                                <div class="alert" style="background-color: #3cb878; border-radius: 0%;">
+                                    <div class="alert-text">
+                                        <?php echo $smsg; ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
                             <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left text-center">
                                 <h1>ACCOUNT</h1>
                             </div>
@@ -172,21 +195,25 @@ if(isset($_POST['update']))
                             <div style="margin-top: 5px">
                                 <h4>Account Details</h4>
                                 <form method="POST">
+                                    <fieldset id="myFieldset" disabled="true">
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>User Name</label>
+                                            <input class="full-width" type="text" name="name" value="<?php echo $userinfo['uname']; ?>">
+                                        </div>
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>E-mail</label>
+                                            <input class="full-width" type="text" name="email" value="<?php echo $userinfo['uemail']; ?>">
+                                        </div>
+                                        <div class="form-input full-width clearfix relative">
+                                            <label>Phone Number</label>
+                                            <input class="full-width" type="text" name="phone" value="<?php echo $userinfo['umobile']; ?>">
+                                        </div>
+                                    </fieldset>
                                     <div class="form-input full-width clearfix relative">
-                                        <label>Name</label>
-                                        <input class="full-width" type="text" name="name" value="<?php echo $userinfo['uname']; ?>">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <label>E-mail</label>
-                                        <input class="full-width" type="text" name="email" value="<?php echo $userinfo['uemail']; ?>">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <label>Phone Number</label>
-                                        <input class="full-width" type="text" name="phone" value="<?php echo $userinfo['umobile']; ?>">
-                                    </div>
-                                    <div class="form-input full-width clearfix relative">
-                                        <button class="mycButton"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
-                                        <button class="mycButton" name="update"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+                                        <div id="tempdiv" style="margin-top: 30px;"></div>
+                                        <a href="JavaScript:Void(0);" style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;" id="editbtn" onClick="undisableField()" class="mycButton"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+
+                                        <button id="savebtn" hidden class="mycButton" name="update" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -270,45 +297,17 @@ if(isset($_POST['update']))
                                 <div style="margin-top: 7%">
                                     <h4>Change Password</h4>
                                     <form method="POST">
-                                        <?php if (isset($smsg)) { ?>
-                                            <div class="alert" style="background-color: #3cb878">
-                                                <div class="alert-text">
-                                                    <?php echo $smsg; ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                        <?php if (isset($passemsg)) { ?>
-                                            <div class="alert" style="background-color: #eb1a21; color: white;">
-                                                <div class="alert-text">
-                                                    <?php echo $passemsg; ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                        <?php if (isset($emsg)) { ?>
-                                            <div class="alert" style="background-color: #eb1a21; color: white;">
-                                                <div class="alert-text">
-                                                    <?php echo $emsg; ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                        <?php if (isset($pswemsg)) { ?>
-                                            <div class="alert" style="background-color: #eb1a21; color: white;">
-                                                <div class="alert-text">
-                                                    <?php echo $pswemsg; ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
                                         <div class="form-input full-width clearfix relative">
                                             <label>Old password</label>
-                                            <input class="full-width" type="text" name="oldpsw">
+                                            <input class="full-width" type="password" name="oldpsw">
                                         </div>
                                         <div class="form-input full-width clearfix relative">
                                             <label>New password</label>
-                                            <input class="full-width" type="text" name="newpsw1">
+                                            <input class="full-width" type="password" name="newpsw1">
                                         </div>
                                         <div class="form-input full-width clearfix relative">
                                             <label>Confirm new password</label>
-                                            <input class="full-width" type="text" name="newpsw2">
+                                            <input class="full-width" type="password" name="newpsw2">
                                         </div>
                                         <div class="form-input full-width clearfix relative">
                                             <button class="mycButton" name="changepsw"><i class="fa fa-refresh" aria-hidden="true"></i> Change</button>
@@ -317,96 +316,6 @@ if(isset($_POST['update']))
                                 </div>
                             </div>
 
-                            <!-- End Content Shoping Cart -->
-                            <!-- Content Right -->
-                            <!--<div class="col-md-4 col-sm-12 col-xs-12 right-content-shoping relative clear-padding-right">
-						<p class="title-shoping-cart">Your Order</p>
-						<div class="full-width relative overfollow-hidden">
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
-								<div class="image-product-order-sidebar center-vertical-image">
-									<img src="img/product_home_5-min.png" alt="" />
-								</div>
-								<div class="relative info-product-order-sidebar">
-									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Endeavor Daytrip Backpack x1</a></p>
-									<p class="price-product">$350.00</p>
-								</div>
-							</div>
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
-								<div class="image-product-order-sidebar center-vertical-image">
-									<img src="img/img_product_small_9-min.png" alt="" />
-								</div>
-								<div class="relative info-product-order-sidebar">
-									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Diam Special08 x1</a></p>
-									<p class="price-product">$350.00</p>
-								</div>
-							</div>
-						</div>
-						<p class="title-shoping-cart">Cart Total</p>
-						<div class="full-width relative cart-total bg-gray  clearfix">
-							<div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
-								<p>Subtotal</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
-							</div>
-							<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
-								<p class="bottom-margin-15-default">Shipping</p>
-								<div class="relative justify-content">
-									<ul class="check-box-custom title-check-box-black clear-margin clear-margin">
-										<li>
-											<label>Free Shipping
-												<input type="radio" name="shiping-order" checked="">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-										<li>
-											<label>Standard
-												<input type="radio" name="shiping-order">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-										<li>
-											<label>Local Pickup
-												<input type="radio" name="shiping-order">
-			  									<span class="checkmark"></span>
-			  								</label>
-										</li>
-									</ul>
-									<p class="price-gray-sidebar">$20.00</p>
-								</div>
-								<div onclick="optionShiping(this)" class="relative full-width select-ship-option justify-content top-margin-15-default">
-									<p class="border no-border-r no-border-l no-border-t">Calculate Shipping</p>
-									<i class="fa fa-caret-down" aria-hidden="true"></i>
-									<ul class="clear-margin absolute full-width">
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 1</li>
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 2</li>
-										<li onclick="selectOptionShoping(this)">Calculate Shipping 3</li>
-									</ul>
-								</div>
-							</div>
-							<div class="relative justify-content top-margin-15-default">
-								<p class="bold">Total</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
-							</div>
-						</div>
-						<div class="full-width relative payment-box bg-gray top-margin-15-default clearfix">
-							<ul class="check-box-custom list-radius title-check-box-black clear-margin clear-margin">
-								<li>
-									<label class="">Check Payment
-										<input type="radio" name="payment" checked="">
-	  									<span class="checkmark"></span>
-	  								</label>
-	  								<br><p class="info-payment">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-								</li>
-								<li>
-									<label class="">Paypal <img class="left-margin-15-default" src="img/logo_payment-min.png" alt="Logo Paypal" />
-										<input type="radio" name="payment">
-	  									<span class="checkmark"></span>
-	  								</label>
-								</li>
-							</ul>
-						</div>
-						<button class="btn-proceed-checkout full-width top-margin-15-default">Proceed to Checkout</button>
-					    </div>-->
-                            <!-- End Content Right -->
 
                         </div>
                     </div>
