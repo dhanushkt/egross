@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'access/useraccesscontrol.php';
 $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$globaluserid");
 
@@ -8,41 +8,101 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
 
 <head>
     <?php include 'lander-pages/csslink.php'; ?>
-    <!--table,
-    th,
-    td,
-    tr {
-        border: 1px solid black;
-
-    }
-
-    th {
-        padding: 35px;
-        font-size: 20px;
-
-    }
-
-    td {
-        padding: 20px;
-        font-size: 15px;
-    }
-
-    .colmn {
-        column-count: 3;
-        column-gap: 40px;
-    }-->
     <style>
-    .but {
-        background-color: red;
-        border: none;
-        color: white;
-        padding: 6px 6px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 13px;
-       
-    }
+        .mycButton {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 35px;
+            padding-right: 35px;
+            border-radius: 0%;
+            background: #e3171b !important;
+            text-transform: capitalize;
+            outline: none;
+            border: none;
+            color: white;
+        }
+
+        .mycButton:hover {
+            background: #333 !important;
+            color: white;
+        }
+
+        .outerbox {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            box-sizing: border-box;
+            margin-bottom: 0 !important;
+            margin-top: 6px !important;
+            position: relative;
+            float: left;
+            min-height: 1px;
+            overflow: visible;
+            margin-right: 13px;
+            width: auto;
+        }
+
+        .innerbox {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            display: block;
+            border-radius: 4px;
+            border: 1px #ddd solid;
+            background-color: #fff;
+            margin-bottom: 0 !important;
+            height: 266px;
+            width: 320px;
+            border-width: 1px;
+            box-sizing: border-box;
+            border-color: #C7C7C7;
+            box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16);
+            border-style: solid;
+        }
+
+        .addrbox {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            box-sizing: border-box;
+            padding: 0 !important;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .addaddrbox {
+            font-size: 20px;
+            color: #908d88;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: center !important;
+            display: block;
+            border-radius: 4px;
+            border: 1px dashed #ddd;
+            background-color: #fff;
+            margin-right: 0 !important;
+            height: 266px;
+            width: 320px;
+            border-width: 5px;
+            box-sizing: border-box;
+            border-color: #C7C7C7;
+            /* box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16); */
+            border-style: dashed;
+        }
+
+        .addsignmiddle {
+            display: inline-block;
+            padding-top: 25%;
+        }
+
+        .addaddrbox:hover {
+            border-color: #535353;
+        }
     </style>
 
 </head>
@@ -65,9 +125,9 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                     <div class="row">
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
-                            <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                            <li class="animate-default title-hover-red"><a href="address.php">Address</a></li>
-                            <li class="animate-default title-hover-red"><a href="#">View Address</a></li>
+                                <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
+                                <li class="animate-default title-hover-red"><a href="address.php">Address</a></li>
+                                <li class="animate-default title-hover-red"><a href="#">View Address</a></li>
                             </ul>
                         </div>
                     </div>
@@ -82,53 +142,56 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                         <!-- Content Shoping Cart -->
                         <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
                             <p class="title-shoping-cart">View Address</p>
-                            <div class="col-md-4 title-siderbar bold" style="border:2px black; height: 250px; padding:25px; word-wrap: break-word;">
-                                <br/> 
-                                <a href="address.php" title="ADD NEW ADDRESS
-                                "><img src="lander_plugins/plus-solid.svg" height=90% width=100%></i></img></a>
+
+                            <div class="col-md-4 col-lg-4 outerbox" onclick="window.location.href='address.php';">
+                                <div class="addaddrbox">
+                                    <div class="addsignmiddle">
+                                        <i class="fa fa-plus" style="font-size: 60px; color: #dddd;"></i>
+                                        <p>Add address</p>
+                                    </div>
+                                </div>
                             </div>
                             <?php
-                            while($getaddresss = mysqli_fetch_assoc($getalladdress)){
+                            while ($getaddresss = mysqli_fetch_assoc($getalladdress)) {
                             ?>
-                            <div class="col-md-4"
-                                style="border:1px solid black; height: 280px; padding:25px; word-wrap: break-word;">
-                            <h4><?php echo $getaddresss['afullname']?></h4>
-                            <b>Email</b>  : <?php echo $getaddresss['aemail']?>
-                            </br>
-                            <b>Number : </b><?php echo $getaddresss['arphone']?> |<span><b> Alt No:</b><?php echo $getaddresss['aaphone']?></span>
-                            </br>
-                                <p>
-                            <b>Address Line 1: </b><?php echo $getaddresss['addrline1']?>
-                            </br>
-                            <b>Address Line 2: </b><?php echo $getaddresss['addrline2']?>
-                            </br>
-                            <b>City : </b><?php echo $getaddresss['acity']?>
-                            </br>
-                            <b>District : </b><?php echo $getaddresss['adistrict']?>
-                            </br>
-                            <b>State : </b><?php echo $getaddresss['astate']?>,
-                            </br>    
-                            <b>Pincode: </b><?php echo $getaddresss['apin']?>
-                            </br>
-                                <a href="address.php?addrid=<?php echo $getaddresss['uaddrid']; ?>" ><button class="but">EDIT</button></a>
-                                <a class="deleteAdd" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)"><button class="but" type="submit">REMOVE</button></a>
-                            </div>
+                                <div class="col-md-4 outerbox">
+                                    <div class="innerbox">
+                                        <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
+                                            <h4><?php echo $getaddresss['afullname'] ?> </h4>
+
+                                            <b>Email</b> : <?php echo $getaddresss['aemail'] ?>
+                                            </br>
+                                            <b>Number : </b><?php echo $getaddresss['arphone'] ?> |<span><b> Alt No:</b><?php echo $getaddresss['aaphone'] ?></span>
+                                            </br>
+                                            <p>
+                                                <b>Address Line 1: </b><?php echo $getaddresss['addrline1'] ?>
+                                                </br>
+                                                <b>Address Line 2: </b><?php echo $getaddresss['addrline2'] ?>
+                                                </br>
+                                                <b>City : </b><?php echo $getaddresss['acity'] ?>
+                                                </br>
+                                                <b>District : </b><?php echo $getaddresss['adistrict'] ?>
+                                                </br>
+                                                <b>State : </b><?php echo $getaddresss['astate'] ?>,
+                                                </br>
+                                                <b>Pincode: </b><?php echo $getaddresss['apin'] ?>
+                                                </br>
+                                                <div style="margin-top: 10px;">
+                                                    <a href="address.php?addrid=<?php echo $getaddresss['uaddrid']; ?>"><button class="mycButton">EDIT</button></a>
+                                                    <a class="deleteAdd mycButton" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
+                                                    <a style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
+                                                        Set as Default
+                                                    </a>
+                                                </div>
+
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php } ?>
-                            <!--<div class="col-md-4"
-                                style="border:1px solid black; height: 250px; padding:15px; word-wrap: break-word;">
-                                Address2
-                                <button class="but">Edit</button>
-                                <button class="but">Delete</button>
-
-                            </div>
-
-                            <div class="col-md-4"
-                                style="border:1px solid black; height: 250px; padding:15px; word-wrap: break-word;">
-                                Address3
-                                <button class="but">Edit</button>
-                                <button class="but">Delete</button>
-                            </div>
--->
                         </div>
                     </div>
                 </div>
@@ -174,34 +237,35 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
 </body>
 <script src="lander_plugins/js/toast.js"></script>
 <script>
-		$(document).ready(function() {
-            var options = {
-					style: {
-						main: {
-							background: "#e3171b",
-							color: "white",
-							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-							'width': '200px'
+    $(document).ready(function() {
+        var options = {
+            style: {
+                main: {
+                    background: "#e3171b",
+                    color: "white",
+                    'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+                    'width': '200px'
 
-						}
-					}
-				};
-            $('.deleteAdd').click(function() {
+                }
+            }
+        };
+        $('.deleteAdd').click(function() {
             var getid = $(this).attr('data-id');
             $.ajax({
-					url: 'delete-address.php',
-					type: 'POST',
-					data: {
-						id: getid,
-					},
-					success: function() {
-						iqwerty.toast.Toast('Adresss Deleted', options);
-						window.setTimeout(function() {
-							window.location.reload();
-						}, 1000);
-					}
-                });
+                url: 'delete-address.php',
+                type: 'POST',
+                data: {
+                    id: getid,
+                },
+                success: function() {
+                    iqwerty.toast.Toast('Adresss Deleted', options);
+                    window.setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+            });
         });
     });
-    </script>
+</script>
+
 </html>
