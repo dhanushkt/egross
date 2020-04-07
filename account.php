@@ -268,8 +268,9 @@ if (isset($_POST['update'])) {
                                         </tr>
                                     </table>
                                     <div class="form-input full-width clearfix relative">
-                                        <button class="mycButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
-                                    </div>
+                                    <a href="view-address.php">  <button class="mycButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
+                            </a>    
+                                </div>
                                 </div>
                             </div>
 
