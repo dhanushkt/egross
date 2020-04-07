@@ -30,6 +30,17 @@ if ($getaddresscount >= 1) {
 
 if (isset($_POST['addrsubmit'])) {
     //check address
+    $checkaddress = mysqli_query($con, "SELECT * FROM user_address WHERE auid='$globaluserid'");
+    $getaddresscount = mysqli_num_rows($checkaddress);
+
+
+    if ($getaddresscount >= 1) {
+        $getaddressdetail = mysqli_fetch_assoc($checkaddress);
+        $addrerssid = $getaddressdetail['uaddrid'];
+        $def = 0;
+    } else {
+        $def = 1;
+    }
 
     $aphone = 0;
     $remail = 0;
@@ -91,7 +102,7 @@ if (isset($_POST['updateaddr'])) {
     $maddress = mysqli_query($connection, "UPDATE user_address SET afullname='$fullname', addrline1='$add1', addrline2='$add2', acity='$city', adistrict='$district', astate='$state', apin='$pin', arphone='$rphone', aaphone='$aphone', aemail='$remail' WHERE uaddrid = '$addrid'");
     if ($maddress) {
         $smsg = "Address Updated Successfully";
-        //echo "<script>window.setTimeout(function(){ window.history.back(); }, 2000);</script>";
+        echo "<script>window.setTimeout(function(){ window.history.back(); }, 2000);</script>";
     } else {
         $fmsg = mysqli_error($connection);
     }
