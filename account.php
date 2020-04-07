@@ -221,50 +221,50 @@ if (isset($_POST['update'])) {
                             <div>
                                 <div style="margin-top: 7%">
                                     <h4>Primary Address</h4>
-<?php
-$addquery=mysqli_query($con,"SELECT * FROM user_address WHERE auid='$globaluserid' AND adefault=1");
-$useraddress=mysqli_fetch_assoc($addquery);
-?>
+                                    <?php
+                                    $addquery = mysqli_query($con, "SELECT * FROM user_address WHERE auid='$globaluserid' AND adefault=1");
+                                    $useraddress = mysqli_fetch_assoc($addquery);
+                                    ?>
                                     <table>
                                         <tr>
                                             <td>FULL NAME:</td>
-                                            <td><?php echo $useraddress['afullname'];?></td>
+                                            <td><?php echo $useraddress['afullname']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>ADDRESS LINE1:</td>
-                                            <td><?php echo $useraddress['addrline1'];?></td>
+                                            <td><?php echo $useraddress['addrline1']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>ADDRESS LINE2:</td>
-                                            <td><?php echo $useraddress['addrline2'];?></td>
+                                            <td><?php echo $useraddress['addrline2']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>CITY:</td>
-                                            <td><?php echo $useraddress['acity'];?></td>
+                                            <td><?php echo $useraddress['acity']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>DISTRICT:</td>
-                                            <td><?php echo $useraddress['adistrict'];?></td>
+                                            <td><?php echo $useraddress['adistrict']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>STATE:</td>
-                                            <td><?php echo $useraddress['astate'];?></td>
+                                            <td><?php echo $useraddress['astate']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>PINCODE:</td>
-                                            <td><?php echo $useraddress['apin'];?></td>
+                                            <td><?php echo $useraddress['apin']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>E-MAIL:</td>
-                                            <td><?php echo $useraddress['aemail'];?></td>
+                                            <td><?php echo $useraddress['aemail']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>PHONE:</td>
-                                            <td><?php echo $useraddress['arphone'];?></td>
+                                            <td><?php echo $useraddress['arphone']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>ALT-PHONE:</td>
-                                            <td><?php echo $useraddress['aaphone'];?></td>
+                                            <td><?php echo $useraddress['aaphone']; ?></td>
                                         </tr>
                                     </table>
                                     <div class="form-input full-width clearfix relative">
