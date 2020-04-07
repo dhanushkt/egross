@@ -111,7 +111,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                             <b>Pincode: </b><?php echo $getaddresss['apin']?>
                             </br>
                                 <a href="address.php?addrid=<?php echo $getaddresss['uaddrid']; ?>" ><button class="but">EDIT</button></a>
-                                <a class="del" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)"><button class="but" id="del" type="submit">REMOVE</button></a>
+                                <a class="deleteAdd" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)"><button class="but" type="submit">REMOVE</button></a>
                             </div>
                             <?php } ?>
                             <!--<div class="col-md-4"
@@ -186,7 +186,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
 						}
 					}
 				};
-            $('.del').click(function() {
+            $('.deleteAdd').click(function() {
             var getid = $(this).attr('data-id');
             $.ajax({
 					url: 'delete-address.php',

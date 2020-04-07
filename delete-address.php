@@ -6,7 +6,7 @@ if (isset($_POST) & !empty($_POST)) {
 	$delete = mysqli_query($con, "DELETE FROM user_address WHERE uaddrid=$id");
     if($delete)
 		{
-            echo 'Deleted Successfully'
+            echo 'Deleted Successfully';
 			//echo '<script> window.location="view-address.php"; </ script>';
 		}
 		else
