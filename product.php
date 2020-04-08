@@ -1,12 +1,14 @@
 <?php
 include 'access/useraccesscontrol.php';
 
+$sidebars = false;
+
 if (!isset($_GET['product'])) {
 	echo "<script>window.location.href='view-product.php'; </script>";
 } else {
 	$t_id = $_GET['product'];
 
-	$getallitem = mysqli_query($con, "SELECT * FROM itemmaster where itmid='$t_id'");
+	$getallitem = mysqli_query($con, "SELECT * FROM itemmaster JOIN shopkeeper ON itemmaster.isid = shopkeeper.sid WHERE itemmaster.itmid='$t_id'");
 	$itemdata = mysqli_fetch_assoc($getallitem);
 
 	$getallitems = mysqli_query($con, "SELECT * FROM itemmaster");
@@ -25,7 +27,12 @@ if (!isset($_GET['product'])) {
 	<link rel="stylesheet" type="text/css" href="lander_plugins/css/product.css">
 	<link rel="stylesheet" type="text/css" href="lander_plugins/css/slick.css">
 	<link rel="stylesheet" type="text/css" href="lander_plugins/css/slick-theme.css">
-	<link rel="stylesheet" type="text/css" href="lander_plugins/css/category.css">
+	<style>
+		.slick-prev, .slick-next, .title-tabs, .button-slide-related {
+			z-index: 0 !important;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -147,122 +154,123 @@ if (!isset($_GET['product'])) {
 										<li><a href="#">Auto & Moto</a></li>
 									</ul>
 								</div>
-
+								<?php if($sidebars) { ?>
 								<!-- Element Best Sellers -->
-								<!-- Element Best Sellers -->
-							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-								<p class="title-siderbar bold bottom-margin-15-default">BEST SELLERS</p>
-								<div class="clearfix relative best-sellers-product">
-									<div class="image-product-sellers-sidebar float-left">
-										<a href="#"><img src="img/product_image_6-min.png" alt="" /></a>
-									</div>
-									<div class="info-product-sellers-sidebar float-left">
-										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">MH02-Black09</a></p>
-										<div class="clearfix ranking-product-sidebar ranking-color">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-half" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
+								<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+									<p class="title-siderbar bold bottom-margin-15-default">BEST SELLERS</p>
+									<div class="clearfix relative best-sellers-product">
+										<div class="image-product-sellers-sidebar float-left">
+											<a href="#"><img src="img/product_image_6-min.png" alt="" /></a>
 										</div>
-										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+										<div class="info-product-sellers-sidebar float-left">
+											<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">MH02-Black09</a></p>
+											<div class="clearfix ranking-product-sidebar ranking-color">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star-half" aria-hidden="true"></i>
+												<i class="fa fa-star-o" aria-hidden="true"></i>
+											</div>
+											<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+										</div>
+									</div>
+									<div class="clearfix relative best-sellers-product">
+										<div class="image-product-sellers-sidebar float-left">
+											<a href="#"><img src="img/product_image_7-min.png" alt="" /></a>
+										</div>
+										<div class="info-product-sellers-sidebar float-left">
+											<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Voyage Bag</a></p>
+											<div class="clearfix ranking-product-sidebar ranking-color">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star-half" aria-hidden="true"></i>
+												<i class="fa fa-star-o" aria-hidden="true"></i>
+											</div>
+											<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+										</div>
+									</div>
+									<div class="clearfix relative best-sellers-product">
+										<div class="image-product-sellers-sidebar float-left">
+											<a href="#"><img src="img/product_image_8-min.png" alt="" /></a>
+										</div>
+										<div class="info-product-sellers-sidebar float-left">
+											<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Impulse</a></p>
+											<div class="clearfix ranking-product-sidebar ranking-color">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star-half" aria-hidden="true"></i>
+												<i class="fa fa-star-o" aria-hidden="true"></i>
+											</div>
+											<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+										</div>
 									</div>
 								</div>
-								<div class="clearfix relative best-sellers-product">
-									<div class="image-product-sellers-sidebar float-left">
-										<a href="#"><img src="img/product_image_7-min.png" alt="" /></a>
-									</div>
-									<div class="info-product-sellers-sidebar float-left">
-										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Voyage Bag</a></p>
-										<div class="clearfix ranking-product-sidebar ranking-color">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-half" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
+								<!-- End Element Best Sale -->
+								
+								<!-- Element On Sale -->
+								<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+									<p class="title-siderbar bold bottom-margin-default">ON SALE</p>
+									<div class="slide-on-sale-sidebar relative">
+										<div class="owl-theme owl-carousel">
+											<div class="items">
+												<div class="product-category relative">
+													<p class="absolute label-on-sale">-50%<br>off</p>
+													<div class="image-product relative overfollow-hidden">
+														<img src="img/product_image_4-min.png" alt="Product">
+														<a href="#"></a>
+														<ul class="option-product animate-default">
+															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+															<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+													<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">MH01-Black</a></p>
+													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+													<div class="clearfix ranking-product-category ranking-color">
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star-half" aria-hidden="true"></i>
+														<i class="fa fa-star-o" aria-hidden="true"></i>
+													</div>
+													<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
+												</div>
+											</div>
+											<div class="items">
+												<div class="product-category relative">
+													<p class="absolute label-on-sale">-42%<br>off</p>
+													<div class="image-product relative overfollow-hidden">
+														<img src="img/product_home_26-min.png" alt="Product">
+														<a href="#"></a>
+														<ul class="option-product animate-default">
+															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+															<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+													<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">Impulse Duffle</a></p>
+													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+													<div class="clearfix ranking-product-category ranking-color">
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star" aria-hidden="true"></i>
+														<i class="fa fa-star-half" aria-hidden="true"></i>
+														<i class="fa fa-star-o" aria-hidden="true"></i>
+													</div>
+													<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
+												</div>
+											</div>
 										</div>
-										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
 									</div>
 								</div>
-								<div class="clearfix relative best-sellers-product">
-									<div class="image-product-sellers-sidebar float-left">
-										<a href="#"><img src="img/product_image_8-min.png" alt="" /></a>
-									</div>
-									<div class="info-product-sellers-sidebar float-left">
-										<p class="title-product-sellers-sidebar title-hover-black"><a class="animate-default" href="#">Impulse</a></p>
-										<div class="clearfix ranking-product-sidebar ranking-color">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-half" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-										</div>
-										<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-									</div>
-								</div>
+								<?php } ?>
 							</div>
-							<!-- End Element Best Sale -->
-							<!-- Element On Sale -->
-							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
-								<p class="title-siderbar bold bottom-margin-default">ON SALE</p>
-								<div class="slide-on-sale-sidebar relative">
-									<div class="owl-theme owl-carousel">
-										<div class="items">
-											<div class="product-category relative">
-												<p class="absolute label-on-sale">-50%<br>off</p>
-												<div class="image-product relative overfollow-hidden">
-													<img src="img/product_image_4-min.png" alt="Product">
-													<a href="#"></a>
-													<ul class="option-product animate-default">
-														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-														<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
-													</ul>
-												</div>
-												<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">MH01-Black</a></p>
-												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-												<div class="clearfix ranking-product-category ranking-color">
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star-half" aria-hidden="true"></i>
-													<i class="fa fa-star-o" aria-hidden="true"></i>
-												</div>
-												<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
-											</div>
-										</div>
-										<div class="items">
-											<div class="product-category relative">
-												<p class="absolute label-on-sale">-42%<br>off</p>
-												<div class="image-product relative overfollow-hidden">
-													<img src="img/product_home_26-min.png" alt="Product">
-													<a href="#"></a>
-													<ul class="option-product animate-default">
-														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-														<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
-													</ul>
-												</div>
-												<p class="title-product clearfix full-width animate-default title-hover-black"><a href="#">Impulse Duffle</a></p>
-												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-												<div class="clearfix ranking-product-category ranking-color">
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star" aria-hidden="true"></i>
-													<i class="fa fa-star-half" aria-hidden="true"></i>
-													<i class="fa fa-star-o" aria-hidden="true"></i>
-												</div>
-												<a href="javascript:;" class="button-add-cart-on-sale button-hover-red animate-default">Add to Cart</a>
-											</div>
-										</div>
-									</div>
-								</div>
-                            </div>
-    </div>
 							<!-- End ELement On Sale -->
-                    	<!-- End Sider Bar Box -->
-                        
-                        <!-- Content Category -->
+							<!-- End Sider Bar Box -->
+
+							<!-- Content Category -->
 							<div class="col-md-9 relative clear-padding">
 								<div class="col-sm-12 col-xs-12 col-md-1 relative overfollow-hidden clear-padding button-show-sidebar clearfix">
 									<p onclick="showSideBar()"><span class="ti-filter"></span> Sidebar</p>
@@ -320,7 +328,7 @@ if (!isset($_GET['product'])) {
 												</div>
 												<p class="clearfix price-product">₹<?php echo $itemdata['iprice']; ?></p>
 												<div class="product-code clearfix full-width">
-                                                    <p class="float-left relative"><?php echo $itemdata['itmid']; ?></p>
+													<p class="float-left relative">Sold by: <?php echo $itemdata['sname']; ?></p>
 													<p class="float-left clear-margin">Availability: <span class="text-green">In stock</span></p>
 												</div>
 											</div>
@@ -328,49 +336,54 @@ if (!isset($_GET['product'])) {
 												<p class="clear-margin">Description :<?php echo $itemdata['idesc']; ?></p>
 											</div>
 											<div class="relative button-product-list clearfix full-width clear-margin">
-                                            <p class="bold clear-margin bottom-margin-15-default">Available Options:</p>
-											<div class="relative option-product-1 bottom-margin-15-default">
-												<p class="float-left">Color:</p>
-												<ul class="check-box-custom list-color clearfix clear-margin">
-													<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-					  								<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-					  								<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-					  								<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-					  								<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-					  								<li>
-														<label>
-															<input type="checkbox" >
-					  										<span class="checkmark"></span>
-					  									</label>
-					  								</li>
-												</ul>
-											</div>
-											
+												<?php if(false) { ?>
+												<p class="bold clear-margin bottom-margin-15-default">Available Options:</p>
+												
+												<div class="relative option-product-1 bottom-margin-15-default">
+													
+													<p class="float-left">Color:</p>
+													<ul class="check-box-custom list-color clearfix clear-margin">
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+														<li>
+															<label>
+																<input type="checkbox">
+																<span class="checkmark"></span>
+															</label>
+														</li>
+													</ul>
+													
+												</div>
+												<?php } ?>
+
 												<?php
 												$itmid = $itemdata['itmid'];
 												if ($userlogin) {
@@ -398,32 +411,33 @@ if (!isset($_GET['product'])) {
 																		<input type="number" class="left-margin-15-default" min="01" step="1" max="10" value="1" id="myNumber" name="num">
 																	</div>
 																</div>
-                                                            </div>
-                                                            <ul class="clear-margin top-margin-default clearfix bottom-margin-default">
-															<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)">Add to Cart</a></li>
+															</div>
+															<ul class="clear-margin top-margin-default clearfix bottom-margin-default">
+																<li class="button-hover-red"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)">Add to Cart</a></li>
+															<?php } ?>
+															<?php if ($wishlist) { ?>
+																<li class="relative"><a href="javascript:void(0)">
+																		<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+																	</a></li>
+																<li class="relative"><a href="#" title="Copy URL">
+																		<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
+																	</a></li>
+															</ul>
+														<?php } else { ?>
+															<li><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
+															</li>
 														<?php } ?>
-														<?php if ($wishlist) { ?>
-															<li class="relative"><a href="javascript:void(0)">
-																	<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
-																</a></li>
-															<li class="relative"><a href="#" title="Copy URL">
-																	<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
-																</a></li>
-												</ul>
-											<?php } else { ?>
-												<li><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a>
-												</li>
-											<?php } ?>
-										<?php } else { ?>
-											<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
-											<li class="relative"><a href="user-login.php">
-													<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
-												</a></li>
-											<li class="relative"><a href="#" title="Copy URL">
-													<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
-												</a></li>
-										<?php } ?>
+													<?php } else { ?>
+														<li class="button-hover-red"><a href="user-login.php">Add to Cart</a></li>
+														<li class="relative"><a href="user-login.php">
+																<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+															</a></li>
+														<li class="relative"><a href="#" title="Copy URL">
+																<i style="color: red" class="data-icondata-icon-basic icon-basic-share" value="Copy Url" onclick="Copy();" aria-hidden="true"></i>
+															</a></li>
+													<?php } ?>
 											</div>
+											<?php if(false){ ?>
 											<!--for copy-->
 											<style>
 												.input {
@@ -451,6 +465,7 @@ if (!isset($_GET['product'])) {
 											<div>
 												<input type=text class="input" id="paste-box" rows="1" cols="30"></input>
 											</div>
+											<?php } ?>
 										</div>
 									</div>
 								</div>
@@ -543,127 +558,130 @@ if (!isset($_GET['product'])) {
 											</div>
 										</div>
 									</div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 relative slide-related-product">
-										<p class="bold title-slide-product-bottom">YOU MIGHT ALSO LIKE</p>
-										<div class="button-slide-related" id="btn-slide-2"></div>
-										<div class="owl-theme owl-carousel" data-items="1,2,3">
-											<div class="items">
-												<div class="full-width product-category relative">
-													<div class="image-product  relative overfollow-hidden">
-														<div class="center-vertical-image">
-															<img src="img/product_home_14-min.png" alt="Product">
-														</div>
-														<a href="#"></a>
-														<ul class="option-product animate-default">
-															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
-														</ul>
+								</div>
+								<?php if(false) { ?>
+								<div class="col-md-12 col-sm-12 col-xs-12 relative slide-related-product">
+									<p class="bold title-slide-product-bottom">YOU MIGHT ALSO LIKE</p>
+									<div class="button-slide-related" id="btn-slide-2"></div>
+									<div class="owl-theme owl-carousel" data-items="1,2,3">
+										<div class="items">
+											<div class="full-width product-category relative">
+												<div class="image-product  relative overfollow-hidden">
+													<div class="center-vertical-image">
+														<img src="img/product_home_14-min.png" alt="Product">
 													</div>
-													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Rival Field Messenger</a></h3>
-													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-													<div class="clearfix ranking-product-category ranking-color">
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star-half" aria-hidden="true"></i>
-														<i class="fa fa-star-o" aria-hidden="true"></i>
-													</div>
+													<a href="#"></a>
+													<ul class="option-product animate-default">
+														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+														<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Rival Field Messenger</a></h3>
+												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+												<div class="clearfix ranking-product-category ranking-color">
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star-half" aria-hidden="true"></i>
+													<i class="fa fa-star-o" aria-hidden="true"></i>
 												</div>
 											</div>
-											<div class="items">
-												<div class="full-width product-category relative">
-													<div class="image-product  relative overfollow-hidden">
-														<div class="center-vertical-image">
-															<img src="img/product_home_23-min.png" alt="Product">
-														</div>
-														<a href="#"></a>
-														<ul class="option-product animate-default">
-															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
-														</ul>
+										</div>
+										<div class="items">
+											<div class="full-width product-category relative">
+												<div class="image-product  relative overfollow-hidden">
+													<div class="center-vertical-image">
+														<img src="img/product_home_23-min.png" alt="Product">
 													</div>
-													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Endeavor Daytrip Backpack</a></h3>
-													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-													<div class="clearfix ranking-product-category ranking-color">
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star-half" aria-hidden="true"></i>
-														<i class="fa fa-star-o" aria-hidden="true"></i>
-													</div>
+													<a href="#"></a>
+													<ul class="option-product animate-default">
+														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+														<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Endeavor Daytrip Backpack</a></h3>
+												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+												<div class="clearfix ranking-product-category ranking-color">
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star-half" aria-hidden="true"></i>
+													<i class="fa fa-star-o" aria-hidden="true"></i>
 												</div>
 											</div>
-											<div class="items">
-												<div class="full-width product-category relative">
-													<div class="image-product  relative overfollow-hidden">
-														<div class="center-vertical-image">
-															<img src="img/product_home_24-min.png" alt="Product">
-														</div>
-														<a href="#"></a>
-														<ul class="option-product animate-default">
-															<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-															<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
-															<li class="relative"><a href="javascript:;" ><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
-														</ul>
+										</div>
+										<div class="items">
+											<div class="full-width product-category relative">
+												<div class="image-product  relative overfollow-hidden">
+													<div class="center-vertical-image">
+														<img src="img/product_home_24-min.png" alt="Product">
 													</div>
-													<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Diam Special1</a></h3>
-													<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
-													<div class="clearfix ranking-product-category ranking-color">
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star" aria-hidden="true"></i>
-														<i class="fa fa-star-half" aria-hidden="true"></i>
-														<i class="fa fa-star-o" aria-hidden="true"></i>
-													</div>
+													<a href="#"></a>
+													<ul class="option-product animate-default">
+														<li class="relative"><a href="#"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a href="#"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+														<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
+												<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="#">Diam Special1</a></h3>
+												<p class="clearfix price-product"><span class="price-old">$700</span> $350</p>
+												<div class="clearfix ranking-product-category ranking-color">
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star" aria-hidden="true"></i>
+													<i class="fa fa-star-half" aria-hidden="true"></i>
+													<i class="fa fa-star-o" aria-hidden="true"></i>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								<?php } ?>
 							</div>
-								<!-- End Product Content Category -->
-							</div>
+							
 						</div>
+						<!-- End Product Content Category -->
 					</div>
 				</div>
-				<!-- End Sider Bar -->
-				<!-- Support -->
-				<div class=" support-box full-width bg-red support_box_v2">
-					<div class="container-web">
-						<div class=" container">
-							<div class="row">
-								<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
-									<img src="lander_plugins/img/icon_free_ship_white-min.png" alt="Icon Free Ship" class="absolute" />
-									<p>free shipping</p>
-									<p>on order over $500</p>
-								</div>
-								<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
-									<img src="lander_plugins/img/icon_support_white-min.png" alt="Icon Supports" class="absolute">
-									<p>support</p>
-									<p>life time support 24/7</p>
-								</div>
-								<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
-									<img src="lander_plugins/img/icon_patner_white-min.png" alt="Icon partner" class="absolute">
-									<p>help partner</p>
-									<p>help all aspects</p>
-								</div>
-								<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
-									<img src="lander_plugins/img/icon_phone_table_white-min.png" alt="Icon Phone Tablet" class="absolute">
-									<p>contact with us</p>
-									<p>+07 (0) 7782 9137</p>
-								</div>
-							</div>
+			</div>
+		</div>
+		<!-- End Sider Bar -->
+		<!-- Support -->
+		<div class=" support-box full-width bg-red support_box_v2">
+			<div class="container-web">
+				<div class=" container">
+					<div class="row">
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="lander_plugins/img/icon_free_ship_white-min.png" alt="Icon Free Ship" class="absolute" />
+							<p>free shipping</p>
+							<p>on order over $500</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="lander_plugins/img/icon_support_white-min.png" alt="Icon Supports" class="absolute">
+							<p>support</p>
+							<p>life time support 24/7</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="lander_plugins/img/icon_patner_white-min.png" alt="Icon partner" class="absolute">
+							<p>help partner</p>
+							<p>help all aspects</p>
+						</div>
+						<div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+							<img src="lander_plugins/img/icon_phone_table_white-min.png" alt="Icon Phone Tablet" class="absolute">
+							<p>contact with us</p>
+							<p>+07 (0) 7782 9137</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- End Content Box -->
-			<!-- Footer Box -->
-			<?php include 'lander-pages/footer.php'; ?>
 		</div>
+	</div>
+	<!-- End Content Box -->
+	<!-- Footer Box -->
+	<?php include 'lander-pages/footer.php'; ?>
+	</div>
 	</div>
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
