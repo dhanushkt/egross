@@ -292,7 +292,7 @@ $photo=mysqli_fetch_assoc($getalldata);
 <style>
 .content {
       opacity:0;
-      font-size: 30px;
+      font-size: 20px;
       position:absolute;
       top:0;
       left:0;
