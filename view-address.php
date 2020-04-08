@@ -168,7 +168,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                             </br>
                                             <b>Number : </b><?php echo $getaddresss['arphone'] ?> |<span><b> Alt No:</b><?php echo $getaddresss['aaphone'] ?></span>
                                             </br>
-                                            <p>
+                                            <div>
                                                 <b>Address Line 1: </b><?php echo $getaddresss['addrline1'] ?>
                                                 </br>
                                                 <b>Address Line 2: </b><?php echo $getaddresss['addrline2'] ?>
@@ -186,17 +186,15 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                                     <a class="deleteAdd mycButton" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <?php if($getaddresss['adefault']==0) { ?>
-                                                    <a class="defaultAddr" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
-                                                       <b> Set as Default </b>
-                                                    </a>
+                                                    <?php if ($getaddresss['adefault'] == 0) { ?>
+                                                        <a class="defaultAddr" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
+                                                            <b> Set as Default </b>
+                                                        </a>
                                                     <?php } else { ?>
                                                         <p style="display: inline-block; padding-left: 10px;"> <b> Default address </b> </p>
                                                     <?php } ?>
                                                 </div>
-
-
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
