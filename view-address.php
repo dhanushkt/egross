@@ -1,5 +1,10 @@
 <?php
 include 'access/useraccesscontrol.php';
+
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
+}
+
 $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$globaluserid");
 
 ?>
@@ -181,9 +186,13 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                                     <a class="deleteAdd mycButton" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <a style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
-                                                        Set as Default
+                                                    <?php if($getaddresss['adefault']==0) { ?>
+                                                    <a class="defaultAddr" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
+                                                       <b> Set as Default </b>
                                                     </a>
+                                                    <?php } else { ?>
+                                                        <p style="display: inline-block; padding-left: 10px;"> <b> Default address </b> </p>
+                                                    <?php } ?>
                                                 </div>
 
 
@@ -259,6 +268,37 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                 },
                 success: function() {
                     iqwerty.toast.Toast('Adresss Deleted', options);
+                    window.setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var options = {
+            style: {
+                main: {
+                    background: "#e3171b",
+                    color: "white",
+                    'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+                    'width': '200px'
+
+                }
+            }
+        };
+        $('.defaultAddr').click(function() {
+            var getid = $(this).attr('data-id');
+            $.ajax({
+                url: 'default-address.php',
+                type: 'POST',
+                data: {
+                    id: getid,
+                },
+                success: function() {
+                    iqwerty.toast.Toast('Default address changed', options);
                     window.setTimeout(function() {
                         window.location.reload();
                     }, 1000);
