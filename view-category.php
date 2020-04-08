@@ -289,50 +289,49 @@ $photo=mysqli_fetch_assoc($getalldata);
 								$getsmid=mysqli_query($con,"SELECT * FROM scat where smcid=$id");
 								while ($catdata = mysqli_fetch_assoc($getsmid)) {
 								?>
-<!--<style>
-.image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #fff;
-}
-.container:hover .overlay {
-  opacity: 1;
-}
-.text {
-  color: black;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-</style>-->
-								<a href="view-product.php?product=<?php //echo $catdata['smcid']; ?>"><div class=" col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
-											<div class="center-vertical-image">
+<style>
+.content {
+      opacity:0;
+      font-size: 30px;
+      position:absolute;
+      top:0;
+      left:0;
+      color:#000;
+      background-color:#C0C0C0;
+      width:100%;
+      height:100%;
+      -webkit-transition: all 400ms ease-out;
+      -moz-transition: all 400ms ease-out;
+      -o-transition: all 400ms ease-out;
+      -ms-transition: all 400ms ease-out;
+      transition: all 400ms ease-out;
+      text-align:center;
+      }
+      .example .content:hover { opacity:1; }      
+      .example .content .text {
+      height:0;
+      opacity:2;
+      transition-delay: 0s;
+      transition-duration: 0.4s;
+      }
+      .example .content:hover .text {
+      opacity:2;
+      transform: translateY(250px);
+      -webkit-transform: translateY(60px);
+      }
+</style>
+								<a href="view-product.php?product=<?php //echo $catdata['smcid']; ?>">
+								<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
+											<div class="example text center-vertical-image">
 												<img src="uploads/item/<?php echo $photo['iimg']; ?>" alt="Product">
 											<!--dont delete<img src="uploads/item/<?php //echo $catdata['scimg']; ?>" alt="Product">-->
 											</div>
-											
+											<div class="example text content">
+											<p class="text">
+										<?php echo $catdata['scdesc']; ?></p>
+											</div>
 										<h3 class="title-product clearfix full-width title-hover-black"><a href="view-product.php?product=<?php //echo $catdata['smcid']; ?>"><?php echo $catdata['scname']; ?></a></h3>
-										<p class="bold">
-										Description : <?php echo $catdata['scdesc']; ?></p>
-									</div></a>
+								</div></a>
 								<?php } ?>
 							</div>
 							<div class="row">
