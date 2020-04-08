@@ -16,7 +16,7 @@ if (isset($_POST['additem'])) {
     $idesc = $_POST['idesc'];
     $istatus = $_POST['istatus'];
     
-    $iimg = 2;
+    $iimg = "default_egross.png";
     $iprice = $_POST['iprice'];
 
     //search strings
