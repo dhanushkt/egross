@@ -17,8 +17,8 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
         .mycButton {
             padding-top: 10px;
             padding-bottom: 10px;
-            padding-left: 35px;
-            padding-right: 35px;
+            padding-left: 30px;
+            padding-right: 30px;
             border-radius: 0%;
             background: #e3171b !important;
             text-transform: capitalize;
@@ -183,7 +183,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                                 </br>
                                                 <div style="margin-top: 10px;">
                                                     <a href="address.php?addrid=<?php echo $getaddresss['uaddrid']; ?>"><button class="mycButton">EDIT</button></a>
-                                                    <a class="deleteAdd mycButton" style="padding-right: 10px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
+                                                    <a class="deleteAdd mycButton" style="padding-right: 8px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                     <?php if ($getaddresss['adefault'] == 0) { ?>
