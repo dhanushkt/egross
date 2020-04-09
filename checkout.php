@@ -3,8 +3,13 @@ include 'access/useraccesscontrol.php';
 $getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
 $getaddresss= mysqli_fetch_assoc($getaddresssall);
 $getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
-
+if (mysqli_num_rows($getcartitem) <= 0)
+{
+    echo "<script>window.location.href='view-product.php'; </script>";   
+}
 $subtot = 0;
+$shipping = 100;
+$total = 0;
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
@@ -130,7 +135,8 @@ if (!$userlogin) {
                             </div>
                                
                         <?php 
-                        $subtot = $subtot + $getcartitem['ctotal']; 
+                        $subtot = $subtot + $getcartitem['ctotal'];
+                        $total = $shipping+$subtot; 
                         } ?>
 							<!--<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
 								<div class="image-product-order-sidebar center-vertical-image">
@@ -171,7 +177,7 @@ if (!$userlogin) {
 			  								</label>
 										</li>
 									</ul> -->
-                                    <p class="price-gray-sidebar"><?php //echo $getcartitem['']; ?></p>
+                                    <p class="price-gray-sidebar">₹<?php echo $shipping ?></p>
                                     <p class="price-gray-sidebar">Date :
                                     <?php echo date('d-m-Y');?></p>
                     
@@ -188,7 +194,7 @@ if (!$userlogin) {
 							</div>
 							<div class="relative justify-content top-margin-15-default">
                                 <p class="bold">Total</p>
-                                <p class="text-red price-shoping-cart"><?php echo $subtot ;?></p>
+                                <p class="text-red price-shoping-cart">₹<?php echo $total ;?></p>
                                 
 
 							</div>
