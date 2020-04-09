@@ -1,339 +1,26 @@
-<?php
-include_once './access/connection.php';
+<?php 
+include 'access/useraccesscontrol.php';
 
-//button name: register
-if (isset($_POST['register'])) 
-{
-    $cname = $_POST['cname'];
-    $cemail = $_POST['cemail'];
-    $cmobile = $_POST['cmobile'];
-    $cpassword = md5($_POST['cpassword']);
-
-    $check=mysqli_query($con,"SELECT uemail,umobile from user WHERE uemail='$cemail' OR umobile='$cmobile'");
-    $count=mysqli_num_rows($check);
-    if($count>0)
-    {
-        echo $emsg="User already Exists";
-    }
-    else
-    {
-        $query = mysqli_query($con, "INSERT INTO user (uname,uemail,umobile,upassword) VALUES ('$cname','$cemail','$cmobile','$cpassword')");
-        if ($query) 
-        { 
-            $msg="User Registered";
-        }
-        else
-        {
-            echo(mysqli_error($con));
-        }
-    }
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <?php include 'lander-pages/csslink.php'; ?>
+	<?php include 'lander-pages/csslink.php'; ?>
 </head>
-
 <body>
-	    <!-- push menu-->
+	<!-- push menu-->
 		<?php include 'lander-pages/pushmenu.php'; ?>
     <!-- end push menu-->
 	<!-- Menu Mobile -->
-	<?php include 'lander-pages/mobilemenu.php'; ?>
+		<?php include 'lander-pages/mobilemenu.php'; ?>
 	<!-- Header Box -->
 	<div class="wrappage">
-        <header class="relative full-width">
-            <div class=" container-web relative">
-                <div class=" container">
-                    <div class="row">
-                        <div class=" header-top">
-                            <p class="contact_us_header col-md-4 col-xs-12 col-sm-3 clear-margin">
-                                <img src="img/icon_phone_top.png" alt="Icon Phone Top Header" /> Call us <span class="text-red bold">070-7782-7137</span>
-                            </p>
-                            <div class="menu-header-top text-right col-md-8 col-xs-12 col-sm-6 clear-padding">
-                                <ul class="clear-margin">
-                                    <li class="relative"><a href="#">My Account</a></li>
-                                    <li class="relative"><a href="#">Wishlist</a></li>
-                                    <li class="relative">
-                                        <a href="#">EN</a>
-                                        <ul>
-                                            <li class="relative"><a href="#">JP</a></li>
-                                            <li class="relative"><a href="#">EN</a></li>
-                                            <li class="relative"><a href="#">CN</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="relative">
-                                        <a href="#">USD</a>
-                                        <ul>
-                                            <li class="relative"><a href="#">AUD</a></li>
-                                            <li class="relative"><a href="#">USD</a></li>
-                                            <li class="relative"><a href="#">CAD</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="clearfix header-content full-width relative">
-                            <div class="clearfix icon-menu-bar">
-                                <i class="data-icon data-icon-arrows icon-arrows-hamburger-2 icon-pushmenu js-push-menu"></i>
-                            </div>
-                            <div class="clearfix logo">
-                                <a href="#"><img alt="Logo" src="img/logo.png" /></a>
-                            </div>
-                            <div class="clearfix search-box relative float-left">
-                                <form method="GET" action="/" class="">
-                                    <div class="clearfix category-box relative">
-                                        <select name="cate_search">
-                                            <option>All Category</option>
-                                            <option>Food</option>
-                                            <option>Mobile & Tablet</option>
-                                            <option>Electric Appliances</option>
-                                            <option>Electronics & Technology</option>
-                                            <option>Fashion</option>
-                                            <option>Health & Beauty</option>
-                                            <option>Mother & Baby</option>
-                                            <option>Books & Stationery</option>
-                                            <option>Home & Life</option>
-                                            <option>Sports & Outdoors</option>
-                                            <option>Auto & Moto</option>
-                                            <option>Voucher Service</option>
-                                        </select>
-                                    </div>
-                                    <input type="text" name="s" placeholder="Enter keyword here . . .">
-                                    <button type="submit" class="animate-default button-hover-red">Search</button>
-                                </form>
-                            </div>
-                            <div class="clearfix icon-search-mobile absolute">
-                                <i onclick="showBoxSearchMobile()" class="data-icon data-icon-basic icon-basic-magnifier"></i>
-                            </div>
-                            <div class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
-                                <img alt="Icon Cart" src="img/icon_cart.png" />
-                                <p class="count-total-shopping absolute">2</p>
-                            </div>
-                            <div class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
-                                <img alt="Icon Cart" src="img/icon_cart.png" />
-                                <p class="count-total-shopping absolute">2</p>
-                            </div>
-                            <div class="cart-detail-header border">
-                                <div class="relative">
-                                    <div class="product-cart-son clearfix">
-                                        <div class="image-product-cart float-left center-vertical-image ">
-                                            <a href="#"><img src="img/product_image_6-min.png" alt="" /></a>
-                                        </div>
-                                        <div class="info-product-cart float-left">
-                                            <p class="title-product title-hover-black"><a class="animate-default" href="#">MH02-Black09</a></p>
-                                            <p class="clearfix price-product">$350 <span class="total-product-cart-son">(x1)</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="product-cart-son">
-                                        <div class="image-product-cart float-left center-vertical-image">
-                                            <a href="#"><img src="img/product_image_7-min.png" alt="" /></a>
-                                        </div>
-                                        <div class="info-product-cart float-left">
-                                            <p class="title-product title-hover-black"><a class="animate-default" href="#">Voyage Yoga Bag</a></p>
-                                            <p class="clearfix price-product">$350 <span class="total-product-cart-son">(x1)</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative border no-border-l no-border-r total-cart-header">
-                                    <p class="bold clear-margin">Subtotal:</p>
-                                    <p class=" clear-margin bold">$700</p>
-                                </div>
-                                <div class="relative btn-cart-header">
-                                    <a href="#" class="uppercase bold animate-default">view cart</a>
-                                    <a href="#" class="uppercase bold button-hover-red animate-default">checkout</a>
-                                </div>
-                            </div>
-                            <div class="mask-search absolute clearfix" onclick="hiddenBoxSearchMobile()"></div>
-                            <div class="clearfix box-search-mobile">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <a class="menu-vertical hidden-md hidden-lg" onclick="showMenuMobie()">
-							<span class="animate-default"><i class="fa fa-list" aria-hidden="true"></i> all categories</span>
-						</a>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-header-v3 hidden-ipx">
-                <div class="container">
-                    <div class="row">
-                        <!-- Menu Page -->
-                        <div class="menu-header full-width">
-                            <ul class="clear-margin">
-                                <li onclick="showMenuHomeV3()"><a class="animate-default" href="#"><i class="fa fa-list" aria-hidden="true"></i> all categories</a></li>
-                                <li class="title-hover-red">
-                                    <a class="animate-default" href="#">home</a>
-                                    <ul class="sub-menu mega-menu">
-                                        <li class="relative">
-                                            <a class="animate-default center-vertical-image" href="home_v1.html"><img src="img/home_1_menu-min.png" alt=""></a>
-                                            <p><a href="home_v1.html">Home 1</a></p>
-                                        </li>
-                                        <li class="relative">
-                                            <a class="animate-default center-vertical-image" href="home_v2.html"><img src="img/home_2_menu-min.png" alt=""></a>
-                                            <p><a href="home_v2.html">Home 2</a></p>
-                                        </li>
-                                        <li class="relative">
-                                            <a class="animate-default center-vertical-image" href="home_v3.html"><img src="img/home_3_menu-min.png" alt=""></a>
-                                            <p><a href="home_v3.html">Home 3</a></p>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="title-hover-red">
-                                    <a class="animate-default" href="#">shop</a>
-                                    <div class="sub-menu mega-menu-v2">
-                                        <ul>
-                                            <li>Catgory Type</li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1.html">Category v1</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1_2.html">Category v1.2</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2.html">Category v2</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2_2.html">Category v2.2</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3.html">Category v3</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3_2.html">Category v3.2</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4.html">Category v4</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4_2.html">Category v4.2</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li>Single Product Type</li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v1.html">Product Single 1</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v2.html">Product Single 2</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v3.html">Product Single 3</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li>Order Page</li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="cartpage.html">Cart Page</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="checkout.html">Checkout</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="compare.html">Compare</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="quickview.html">QuickView</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="trackyourorder.html">Track Order</a></li>
-                                            <li class="title-hover-red"><a class="animate-default clear-padding" href="wishlist.html">WishList</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="title-hover-red">
-                                    <a class="animate-default" href="#">pages</a>
-                                    <ul>
-                                        <li class="title-hover-red"><a class="animate-default" href="about.html">About Us</a></li>
-                                        <li class="title-hover-red"><a class="animate-default" href="contact.html">Contact</a></li>
-                                        <li class="title-hover-red"><a class="animate-default" href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="title-hover-red">
-                                    <a class="animate-default" href="#">Blog</a>
-                                    <ul>
-                                        <li class="title-hover-red"><a class="animate-default" href="blog.html">Blog Category</a></li>
-                                        <li class="title-hover-red"><a class="animate-default" href="blogdetail.html">Blog Detail</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Menu Page -->
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix menu_more_header menu-web menu-bg-white">
-                <ul>
-                    <li><a href="#"><img src="img/icon_hot_gray.png" alt="Icon Hot Deals" /> <p>Hot Deals</p></a></li>
-                    <li><a href="#"><img src="img/icon_food_gray.png" alt="Icon Food" /> <p>Food</p></a></li>
-                    <li><a href="#"><img src="img/icon_mobile_gray.png" alt="Icon Mobile & Tablet" /> <p>Mobile & Tablet</p></a></li>
-                    <li><a href="#"><img src="img/icon_electric_gray.png" alt="Icon Electric Appliances" /> <p>Electric Appliances</p></a></li>
-                    <li><a href="#"><img src="img/icon_computer_gray.png" alt="Icon Electronics & Technology" /> <p>Electronics & Technology</p></a></li>
-                    <li><a href="#"><img src="img/icon_fashion_gray.png" alt="Icon Fashion" /> <p>Fashion</p></a></li>
-                    <li><a href="#"><img src="img/icon_health_gray.png" alt="Icon Health & Beauty" /> <p>Health & Beauty</p></a></li>
-                    <li><a href="#"><img src="img/icon_mother_gray.png" alt="Icon Mother & Baby" /> <p>Mother & Baby</p></a></li>
-                    <li><a href="#"><img src="img/icon_book_gray.png" alt="Icon Books & Stationery" /> <p>Books & Stationery</p></a></li>
-                    <li><a href="#"><img src="img/icon_home_gray.png" alt="Icon Home & Life" /> <p>Home & Life</p></a></li>
-                    <li><a href="#"><img src="img/icon_sport_gray.png" alt="Icon Sports & Outdoors" /> <p>Sports & Outdoors</p></a></li>
-                    <li><a href="#"><img src="img/icon_auto_gray.png" alt="Icon Auto & Moto" /> <p>Auto & Moto</p></a></li>
-                    <li><a href="#"><img src="img/icon_voucher_gray.png" alt="Icon Voucher Service" /> <p>Voucher Service</p></a></li>
-                </ul>
-            </div>
-            <div class="header-ontop">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="clearfix logo">
-                                <a href="#"><img alt="Logo" src="img/logo.png" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="menu-header">
-                                <ul class="main__menu clear-margin">
-                                    <li class="title-hover-red">
-                                        <a class="animate-default" href="#">home</a>
-                                        <ul class="sub-menu mega-menu">
-                                            <li class="relative">
-                                                <a class="animate-default center-vertical-image" href="home_v1.html"><img src="img/home_1_menu-min.png" alt=""></a>
-                                                <p><a href="home_v1.html">Home 1</a></p>
-                                            </li>
-                                            <li class="relative">
-                                                <a class="animate-default center-vertical-image" href="home_v2.html"><img src="img/home_2_menu-min.png" alt=""></a>
-                                                <p><a href="home_v2.html">Home 2</a></p>
-                                            </li>
-                                            <li class="relative">
-                                                <a class="animate-default center-vertical-image" href="home_v3.html"><img src="img/home_3_menu-min.png" alt=""></a>
-                                                <p><a href="home_v3.html">Home 3</a></p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="title-hover-red">
-                                        <a class="animate-default" href="#">shop</a>
-                                        <div class="sub-menu mega-menu-v2">
-                                            <ul>
-                                                <li>Catgory Type</li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1.html">Category v1</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1_2.html">Category v1.2</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2.html">Category v2</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v2_2.html">Category v2.2</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3.html">Category v3</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v3_2.html">Category v3.2</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4.html">Category v4</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v4_2.html">Category v4.2</a></li>
-                                            </ul>
-                                            <ul>
-                                                <li>Single Product Type</li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v1.html">Product Single 1</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v2.html">Product Single 2</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="product_v3.html">Product Single 3</a></li>
-                                            </ul>
-                                            <ul>
-                                                <li>Order Page</li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="cartpage.html">Cart Page</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="checkout.html">Checkout</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="compare.html">Compare</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="quickview.html">QuickView</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="trackyourorder.html">Track Order</a></li>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="wishlist.html">WishList</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="title-hover-red">
-                                        <a class="animate-default" href="#">pages</a>
-                                        <ul>
-                                            <li class="title-hover-red"><a class="animate-default" href="about.html">About Us</a></li>
-                                            <li class="title-hover-red"><a class="animate-default" href="contact.html">Contact</a></li>
-                                            <li class="title-hover-red"><a class="animate-default" href="404.html">404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="title-hover-red">
-                                        <a class="animate-default" href="#">Blog</a>
-                                        <ul>
-                                            <li class="title-hover-red"><a class="animate-default" href="blog.html">Blog Category</a></li>
-                                            <li class="title-hover-red"><a class="animate-default" href="blogdetail.html">Blog Detail</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+		<?php include 'lander-pages/header.php'; ?>
 	<!-- End Header Box -->
 	<!-- Content Box -->
 	<div class="relative full-width">
@@ -352,69 +39,167 @@ if (isset($_POST['register']))
 		</div>
 		<!-- End Breadcrumb -->
 		<!-- Content Checkout -->
-        <form method="POST">
-            <?php $msg ?>
-            <div class="relative container-web">
-                <div class="container">
-                    <div class="row relative">
-                        <div class="full-width relative top-checkout-box overfollow-hidden top-margin-default">
-                            <div class="col-md-6 col-sm-12 col-xs-12 clear-padding-left left-top-checkout">
-                                <!--login-->
-                            </div>
-                            <!--coupon code-->
-                        </div>
-                       
-                        <!-- Content Shoping Cart -->
-                        <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                            <!--<p class="title-shoping-cart">Billing Details</p>-->
-                            <div class="relative clearfix full-width">
-                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Enter the Name *</label>
-                                    <input class="full-width" type="text" name="cname">
-                                </div>
-                            </div>
-                            <div class="relative clearfix full-width">
-                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Email Address *</label>
-                                    <input class="full-width" type="text" name="cemail">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Phone *</label>
-                                    <input class="full-width" type="text" name="cmobile">
-                                </div><br>
-                            </div>
-                            
-                            
-                            <div class="relative full-width clearfix">
-                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Enter Password *</label>
-                                    <input class="full-width" type="text" name="apassword">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                    <label>Re-Enter Password *</label>
-                                    <input class="full-width" type="text" name="cpassword">
-                                </div>
-                            </div>
-                            <!--creating account-->
-                            <!--shipping details-->
-                            <!--order note-->
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                            <div class="relative justify-content form-login-checkout">
-                                <button type="submit" class="animate-default button-hover-red" name="register">REGISTER</button>
-                            </div>
-                        </div>
-                        <!-- End Content Shoping Cart -->
-                        <!-- Content Right -->
-                        <!-- End Content Right -->
-                    </div><br><br><br><br>
-                </div>
-            </div>
-        </form>
+		<div class="relative container-web">
+			<div class="container">
+				<div class="row relative">
+					
+					<!-- Content Shoping Cart -->
+					<div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+						<p class="title-shoping-cart">Shipping Details (Default address is selected)</p>
+						<div class="relative clearfix full-width">
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+								<label>First Name *</label>
+								<input class="full-width" type="text" name="firstname">
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
+								<label>Last Name *</label>
+								<input class="full-width" type="text" name="lastname">
+							</div>
+						</div>
+						<div class="form-input full-width clearfix relative">
+							<label>Company Name</label>
+							<input class="full-width" type="text" name="companyname">
+						</div>
+						<div class="relative clearfix full-width">
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+								<label>Email Address *</label>
+								<input class="full-width" type="text" name="firstname">
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
+								<label>Phone *</label>
+								<input class="full-width" type="text" name="lastname">
+							</div>
+						</div>
+						<div class="form-input full-width clearfix relative">
+							<label>Country *</label>
+							<select class="full-width">
+								<option value="1">Vietnamese</option>
+								<option value="2">USA</option>
+								<option value="3">Thailan</option>
+								<option value="4">Russian</option>
+							</select>
+						</div>
+						<div class="form-input full-width clearfix relative">
+							<label>Address *</label>
+							<input class="full-width" type="text" name="address">
+						</div>
+						<div class="relative full-width clearfix">
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+								<label>Postcode / ZIP *</label>
+								<input class="full-width" type="text" name="firstname">
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
+								<label>Town / City *</label>
+								<input class="full-width" type="text" name="lastname">
+							</div>
+						</div>
+					
+						<!-- <p class="title-shoping-cart">Shipping Details</p> -->
+						<a href="view-address.php">
+						<ul class="check-box-custom title-check-box-black list-radius clear-margin top-margin-default">
+							<li>
+								<i class="fa fa-home"></i>
+								<label class="">Ship to a different address? </label>
+							</li>
+						</ul></a>
+						<div class="form-input clearfix full-width relative">
+							<label>Order Note</label>
+							<textarea placeholder="Notes about your order, e.g. special notes for delivery." class="full-width" name="ordernote" rows="4"></textarea>
+						</div>
+					</div>
+					<!-- End Content Shoping Cart -->
+					<!-- Content Right -->
+					<div class="col-md-4 col-sm-12 col-xs-12 right-content-shoping relative clear-padding-right">
+						<p class="title-shoping-cart">Your Order</p>
+						<div class="full-width relative overfollow-hidden">
+							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
+								<div class="image-product-order-sidebar center-vertical-image">
+									<img src="img/product_home_5-min.png" alt="" />
+								</div>
+								<div class="relative info-product-order-sidebar">
+									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Endeavor Daytrip Backpack x1</a></p>
+									<p class="price-product">$350.00</p>
+								</div>
+							</div>
+							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
+								<div class="image-product-order-sidebar center-vertical-image">
+									<img src="img/img_product_small_9-min.png" alt="" />
+								</div>
+								<div class="relative info-product-order-sidebar">
+									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Diam Special08 x1</a></p>
+									<p class="price-product">$350.00</p>
+								</div>
+							</div>
+						</div>
+						<p class="title-shoping-cart">Cart Total</p>
+						<div class="full-width relative cart-total bg-gray  clearfix">
+							<div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
+								<p>Subtotal</p>
+								<p class="text-red price-shoping-cart">$700.00</p>
+							</div>
+							<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
+								<p class="bottom-margin-15-default">Shipping</p>
+								<div class="relative justify-content">
+									<!-- <ul class="check-box-custom title-check-box-black clear-margin clear-margin">
+										<li>
+											<label>Free Shipping
+												<input type="radio" name="shiping-order" checked="">
+			  									<span class="checkmark"></span>
+			  								</label>
+										</li>
+										<li>
+											<label>Standard
+												<input type="radio" name="shiping-order">
+			  									<span class="checkmark"></span>
+			  								</label>
+										</li>
+										<li>
+											<label>Local Pickup
+												<input type="radio" name="shiping-order">
+			  									<span class="checkmark"></span>
+			  								</label>
+										</li>
+									</ul> -->
+									<p class="price-gray-sidebar">$20.00</p>
+								</div>
+								<!-- <div onclick="optionShiping(this)" class="relative full-width select-ship-option justify-content top-margin-15-default">
+									<p class="border no-border-r no-border-l no-border-t">Calculate Shipping</p>
+									<i class="fa fa-caret-down" aria-hidden="true"></i>
+									<ul class="clear-margin absolute full-width">
+										<li onclick="selectOptionShoping(this)">Calculate Shipping 1</li>
+										<li onclick="selectOptionShoping(this)">Calculate Shipping 2</li>
+										<li onclick="selectOptionShoping(this)">Calculate Shipping 3</li>
+									</ul>
+								</div> -->
+							</div>
+							<div class="relative justify-content top-margin-15-default">
+								<p class="bold">Total</p>
+								<p class="text-red price-shoping-cart">$700.00</p>
+							</div>
+						</div>
+						<div class="full-width relative payment-box bg-gray top-margin-15-default clearfix">
+							<ul class="check-box-custom list-radius title-check-box-black clear-margin clear-margin">
+								<li>
+									<label class="">Check Payment
+										<input type="radio" name="payment" checked="">
+	  									<span class="checkmark"></span>
+	  								</label>
+	  								<br><p class="info-payment">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+								</li>
+								<li>
+									<label class="">Paypal <img class="left-margin-15-default" src="img/logo_payment-min.png" alt="Logo Paypal" />
+										<input type="radio" name="payment">
+	  									<span class="checkmark"></span>
+	  								</label>
+								</li>
+							</ul>
+						</div>
+						<button class="btn-proceed-checkout full-width top-margin-15-default">Proceed to Checkout</button>
+					</div>
+					<!-- End Content Right -->
+				</div>
+			</div>
+		</div>
 		<!-- End Content Checkout -->
 		<!-- Support -->
 		<div class=" support-box full-width bg-red support_box_v2">
@@ -445,7 +230,6 @@ if (isset($_POST['register']))
 				</div>
 			</div>
 		</div>
-		<!-- End Support Box -->
 	</div>
 	<!-- End Content Box -->
 	<!-- Footer Box -->
