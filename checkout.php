@@ -1,5 +1,10 @@
 <?php 
 include 'access/useraccesscontrol.php';
+
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
+}
+
 $getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
 $getaddresss= mysqli_fetch_assoc($getaddresssall);
 $getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
@@ -10,9 +15,7 @@ if (mysqli_num_rows($getcartitem) <= 0)
 $subtot = 0;
 $shipping = 100;
 $total = 0;
-if (!$userlogin) {
-    echo "<script>window.location.href='user-login.php'; </script>";
-}
+
 
 ?>
 <!DOCTYPE html>
