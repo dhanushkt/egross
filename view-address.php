@@ -174,11 +174,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                                 <b>Address Line 2: </b><?php echo $getaddresss['addrline2'] ?>
                                                 </br>
                                                 <b>City : </b><?php echo $getaddresss['acity'] ?>
-                                                </br>
-                                                <b>District : </b><?php echo $getaddresss['adistrict'] ?>
-                                                </br>
-                                                <b>State : </b><?php echo $getaddresss['astate'] ?>,
-                                                </br>
+                                                </br>   
                                                 <b>Pincode: </b><?php echo $getaddresss['apin'] ?>
                                                 </br>
                                                 <div style="margin-top: 10px;">

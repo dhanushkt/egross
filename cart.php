@@ -289,7 +289,8 @@ if (isset($_POST['delcart'])) {
                                         <p class="text-red price-shoping-cart">$700.00</p>
                                     </div>
                                 </div>
-                                <button class="btn-proceed-checkout button-hover-red full-width top-margin-15-default">Proceed to Checkout</button>
+                                <a href="checkout.php"><button class="btn-proceed-checkout button-hover-red full-width top-margin-15-default">Proceed to Checkout</button>
+                                </a>        
                             </div>
                             <!-- End Content Right -->
                         <?php } else { ?>

@@ -1,10 +1,13 @@
 <?php 
 include 'access/useraccesscontrol.php';
+$getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
+$getaddresss= mysqli_fetch_assoc($getaddresssall);
+$getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
 
+$subtot = 0;
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -49,48 +52,49 @@ if (!$userlogin) {
 						<div class="relative clearfix full-width">
 							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
 								<label>First Name *</label>
-								<input class="full-width" type="text" name="firstname">
+								<input class="full-width" type="text" value="<?php echo $getaddresss['afullname']; ?>" name="firstname"readonly     >
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
+						<!--<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
 								<label>Last Name *</label>
 								<input class="full-width" type="text" name="lastname">
-							</div>
+							</div>-->
 						</div>
-						<div class="form-input full-width clearfix relative">
+						<!--<div class="form-input full-width clearfix relative">
 							<label>Company Name</label>
 							<input class="full-width" type="text" name="companyname">
-						</div>
+						</div>-->
 						<div class="relative clearfix full-width">
 							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
 								<label>Email Address *</label>
-								<input class="full-width" type="text" name="firstname">
+								<input class="full-width" type="text" value="<?php echo $getaddresss['aemail']; ?>" name="firstname" readonly>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
 								<label>Phone *</label>
-								<input class="full-width" type="text" name="lastname">
+								<input class="full-width" type="text" value="<?php echo $getaddresss['arphone']; ?>" name="lastname" readonly>
 							</div>
 						</div>
 						<div class="form-input full-width clearfix relative">
-							<label>Country *</label>
-							<select class="full-width">
+							<label>Address *</label>
+							<input class="full-width" type="text" value="<?php echo $getaddresss['addrline1'] ;?>,<?php echo $getaddresss['addrline2'] ;?>" name="address"readonly>
+                        </div>
+                        <div class="form-input full-width clearfix relative">
+						<label>State *</label>
+						<!--	<select class="full-width">
 								<option value="1">Vietnamese</option>
 								<option value="2">USA</option>
 								<option value="3">Thailan</option>
 								<option value="4">Russian</option>
-							</select>
-						</div>
-						<div class="form-input full-width clearfix relative">
-							<label>Address *</label>
-							<input class="full-width" type="text" name="address">
+                            </select>-->
+                            <input class="full-width" type="text" value="<?php echo $getaddresss['astate'] ;?>"  name="lastname"readonly>
 						</div>
 						<div class="relative full-width clearfix">
 							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
 								<label>Postcode / ZIP *</label>
-								<input class="full-width" type="text" name="firstname">
+								<input class="full-width" type="text" value="<?php echo $getaddresss['apin'] ;?>" name="firstname"readonly>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
 								<label>Town / City *</label>
-								<input class="full-width" type="text" name="lastname">
+								<input class="full-width" type="text" value="<?php echo $getaddresss['acity'] ;?>" name="lastname" readonly>
 							</div>
 						</div>
 					
@@ -112,30 +116,37 @@ if (!$userlogin) {
 					<div class="col-md-4 col-sm-12 col-xs-12 right-content-shoping relative clear-padding-right">
 						<p class="title-shoping-cart">Your Order</p>
 						<div class="full-width relative overfollow-hidden">
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
+                        <?php
+                                    foreach ($getcartitem as $key => $getcartitem) {
+                        ?>
+                            <div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
 								<div class="image-product-order-sidebar center-vertical-image">
-									<img src="img/product_home_5-min.png" alt="" />
+									<img src="uploads/item/<?php echo $getcartitem['iimg']; ?>" alt="" />
 								</div>
 								<div class="relative info-product-order-sidebar">
-									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Endeavor Daytrip Backpack x1</a></p>
-									<p class="price-product">$350.00</p>
+									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#"><?php echo $getcartitem['iname']; ?> (x<?php echo $getcartitem['cqty']; ?>)</a></p>
+									<p class="price-product">₹<?php echo $getcartitem['ctotal']; ?></p>
 								</div>
-							</div>
-							<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
+                            </div>
+                               
+                        <?php 
+                        $subtot = $subtot + $getcartitem['ctotal']; 
+                        } ?>
+							<!--<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
 								<div class="image-product-order-sidebar center-vertical-image">
 									<img src="img/img_product_small_9-min.png" alt="" />
 								</div>
 								<div class="relative info-product-order-sidebar">
 									<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#">Diam Special08 x1</a></p>
 									<p class="price-product">$350.00</p>
-								</div>
 							</div>
+							</div>-->
 						</div>
 						<p class="title-shoping-cart">Cart Total</p>
 						<div class="full-width relative cart-total bg-gray  clearfix">
 							<div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
-								<p>Subtotal</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
+                                <p>Subtotal</p>
+								<p class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
 							</div>
 							<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
 								<p class="bottom-margin-15-default">Shipping</p>
@@ -160,7 +171,10 @@ if (!$userlogin) {
 			  								</label>
 										</li>
 									</ul> -->
-									<p class="price-gray-sidebar">$20.00</p>
+                                    <p class="price-gray-sidebar"><?php //echo $getcartitem['']; ?></p>
+                                    <p class="price-gray-sidebar">Date :
+                                    <?php echo date('d-m-Y');?></p>
+                    
 								</div>
 								<!-- <div onclick="optionShiping(this)" class="relative full-width select-ship-option justify-content top-margin-15-default">
 									<p class="border no-border-r no-border-l no-border-t">Calculate Shipping</p>
@@ -173,8 +187,10 @@ if (!$userlogin) {
 								</div> -->
 							</div>
 							<div class="relative justify-content top-margin-15-default">
-								<p class="bold">Total</p>
-								<p class="text-red price-shoping-cart">$700.00</p>
+                                <p class="bold">Total</p>
+                                <p class="text-red price-shoping-cart"><?php echo $subtot ;?></p>
+                                
+
 							</div>
 						</div>
 						<div class="full-width relative payment-box bg-gray top-margin-15-default clearfix">
@@ -194,7 +210,7 @@ if (!$userlogin) {
 								</li>
 							</ul>
 						</div>
-						<button class="btn-proceed-checkout full-width top-margin-15-default">Proceed to Checkout</button>
+						<button class="btn-proceed-checkout full-width top-margin-15-default">Proceed to Payment</button>
 					</div>
 					<!-- End Content Right -->
 				</div>

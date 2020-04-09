@@ -36,7 +36,6 @@ $photo=mysqli_fetch_assoc($getalldata);
 						<div class="breadcrumb-web">
 							<ul class="clear-margin">
 								<li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-								<li class="animate-default title-hover-red"><a href="#">Category</a></li>
 								<li class="animate-default title-hover-red"><a href="#">View Category</a></li>
 							</ul>
 						</div>
