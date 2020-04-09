@@ -5,7 +5,7 @@ $getaddresss= mysqli_fetch_assoc($getaddresssall);
 $getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
 if (mysqli_num_rows($getcartitem) <= 0)
 {
-    echo "<script>window.location.href='view-product.php'; </script>";   
+    echo "<script>window.location.href='cart.php'; </script>";   
 }
 $subtot = 0;
 $shipping = 100;
