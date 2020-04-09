@@ -10,6 +10,26 @@ $menuslide = false;
 
 <head>
     <?php include 'lander-pages/csslink.php'; ?>
+
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    </style>
 </head>
 
 <body>
@@ -31,7 +51,7 @@ $menuslide = false;
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="#">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="#">Wishlist</a></li>
+                                <li class="animate-default title-hover-red"><a href="#">View Order</a></li>
                             </ul>
                         </div>
                     </div>
@@ -43,63 +63,56 @@ $menuslide = false;
                 <div class="container">
                     <div class="row relative">
 
-                        <div class="full-width relative table-wish-list">
-                            <table class="full-width">
-                                <thead>
+                        <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                            <div>
+                                <table>
                                     <tr>
-                                        <th colspan="2">Product name</th>
-                                        <th>price</th>
-                                        <th>stock status</th>
-                                        <th>add to cart</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img src="img/image_big_product-min.png" alt="" />
-                                        </td>
-                                        <td>
-                                            <p>MH02-Black09</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-red">$350.00</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-red"><i class="fa fa-check-circle" aria-hidden="true"></i> In
-                                                Stock</p>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="animate-default">shop now</a>
-                                        </td>
-                                    </tr>
+                                        <th>Item</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
 
-                                </tbody>
-                            </table>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>100</td>
+                                        <td>10</td>
+                                        <td>1000</td>
+
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
+                        <div>
+                            <a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                Continue shopping</a>
+                            <a href="#" style="float:right"><i class="fa fa-comment-o" aria-hidden="true"></i>
+                                Feedback</a>
+                        </div>
+
 
                         <!-- Content Shoping Cart -->
-                        <div class="col-md-6 col-lg-6 relative left-content-shoping clear-padding-left">
-                            <div class="row">
-                                <div class="col-md-6" style="height: 250px; padding:15px; word-wrap: break-word;">
-                                    <p><label>Adress </label></p>
-                                    <textarea required="" name="message" rows="6"></textarea>
+                        <div class="col-sm-6" style=" height:250px; margin-bottom:5%; margin-top:5%">
+                            <div style="border:1px solid black; height:100%; text-align: center; ">
+                                <h4 style="margin-top: 15px; margin-left:15px; text-align:left">Address</h4>
+                                <textarea style=" height:75%; width:75%"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6" style="height: 250px; margin-bottom:5%; margin-top:5% ">
+                            <div style="border:1px solid black; height:100% ">
+                                <h4 style="margin-top: 30px; margin-left:15px; text-align:left">Shipping Charges:</h4>
+
+                                <h4 style="margin-top: 30px; margin-left:15px; text-align:left">GRAND TOTAL:</h4>
+                                <div style="text-align: center;margin-top:15%">
+                                    <button type="button" class="btn btn-danger" style="width: 65%">Track Order</button>
                                 </div>
+
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6" style="height: 250px; padding:15px; word-wrap: break-word;">
-                                <p><label></label></p>
-                                <textarea required="" name="message" rows="6"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-2 relative justify-content form-login-checkout">
-                                <button type="submit" class="animate-default button-hover-red" style="margin-bottom:10%"
-                                    name="register">TRACK ORDER</button>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
