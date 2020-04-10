@@ -41,6 +41,58 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
         tr:hover {
             background-color: #f5f5f5;
         }
+        .outerbox {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            box-sizing: border-box;
+            margin-bottom: 0 !important;
+            margin-top: 6px !important;
+            position: relative;
+            float: left;
+            min-height: 1px;
+            overflow: visible;
+            margin-right: 13px;
+            width: auto;
+        }
+        .outerbox1 {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            box-sizing: border-box;
+            margin-bottom: 0 !important;
+            margin-top: 6px !important;
+            position: relative;
+            float: right;
+            min-height: 1px;
+            overflow: visible;
+            margin-right: 13px;
+            width: auto;
+        }
+        .innerbox {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            font-family: "Amazon Ember", Arial, sans-serif;
+            text-align: left !important;
+            display: block;
+            border-radius: 4px;
+            border: 1px #ddd solid;
+            background-color: #fff;
+            margin-bottom: 0 !important;
+            height: 266px;
+            width: 500px;
+            border-width: 1px;
+            box-sizing: border-box;
+            border-color: #C7C7C7;
+            box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16);
+            border-style: solid;
+        }
+
     </style>
 </head>
 
@@ -74,7 +126,6 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             <div class="relative container-web">
                 <div class="container">
                     <div class="row relative">
-
                         <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
                             <div>
                                 <table>
@@ -101,38 +152,42 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                             <a href="#" style="float:right"><i class="fa fa-comment-o" aria-hidden="true"></i>
                                 Feedback</a>
                         </div>
-
-
                         <!-- Content Shoping Cart -->
-                        <div class="col-sm-6" style=" height:250px; margin-bottom:5%; margin-top:5%">
-                            <div style="border:1px solid black; height:100%; text-align: center; ">
-                                <h4 style="margin-top: 15px; margin-left:15px; text-align:left">Address</h4>
-                                <textarea style=" height:75%; width:75%"><?php echo $orderinfo['addrline1'];
-                                                                            echo "\n";
+                        <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                        <div class="col-md-6 outerbox">
+                                    <div class="innerbox">
+                                        <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
+                                        <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Address Details</h4>
+                                        <hr>
+                                        <b>Address Line 1: </b><?php echo $orderinfo['addrline1'];
+                                                                            echo "</br><b>Address Line 2:</b> ";
                                                                             echo $orderinfo['addrline2'];
-                                                                            echo "\n";
+                                                                            echo "</br><b>City: </b>";
                                                                             echo $orderinfo['acity'];
-                                                                            echo "\n";
+                                                                            echo "</br><b>District: </b>";
                                                                             echo $orderinfo['adistrict'];
-                                                                            echo "\n";
+                                                                            echo "</br><b>State: </b>";
                                                                             echo $orderinfo['astate'];
-                                                                            echo "\n";
-                                                                            echo $orderinfo['apin']; ?> </textarea>
+                                                                            echo "</br><b>Pin :</b>";
+                                                                            echo $orderinfo['apin']; "</b>"?>
                             </div>
                         </div>
-
-
-                        <div class="col-sm-6" style="height: 250px; margin-bottom:5%; margin-top:5% ">
-                            <div style="border:1px solid black; height:100% ">
-                                <h4 style="margin-top: 30px; margin-left:15px; text-align:left">Shipping Charges:</h4>
-
-                                <h4 style="margin-top: 30px; margin-left:15px; text-align:left">GRAND TOTAL:</h4>
+                    </div>
+                    <div class="col-md-6 outerbox1">
+                        <div class="innerbox">
+                        <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
+                            <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Shipping Charges:</h4>
+                                <hr>
+                                <h4 style="margin-top: 5px; margin-left:10px; text-align:left">GRAND TOTAL:</h4>
+                                <h3 style="margin-top: 5px; margin-left:10px; text-align:left" class="bold">₹ <?php echo $total ?></h3>
                                 <div style="text-align: center;margin-top:15%">
                                     <button type="button" class="btn btn-danger" style="width: 65%">Track Order</button>
                                 </div>
-
                             </div>
                         </div>
+                    </div>
+                    </div>
+                
 
 
 

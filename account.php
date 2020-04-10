@@ -5,7 +5,8 @@ if (!$userlogin) {
 }
 $uquery = mysqli_query($con, "SELECT * FROM user WHERE uid='$globaluserid'");
 $userinfo = mysqli_fetch_assoc($uquery);
-
+$orderquery = mysqli_query($con, "SELECT * FROM orders WHERE ouid=$globaluserid");
+    
 if (isset($_POST['changepsw'])) {
     $password = $userinfo['upassword'];
     $oldpass = md5($_POST['oldpsw']);
@@ -279,6 +280,7 @@ if (isset($_POST['update'])) {
                                     <h4>Order History</h4>
                                     <hr>
                                     <table>
+                                    
                                         <tr>
                                             <th>ORDER</th>
                                             <th>DATE</th>
@@ -286,13 +288,20 @@ if (isset($_POST['update'])) {
                                             <th>FULFILMENT STATUS</th>
                                             <th>TOTAL</th>
                                         </tr>
+                                        <?php
+                                    while($getorderdetails=mysqli_fetch_assoc($orderquery))
+                                    {
+                                    ?> 
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                        <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno'];?>" title="Track Order"><?php echo $getorderdetails['orderno'];?></a></td>
+                                            <td><?php echo $getorderdetails['otimestamp'];?></td>
+                                            <td><?php echo $getorderdetails['ostatus'];?></td>
+                                            <td><?php echo $getorderdetails['oreason'];?></td>
+                                            <td><?php echo $getorderdetails['ototalamt'];?></td>
                                         </tr>
+                                        <?php
+                                        }
+                                    ?>
                                     </table>
 
                                 </div>
