@@ -34,6 +34,9 @@
         .hidden-desktop {
             display: none;
         }
+        .customdwidth{
+            width: 500px !important;
+        }
 
     }
 

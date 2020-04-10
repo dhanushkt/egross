@@ -41,6 +41,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
         tr:hover {
             background-color: #f5f5f5;
         }
+
         .outerbox {
             font-size: 13px;
             line-height: 19px;
@@ -51,12 +52,13 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             margin-bottom: 0 !important;
             margin-top: 6px !important;
             position: relative;
-            float: left;
+            /* float: left; */
             min-height: 1px;
             overflow: visible;
             margin-right: 13px;
             width: auto;
         }
+
         .outerbox1 {
             font-size: 13px;
             line-height: 19px;
@@ -67,12 +69,13 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             margin-bottom: 0 !important;
             margin-top: 6px !important;
             position: relative;
-            float: right;
+            /* float: right; */
             min-height: 1px;
             overflow: visible;
             margin-right: 13px;
             width: auto;
         }
+
         .innerbox {
             font-size: 13px;
             line-height: 19px;
@@ -85,14 +88,13 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             background-color: #fff;
             margin-bottom: 0 !important;
             height: 266px;
-            width: 500px;
+            /* width: 500px; */
             border-width: 1px;
             box-sizing: border-box;
             border-color: #C7C7C7;
             box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16);
             border-style: solid;
         }
-
     </style>
 </head>
 
@@ -152,48 +154,50 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                             <a href="#" style="float:right"><i class="fa fa-comment-o" aria-hidden="true"></i>
                                 Feedback</a>
                         </div>
-                        <!-- Content Shoping Cart -->
-                        <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                    </div>
+                    <!-- Content Shoping Cart -->
+                    <div class="row relative" style="padding-bottom: 10px;">
                         <div class="col-md-6 outerbox">
-                                    <div class="innerbox">
-                                        <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
-                                        <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Address Details</h4>
-                                        <hr>
-                                        <b>Address Line 1: </b><?php echo $orderinfo['addrline1'];
-                                                                            echo "</br><b>Address Line 2:</b> ";
-                                                                            echo $orderinfo['addrline2'];
-                                                                            echo "</br><b>City: </b>";
-                                                                            echo $orderinfo['acity'];
-                                                                            echo "</br><b>District: </b>";
-                                                                            echo $orderinfo['adistrict'];
-                                                                            echo "</br><b>State: </b>";
-                                                                            echo $orderinfo['astate'];
-                                                                            echo "</br><b>Pin :</b>";
-                                                                            echo $orderinfo['apin']; "</b>"?>
+                            <div class="innerbox customdwidth">
+                                <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
+                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Address Details</h4>
+                                    <hr>
+                                    <b>Address Line 1: </b><?php echo $orderinfo['addrline1'];
+                                                            echo "</br><b>Address Line 2:</b> ";
+                                                            echo $orderinfo['addrline2'];
+                                                            echo "</br><b>City: </b>";
+                                                            echo $orderinfo['acity'];
+                                                            echo "</br><b>District: </b>";
+                                                            echo $orderinfo['adistrict'];
+                                                            echo "</br><b>State: </b>";
+                                                            echo $orderinfo['astate'];
+                                                            echo "</br><b>Pin :</b>";
+                                                            echo $orderinfo['apin'];
+                                                            "</b>" ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 outerbox1">
-                        <div class="innerbox">
-                        <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
-                            <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Shipping Charges:</h4>
-                                <hr>
-                                <h4 style="margin-top: 5px; margin-left:10px; text-align:left">GRAND TOTAL:</h4>
-                                <h3 style="margin-top: 5px; margin-left:10px; text-align:left" class="bold">₹ <?php echo $total ?></h3>
-                                <div style="text-align: center;margin-top:15%">
-                                    <button type="button" class="btn btn-danger" style="width: 65%">Track Order</button>
+                        <div class="col-md-6 outerbox">
+                            <div class="innerbox customdwidth">
+                                <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
+                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Shipping Charges:</h4>
+                                    <hr>
+                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">GRAND TOTAL:</h4>
+                                    <h3 style="margin-top: 5px; margin-left:10px; text-align:left" class="bold">₹ <?php echo $total ?></h3>
+                                    <div style="text-align: center;margin-top:15%">
+                                        <button type="button" class="btn btn-danger" style="width: 65%">Track Order</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                
 
 
 
-                    </div>
+
                 </div>
             </div>
+            <!-- </div> -->
             <!-- End Content Wishlist -->
             <!-- Support -->
             <div class=" support-box full-width bg-red support_box_v2">
@@ -225,6 +229,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                 </div>
             </div>
         </div>
+        <!-- </div> -->
         <!-- End Content Box -->
         <!-- Footer Box -->
         <?php include 'lander-pages/footer.php'; ?>
