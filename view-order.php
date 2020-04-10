@@ -1,12 +1,21 @@
 <?php 
 include 'access/useraccesscontrol.php';
-
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
+}
 $menuslide = false;
 if (isset($_GET['orderno'])) {
     $orderno = $_GET['orderno'];
-    $orderquery=mysqli_query($con,"SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN  order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.itemid=itemmaster.itmid WHERE orders.orderno='$orderno'");
+    $orderquery=mysqli_query($con,"SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN  order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.itemid=itemmaster.itmid WHERE orders.orderno='$orderno' AND orders.ouid=$globaluserid");
+    if(!$orderquery)
+    {
+        echo "<script>window.location.href='account.php'; </script>";
+    }
     $orderinfo=mysqli_fetch_assoc($orderquery);
     $total=$orderinfo['iprice']*$orderinfo['oqty'];
+}
+else{
+    echo "<script>window.location.href='account.php'; </script>";
 }
 ?>
 
