@@ -59,22 +59,6 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             width: auto;
         }
 
-        .outerbox1 {
-            font-size: 13px;
-            line-height: 19px;
-            color: #111;
-            font-family: "Amazon Ember", Arial, sans-serif;
-            text-align: left !important;
-            box-sizing: border-box;
-            margin-bottom: 0 !important;
-            margin-top: 6px !important;
-            position: relative;
-            /* float: right; */
-            min-height: 1px;
-            overflow: visible;
-            margin-right: 13px;
-            width: auto;
-        }
 
         .innerbox {
             font-size: 13px;
