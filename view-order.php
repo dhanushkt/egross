@@ -1,20 +1,18 @@
-<?php 
+<?php
 include 'access/useraccesscontrol.php';
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
 $menuslide = false;
-if (isset($_GET['orderno'])) {
+if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
     $orderno = $_GET['orderno'];
-    $orderquery=mysqli_query($con,"SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN  order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.itemid=itemmaster.itmid WHERE orders.orderno='$orderno' AND orders.ouid=$globaluserid");
-    if(!$orderquery)
-    {
+    $orderquery = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.oitmid=itemmaster.itmid WHERE orders.orderno=$orderno");
+    $orderinfo = mysqli_fetch_assoc($orderquery);
+    if ($orderinfo['ouid'] != $globaluserid) {
         echo "<script>window.location.href='account.php'; </script>";
     }
-    $orderinfo=mysqli_fetch_assoc($orderquery);
-    $total=$orderinfo['iprice']*$orderinfo['oqty'];
-}
-else{
+    $total = $orderinfo['iprice'] * $orderinfo['oqty'];
+} else {
     echo "<script>window.location.href='account.php'; </script>";
 }
 ?>
@@ -26,23 +24,23 @@ else{
     <?php include 'lander-pages/csslink.php'; ?>
 
     <style>
-    table {
-        border-collapse: collapse;
-        width: 100%;
+        table {
+            border-collapse: collapse;
+            width: 100%;
 
-    }
+        }
 
-    th,
-    td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-        font-size: 14px;
-    }
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
 
-    tr:hover {
-        background-color: #f5f5f5;
-    }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 
@@ -91,7 +89,7 @@ else{
                                         <td><?php echo $orderinfo['iname']; ?></td>
                                         <td><?php echo $orderinfo['iprice']; ?></td>
                                         <td><?php echo $orderinfo['oqty']; ?></td>
-                                        <td><?php echo $total?></td>
+                                        <td><?php echo $total ?></td>
 
                                     </tr>
                                 </table>
@@ -109,7 +107,17 @@ else{
                         <div class="col-sm-6" style=" height:250px; margin-bottom:5%; margin-top:5%">
                             <div style="border:1px solid black; height:100%; text-align: center; ">
                                 <h4 style="margin-top: 15px; margin-left:15px; text-align:left">Address</h4>
-                                <textarea style=" height:75%; width:75%"><?php echo $orderinfo['addrline1'];echo "\n";echo $orderinfo['addrline2'];echo "\n"; echo $orderinfo['acity'];echo "\n";echo $orderinfo['adistrict'];echo "\n";echo $orderinfo['astate'];echo "\n";echo $orderinfo['apin'];?> </textarea>
+                                <textarea style=" height:75%; width:75%"><?php echo $orderinfo['addrline1'];
+                                                                            echo "\n";
+                                                                            echo $orderinfo['addrline2'];
+                                                                            echo "\n";
+                                                                            echo $orderinfo['acity'];
+                                                                            echo "\n";
+                                                                            echo $orderinfo['adistrict'];
+                                                                            echo "\n";
+                                                                            echo $orderinfo['astate'];
+                                                                            echo "\n";
+                                                                            echo $orderinfo['apin']; ?> </textarea>
                             </div>
                         </div>
 
