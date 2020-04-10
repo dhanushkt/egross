@@ -2,7 +2,12 @@
 include 'access/useraccesscontrol.php';
 
 $menuslide = false;
-
+if (isset($_GET['orderno'])) {
+    $orderno = $_GET['orderno'];
+    $orderquery=mysqli_query($con,"SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN  order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.itemid=itemmaster.itmid WHERE orders.orderno='$orderno'");
+    $orderinfo=mysqli_fetch_assoc($orderquery);
+    $total=$orderinfo['iprice']*$orderinfo['oqty'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,10 +79,10 @@ $menuslide = false;
 
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>100</td>
-                                        <td>10</td>
-                                        <td>1000</td>
+                                        <td><?php echo $orderinfo['iname']; ?></td>
+                                        <td><?php echo $orderinfo['iprice']; ?></td>
+                                        <td><?php echo $orderinfo['oqty']; ?></td>
+                                        <td><?php echo $total?></td>
 
                                     </tr>
                                 </table>
@@ -95,7 +100,7 @@ $menuslide = false;
                         <div class="col-sm-6" style=" height:250px; margin-bottom:5%; margin-top:5%">
                             <div style="border:1px solid black; height:100%; text-align: center; ">
                                 <h4 style="margin-top: 15px; margin-left:15px; text-align:left">Address</h4>
-                                <textarea style=" height:75%; width:75%"></textarea>
+                                <textarea style=" height:75%; width:75%"><?php echo $orderinfo['addrline1'];echo "\n";echo $orderinfo['addrline2'];echo "\n"; echo $orderinfo['acity'];echo "\n";echo $orderinfo['adistrict'];echo "\n";echo $orderinfo['astate'];echo "\n";echo $orderinfo['apin'];?> </textarea>
                             </div>
                         </div>
 
