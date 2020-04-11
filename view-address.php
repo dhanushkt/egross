@@ -177,7 +177,7 @@ $getalladdress = mysqli_query($con, "SELECT * FROM user_address WHERE auid=$glob
                                                 </br>   
                                                 <b>Pincode: </b><?php echo $getaddresss['apin'] ?>
                                                 </br>
-                                                <div style="margin-top: 10px;">
+                                                <div style="margin-top: 10px; position: absolute; bottom: 0; margin-bottom: 20px;">
                                                     <a href="address.php?addrid=<?php echo $getaddresss['uaddrid']; ?>"><button class="mycButton">EDIT</button></a>
                                                     <a class="deleteAdd mycButton" style="padding-right: 8px; padding-left: 10px; padding-top: 12px; padding-bottom: 12px" data-id="<?php echo $getaddresss['uaddrid']; ?>" href="javascript:void(0)">
                                                         <i class="fa fa-trash"></i>

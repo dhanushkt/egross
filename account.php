@@ -6,7 +6,7 @@ if (!$userlogin) {
 $uquery = mysqli_query($con, "SELECT * FROM user WHERE uid='$globaluserid'");
 $userinfo = mysqli_fetch_assoc($uquery);
 $orderquery = mysqli_query($con, "SELECT * FROM orders WHERE ouid=$globaluserid");
-    
+
 if (isset($_POST['changepsw'])) {
     $password = $userinfo['upassword'];
     $oldpass = md5($_POST['oldpsw']);
@@ -269,18 +269,18 @@ if (isset($_POST['update'])) {
                                         </tr>
                                     </table>
                                     <div class="form-input full-width clearfix relative">
-                                    <a href="view-address.php">  <button class="mycButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
-                            </a>    
-                                </div>
+                                        <a href="view-address.php"> <button class="mycButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
                             <div>
-                                <div style="margin-top: 7%">
+                                <div style="margin-top: 7%" id="orders">
                                     <h4>Order History</h4>
                                     <hr>
                                     <table>
-                                    
+
                                         <tr>
                                             <th>ORDER</th>
                                             <th>DATE</th>
@@ -289,19 +289,18 @@ if (isset($_POST['update'])) {
                                             <th>TOTAL</th>
                                         </tr>
                                         <?php
-                                    while($getorderdetails=mysqli_fetch_assoc($orderquery))
-                                    {
-                                    ?> 
-                                        <tr>
-                                        <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno'];?>" title="Track Order"><?php echo $getorderdetails['orderno'];?></a></td>
-                                            <td><?php echo $getorderdetails['otimestamp'];?></td>
-                                            <td><?php echo $getorderdetails['ostatus'];?></td>
-                                            <td><?php echo $getorderdetails['oreason'];?></td>
-                                            <td><?php echo $getorderdetails['ototalamt'];?></td>
-                                        </tr>
+                                        while ($getorderdetails = mysqli_fetch_assoc($orderquery)) {
+                                        ?>
+                                            <tr>
+                                                <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
+                                                <td><?php echo $getorderdetails['otimestamp']; ?></td>
+                                                <td><?php echo $getorderdetails['ostatus']; ?></td>
+                                                <td><?php echo $getorderdetails['oreason']; ?></td>
+                                                <td><?php echo $getorderdetails['ototalamt']; ?></td>
+                                            </tr>
                                         <?php
                                         }
-                                    ?>
+                                        ?>
                                     </table>
 
                                 </div>
