@@ -257,7 +257,7 @@ $total = 0;
 									</li> -->
 								</ul>
 							</div>
-							<button data-id="<?php echo $getaddresss['uaadrid']; ?>" class="btn-proceed-checkout full-width top-margin-15-default placeOrder">Place Order</button>
+							<button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn-proceed-checkout full-width top-margin-15-default placeOrder">Place Order</button>
 						</div>
 						<!-- End Content Right -->
 					</div>

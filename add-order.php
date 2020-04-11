@@ -21,7 +21,7 @@ if (isset($_POST) & !empty($_POST) ) {
 	foreach($getallcartitems as $key=>$getallcartdata)
 	{
 		$prodid = $getallcartdata['citmid'];
-		$orderqty = $getallcartdata['cart_qty'];
+		$orderqty = $getallcartdata['cqty'];
 		$cartid = $getallcartdata['cartid'];
 
 		$sql = "INSERT INTO order_items (orderno,oitmid,oqty) VALUES ('$generateorderno','$prodid','$orderqty')";
