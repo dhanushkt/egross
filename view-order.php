@@ -260,7 +260,18 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                     </div>
             </div>
             <div class="card">
+            
             <div class="d-flex flex-column text-sm-left" style="margin-left:20px; margin-top:20px;">
+            <?php
+            if($orderinfo['ostatus']>=4)
+            {?>
+            <div>
+
+            </div>
+            <?php
+             }
+            else
+            {?>
             <h5 class="font-weight-bold">Track your order:<a href="#"><span class="text-primary font-weight-bold"style="margin-right:10px";>#<?php echo $orderinfo['orderno'];?></span></h5></a>
             <div class="d-flex flex-column text-sm-right" style="margin-right:10px;margin-right:10px;">
             <p class="mb-0"><b>Address :</b><span><?php echo $orderinfo['addrline1'];
@@ -274,43 +285,112 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                 </p>    
                 <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp'];?></p>
             </div>
-    </div>
+            <?php
+            }?>
+            </div>
+        
         <div class="row justify-content-between px-3 top">
             
             
         </div> <!-- Add class 'active' to progress -->
         <div class="row d-flex justify-content-center">
             <div class="col-12">
+            <?php
+                    if($orderinfo['ostatus']>=4)
+                    {?>
+                    
+<style>
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+</style>
+                    <div class="center">
+                    <i class="fa fa-close" style="font-size:50px;color:red"></i>    
+                    <h1>YOUR ORDER IS CANCELED</h1>
+                    <h5>Reason:<?php echo $orderinfo['oreason'];?>
+                    </div>
+                    <?php }else{?>
                 <ul id="progressbar" class="text-center">
+                <?php
+                    if($orderinfo['ostatus']>=0)
+                    {?>    
                     <li class="active step0"></li>
+                    <?php }
+                    else
+                    {?>
+                    <li class="step0"></li>  
+                    <?php }
+                    ?>
+                    <?php
+                    if($orderinfo['ostatus']>=1)
+                    {?>    
                     <li class="active step0"></li>
+                    <?php }
+                    else
+                    {?>
+                    <li class="step0"></li>  
+                    <?php }
+                    ?>
+                    <?php
+                    if($orderinfo['ostatus']>=2)
+                    {?>    
                     <li class="active step0"></li>
-                    <li class="step0"></li>
+                    <?php }
+                    else
+                    {?>
+                    <li class="step0"></li>  
+                    <?php }
+                    ?>
+                    <?php
+                    if($orderinfo['ostatus']>=3)
+                    {?>    
+                    <li class="active step0"></li>
+                    <?php }
+                    else
+                    {?>
+                    <li class="step0"></li>  
+                    <?php }
+                    ?>
                 </ul>
+                <?php } ?>
             </div>
         </div>
         <div class="row justify-content-between top">
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Confirmed </p>
+        <?php
+        if($orderinfo['ostatus']>=4)
+        {?>
+           <div> </div>
+        <?php
+        }
+        else
+        {?>
+        <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+            <div class="d-flex flex-column">
+                    <p class="font-weight-bold none">Order<br>Placed </p>
                 </div>
             </div>
             <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
                 <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Shipped </p>
+                    <p class="font-weight-bold none">Order<br>Confirmed </p>
                 </div>
             </div>
             <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
                 <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>En Route </p>
+                    <p class="font-weight-bold none">Order<br>Shipping </p>
                 </div>
             </div>
             <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
                 <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Arrived </p>
+                    <p class="font-weight-bold none">Order<br>Delivered </p>
                 </div>
             </div>
+            <?php }?>      
         </div>
+                
+        
     </div>
     </div>
             <!-- End Content Wishlist -->
