@@ -18,7 +18,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">x`
+<html lang="en">
 <head>
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
