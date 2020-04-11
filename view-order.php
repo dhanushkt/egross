@@ -18,11 +18,132 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en">x`
 <head>
-    <?php include 'lander-pages/csslink.php'; ?>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<style>
 
+.card {
+    z-index: 0;
+    background-color: #ECEFF1;
+    padding-bottom: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    border-radius: 10px
+}
+
+.top {
+    padding-top: 40px;
+    padding-left: 13% !important;
+    padding-right: 13% !important
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: #red;
+    padding-left: 0px;
+    margin-top: 30px
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 13px;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400
+}
+
+#progressbar .step0:before {
+    font-family: FontAwesome;
+    content: "\f10c";
+    color: #fff
+}
+
+#progressbar li:before {
+    width: 40px;
+    height: 40px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    background: #C5CAE9;
+    border-radius: 50%;
+    margin: auto;
+    padding: 0px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 12px;
+    background: #C5CAE9;
+    position: absolute;
+    left: 0;
+    top: 16px;
+    z-index: -1
+}
+
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    left: -50%
+}
+
+#progressbar li:nth-child(2):after,
+#progressbar li:nth-child(3):after {
+    left: -50%
+}
+
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    left: 50%
+}
+
+#progressbar li:last-child:after {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+
+#progressbar li:first-child:after {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #651FFF
+}
+
+#progressbar li.active:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 25px
+}
+
+.icon-content {
+    padding-bottom: 40px
+}
+
+@media screen and (max-width: 902px) {
+    .icon-content {
+        width: 28%;
+        padding-left: 15px;
+    }
+    .none{
+        font-size:12px;
+    }
+}</style>                                
+<?php include 'lander-pages/csslink.php'; ?>
     <style>
         table {
             border-collapse: collapse;
@@ -79,7 +200,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16);
             border-style: solid;
         }
-    </style>
+</style>
 </head>
 
 <body>
@@ -135,53 +256,63 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                         <div>
                             <a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 Continue shopping</a>
-                            <a href="#" style="float:right"><i class="fa fa-comment-o" aria-hidden="true"></i>
-                                Feedback</a>
                         </div>
                     </div>
-                    <!-- Content Shoping Cart -->
-                    <div class="row relative" style="padding-bottom: 10px;">
-                        <div class="col-md-6 outerbox">
-                            <div class="innerbox customdwidth">
-                                <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
-                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Address Details</h4>
-                                    <hr>
-                                    <b>Address Line 1: </b><?php echo $orderinfo['addrline1'];
-                                                            echo "</br><b>Address Line 2:</b> ";
+            </div>
+            <div class="card">
+            <div class="d-flex flex-column text-sm-left" style="margin-left:20px; margin-top:20px;">
+            <h5 class="font-weight-bold">Track your order:<a href="#"><span class="text-primary font-weight-bold"style="margin-right:10px";>#<?php echo $orderinfo['orderno'];?></span></h5></a>
+            <div class="d-flex flex-column text-sm-right" style="margin-right:10px;margin-right:10px;">
+            <p class="mb-0"><b>Address :</b><span><?php echo $orderinfo['addrline1'];
+                                                            echo "<br>";
                                                             echo $orderinfo['addrline2'];
-                                                            echo "</br><b>City: </b>";
+                                                            echo "<br>";
                                                             echo $orderinfo['acity'];
-                                                            echo "</br><b>District: </b>";
-                                                            echo $orderinfo['adistrict'];
-                                                            echo "</br><b>State: </b>";
-                                                            echo $orderinfo['astate'];
-                                                            echo "</br><b>Pin :</b>";
+                                                            echo ",";
                                                             echo $orderinfo['apin'];
-                                                            "</b>" ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 outerbox">
-                            <div class="innerbox customdwidth">
-                                <div style="margin-top: 20px; margin-bottom: 10px; margin-right: 25px;margin-left: 25px;">
-                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">Shipping Charges:</h4>
-                                    <hr>
-                                    <h4 style="margin-top: 5px; margin-left:10px; text-align:left">GRAND TOTAL:</h4>
-                                    <h3 style="margin-top: 5px; margin-left:10px; text-align:left" class="bold">₹ <?php echo $total ?></h3>
-                                    <div style="text-align: center;margin-top:15%">
-                                        <button type="button" class="btn btn-danger" style="width: 65%">Track Order</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
+                                                            "</b>" ?></span>
+                </p>    
+                <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp'];?></p>
+            </div>
+    </div>
+        <div class="row justify-content-between px-3 top">
+            
+            
+        </div> <!-- Add class 'active' to progress -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-12">
+                <ul id="progressbar" class="text-center">
+                    <li class="active step0"></li>
+                    <li class="active step0"></li>
+                    <li class="active step0"></li>
+                    <li class="step0"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row justify-content-between top">
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold none">Order<br>Confirmed </p>
                 </div>
             </div>
-            <!-- </div> -->
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold none">Order<br>Shipped </p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold none">Order<br>En Route </p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold none">Order<br>Arrived </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
             <!-- End Content Wishlist -->
             <!-- Support -->
             <div class=" support-box full-width bg-red support_box_v2">
