@@ -309,7 +309,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
 </style>
                     <div class="center">
                     <i class="fa fa-close" style="font-size:50px;color:red"></i>    
-                    <h1>YOUR ORDER IS CANCELED</h1>
+                    <h3>YOUR ORDER IS CANCELED</h3>
                     <h5>Reason:<?php echo $orderinfo['oreason'];?>
                     </div>
                     <?php }else{?>
