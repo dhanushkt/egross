@@ -4,6 +4,8 @@ include 'access/useraccesscontrol.php';
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
+$getstate = mysqli_query($con, "SELECT * FROM States");
+
 
 if (isset($_GET['addrid'])) {
     $addrid = $_GET['addrid'];
@@ -97,14 +99,14 @@ if (isset($_POST['updateaddr'])) {
     if (isset($_POST['remail']))
         $remail = $_POST['remail'];
 
-    $auid = $globaluid;
+    $auid = $globaluserid;
 
-    $maddress = mysqli_query($connection, "UPDATE user_address SET afullname='$fullname', addrline1='$add1', addrline2='$add2', acity='$city', adistrict='$district', astate='$state', apin='$pin', arphone='$rphone', aaphone='$aphone', aemail='$remail' WHERE uaddrid = '$addrid'");
+    $maddress = mysqli_query($con, "UPDATE user_address SET afullname='$fullname', addrline1='$add1', addrline2='$add2', acity='$city', adistrict='$district', astate='$state', apin='$pin', arphone='$rphone', aaphone='$aphone', aemail='$remail' WHERE uaddrid = '$addrid'");
     if ($maddress) {
         $smsg = "Address Updated Successfully";
         echo "<script>window.setTimeout(function(){ window.history.back(); }, 2000);</script>";
     } else {
-        $fmsg = mysqli_error($connection);
+        $fmsg = mysqli_error($con);
     }
 }
 ?>
@@ -302,11 +304,26 @@ if (isset($_POST['updateaddr'])) {
                                 </div>
 
                                 <div class="relative clearfix full-width">
+                                    
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>City *</label>
-                                        <input required <?php if (isset($addrid)) {
-												echo "value=" . $getaddr['acity'];
-											} ?> class="full-width" type="text" name="city">
+                                        <label>State *</label>
+                                        <select name=state class="full-width">
+                                        <option <?php if (isset($addrid)) {
+												echo "value=" . $getaddr['astate'];
+											} ?>>
+                                        <?php echo $getaddr['astate'];?>
+                                        </option>
+                                        <?php
+                                        while($getstates = mysqli_fetch_assoc($getstate))
+                                        {
+                                        ?>
+                                        <option value="<?php echo $getstates['StateName'];?>"><?php echo $getstates['StateName'];?>                                          
+                                        </option>
+                                        <?php
+                                        }
+                                        ?>
+                                        </select>
+
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                         <label>District *</label>
@@ -319,11 +336,11 @@ if (isset($_POST['updateaddr'])) {
 
 
                                 <div class="relative clearfix full-width">
-                                    <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>State *</label>
-                                        <input <?php if (isset($addrid)) {
-												echo "value=" . $getaddr['astate'];
-											} ?> required class="full-width" type="text" name="state">
+                                <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
+                                        <label>City *</label>
+                                        <input required <?php if (isset($addrid)) {
+												echo "value=" . $getaddr['acity'];
+											} ?> class="full-width" type="text" name="city">
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                         <label>Pincode</label>
