@@ -4,7 +4,7 @@ include 'access/useraccesscontrol.php';
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
-$getstate = mysqli_query($con, "SELECT * FROM States");
+$getstate = mysqli_query($con, "SELECT * FROM `States` ORDER BY `StateName` ASC");
 
 
 if (isset($_GET['addrid'])) {
