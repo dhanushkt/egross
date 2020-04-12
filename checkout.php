@@ -50,13 +50,13 @@ $total = 0;
 					data: {
 						id: getid,
 						notes: orderNotes,
-						totamt: totalamt
+						// totamt: totalamt
 					},
 					success: function() {
 						iqwerty.toast.Toast('Order is placed', options);
 						window.setTimeout(function() {
 							window.location.href='account.php';
-						}, 1500);
+						}, 1000);
 					}
 				});
 			});
