@@ -42,7 +42,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
-    color: #red;
+    color: red;
     padding-left: 0px;
     margin-top: 30px
 }
