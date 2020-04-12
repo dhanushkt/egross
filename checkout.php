@@ -32,17 +32,18 @@ $total = 0;
 				var options = {
 					style: {
 						main: {
-							background: "#e3171b",
+							background: "#38c21b",
 							color: "white",
 							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-							'width': '200px'
-
+							'width': '400px',
 						}
 					}
 				};
+				$(this).button('loading');
 				var getid = $(this).attr('data-id');
 				var orderNotes = document.getElementById('orderNotes').value;
 				var totalamt = document.getElementById('newtotal').innerHTML;
+				var btn = $(this);
 				$.ajax({
 					url: 'add-order.php',
 					type: 'POST',
@@ -55,7 +56,7 @@ $total = 0;
 						iqwerty.toast.Toast('Order is placed', options);
 						window.setTimeout(function() {
 							window.location.href='account.php';
-						}, 1000);
+						}, 1500);
 					}
 				});
 			});
@@ -298,15 +299,7 @@ $total = 0;
 		<!-- Footer Box -->
 		<?php include 'lander-pages/footer.php'; ?>
 	</div>
-	<script>
-        $('.btn').on('click', function() {
-    	var $this = $(this);
-  		$this.button('loading');
-    	setTimeout(function() {
-       $this.button('reset');
-   		}, 8000);
-	});
-</script>
+	
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
