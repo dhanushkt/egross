@@ -36,11 +36,11 @@ if (isset($_POST) & !empty($_POST) ) {
 
 			if ($result) {
 				$deleteallcartitems = mysqli_query($con, "DELETE FROM user_cart WHERE cartid='$cartid' AND cuid='$globaluserid'");
-				if($deleteallcartitems){
-					$getitemswithsameshop = mysqli_query($con, "SELECT itemmaster.isid FROM user_cart JOIN itemmaster ON user_cart.citmid=itemmaster.itmid WHERE cuid='$globaluserid'");
-				}
 			}
 		}
+		
+		$getitemswithsameshop = mysqli_query($con, "SELECT itemmaster.isid FROM user_cart JOIN itemmaster ON user_cart.citmid=itemmaster.itmid WHERE cuid='$globaluserid'");
+		
 		// insert into orders
 		$insertintoorder = mysqli_query($con, "INSERT INTO orders (orderno,ouid,osid,oaddrid,onote,otimestamp,ototalamt) VALUES ('$generateorderno','$globaluserid','$shopid','$addrid','$notes','$date','$totrate')");
 	}
