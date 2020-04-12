@@ -289,7 +289,7 @@ if (isset($_POST['delcart'])) {
                                         <p class="text-red price-shoping-cart">$700.00</p>
                                     </div>
                                 </div>
-                                <a href="checkout.php"><button class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Proceed to Checkout</button>
+                                <a href="checkout.php"><button class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
                                 </a>        
                             </div>
                             <!-- End Content Right -->
@@ -341,15 +341,6 @@ if (isset($_POST['delcart'])) {
         <?php include 'lander-pages/footer.php'; ?>
     </div>
     <!-- End Footer Box -->
-    <script>
-        $('.btn').on('click', function() {
-    var $this = $(this);
-  $this.button('loading');
-    setTimeout(function() {
-       $this.button('reset');
-   }, 8000);
-});
-</script>
     <?php include 'lander-pages/jslinks.php'; ?>
 </body>
 
