@@ -261,7 +261,7 @@ if (isset($_POST['updateaddr'])) {
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Full Name*</label>
-                                        <input <?php if (isset($addrid)) {
+                                        <input required <?php if (isset($addrid)) {
                                                     echo "value=" . $getaddr["afullname"];
                                                 } ?> required class="full-width" type="text" name="fullname">
                                     </div>
@@ -276,7 +276,7 @@ if (isset($_POST['updateaddr'])) {
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Number*</label>
-                                        <input <?php if (isset($addrid)) {
+                                        <input required <?php if (isset($addrid)) {
 												echo "value=" . $getaddr['arphone'];
 											} ?> required class="full-width" type="text" name="rphone">
                                     </div>
@@ -307,10 +307,9 @@ if (isset($_POST['updateaddr'])) {
                                     
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>State *</label>
-                                        <select name=state class="full-width">
-                                        <option <?php if (isset($addrid)) {
-												echo "value=" . $getaddr['astate'];
-											} ?>>
+                                        <select required name=state class="full-width">
+                                        <?php if (isset($addrid)) {?>
+                                        <option  selected hidden value="<?php echo $getaddr['astate'];?>">
                                         <?php echo $getaddr['astate'];?>
                                         </option>
                                         <?php
@@ -321,13 +320,24 @@ if (isset($_POST['updateaddr'])) {
                                         </option>
                                         <?php
                                         }
+                                        ?>                                       
+                                        <?php 
+                                        }else{?>
+                                        <?php
+                                        while($getstates = mysqli_fetch_assoc($getstate))
+                                        {
+                                        ?>
+                                        <option selected hidden>SELECT STATE</option>
+                                        <option value="<?php echo $getstates['StateName'];?>"><?php echo $getstates['StateName'];?>                                          
+                                        </option>
+                                        <?php
+                                        }}
                                         ?>
                                         </select>
-
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-right clear-padding-480 relative form-input">
                                         <label>District *</label>
-                                        <input <?php if (isset($addrid)) {
+                                        <input required <?php if (isset($addrid)) {
 												echo "value=" . $getaddr['adistrict'];
 											} ?> class="full-width" type="text" name="district">
                                     </div>
