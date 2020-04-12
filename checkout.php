@@ -257,7 +257,7 @@ $total = 0;
 									</li> -->
 								</ul>
 							</div>
-							<button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn-proceed-checkout full-width top-margin-15-default placeOrder">Place Order</button>
+							<button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default placeOrder" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Place Order</button>
 						</div>
 						<!-- End Content Right -->
 					</div>
@@ -298,6 +298,15 @@ $total = 0;
 		<!-- Footer Box -->
 		<?php include 'lander-pages/footer.php'; ?>
 	</div>
+	<script>
+        $('.btn').on('click', function() {
+    	var $this = $(this);
+  		$this.button('loading');
+    	setTimeout(function() {
+       $this.button('reset');
+   		}, 8000);
+	});
+</script>
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>

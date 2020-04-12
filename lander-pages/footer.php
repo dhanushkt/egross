@@ -15,10 +15,9 @@
                         </div>
                     </div>
                     <div class="clearfix col-md-3 col-sm-12 col-xs-12 clear-padding social-box text-right">
-                        <a href="#"><img src="img/social_tw-min.png" alt="Icon Social Twiter"></a>
-                        <a href="#"><img src="img/social_fa-min.png" alt="Icon Social Facebook"></a>
-                        <a href="#"><img src="img/social_int-min.png" alt="Icon Social Instagram"></a>
-                        <a href="#"><img src="img/social_yt-min.png" alt="Icon Social Youtube" /></a>
+                        <a href="#"><img src="lander-template/img/social_tw-min.png" alt="Icon Social Twiter"></a>
+                        <a href="#"><img src="lander-template/img/social_fa-min.png" alt="Icon Social Facebook"></a>
+                        <a href="#"><img src="lander-template/img/social_int-min.png" alt="Icon Social Instagram"></a>
                     </div>
                 </div>
             </div>
@@ -41,7 +40,7 @@
                     <p>information</p>
                     <ul class="list-footer">
                         <li><a href="#">Information</a></li>
-                        <li><a href="#">Orders History</a></li>
+                        <li><a href="account.php">Orders History</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Site Map</a></li>
                     </ul>

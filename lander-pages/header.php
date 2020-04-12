@@ -46,7 +46,7 @@
                         <i class="data-icon data-icon-arrows icon-arrows-hamburger-2 icon-pushmenu js-push-menu" aria-hidden="true"></i>
                     </div>
                     <div class="clearfix logo">
-                        <a href="#"><img alt="Logo" src="lander_plugins/img/logo.png" /></a>
+                        <a href="index.php"><img alt="Logo" src="lander_plugins/img/logo.png" /></a>
                     </div>
                     <div class="clearfix search-box relative float-left">
                         <form method="GET" action="search.php" class="">
