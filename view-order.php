@@ -254,7 +254,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                             </div>
                         </div>
                         <div>
-                            <a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            <a href="view-product.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 Continue shopping</a>
                         </div>
                     </div>
