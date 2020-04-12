@@ -42,7 +42,7 @@ $total = 0;
 				$(this).button('loading');
 				var getid = $(this).attr('data-id');
 				var orderNotes = document.getElementById('orderNotes').value;
-				var totalamt = document.getElementById('newtotal').innerHTML;
+				// var totalamt = document.getElementById('newtotal').innerHTML;
 				var btn = $(this);
 				$.ajax({
 					url: 'add-order.php',
