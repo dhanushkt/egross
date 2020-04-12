@@ -15,6 +15,9 @@
                 <li><a href="view-items.php"><span>View Items</span></a></li>
             </ul>
         </li>
+        <li>
+        <a href="view-order.php"><i class="ti-package"></i><span>Orders </span><span class="menu-arrow"></i></span></a>
+        </li>
 
         <!-- <li>
             <a href="javascript: void(0);"><i class="mdi mdi-email-variant"></i><span>Email</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
