@@ -61,7 +61,8 @@ if (isset($_POST['login']))
 
                     <div class="px-3">
                         <div class="media">
-                            <a href="index.html" class="logo logo-admin"><img src="../admin_plugins/images/egross_logo.png" height="55" alt="logo" class="my-3"></a>
+                            
+                            <a href="index.html" class="logo logo-admin"><img src="../admin_plugins/images/egross_logo.png" alt="logo" class="my-3"></a>
                             <div class="media-body ml-3 align-self-center">
                                 <h4 class="mt-0 mb-1">Login to EGrross</h4>
                                 <p class="text-muted mb-0">Sign in to continue to Egross.</p>

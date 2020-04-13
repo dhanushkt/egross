@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/home.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/cartpage.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/contact.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/loader.css">
 
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.theme.default.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.carousel.min.css">

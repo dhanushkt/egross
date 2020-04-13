@@ -1,16 +1,22 @@
+<style>
+    @media (max-width:629px) {
+  a#optionalstuff {
+    display: none;
+  }
+}
+    </style>
 <div class="topbar">
     <!-- Navbar -->
     <nav class="navbar-custom">
 
         <!-- LOGO -->
         <div class="topbar-left">
-            <a href="index.html" class="logo">
-                <span>
-                    <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm">
-                </span>
-                <span>
-                    <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg">
-                </span>
+            <a href="index.html" id="optionalstuff" class="logo">
+            <span>
+            <center>   <img src="../admin_plugins/images/egross_logo.png" height=1000px alt="logo-small" class="logo-sm"></center> 
+            </span>
+            <span>
+            </span>
             </a>
         </div>
 
@@ -62,7 +68,7 @@
 
             <li class="dropdown">
                 <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="assets/images/users/user-1.jpg" alt="profile-user" class="rounded-circle" />
+                    <img src="../lander_plugins/img/profile.png" alt="profile-user" class="rounded-circle" />
                     <span class="ml-1 nav-user-name hidden-sm"> <i class="mdi mdi-chevron-down"></i> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">

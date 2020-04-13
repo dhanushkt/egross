@@ -16,3 +16,4 @@
 <link href="../admin_plugins/css/icons.css" rel="stylesheet" type="text/css" />
 <link href="../admin_plugins/css/metismenu.min.css" rel="stylesheet" type="text/css" />
 <link href="../admin_plugins/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../lander_plugins/css/loader.css">

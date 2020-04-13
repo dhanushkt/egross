@@ -8,15 +8,16 @@ $menuslide = false;
 <html lang="en">
 
 <head>
-    <?php include 'lander-pages/csslink.php'; ?>
+  <?php include 'lander-pages/csslink.php'; ?>
     <style>
         .title-gold-bg:before {
             border-left-color: red;
         }
     </style>
 </head>
+<body onload="myFunction()">
 
-<body>
+<div id="loading"></div>
     <script src="lander_plugins/js/toast.js"></script>
     <script>
         $(document).ready(function() {
@@ -381,5 +382,11 @@ $menuslide = false;
     <!-- End Footer Box -->
     <?php include 'lander-pages/jslinks.php'; ?>
 </body>
-
+<script>
+		
+		var preloader = document.getElementById("loading");
+		function myFunction(){
+			preloader.style.display = 'none';
+		};
+	</script>
 </html>
