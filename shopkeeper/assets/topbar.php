@@ -13,7 +13,13 @@
         <div class="topbar-left">
             <a href="index.html" id="optionalstuff" class="logo">
             <span>
-            <center>   <img src="../admin_plugins/images/egross_logo.png" height=1000px alt="logo-small" class="logo-sm"></center> 
+            <style>
+.img {
+  height:75px;
+  width:100px;
+}
+</style>
+            <center>   <img class="img" src="../admin_plugins/images/egross_logo.png" alt="logo-small" class="logo-sm"></center> 
             </span>
             <span>
             </span>
