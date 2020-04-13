@@ -122,7 +122,7 @@
                                             $header_getscat = mysqli_query($con, "SELECT * FROM scat WHERE smcid='$header_mcatid' LIMIT 5");
                                             while ($header_scat = mysqli_fetch_assoc($header_getscat)) {
                                             ?>
-                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="category_v1.html"><?php echo $header_scat['scname']; ?></a></li>
+                                                <li class="title-hover-red"><a class="animate-default clear-padding" href="view-product.php?scat=<?php echo $header_scat['scid']; ?>"><?php echo $header_scat['scname']; ?></a></li>
                                             <?php } ?>
                                         </ul>
                                     <?php } ?>
