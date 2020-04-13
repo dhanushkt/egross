@@ -1,20 +1,56 @@
 <?php
 include 'access/useraccesscontrol.php';
-$id= $_GET['id'];
+$id = $_GET['id'];
 $adbanner = false;
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
-$getnamecat=mysqli_query($con,"SELECT * FROM mcat where mcid=$id");
-$name=mysqli_fetch_assoc($getnamecat);
-$photo=mysqli_fetch_assoc($getalldata);
-				
+$getnamecat = mysqli_query($con, "SELECT * FROM mcat where mcid=$id");
+$name = mysqli_fetch_assoc($getnamecat);
+$photo = mysqli_fetch_assoc($getalldata);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	
+
 	<?php include 'lander-pages/csslink.php'; ?>
+	<style>
+		.content {
+			opacity: 0;
+			font-size: 20px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #000;
+			background-color: #C0C0C0;
+			width: 100%;
+			height: 100%;
+			-webkit-transition: all 400ms ease-out;
+			-moz-transition: all 400ms ease-out;
+			-o-transition: all 400ms ease-out;
+			-ms-transition: all 400ms ease-out;
+			transition: all 400ms ease-out;
+			text-align: center;
+		}
+
+		.example .content:hover {
+			opacity: 1;
+		}
+
+		.example .content .text {
+			height: 0;
+			opacity: 2;
+			transition-delay: 0s;
+			transition-duration: 0.4s;
+		}
+
+		.example .content:hover .text {
+			opacity: 2;
+			transform: translateY(150px);
+			-webkit-transform: translateY(60px);
+		}
+	</style>
 </head>
 
 <body>
@@ -47,18 +83,17 @@ $photo=mysqli_fetch_assoc($getalldata);
 			<div class="relative container-web">
 				<div class="container">
 					<div class="row ">
-						<!-- Sider Bar -->		
+						<!-- Sider Bar -->
 						<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
 							<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold">Categories</p>
 								<ul class="clear-margin list-siderbar">
 									<?php
-										$query=mysqli_query($con,"SELECT * FROM mcat");
-										while($row=mysqli_fetch_assoc($query))
-										{
+									$query = mysqli_query($con, "SELECT * FROM mcat");
+									while ($row = mysqli_fetch_assoc($query)) {
 									?>
-									<li><a href="view-category.php?id=<?php echo $row['mcid'];?>"><?php echo $row['mcname'];?></a></li>
-										<?php }?>
+										<li><a href="view-category.php?id=<?php echo $row['mcid']; ?>"><?php echo $row['mcname']; ?></a></li>
+									<?php } ?>
 								</ul>
 							</div>
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
@@ -273,7 +308,7 @@ $photo=mysqli_fetch_assoc($getalldata);
 							<div class="bar-category bottom-margin-default border no-border-r no-border-l no-border-t">
 								<div class="row">
 									<div class="col-md-5 col-sm-5 col-xs-4">
-										<p class="title-category-page clear-margin"><?php echo $name['mcname'];?></p>
+										<p class="title-category-page clear-margin"><?php echo $name['mcname']; ?></p>
 									</div>
 									<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
 										<p class=" float-left">Showing 1–20 of 75 results</p>
@@ -285,54 +320,27 @@ $photo=mysqli_fetch_assoc($getalldata);
 							<!-- Product Content Category -->
 							<div class="row">
 								<?php
-								$getsmid=mysqli_query($con,"SELECT * FROM scat where smcid=$id");
+								$getsmid = mysqli_query($con, "SELECT * FROM scat where smcid=$id");
 								while ($catdata = mysqli_fetch_assoc($getsmid)) {
 								?>
-<style>
-.content {
-      opacity:0;
-      font-size: 20px;
-      position:absolute;
-      top:0;
-      left:0;
-      color:#000;
-      background-color:#C0C0C0;
-      width:100%;
-      height:100%;
-      -webkit-transition: all 400ms ease-out;
-      -moz-transition: all 400ms ease-out;
-      -o-transition: all 400ms ease-out;
-      -ms-transition: all 400ms ease-out;
-      transition: all 400ms ease-out;
-      text-align:center;
-      }
-      .example .content:hover { opacity:1; }      
-      .example .content .text {
-      height:0;
-      opacity:2;
-      transition-delay: 0s;
-      transition-duration: 0.4s;
-      }
-      .example .content:hover .text {
-      opacity:2;
-      transform: translateY(250px);
-      -webkit-transform: translateY(60px);
-      }
-</style>
-								<a href="view-product.php?product=<?php //echo $catdata['smcid']; ?>">
-								<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
+									<a href="view-product.php?scat=<?php echo $catdata['smcid']; ?>">
+										<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" style="padding-bottom: 10px;">
 											<div class="example text center-vertical-image">
 												<img src="uploads/item/<?php echo $photo['iimg']; ?>" alt="Product">
-											<!--dont delete<img src="uploads/item/<?php //echo $catdata['scimg']; ?>" alt="Product">-->
+												<!--dont delete<img src="uploads/item/<?php //echo $catdata['scimg']; 
+																						?>" alt="Product">-->
 											</div>
-											<div class="example text content">
-											<p class="text">
-										<?php echo $catdata['scdesc']; ?></p>
-											</div>
-										<h3 class="title-product clearfix full-width title-hover-black"><a href="view-product.php?product=<?php //echo $catdata['smcid']; ?>"><?php echo $catdata['scname']; ?></a></h3>
-								</div></a>
+											<!-- <div class="example text content">
+												<p class="text">
+													<?php //echo $catdata['scdesc']; 
+													?></p>
+											</div> -->
+											<h4 class="title-product clearfix full-width title-hover-black text-center"><?php echo $catdata['scname']; ?></h4>
+										</div>
+									</a>
 								<?php } ?>
 							</div>
+							<?php if(false) { ?>
 							<div class="row">
 								<div class="pagging relative">
 									<ul>
@@ -346,6 +354,7 @@ $photo=mysqli_fetch_assoc($getalldata);
 									</ul>
 								</div>
 							</div>
+							<?php } ?>
 							<!-- End Product Content Category -->
 						</div>
 					</div>

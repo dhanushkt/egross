@@ -7,6 +7,11 @@ $cartlist = false;
 
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
+if(isset($_GET['scat'])){
+	$scatid = $_GET['scat'];
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
