@@ -53,8 +53,10 @@ $photo = mysqli_fetch_assoc($getalldata);
 	</style>
 </head>
 
-<body>
-	<!-- push menu-->
+<body onload="myFunction()">
+
+
+<div id="loading"></div>	<!-- push menu-->
 	<?php include 'lander-pages/pushmenu.php'; ?>
 	<!-- end push menu-->
 	<!-- Menu Mobile -->
@@ -398,5 +400,10 @@ $photo = mysqli_fetch_assoc($getalldata);
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
-
+<script>
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+            preloader.style.display = 'none';
+        };
+</script>
 </html>

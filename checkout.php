@@ -4,6 +4,13 @@ include 'access/useraccesscontrol.php';
 if (!$userlogin) {
 	echo "<script>window.location.href='user-login.php'; </script>";
 }
+$getdefaultaddress = mysqli_query($con, "SELECT adefault from user_address WHERE auid=$globaluserid");
+$getdefault = mysqli_fetch_assoc($getdefaultaddress);
+if($getdefault<='0')
+{
+	echo '<script>alert("Please Select Default Address Before Checkout")</script>'; 
+	echo "<script>window.location.href='view-address.php';</script>";
+}
 
 $getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
 $getaddresss = mysqli_fetch_assoc($getaddresssall);
@@ -14,8 +21,6 @@ if (mysqli_num_rows($getcartitem) <= 0) {
 $subtot = 0;
 $shipping = 100;
 $total = 0;
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

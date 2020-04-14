@@ -21,8 +21,10 @@ if(isset($_GET['scat'])){
 	<?php include 'lander-pages/csslink.php'; ?>
 </head>
 
-<body>
-	
+<body onload="myFunction()">
+
+
+<div id="loading"></div>	
 	<script src="lander_plugins/js/toast.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -486,5 +488,10 @@ if(isset($_GET['scat'])){
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
-
+<script>
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+            preloader.style.display = 'none';
+        };
+</script>
 </html>

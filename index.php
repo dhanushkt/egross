@@ -17,7 +17,9 @@ $menuslide = false;
 </head>
 <body onload="myFunction()">
 
+
 <div id="loading"></div>
+
     <script src="lander_plugins/js/toast.js"></script>
     <script>
         $(document).ready(function() {
@@ -273,12 +275,14 @@ $menuslide = false;
                                                         <p class="title-product clearfix full-width title-hover-black animate-default"><a class="animate-default" href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><?php echo $hp_getitm1['iname']; ?></a></p>
                                                         <p class="clearfix price-product">₹ <?php echo $hp_getitm1['iprice']; ?></p>
                                                         <div style="float: right; padding-right: 10px;">
+                                                        <?php if ($userlogin) { ?>
                                                             <?php if ($cartlist) { ?>
                                                                 <i class="fa fa-shopping-cart"></i>
                                                             <?php }
                                                             if ($wishlist) { ?>
                                                                 <i class="fa fa-heart"></i>
                                                             <?php } ?>
+                                                             <?php } ?>
                                                         </div>
                                                     </div>
                                                 <?php } ?>
@@ -383,10 +387,9 @@ $menuslide = false;
     <?php include 'lander-pages/jslinks.php'; ?>
 </body>
 <script>
-		
-		var preloader = document.getElementById("loading");
-		function myFunction(){
-			preloader.style.display = 'none';
-		};
-	</script>
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+            preloader.style.display = 'none';
+        };
+</script>
 </html>

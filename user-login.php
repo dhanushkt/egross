@@ -33,8 +33,10 @@ if(isset($_POST['login']))
     <?php include 'lander-pages/csslink.php'; ?>
 </head>
 
-<body>
-    <!-- push menu-->
+<body onload="myFunction()">
+
+
+<div id="loading"></div>    <!-- push menu-->
     <?php include 'lander-pages/pushmenu.php'; ?>
     <!-- end push menu-->
     <!-- Menu Mobile -->
@@ -162,5 +164,10 @@ if(isset($_POST['login']))
     <!-- End Footer Box -->
     <?php include 'lander-pages/jslinks.php'; ?>
 </body>
-
+<script>
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+            preloader.style.display = 'none';
+        };
+</script>
 </html>

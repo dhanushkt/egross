@@ -8,9 +8,7 @@ include '../access/shopaccesscontrol.php';
 
     </head>
 
-    <body onload="myFunction()">
-
-    <div id="loading"></div>
+    <body>
     <!-- Top Bar Start -->
         <?php include 'assets/topbar.php'; ?>
         <!-- Top Bar End -->
@@ -361,12 +359,5 @@ include '../access/shopaccesscontrol.php';
 
         <!-- jQuery  -->
         <?php include 'assets/jslink.php'; ?>
-        <script>
-		
-		var preloader = document.getElementById("loading");
-		function myFunction(){
-			preloader.style.display = 'none';
-		};
-	</script>
     </body>
 </html>

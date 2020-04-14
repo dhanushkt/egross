@@ -15,11 +15,12 @@
             <span>
             <style>
 .img {
-  height:75px;
-  width:100px;
+  height:65px;
+  width:80px;
+  font-family: "Lucida Console", Courier, monospace;
 }
 </style>
-            <center>   <img class="img" src="../admin_plugins/images/egross_logo.png" alt="logo-small" class="logo-sm"></center> 
+            <center>   <img class="img" src="../admin_plugins/images/egross_logo.png" alt="logo-small" class="logo-sm">E-Gross</center> 
             </span>
             <span>
             </span>
