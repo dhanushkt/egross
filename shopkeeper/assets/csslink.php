@@ -6,7 +6,7 @@
 
 <!-- App favicon -->
 <link rel="shortcut icon" href="../admin_plugins/images/favicon.ico">
-
+<link href="../admin_plugins/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 <!-- DataTables -->
 <link href="../admin_plugins/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../admin_plugins/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />

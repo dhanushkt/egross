@@ -82,8 +82,8 @@ if (isset($_POST['register'])) {
     <meta charset="utf-8" />
     <title>ShopKeeper-Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A premium admin dashboard template by mannatthemes" name="description" />
-    <meta content="Mannatthemes" name="author" />
+    <meta content="eCommerce developed by Infinity Systems" name="description" />
+    <meta content="Infinity Systems" name="author" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="admin_plugins/images/favicon.ico">
