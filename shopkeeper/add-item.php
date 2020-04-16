@@ -25,7 +25,7 @@ if (isset($_POST['additem'])) {
     $count = mysqli_num_rows($query);
 
     if ($count > 0) {
-        $emsg = "Item already Exists";
+        $fmsg = "Item already Exists";
     } else {
         //check logo is uploaded or not
         $iimg = $_FILES["fileToUpload"]["name"];
