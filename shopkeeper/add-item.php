@@ -155,7 +155,7 @@ if (isset($_POST['additem'])) {
                                     <form method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname" required>
                                         </div>
 
                                         <div class="row">
@@ -183,12 +183,12 @@ if (isset($_POST['additem'])) {
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" class="form-control" name="ibrand" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand">
+                                            <input type="text" class="form-control" name="ibrand" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
-                                            <textarea class="form-control" name="idesc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" name="idesc" id="exampleFormControlTextarea1" rows="3" required></textarea>
                                         </div>
 
                                         <div class="form-group mb-0 row">
