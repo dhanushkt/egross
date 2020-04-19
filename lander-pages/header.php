@@ -8,6 +8,7 @@
         $("#cartitemnumber").load("load-cartnumber.php");
     });
 </script>
+
 <header class="relative full-width box-shadow" id="myHeader">
     <div class="clearfix container-web relative">
         <div class=" container">
@@ -28,7 +29,7 @@
                                 <li class="relative"><a href="wishlist.php">Wishlist</a></li>
                             <?php } ?>
                             <li id="language"class="relative">
-                                <a href="#">English</a>
+                                <a href="#googtrans(en|en)" class="lang-en lang-select" data-lang="en">English</a>
                                 <ul>
                                     <li><a href="#googtrans(kn|kn)" class="lang-en lang-select" data-lang="kn">ಕನ್ನಡ</a></li>
                                 </li>
@@ -140,7 +141,7 @@
     </div>
 <script type="text/javascript">
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
+      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT,autoDisplay: false},  'google_translate_element');
     }
 
     function triggerHtmlEvent(element, eventName) {
@@ -164,5 +165,9 @@
       location.reload();
     });
 </script>
+<style>
+.goog-te-banner-frame.skiptranslate {display: none !important;}
+body { top: 0px !important; }
+</style>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </header>
