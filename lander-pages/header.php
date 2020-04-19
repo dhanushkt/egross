@@ -1,11 +1,11 @@
 <script>
     $(document).ready(function() {
         $("#carticon").click(function() {
-            $("#cartitems").load("load-cart.php");
+            $("#cartitems").load("load-list.php");
         });
     });
     $(document).ready(function loadcartnumber() {
-        $("#cartitemnumber").load("load-cartnumber.php");
+        $("#cartitemnumber").load("load-listnumber.php");
     });
 </script>
 
@@ -72,12 +72,14 @@
                     </div>
                     <?php if ($userlogin) { ?>
                         <div id="carticon" class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
-                            <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" />
+                            <!-- <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" /> -->
+                            <i style="font-size: 40px" class="fa fa-list-alt"></i>
                             <div id="cartitemnumber"></div>
                         </div>
                     <?php } else { ?>
                         <div class="clearfix cart-website absolute" onclick="location.href='user-login.php'">
-                            <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" />
+                            <!-- <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" /> -->
+                            <i class="fa fa-list"></i>
                         </div>
                     <?php } ?>
                     <div class="cart-detail-header border">
