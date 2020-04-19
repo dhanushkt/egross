@@ -8,14 +8,6 @@
         $("#cartitemnumber").load("load-cartnumber.php");
     });
 </script>
-<script type="text/javascript" 
- src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
 <header class="relative full-width box-shadow" id="myHeader">
     <div class="clearfix container-web relative">
         <div class=" container">
@@ -35,11 +27,11 @@ function googleTranslateElementInit() {
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="wishlist.php">Wishlist</a></li>
                             <?php } ?>
-                            <li class="relative">
+                            <li id="language"class="relative">
                                 <a href="#">English</a>
                                 <ul>
-                                    <!--<li class="relative"><a href="#" id="google_translate_element">ಕನ್ನಡ</a></li>-->
-                                    <li class="relative"><a href="#" id="google_translate_element"></a></li>
+                                    <li><a href="#googtrans(kn|kn)" class="lang-en lang-select" data-lang="kn">ಕನ್ನಡ</a></li>
+                                </li>
                                 </ul>
                             </li>
                             <?php if ($userlogin) { ?>
@@ -146,4 +138,31 @@ function googleTranslateElementInit() {
             </div>
         </div>
     </div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
+    }
+
+    function triggerHtmlEvent(element, eventName) {
+      var event;
+      if (document.createEvent) {
+        event = document.createEvent('HTMLEvents');
+        event.initEvent(eventName, true, true);
+        element.dispatchEvent(event);
+      } else {
+        event = document.createEventObject();
+        event.eventType = eventName;
+        element.fireEvent('on' + event.eventType, event);
+      }
+    }
+
+    jQuery('.lang-select').click(function() {
+      var theLang = jQuery(this).attr('data-lang');
+      jQuery('.goog-te-combo').val(theLang);
+
+      window.location = jQuery(this).attr('href');
+      location.reload();
+    });
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </header>
