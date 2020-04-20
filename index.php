@@ -3,6 +3,7 @@ include 'access/useraccesscontrol.php';
 
 $menuslide = false;
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -252,11 +253,11 @@ $menuslide = false;
                                                         else
                                                             $wishlist = false;
 
-                                                        $getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
-                                                        if (mysqli_num_rows($getcartlist) == 1)
-                                                            $cartlist = true;
-                                                        else
-                                                            $cartlist = false;
+                                                        $getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
+	                                                    if (mysqli_num_rows($getcartlist) == 1)
+		                                                $cartlist = true;
+	                                                    else
+		                                                $cartlist = false;
                                                     }
                                                     ?>
                                             <div class=" product-son ">
@@ -333,7 +334,7 @@ $menuslide = false;
                                                 <div style="float: right; padding-right: 10px;">
                                                     <?php if ($userlogin) { ?>
                                                     <?php if ($cartlist) { ?>
-                                                    <i class="fa fa-shopping-cart"></i>
+                                                    <i class="fa fa-list"></i>
                                                     <?php }
                                                             if ($wishlist) { ?>
                                                     <i class="fa fa-heart"></i>

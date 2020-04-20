@@ -366,11 +366,11 @@ if(isset($_GET['scat'])){
 										else
 											$wishlist = false;
 
-										$getcartlist = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
-										if(mysqli_num_rows($getcartlist) == 1)
-											$cartlist = true;
-										else
-											$cartlist = false;
+											$getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
+											if (mysqli_num_rows($getcartlist) == 1)
+												$cartlist = true;
+											else
+												$cartlist = false;
 									}
 								?>
 									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
