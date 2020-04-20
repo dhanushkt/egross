@@ -74,14 +74,14 @@ if(isset($_GET['scat'])){
 				var getid = $(this).attr('data-id');
 				var getqty = 1;
 				$.ajax({
-					url: 'add-cart.php',
+					url: 'add-list.php',
 					type: 'POST',
 					data: {
 						id: getid,
 						qty: getqty
 					},
 					success: function() {
-						iqwerty.toast.Toast('Item added to cart', options);
+						iqwerty.toast.Toast('Item added to list', options);
 						window.setTimeout(function() {
 							window.location.reload();
 						}, 1000);
@@ -385,11 +385,11 @@ if(isset($_GET['scat'])){
 													<?php if($cartlist) { ?>
 														<li class="relative">
 															<a href="javascript:void(0)">
-																<i style="color: red" class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i>
+																<i style="color: red" class="fa fa-list"></i>
 															</a>
 														</li>
 													<?php } else { ?>
-														<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+														<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
 													<?php } ?>
 													
 
@@ -417,7 +417,7 @@ if(isset($_GET['scat'])){
 										₹ <?php echo $itemdata['iprice']; ?></p>
 											<div style="float: right; padding-right: 10px;">
 												<?php if($cartlist){ ?>
-												<i class="fa fa-shopping-cart"></i>
+												<i class="fa fa-list"></i>
 												<?php } if($wishlist) { ?>
 												<i class="fa fa-heart"></i>
 												<?php } ?>

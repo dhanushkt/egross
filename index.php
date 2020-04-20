@@ -18,14 +18,9 @@ $menuslide = false;
         width: 100%;
         position: absolute;
         bottom: 0px;
-       left: 0px;
-       background-image: -webkit-linear-gradient(left, 
-    rgba(255,255,255,0.2) 0%, 
-    rgba(255,255,255,0.8) 5%,
-    rgba(255,255,255,0.6) 70%,
-    rgba(255,255,255,0) 100%
-  );
-    
+        left: 0px;
+        background:white;
+        opacity:90%;    
         padding: 4px 8px;
         color: black;
         margin: 0;
@@ -87,14 +82,14 @@ $menuslide = false;
             var getid = $(this).attr('data-id');
             var getqty = 1;
             $.ajax({
-                url: 'add-cart.php',
+                url: 'add-list.php',
                 type: 'POST',
                 data: {
                     id: getid,
                     qty: getqty
                 },
                 success: function() {
-                    iqwerty.toast.Toast('Item added to cart', options);
+                    iqwerty.toast.Toast('Item added to list', options);
                     window.setTimeout(function() {
                         window.location.reload();
                     }, 1000);
@@ -277,14 +272,14 @@ $menuslide = false;
                                                         <li class="relative">
                                                             <a href="javascript:void(0)">
                                                                 <i style="color: red"
-                                                                    class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i>
+                                                                    class="fa fa-list"></i>
                                                             </a>
                                                         </li>
                                                         <?php } else { ?>
                                                         <li class="relative"><a class="addCart"
                                                                 data-id="<?php echo $hp_getitm1['itmid']; ?>"
                                                                 href="javascript:void(0)"><i
-                                                                    class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a>
+                                                                    class="fa fa-list"></i></a>
                                                         </li>
                                                         <?php } ?>
 
@@ -308,7 +303,7 @@ $menuslide = false;
                                                                     aria-hidden="true"></i></a></li>
                                                         <?php } else { ?>
                                                         <li class="relative"><a href="user-login.php"><i
-                                                                    class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a>
+                                                                    class="fa fa-list"></i></a>
                                                         </li>
 
                                                         <li class="relative"><a href="user-login.php"><i

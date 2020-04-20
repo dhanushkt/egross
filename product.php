@@ -462,18 +462,18 @@ if ($userlogin) {
 																		<?php if ($cart1) { ?>
 																			<li class="relative">
 																				<a href="javascript:void(0)">
-																					<i style="color: red" class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i>
+																					<i style="color: red" class="fa fa-list"></i>
 																				</a>
 																			</li>
 																		<?php } else { ?>
-																			<li class="relative"><a class="addCart" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
+																			<li class="relative"><a class="addList" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
 																		<?php } ?>
 																		<?php if ($wish1) { ?>
 																			<li class="relative"><a href="javascript:void(0)">
 																					<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
 																				</a></li>
 																		<?php } else { ?>
-																			<li class="relative"><a class="wishlistItem" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+																			<li class="relative"><a class="addList" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
 																		<?php } ?>
 																		<li class="relative"><a href="index.php"><i class="data-icon data-icon-basic icon-basic-home" aria-hidden="true"></i></a></li>
 																	<?php } else { ?>

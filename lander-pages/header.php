@@ -29,9 +29,10 @@
                                 <li class="relative"><a href="wishlist.php">Wishlist</a></li>
                             <?php } ?>
                             <li id="language"class="relative">
-                                <a href="#googtrans(en|en)" class="lang-en lang-select" data-lang="en">English</a>
+                                <a href="#">Language</a>
                                 <ul>
-                                    <li><a href="#googtrans(kn|kn)" class="lang-en lang-select" data-lang="kn">ಕನ್ನಡ</a></li>
+                                    <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
+                                    <li><a href="#googtrans(kn)" class="lang-en lang-select" data-lang="en">ಕನ್ನಡ</a></li>
                                 </li>
                                 </ul>
                             </li>
@@ -141,9 +142,10 @@
             </div>
         </div>
     </div>
-<!-- <script type="text/javascript">
+<<script type="text/javascript">
+
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT,autoDisplay: false},  'google_translate_element');
+        new google.translate.TranslateElement({pageLanguage: 'en',pageLanguage: 'en'},  'google_translate_element');
     }
 
     function triggerHtmlEvent(element, eventName) {
@@ -168,8 +170,10 @@
     });
 </script>
 <style>
-.goog-te-banner-frame.skiptranslate {display: none !important;}
+.goog-te-banner-frame {display: none !important;}
 body { top: 0px !important; }
 </style>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
 </header>
