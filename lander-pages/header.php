@@ -141,7 +141,7 @@
             </div>
         </div>
     </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT,autoDisplay: false},  'google_translate_element');
     }
@@ -171,5 +171,5 @@
 .goog-te-banner-frame.skiptranslate {display: none !important;}
 body { top: 0px !important; }
 </style>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 </header>
