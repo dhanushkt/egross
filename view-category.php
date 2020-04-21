@@ -1,6 +1,10 @@
 <?php
 include 'access/useraccesscontrol.php';
 $id = $_GET['id'];
+if(!isset($_GET['id']))
+{
+	header("location:index.php");
+}
 $adbanner = false;
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 
