@@ -67,38 +67,39 @@ $menuslide = false;
     });
     </script>
     <script>
-    $(document).ready(function() {
-        $('.addCart').click(function() {
-            var options = {
-                style: {
-                    main: {
-                        background: "#e3171b",
-                        color: "white",
-                        'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-                        'width': '200px'
-
-                    }
-                }
-            };
-            var getid = $(this).attr('data-id');
-            var getqty = 1;
-            $.ajax({
-                url: 'add-list.php',
-                type: 'POST',
-                data: {
-                    id: getid,
-                    qty: getqty
-                },
-                success: function() {
-                    iqwerty.toast.Toast('Item added to list', options);
-                    window.setTimeout(function() {
-                        window.location.reload();
-                    }, 1000);
-                }
-            });
-        });
-    });
-    </script>
+		$(document).ready(function() {
+			$('.addCart').click(function() {
+				var options = {
+					style: {
+						main: {
+							background: "#e3171b",
+							color: "white",
+							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+							'width': '200px'
+						}
+					}
+				};
+				var itmid = $(this).attr('data-id');
+				var getqty = 1;
+				var shopid = document.getElementById("shopId").value;
+				$.ajax({
+					url: 'add-list.php',
+					type: 'POST',
+					data: {
+						itmid: itmid,
+						shopid: shopid,
+						qty: getqty
+					},
+					success: function() {
+						iqwerty.toast.Toast('Item added to list', options);
+						window.setTimeout(function() {
+							window.location.reload();
+						}, 1000);
+					}
+				});
+			});
+		});
+	</script>
     <!-- push menu-->
     <?php include 'lander-pages/pushmenu.php'; ?>
     <!-- end push menu-->
@@ -274,9 +275,13 @@ $menuslide = false;
                                                             <a href="javascript:void(0)">
                                                                 <i style="color: red"
                                                                     class="fa fa-list"></i>
+                                                                <input type="hidden" id="shopId" value="<?php echo $hp_getcat1['sid']; ?>">
+
                                                             </a>
                                                         </li>
                                                         <?php } else { ?>
+                                                            <input type="hidden" id="shopId" value="<?php echo $hp_getcat1['sid']; ?>">
+                                        
                                                         <li class="relative"><a class="addCart"
                                                                 data-id="<?php echo $hp_getitm1['itmid']; ?>"
                                                                 href="javascript:void(0)"><i
