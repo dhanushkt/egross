@@ -83,7 +83,7 @@ $(document).ready(function loadcartnumber() {
                     <?php } else { ?>
                     <div class="clearfix cart-website absolute" onclick="location.href='user-login.php'">
                         <!-- <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" /> -->
-                        <i class="fa fa-list"></i>
+                        <i style="font-size: 40px" class="fa fa-list-alt"></i>
                     </div>
                     <?php } ?>
                     <div class="cart-detail-header border">
