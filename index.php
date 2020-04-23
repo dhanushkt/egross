@@ -218,6 +218,8 @@ $menuslide = false;
                                 <div class="clearfix menu-title-box bold uppercase">
                                     <ul>
                                         <?php
+                                        $getallitem = mysqli_query($con, "SELECT * FROM itemmaster JOIN shopkeeper ON itemmaster.isid = shopkeeper.sid");
+	                                    $itemdata = mysqli_fetch_assoc($getallitem);
                                         $hp_getcat1 = mysqli_query($con, "SELECT * FROM mcat LIMIT 4");
                                         foreach ($hp_getcat1 as $max => $hp_getcat1) {
                                         ?>
@@ -275,12 +277,12 @@ $menuslide = false;
                                                             <a href="javascript:void(0)">
                                                                 <i style="color: red"
                                                                     class="fa fa-list"></i>
-                                                                <input type="hidden" id="shopId" value="<?php echo $hp_getcat1['sid']; ?>">
+                                                                <input type="hidden" id="shopId" value="<?php echo $itemdata['sid']; ?>">
 
                                                             </a>
                                                         </li>
                                                         <?php } else { ?>
-                                                            <input type="hidden" id="shopId" value="<?php echo $hp_getcat1['sid']; ?>">
+                                                            <input type="hidden" id="shopId" value="<?php echo $itemdata['sid']; ?>">
                                         
                                                         <li class="relative"><a class="addCart"
                                                                 data-id="<?php echo $hp_getitm1['itmid']; ?>"

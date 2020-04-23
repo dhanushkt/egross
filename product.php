@@ -443,8 +443,9 @@ if ($userlogin) {
 															$wish1 = true;
 														else
 															$wish1 = false;
-														$getcart = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
-														if (mysqli_num_rows($getcart) == 1)
+														//$getcart = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
+														$getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
+	                                                    if (mysqli_num_rows($getcartlist) == 1)
 															$cart1 = true;
 														else
 															$cart1 = false;
@@ -467,6 +468,7 @@ if ($userlogin) {
 																			</li>
 																		<?php } else { ?>
 																			<li class="relative"><a class="addList" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
+																			<input type="hidden" id="shopId" value="<?php echo $itemdata['sid']; ?>">
 																		<?php } ?>
 																		<?php if ($wish1) { ?>
 																			<li class="relative"><a href="javascript:void(0)">
@@ -489,7 +491,7 @@ if ($userlogin) {
 																<?php
 																if ($userlogin) {
 																	if ($cart1) { ?>
-																		<i class="fa fa-shopping-cart"></i>
+																		<i class="fa fa-list"></i>
 																	<?php }
 																	if ($wish1) { ?>
 																		<i class="fa fa-heart"></i>
