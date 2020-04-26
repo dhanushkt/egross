@@ -427,22 +427,19 @@ $total = 0;
 								<div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
 
 
-									<!-- <span class="ti-close relative remove-product"></span> -->
+								<span> <br> </span>
 
-									<button data-id="<?php echo $getallitems['listitem']; ?>" class="mycButton itmDelbtn"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+									
 
 
 									<div class="qty-input">
 										<!-- <i class="less">-</i> -->
 										<p style="padding-right: 10px;">Qty: </p>
-										<input id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
+										<input readonly id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
 										<!-- <i class="more">+</i> -->
 									</div>
 
 									<p style="font-size: 23px !important; margin-bottom: 0px;" class="text-red price-shoping-cart">₹ <?php echo ($getallitems['iprice'] * $getallitems['lqty']); ?></p>
-
-									<button data-id="<?php echo $getallitems['listitem']; ?>" style="margin-bottom: 10px;" class="btn saveBtn">Save</button>
-
 								</div>
 							</div>
 							<?php
@@ -451,11 +448,6 @@ $total = 0;
 							?>
 						<?php } ?>
 
-						<aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-							<a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
-
-							<button class="mycartButton">Update List</button>
-						</aside>
 					</div>
 					<!-- </form> -->
 					<!-- End Content Shoping Cart -->
@@ -476,6 +468,7 @@ $total = 0;
 								<p>Subtotal</p>
 								<p class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
 							</div>
+							<button class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-5-default">Place Offline Order</button>
 							<?php if (false) { ?>
 								<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
 									<p class="bottom-margin-15-default">Shipping</p>
