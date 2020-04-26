@@ -1,11 +1,7 @@
 <?php
 include 'access/useraccesscontrol.php';
 $method=$_GET['type'];
-/*if($method=="online")
-{
-	echo "<script>window.location.href='list.php'; </script>";
-
-}*/
+$listno=$_GET['list'];
 
 if (!$userlogin) {
 	echo "<script>window.location.href='user-login.php'; </script>";
@@ -19,9 +15,10 @@ if(mysqli_num_rows($getaddresssall)<=0){
 }
 
 $getaddresss = mysqli_fetch_assoc($getaddresssall);
-$getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
+//$getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
+$getcartitem = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
 if (mysqli_num_rows($getcartitem) <= 0) {
-	echo "<script>window.location.href='cart.php'; </script>";
+	echo "<script>window.location.href='list.php'; </script>";
 }
 $subtot = 0;
 $shipping = 100;
@@ -98,6 +95,8 @@ $total = 0;
 			</div>
 			<!-- End Breadcrumb -->
 			<!-- Content Checkout -->
+			<?php
+			if($method=="online"){?>
 			<div class="relative container-web">
 				<div class="container">
 					<div class="row relative">
@@ -180,13 +179,13 @@ $total = 0;
 											<img src="uploads/item/<?php echo $getcartitem['iimg']; ?>" alt="" />
 										</div>
 										<div class="relative info-product-order-sidebar">
-											<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#"><?php echo $getcartitem['iname']; ?> (x<?php echo $getcartitem['cqty']; ?>)</a></p>
-											<p class="price-product">₹<?php echo $getcartitem['ctotal']; ?></p>
+											<p class="title-product top-margin-15-default animate-default title-hover-black"><a href="#"><?php echo $getcartitem['iname']; ?> (x<?php echo $getcartitem['lqty']; ?>)</a></p>
+											<p class="price-product">₹<?php echo $getcartitem['iprice']; ?></p>
 										</div>
 									</div>
 
 								<?php
-									$subtot = $subtot + $getcartitem['ctotal'];
+									$subtot = $subtot + $getcartitem['iprice'];
 									$total = $shipping + $subtot;
 								} ?>
 								<!--<div class="relative clearfix full-width product-order-sidebar border no-border-t no-border-r no-border-l">
@@ -273,7 +272,16 @@ $total = 0;
 						<!-- End Content Right -->
 					</div>
 				</div>
-			</div>
+			</div><?php }
+			//offline--------------------------------------------
+			else
+			{?>
+			<p>
+				OFFLINE METHOD
+			</p>
+			<?php 
+			}
+			?>
 			<!-- End Content Checkout -->
 			<!-- Support -->
 			<div class=" support-box full-width bg-red support_box_v2">
