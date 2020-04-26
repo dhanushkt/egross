@@ -25,7 +25,7 @@ if ($openlist) {
     $storename = $getlistinfo['sname'];
 
     $getallitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-    if(mysqli_num_rows($getallitems)==0){
+    if (mysqli_num_rows($getallitems) == 0) {
         echo "<script>window.location.href='list.php'; </script>";
     }
 } else {
@@ -155,9 +155,82 @@ $subtot = 0;
             background-color: #ebebeb;
         }
 
-        .saveBtn:hover{
+        .saveBtn:hover {
             background-color: #333;
             color: #dedede;
+        }
+    </style>
+    <!-- for overlay -->
+    <style>
+        .overlay {
+            /*position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0.7, 0.7, 0.7, 0.7);
+  visibility: hidden;
+  opacity: 0;
+  */
+            opacity: 0.8;
+            background-color: rgba(0.7, 0.7, 0.7, 0.7);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            z-index: 1000;
+            visibility: hidden;
+
+        }
+
+        .overlay:target {
+            visibility: visible;
+            opacity: 100;
+        }
+
+        .popup {
+            margin: 70px auto;
+            padding: 20px;
+            margin-top: 230px;
+            background: #fff;
+            border-radius: 5px;
+            width: 30%;
+            position: relative;
+        }
+
+        .popup h2 {
+            margin-top: 0;
+            color: #000;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .popup .close:hover {
+            color: #000;
+        }
+
+        .popup .content {
+            max-height: 0%;
+        }
+
+        @media screen and (max-width: 700px) {
+            .box {
+                width: 70%;
+            }
+
+            .popup {
+                width: 70%;
+            }
         }
     </style>
 </head>
@@ -167,7 +240,7 @@ $subtot = 0;
     <script>
         $(document).ready(function() {
             $('.listDelall').click(function() {
-                
+
                 var options = {
                     style: {
                         main: {
@@ -189,7 +262,7 @@ $subtot = 0;
                     success: function() {
                         iqwerty.toast.Toast('List Deleted', options);
                         window.setTimeout(function() {
-                            location.href='list.php'
+                            location.href = 'list.php'
                         }, 1000);
                     }
                 });
@@ -199,7 +272,7 @@ $subtot = 0;
     <script>
         $(document).ready(function() {
             $('.saveBtn').click(function() {
-                
+
                 var options = {
                     style: {
                         main: {
@@ -212,7 +285,7 @@ $subtot = 0;
                     }
                 };
                 var getid = $(this).attr('data-id');
-                var qtyName = 'nqty'+getid;
+                var qtyName = 'nqty' + getid;
                 var qty = document.getElementById(qtyName).value;
                 $.ajax({
                     url: 'update-list.php',
@@ -224,7 +297,7 @@ $subtot = 0;
                     success: function() {
                         iqwerty.toast.Toast('List Deleted', options);
                         window.setTimeout(function() {
-                            location.href='list.php'
+                            location.href = 'list.php'
                         }, 1500);
                     }
                 });
@@ -234,7 +307,7 @@ $subtot = 0;
     <script>
         $(document).ready(function() {
             $('.itmDelbtn').click(function() {
-                
+
                 var options = {
                     style: {
                         main: {
@@ -256,7 +329,7 @@ $subtot = 0;
                     success: function() {
                         iqwerty.toast.Toast('List Deleted', options);
                         window.setTimeout(function() {
-                            location.href='list.php'
+                            location.href = 'list.php'
                         }, 1500);
                     }
                 });
@@ -297,50 +370,50 @@ $subtot = 0;
                             <?php if ($openlist) { ?>
                                 <!-- Content Shoping Cart -->
                                 <!-- <form method="post"> -->
-                                    <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                                        <p class="title-shoping-cart"><i class="fa fa-list"></i> <?php echo $storename; ?></p>
+                                <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                                    <p class="title-shoping-cart"><i class="fa fa-list"></i> <?php echo $storename; ?></p>
 
-                                        <?php foreach ($getallitems as $key => $getallitems) { ?>
-                                            <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
-                                                <div class="relative product-in-cart-col-1 center-vertical-image">
-                                                    <img src="uploads/item/<?php echo $getallitems['iimg']; ?>" alt="">
-                                                </div>
-                                                <div class="relative product-in-cart-col-2">
-                                                    <p class="title-hover-black"><a href="product.php?id=<?php echo $getallitems['itmid']; ?>" class="animate-default"><?php echo $getallitems['iname']; ?></a></p>
-                                                </div>
-                                                <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
-
-
-                                                    <!-- <span class="ti-close relative remove-product"></span> -->
-
-                                                    <button data-id="<?php echo $getallitems['listitem']; ?>" class="mycButton itmDelbtn"><i class="fa fa-trash" style="font-size: 20px"></i></button>
-
-
-                                                    <div class="qty-input">
-                                                        <!-- <i class="less">-</i> -->
-                                                        <p style="padding-right: 10px;">Qty: </p>
-                                                        <input id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
-                                                        <!-- <i class="more">+</i> -->
-                                                    </div>
-
-                                                    <p style="font-size: 23px !important; margin-bottom: 0px;" class="text-red price-shoping-cart">₹ <?php echo ($getallitems['iprice'] * $getallitems['lqty']); ?></p>
-
-                                                    <button data-id="<?php echo $getallitems['listitem']; ?>" style="margin-bottom: 10px;" class="btn saveBtn" >Save</button>
-
-                                                </div>
+                                    <?php foreach ($getallitems as $key => $getallitems) { ?>
+                                        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
+                                            <div class="relative product-in-cart-col-1 center-vertical-image">
+                                                <img src="uploads/item/<?php echo $getallitems['iimg']; ?>" alt="">
                                             </div>
-                                            <?php
-                                            //calculate subtotal
-                                            $subtot = $subtot + ($getallitems['iprice'] * $getallitems['lqty']);
-                                            ?>
-                                        <?php } ?>
+                                            <div class="relative product-in-cart-col-2">
+                                                <p class="title-hover-black"><a href="product.php?id=<?php echo $getallitems['itmid']; ?>" class="animate-default"><?php echo $getallitems['iname']; ?></a></p>
+                                            </div>
+                                            <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
 
-                                        <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                            <a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
 
-                                            <button class="mycartButton">Update List</button>
-                                        </aside>
-                                    </div>
+                                                <!-- <span class="ti-close relative remove-product"></span> -->
+
+                                                <button data-id="<?php echo $getallitems['listitem']; ?>" class="mycButton itmDelbtn"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+
+
+                                                <div class="qty-input">
+                                                    <!-- <i class="less">-</i> -->
+                                                    <p style="padding-right: 10px;">Qty: </p>
+                                                    <input id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
+                                                    <!-- <i class="more">+</i> -->
+                                                </div>
+
+                                                <p style="font-size: 23px !important; margin-bottom: 0px;" class="text-red price-shoping-cart">₹ <?php echo ($getallitems['iprice'] * $getallitems['lqty']); ?></p>
+
+                                                <button data-id="<?php echo $getallitems['listitem']; ?>" style="margin-bottom: 10px;" class="btn saveBtn">Save</button>
+
+                                            </div>
+                                        </div>
+                                        <?php
+                                        //calculate subtotal
+                                        $subtot = $subtot + ($getallitems['iprice'] * $getallitems['lqty']);
+                                        ?>
+                                    <?php } ?>
+
+                                    <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
+                                        <a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
+
+                                        <button class="mycartButton">Update List</button>
+                                    </aside>
+                                </div>
                                 <!-- </form> -->
                                 <!-- End Content Shoping Cart -->
                                 <!-- Content Right -->
@@ -403,104 +476,37 @@ $subtot = 0;
                                         <?php } ?>
                                     </div>
                                     <!--popup-->
-<style>
-.overlay {
-  /*position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0.7, 0.7, 0.7, 0.7);
-  visibility: hidden;
-  opacity: 0;
-  */
-    opacity:0.8;
-    background-color:rgba(0.7, 0.7, 0.7, 0.7);
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0px;
-    left:0px;
-    z-index:1000;
-    visibility: hidden;
 
-}
-.overlay:target {
-  visibility: visible;
-  opacity: 100;
-}
+                                    <div id="popup1" class="overlay">
+                                        <div class="popup">
+                                            <h2>PLACE ORDER</h2>
+                                            <a class="close" onclick="enableScroll()" href="#">&times;</a>
+                                            <div class="content">
 
-.popup {
-  margin: 70px auto;
-  padding: 20px;
-  margin-top:230px;
-  background: #fff;
-  border-radius: 5px;
-  width: 30%;
-  position: relative;
-}
+                                                <a href="checkout.php?list=<?php echo $getlistinfo['listno']; ?>&type=online"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default" style="background:green" ;>ONLINE</button></a>
 
-.popup h2 {
-  margin-top: 0;
-  color: #000;
-  font-family: Tahoma, Arial, sans-serif;
-}
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
-}
-.popup .close:hover {
-  color: #000;
-}
-.popup .content {
-  max-height: 0%;
-}
+                                                <a href="checkout.php?list=<?php echo $getlistinfo['listno']; ?>&type=offline"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default" style="background:Red" ;>OFFLINE</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function disableScroll() {
+                                            scrollTop =
+                                                window.pageYOffset || document.documentElement.scrollTop;
+                                            scrollLeft =
+                                                window.pageXOffset || document.documentElement.scrollLeft,
+                                                window.onscroll = function() {
+                                                    window.scrollTo(scrollLeft, scrollTop);
+                                                };
+                                        }
 
-@media screen and (max-width: 700px){
-  .box{
-    width: 70%;
-  }
-  .popup{
-    width: 70%;
-  }
-}
-</style>
-<div id="popup1" class="overlay">
-	<div class="popup">
-		<h2>PLACE ORDER</h2>
-		<a class="close" onclick="enableScroll()" href="#">&times;</a>
-		<div class="content">
-		
-		<a href="checkout.php?list=<?php echo $getlistinfo['listno'];?>&type=online"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default" style="background:green";>ONLINE</button></a>
-		
-		<a href="checkout.php?list=<?php echo $getlistinfo['listno'];?>&type=offline"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default"style="background:Red";>OFFLINE</button></a>
-		</div>
-	</div>
-</div>
-<script> 
-        function disableScroll() { 
-            scrollTop =  
-              window.pageYOffset || document.documentElement.scrollTop; 
-            scrollLeft =  
-              window.pageXOffset || document.documentElement.scrollLeft, 
-              window.onscroll = function() { 
-                    window.scrollTo(scrollLeft, scrollTop); 
-                }; 
-        } 
-  
-        function enableScroll() { 
-            window.onscroll = function() {}; 
-        }
-         
-    </script> 
-<!--popup-->
-                <a href="#popup1"><button onclick="disableScroll()" class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
-                </a>
+                                        function enableScroll() {
+                                            window.onscroll = function() {};
+                                        }
+                                    </script>
+                                    <!--popup-->
+                                    <a href="#popup1"><button onclick="disableScroll()" class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
+                                    </a>
                                 </div>
                                 <!-- End Content Right -->
                             <?php } else { ?>
@@ -514,11 +520,11 @@ $subtot = 0;
                                         $listno = $getcartitem['listno'];
                                         $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
                                         $itemcount = mysqli_num_rows($getlistitems);
-                                        
-                                            while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                                                $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
-                                            }
-                                        
+
+                                        while ($listitm = mysqli_fetch_assoc($getlistitems)) {
+                                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
+                                        }
+
                                         ?>
                                         <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
@@ -605,7 +611,7 @@ $subtot = 0;
     </div>
     <!-- End Footer Box -->
     <?php include 'lander-pages/jslinks.php'; ?>
-    
+
 </body>
 
 </html>
