@@ -1,5 +1,11 @@
 <?php
 include 'access/useraccesscontrol.php';
+$method=$_GET['type'];
+/*if($method=="online")
+{
+	echo "<script>window.location.href='list.php'; </script>";
+
+}*/
 
 if (!$userlogin) {
 	echo "<script>window.location.href='user-login.php'; </script>";

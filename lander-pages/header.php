@@ -10,6 +10,7 @@ $(document).ready(function loadcartnumber() {
 </script>
 
 <header class="relative full-width box-shadow" id="myHeader">
+    
     <div class="clearfix container-web relative">
         <div class=" container">
             <div class="row">
@@ -31,8 +32,10 @@ $(document).ready(function loadcartnumber() {
                             <li id="language" class="relative">
                                 <a href="#">Language</a>
                                 <ul>
+                                    <li>
+                                    <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
                                     <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
-                                    <li><a href="#googtrans(kn)" class="lang-en lang-select" data-lang="en">ಕನ್ನಡ</a>
+                                    
                                     </li>
                             </li>
                         </ul>
@@ -147,10 +150,9 @@ $(document).ready(function loadcartnumber() {
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
+ <!--   <script type="text/javascript">
         function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en',pageLanguage: 'en'}, 'google_translate_element');
+        new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
         }
 
         function triggerHtmlEvent(element, eventName) {
@@ -183,9 +185,5 @@ $(document).ready(function loadcartnumber() {
             top: 0px !important;
         }
         </style>
-        <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-        <script type="text/javascript"
-            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
 </header>

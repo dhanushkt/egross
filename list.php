@@ -366,22 +366,22 @@ $subtot = 0;
                                                 <div class="relative justify-content">
                                                     <ul class="check-box-custom title-check-box-black clear-margin clear-margin">
                                                         <li>
-                                                            <label>Free Shipping
+                                                            <p>Free Shipping
                                                                 <input type="radio" name="shipping" checked="">
                                                                 <span class="checkmark"></span>
-                                                            </label>
+                                                            </p>
                                                         </li>
                                                         <li>
-                                                            <label>Standard
+                                                            <p>Standard
                                                                 <input type="radio" name="shipping">
                                                                 <span class="checkmark"></span>
-                                                            </label>
+                                                            </p>
                                                         </li>
                                                         <li>
-                                                            <label>Local Pickup
+                                                            <p>Local Pickup
                                                                 <input type="radio" name="shipping">
                                                                 <span class="checkmark"></span>
-                                                            </label>
+                                                            </p>
                                                         </li>
                                                     </ul>
                                                     <p class="price-gray-sidebar">$20.00</p>
@@ -402,8 +402,105 @@ $subtot = 0;
                                             </div>
                                         <?php } ?>
                                     </div>
-                                    <a href="checkout.php"><button class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
-                                    </a>
+                                    <!--popup-->
+<style>
+.overlay {
+  /*position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0.7, 0.7, 0.7, 0.7);
+  visibility: hidden;
+  opacity: 0;
+  */
+    opacity:0.8;
+    background-color:rgba(0.7, 0.7, 0.7, 0.7);
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+    visibility: hidden;
+
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 100;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  margin-top:230px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #000;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+.popup .close:hover {
+  color: #000;
+}
+.popup .content {
+  max-height: 0%;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+</style>
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>PLACE ORDER</h2>
+		<a class="close" onclick="enableScroll()" href="#">&times;</a>
+		<div class="content">
+		
+		<a href="checkout.php?list=<?php echo $getlistinfo['listno'];?>&type=online"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default" style="background:green";>ONLINE</button></a>
+		
+		<a href="checkout.php?list=<?php echo $getlistinfo['listno'];?>&type=offline"><button data-id="<?php echo $getaddresss['uaddrid']; ?>" class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-15-default"style="background:Red";>OFFLINE</button></a>
+		</div>
+	</div>
+</div>
+<script> 
+        function disableScroll() { 
+            scrollTop =  
+              window.pageYOffset || document.documentElement.scrollTop; 
+            scrollLeft =  
+              window.pageXOffset || document.documentElement.scrollLeft, 
+              window.onscroll = function() { 
+                    window.scrollTo(scrollLeft, scrollTop); 
+                }; 
+        } 
+  
+        function enableScroll() { 
+            window.onscroll = function() {}; 
+        }
+         
+    </script> 
+<!--popup-->
+                <a href="#popup1"><button onclick="disableScroll()" class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
+                </a>
                                 </div>
                                 <!-- End Content Right -->
                             <?php } else { ?>
