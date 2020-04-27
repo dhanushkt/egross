@@ -275,7 +275,7 @@ if(isset($_POST['updateorder'])){
                                                                 <label class="custom-control-label" for="customRadio7">Confirm</label>
                                                             </div>
                                                         </div>
-                                                        <div class="form-check-inline my-1">
+                                                        <div class="col-sm-2 form-check-inline my-1">
                                                             <div class="custom-control custom-radio">
                                                                 <input onclick="ShowHideDiv()" id="customRadio9" type="radio" name="ostatus" class="custom-control-input" value="4">
                                                                 <label class="custom-control-label" for="customRadio9">Cancel</label>
