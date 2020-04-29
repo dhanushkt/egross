@@ -217,7 +217,7 @@ if (isset($_POST['additem'])) {
                                             <input type="number" class="form-control" id="exampleInputPassword1" name="iprice" placeholder="Enter price in ₹">
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row container" style="height:250px;">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
                                                     <label>Upload Item Image [ prefered size: 400x400, format: .png ]</label>

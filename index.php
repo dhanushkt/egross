@@ -28,12 +28,11 @@ $menuslide = false;
     }
     </style>
 </head>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 <body onload="myFunction()">
 
 
     <div id="loading"></div>
-
     <script src="lander_plugins/js/toast.js"></script>
     <script>
     $(document).ready(function() {
@@ -276,7 +275,7 @@ $menuslide = false;
                                                         <li class="relative">
                                                             <a href="javascript:void(0)">
                                                                 <i style="color: red"
-                                                                    class="fa fa-list"></i>
+                                                                    class="icon-list icons"></i>
                                                                 <input type="hidden" id="shopId" value="<?php echo $itemdata['sid']; ?>">
 
                                                             </a>
@@ -287,7 +286,7 @@ $menuslide = false;
                                                         <li class="relative"><a class="addCart"
                                                                 data-id="<?php echo $hp_getitm1['itmid']; ?>"
                                                                 href="javascript:void(0)"><i
-                                                                    class="fa fa-list"></i></a>
+                                                                    class="icon-list icons"></i></a>
                                                         </li>
                                                         <?php } ?>
 
@@ -311,7 +310,7 @@ $menuslide = false;
                                                                     aria-hidden="true"></i></a></li>
                                                         <?php } else { ?>
                                                         <li class="relative"><a href="user-login.php"><i
-                                                                    class="fa fa-list"></i></a>
+                                                                    class="icon-list icons"></i></a>
                                                         </li>
 
                                                         <li class="relative"><a href="user-login.php"><i
@@ -341,7 +340,7 @@ $menuslide = false;
                                                 <div style="float: right; padding-right: 10px;">
                                                     <?php if ($userlogin) { ?>
                                                     <?php if ($cartlist) { ?>
-                                                    <i class="fa fa-list"></i>
+                                                    <i class="icon-list icons"></i>
                                                     <?php }
                                                             if ($wishlist) { ?>
                                                     <i class="fa fa-heart"></i>
