@@ -58,7 +58,7 @@ include '../access/shopaccesscontrol.php';
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body table-responsive">
 
                                     <h4 class="mt-0 header-title">View Items</h4>
                                     <!-- <p class="text-muted mb-4 font-13">
