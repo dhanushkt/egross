@@ -18,7 +18,17 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
 
 <head>
     <?php include 'assets/csslink.php'; ?>
-
+    <style>
+    .cardColor{
+        background-color: #0f111d !important;
+    }
+    .alert{
+        padding: 5px 10px 5px 10px;
+    }
+    .card-text{
+        padding-top: 10px;
+    }
+    </style>
 </head>
 
 <body>
@@ -99,16 +109,33 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                 <div class="tab-pane p-3 active" id="home-1" role="tabpanel">
                                                     <p class="text-muted mb-0">
                                                         <div class="row">
-                                                            <?php foreach ($getorders as $key => $getorders) { ?>
+                                            <?php foreach ($getorders as $key => $getorders) { ?>
 
                                                                 <?php
                                                                 $orderno = $getorders['orderno'];
                                                                 $getitems = mysqli_query($con, "SELECT * FROM order_items WHERE orderno='$orderno'");
+
+                                                                if($getorders['otype']=='online'){
+                                                                    $ctype = 'bg-success';
+                                                                    $btntype = 'btn-success';
+                                                                    $atype = 'alert-outline-success';
+                                                                } else {
+                                                                    $ctype = 'bg-warning';
+                                                                    $btntype = 'btn-warning';
+                                                                    $atype = 'alert-outline-warning';
+                                                                }
                                                                 ?>
-                                                                <div class="div class=col-md-3 col-lg-3">
-                                                                    <h5 class="card-header bg-info text-white mt-0 text-center">#<?php echo $orderno; ?></h5>
-                                                                    <div class="card-body" style="background-color: #1b1e2b">
+                                                                <div class="col-md-3 col-lg-3">
+                                                                    <h5 class="card-header <?php echo $ctype; ?> text-white mt-0 text-center">
+                                                                        #<?php echo $orderno; ?>
+                                                                    </h5>
+
+                                                                    <div class="card-body cardColor">
                                                                         <!-- <h4 class="card-title mt-0">1</h4> -->
+                                                                        <span class="alert <?php echo $atype; ?> alert-success-shadow">
+                                                                            <?php echo $getorders['otype']; ?>
+                                                                        </span>
+
                                                                         <p class="card-text">
                                                                             <?php echo mysqli_num_rows($getitems); ?> Items
                                                                             <br>
@@ -117,9 +144,13 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                                             <i class="fa fa-calendar"></i>
                                                                             <?php $date = strtotime($getorders['otimestamp']);
                                                                             echo date("d-m-Y", $date); ?>
+                                                                            
                                                                         </p>
                                                                         <a href="manage-order.php?order=<?php echo $orderno ?>">
-                                                                        <button type="button" class="btn btn-info">View order</button></a>
+                                                                            <button type="button" class="btn <?php echo $btntype; ?>">
+                                                                                View order
+                                                                            </button>
+                                                                        </a>
                                                                     </div>
                                                                     <!--end card-body-->
                                                                 </div>
@@ -152,7 +183,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                                             echo date("d-m-Y", $date); ?>
                                                                         </p>
                                                                         <a href="manage-order.php?order=<?php echo $orderno ?>">
-                                                                        <button type="button" class="btn btn-info">View order</button></a>
+                                                                            <button type="button" class="btn btn-info">View order</button></a>
                                                                     </div>
                                                                     <!--end card-body-->
                                                                 </div>
@@ -182,7 +213,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                                             echo date("d-m-Y", $date); ?>
                                                                         </p>
                                                                         <a href="manage-order.php?order=<?php echo $orderno ?>">
-                                                                        <button type="button" class="btn btn-info">View order</button></a>
+                                                                            <button type="button" class="btn btn-info">View order</button></a>
                                                                     </div>
                                                                     <!--end card-body-->
                                                                 </div>
@@ -214,7 +245,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                                             <?php echo $getcanceledorder['oreason']; ?>
                                                                         </p>
                                                                         <a href="manage-order.php?order=<?php echo $orderno ?>">
-                                                                        <button style="background: #c01627 !important; box-shadow: none; border: none" type="button" class="btn btn-info">View order</button></a>
+                                                                            <button style="background: #c01627 !important; box-shadow: none; border: none" type="button" class="btn btn-info">View order</button></a>
                                                                     </div>
                                                                     <!--end card-body-->
                                                                 </div>
