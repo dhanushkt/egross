@@ -138,10 +138,8 @@ include '../access/shopaccesscontrol.php';
     <script src="../admin_plugins/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../admin_plugins/plugins/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- App js -->
-    <script src="../admin_plugins/js/app.js"></script>
     <script>
-    $('#datatable').DataTable();
+        $('#datatable').DataTable();
     </script>
 
 </body>
