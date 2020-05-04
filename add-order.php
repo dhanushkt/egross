@@ -2,47 +2,56 @@
 include 'access/useraccesscontrol.php';
 date_default_timezone_set('Asia/Kolkata');
 $date=date("l, d-m-Y  h:i A");
+$totrate = 0;
+
 if (isset($_POST) & !empty($_POST) ) {
-	$addrid = $_POST['id'];
-	$notes = $_POST['notes'];
-	//$totrate = $_POST['totamt'];
 
-	//getshop 
-	$getitemswithsameshop = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid=itemmaster.itmid WHERE cuid='$globaluserid'");
-	while ($getshopdata = mysqli_fetch_assoc($getitemswithsameshop)) {
-		//getshopid
-		$shopid = $getshopdata['isid'];
+    $id = $_POST['id'];
+    $type = $_POST['type'];
+    $onote = $_POST['notes'];
 
-		$getorderno = mysqli_query($con, "SELECT orderno FROM orders");
-		$getordernofetch = mysqli_fetch_assoc($getorderno);
-		do {
-			$generateorderno = random_int(1000, 9999);
-		} while ($getordernofetch['orderno'] == $generateorderno);
+    //get number of items in list items
+    $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE listno=$id");
+    while($listitems = mysqli_fetch_assoc($getlistitems)){
 
-		$totrate = 0;
-		// insert into order_items
-		$getallcartitems = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid=itemmaster.itmid WHERE itemmaster.isid='$shopid' AND cuid='$globaluserid'");
-		foreach ($getallcartitems as $key => $getallcartdata) {
-			$prodid = $getallcartdata['citmid'];
-			$orderqty = $getallcartdata['cqty'];
-			$cartid = $getallcartdata['cartid'];
+        $listid = $listitems['listitem'];
+        $listitmid = $listitems['litmid'];
+        $listqty = $listitems['lqty'];
 
-			//calculate total 
-			$itmtot = $getallcartdata['iprice'] * $orderqty;
-			$totrate = $totrate + $itmtot;
+        //calculate total 
+		$itmtot = $listitems['iprice'] * $listqty;
+		$totrate = $totrate + $itmtot;
 
-			$sql = "INSERT INTO order_items (orderno,oitmid,oqty) VALUES ('$generateorderno','$prodid','$orderqty')";
-			$result = mysqli_query($con, $sql);
+        $inserttoorder = mysqli_query($con, "INSERT INTO order_items (orderno,oitmid,oqty) VALUES ('$id','$listitmid','$listqty')");
 
-			if ($result) {
-				$deleteallcartitems = mysqli_query($con, "DELETE FROM user_cart WHERE cartid='$cartid' AND cuid='$globaluserid'");
-			}
-		}
-		
-		$getitemswithsameshop = mysqli_query($con, "SELECT itemmaster.isid FROM user_cart JOIN itemmaster ON user_cart.citmid=itemmaster.itmid WHERE cuid='$globaluserid'");
-		
-		// insert into orders
-		$insertintoorder = mysqli_query($con, "INSERT INTO orders (orderno,ouid,osid,oaddrid,onote,otimestamp,ototalamt) VALUES ('$generateorderno','$globaluserid','$shopid','$addrid','$notes','$date','$totrate')");
-	}
+        if ($inserttoorder) {
+            $deletelistitem = mysqli_query($con, "DELETE FROM user_listitems WHERE listitem='$listid'");
+        }
+
+    }
+
+    //fetch list info
+    $getlistinfo = mysqli_query($con, "SELECT * FROM user_list WHERE listno=$id");
+    $listinfo = mysqli_fetch_assoc($getlistinfo);
+
+    $shopid = $listinfo['lsid'];
+
+    //get default address
+    if($type == 'online'){
+        $getaddrinfo = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
+        $addrinfo = mysqli_fetch_assoc($getaddrinfo);
+        $addrid = $addrinfo['uaddrid'];
+    } else if($type == 'offline') {
+        $addrid = 0;
+    }
+
+    $order = mysqli_query($con, "INSERT INTO orders (orderno,ouid,osid,otype,oaddrid,onote,otimestamp,ototalamt) VALUES ('$id','$globaluserid','$shopid','$type','$addrid','$onote','$date','$totrate')");
+
+    if($order){
+        $deletelist = mysqli_query($con, "DELETE FROM user_list WHERE listno='$id'");
+        echo "Success"; 
+    }
+
 }
+
 ?>
