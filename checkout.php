@@ -29,20 +29,22 @@ if($method=="offline"){
     }
 }
 
+if ($method == "online") {
+	$getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
+	//check if user has default address or not
+	if (mysqli_num_rows($getaddresssall) <= 0) {
+		echo '<script>alert("Please Select Default Address Before Checkout")</script>';
+		echo "<script>window.location.href='view-address.php';</script>";
+	}
 
-$getaddresssall = mysqli_query($con, "SELECT * FROM user_address WHERE adefault=1 AND auid=$globaluserid");
-//check if user has default address or not
-if (mysqli_num_rows($getaddresssall) <= 0) {
-	echo '<script>alert("Please Select Default Address Before Checkout")</script>';
-	echo "<script>window.location.href='view-address.php';</script>";
+	$getaddresss = mysqli_fetch_assoc($getaddresssall);
+	//$getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
+	$getcartitem = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+	if (mysqli_num_rows($getcartitem) <= 0) {
+		echo "<script>window.location.href='list.php'; </script>";
+	}
 }
 
-$getaddresss = mysqli_fetch_assoc($getaddresssall);
-//$getcartitem = mysqli_query($con, "SELECT * FROM user_cart JOIN itemmaster ON user_cart.citmid = itemmaster.itmid WHERE user_cart.cuid = '$globaluserid'");
-$getcartitem = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-if (mysqli_num_rows($getcartitem) <= 0) {
-	echo "<script>window.location.href='list.php'; </script>";
-}
 $subtot = 0;
 $shipping = 100;
 $total = 0;
@@ -52,46 +54,6 @@ $total = 0;
 
 <head>
 	<?php include 'lander-pages/csslink.php'; ?>
-</head>
-
-<body>
-	<script src="lander_plugins/js/toast.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('.placeOrder').click(function() {
-				var options = {
-					style: {
-						main: {
-							background: "#38c21b",
-							color: "white",
-							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-							'width': '400px',
-						}
-					}
-				};
-				$(this).button('loading');
-				var getid = $(this).attr('data-id');
-				var orderNotes = document.getElementById('orderNotes').value;
-				// var totalamt = document.getElementById('newtotal').innerHTML;
-				var btn = $(this);
-				$.ajax({
-					url: 'add-order.php',
-					type: 'POST',
-					data: {
-						id: getid,
-						notes: orderNotes,
-						// totamt: totalamt
-					},
-					success: function() {
-						iqwerty.toast.Toast('Order is placed', options);
-						window.setTimeout(function() {
-							window.location.href = 'account.php';
-						}, 1000);
-					}
-				});
-			});
-		});
-	</script>
 	<style>
         .qty-input {
             /* border: 1px solid black; */
@@ -204,6 +166,50 @@ $total = 0;
             color: #dedede;
         }
     </style>
+</head>
+
+<body>
+	<script src="lander_plugins/js/toast.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.placeOrder').click(function() {
+				var options = {
+					style: {
+						main: {
+							background: "#38c21b",
+							color: "white",
+							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+							'width': '400px',
+						}
+					}
+				};
+				$(this).button('loading');
+				var getid = document.getElementById('listId').value;
+				var orderType = document.getElementById('orderType').value;
+				var orderNotes = "";
+				if(orderType=='online'){
+					orderNotes = document.getElementById('orderNotes').value;
+				}
+				var btn = $(this);
+				$.ajax({
+					url: 'add-order.php',
+					type: 'POST',
+					data: {
+						id: getid,
+						type: orderType,
+						notes: orderNotes,
+					},
+					success: function() {
+						iqwerty.toast.Toast('Order is placed', options);
+						window.setTimeout(function() {
+							window.location.href = 'account.php';
+						}, 1000);
+					}
+				});
+			});
+		});
+	</script>
+	
 	<!-- push menu-->
 	<?php include 'lander-pages/pushmenu.php'; ?>
 	<!-- end push menu-->
@@ -213,6 +219,10 @@ $total = 0;
 	<div class="wrappage">
 		<?php include 'lander-pages/header.php'; ?>
 		<!-- End Header Box -->
+		<!-- order placement info for ajax -->
+		<input type="hidden" value="<?php echo $_GET['list']; ?>" id="listId">
+		<input type="hidden" value="<?php echo $_GET['type']; ?>" id="orderType">
+		<!-- info end -->
 		<!-- Content Box -->
 		<div class="relative full-width">
 			<!-- Breadcrumb -->
@@ -230,8 +240,7 @@ $total = 0;
 			</div>
 			<!-- End Breadcrumb -->
 			<!-- Content Checkout -->
-			<?php
-			if ($method == "online") { ?>
+			<?php if ($method == "online") { ?>
 				<div class="relative container-web">
 					<div class="container">
 						<div class="row relative">

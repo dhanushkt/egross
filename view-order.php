@@ -4,6 +4,7 @@ if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
 $menuslide = false;
+
 if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
     $orderno = $_GET['orderno'];
     $orderquery = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.oitmid=itemmaster.itmid WHERE orders.orderno=$orderno");
@@ -19,131 +20,133 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-<style>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <style>
+        .card {
+            z-index: 0;
+            background-color: #ECEFF1;
+            padding-bottom: 20px;
+            margin-top: 90px;
+            margin-bottom: 90px;
+            border-radius: 10px
+        }
 
-.card {
-    z-index: 0;
-    background-color: #ECEFF1;
-    padding-bottom: 20px;
-    margin-top: 90px;
-    margin-bottom: 90px;
-    border-radius: 10px
-}
+        .top {
+            padding-top: 40px;
+            padding-left: 13% !important;
+            padding-right: 13% !important
+        }
 
-.top {
-    padding-top: 40px;
-    padding-left: 13% !important;
-    padding-right: 13% !important
-}
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            color: red;
+            padding-left: 0px;
+            margin-top: 30px
+        }
 
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    color: red;
-    padding-left: 0px;
-    margin-top: 30px
-}
+        #progressbar li {
+            list-style-type: none;
+            font-size: 13px;
+            width: 25%;
+            float: left;
+            position: relative;
+            font-weight: 400
+        }
 
-#progressbar li {
-    list-style-type: none;
-    font-size: 13px;
-    width: 25%;
-    float: left;
-    position: relative;
-    font-weight: 400
-}
+        #progressbar .step0:before {
+            font-family: FontAwesome;
+            content: "\f10c";
+            color: #fff
+        }
 
-#progressbar .step0:before {
-    font-family: FontAwesome;
-    content: "\f10c";
-    color: #fff
-}
+        #progressbar li:before {
+            width: 40px;
+            height: 40px;
+            line-height: 45px;
+            display: block;
+            font-size: 20px;
+            background: #C5CAE9;
+            border-radius: 50%;
+            margin: auto;
+            padding: 0px
+        }
 
-#progressbar li:before {
-    width: 40px;
-    height: 40px;
-    line-height: 45px;
-    display: block;
-    font-size: 20px;
-    background: #C5CAE9;
-    border-radius: 50%;
-    margin: auto;
-    padding: 0px
-}
+        #progressbar li:after {
+            content: '';
+            width: 100%;
+            height: 12px;
+            background: #C5CAE9;
+            position: absolute;
+            left: 0;
+            top: 16px;
+            z-index: -1
+        }
 
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 12px;
-    background: #C5CAE9;
-    position: absolute;
-    left: 0;
-    top: 16px;
-    z-index: -1
-}
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            left: -50%
+        }
 
-#progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    position: absolute;
-    left: -50%
-}
+        #progressbar li:nth-child(2):after,
+        #progressbar li:nth-child(3):after {
+            left: -50%
+        }
 
-#progressbar li:nth-child(2):after,
-#progressbar li:nth-child(3):after {
-    left: -50%
-}
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            position: absolute;
+            left: 50%
+        }
 
-#progressbar li:first-child:after {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    position: absolute;
-    left: 50%
-}
+        #progressbar li:last-child:after {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px
+        }
 
-#progressbar li:last-child:after {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px
-}
+        #progressbar li:first-child:after {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px
+        }
 
-#progressbar li:first-child:after {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px
-}
+        #progressbar li.active:before,
+        #progressbar li.active:after {
+            background: #651FFF
+        }
 
-#progressbar li.active:before,
-#progressbar li.active:after {
-    background: #651FFF
-}
+        #progressbar li.active:before {
+            font-family: FontAwesome;
+            content: "\f00c"
+        }
 
-#progressbar li.active:before {
-    font-family: FontAwesome;
-    content: "\f00c"
-}
+        .icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 25px
+        }
 
-.icon {
-    width: 50px;
-    height: 50px;
-    margin-right: 25px
-}
+        .icon-content {
+            padding-bottom: 40px
+        }
 
-.icon-content {
-    padding-bottom: 40px
-}
+        @media screen and (max-width: 902px) {
+            .icon-content {
+                width: 28%;
+                padding-left: 15px;
+            }
 
-@media screen and (max-width: 902px) {
-    .icon-content {
-        width: 28%;
-        padding-left: 15px;
-    }
-    .none{
-        font-size:12px;
-    }
-}</style>                                
-<?php include 'lander-pages/csslink.php'; ?>
+            .none {
+                font-size: 12px;
+            }
+        }
+    </style>
+    <?php include 'lander-pages/csslink.php'; ?>
     <style>
         table {
             border-collapse: collapse;
@@ -200,7 +203,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .16);
             border-style: solid;
         }
-</style>
+    </style>
 </head>
 
 <body>
@@ -258,141 +261,122 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                                 Continue shopping</a>
                         </div>
                     </div>
-            </div>
-            <div class="card">
-            
-            <div class="d-flex flex-column text-sm-left" style="margin-left:20px; margin-top:20px;">
-            <?php
-            if($orderinfo['ostatus']>=4)
-            {?>
-            <div>
+                </div>
+                <div class="card">
 
-            </div>
-            <?php
-             }
-            else
-            {?>
-            <h5 class="font-weight-bold">Track your order:<a href="#"><span class="text-primary font-weight-bold"style="margin-right:10px";>#<?php echo $orderinfo['orderno'];?></span></h5></a>
-            <div class="d-flex flex-column text-sm-right" style="margin-right:10px;margin-right:10px;">
-            <p class="mb-0"><b>Address :</b><span><?php echo $orderinfo['addrline1'];
-                                                            echo "<br>";
-                                                            echo $orderinfo['addrline2'];
-                                                            echo "<br>";
-                                                            echo $orderinfo['acity'];
-                                                            echo ",";
-                                                            echo $orderinfo['apin'];
-                                                            "</b>" ?></span>
-                </p>    
-                <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp'];?></p>
-            </div>
-            <?php
-            }?>
-            </div>
-        
-        <div class="row justify-content-between px-3 top">
-            
-            
-        </div> <!-- Add class 'active' to progress -->
-        <div class="row d-flex justify-content-center">
-            <div class="col-12">
-            <?php
-                    if($orderinfo['ostatus']>=4)
-                    {?>
-                    
-<style>
-.center {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  text-align: center;
-}
-</style>
-                    <div class="center">
-                    <i class="fa fa-close" style="font-size:50px;color:red"></i>    
-                    <h3>YOUR ORDER IS CANCELLED</h3>
-                    <h5>Reason:<?php echo $orderinfo['oreason'];?>
+                    <div class="d-flex flex-column text-sm-left" style="margin-left:20px; margin-top:20px;">
+                        <?php
+                        if ($orderinfo['ostatus'] >= 4) { ?>
+                            <div>
+
+                            </div>
+                        <?php
+                        } else { ?>
+                            <h5 class="font-weight-bold">Track your order:<a href="#"><span class="text-primary font-weight-bold" style="margin-right:10px" ;>#<?php echo $orderinfo['orderno']; ?></span></h5></a>
+                            <div class="d-flex flex-column text-sm-right" style="margin-right:10px;margin-right:10px;">
+                                <p class="mb-0"><b>Address :</b><span><?php echo $orderinfo['addrline1'];
+                                                                        echo "<br>";
+                                                                        echo $orderinfo['addrline2'];
+                                                                        echo "<br>";
+                                                                        echo $orderinfo['acity'];
+                                                                        echo ",";
+                                                                        echo $orderinfo['apin'];
+                                                                        "</b>" ?></span>
+                                </p>
+                                <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp']; ?></p>
+                            </div>
+                        <?php
+                        } ?>
                     </div>
-                    <?php }else{?>
-                <ul id="progressbar" class="text-center">
-                <?php
-                    if($orderinfo['ostatus']>=0)
-                    {?>    
-                    <li class="active step0"></li>
-                    <?php }
-                    else
-                    {?>
-                    <li class="step0"></li>  
-                    <?php }
-                    ?>
-                    <?php
-                    if($orderinfo['ostatus']>=1)
-                    {?>    
-                    <li class="active step0"></li>
-                    <?php }
-                    else
-                    {?>
-                    <li class="step0"></li>  
-                    <?php }
-                    ?>
-                    <?php
-                    if($orderinfo['ostatus']>=2)
-                    {?>    
-                    <li class="active step0"></li>
-                    <?php }
-                    else
-                    {?>
-                    <li class="step0"></li>  
-                    <?php }
-                    ?>
-                    <?php
-                    if($orderinfo['ostatus']>=3)
-                    {?>    
-                    <li class="active step0"></li>
-                    <?php }
-                    else
-                    {?>
-                    <li class="step0"></li>  
-                    <?php }
-                    ?>
-                </ul>
-                <?php } ?>
-            </div>
-        </div>
-        <div class="row justify-content-between top">
-        <?php
-        if($orderinfo['ostatus']>=4)
-        {?>
-           <div> </div>
-        <?php
-        }
-        else
-        {?>
-        <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
-            <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Placed </p>
+
+                    <div class="row justify-content-between px-3 top">
+
+
+                    </div> <!-- Add class 'active' to progress -->
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <?php
+                            if ($orderinfo['ostatus'] >= 4) { ?>
+
+                                <style>
+                                    .center {
+                                        margin: auto;
+                                        width: 50%;
+                                        padding: 10px;
+                                        text-align: center;
+                                    }
+                                </style>
+                                <div class="center">
+                                    <i class="fa fa-close" style="font-size:50px;color:red"></i>
+                                    <h3>YOUR ORDER IS CANCELLED</h3>
+                                    <h5>Reason:<?php echo $orderinfo['oreason']; ?>
+                                </div>
+                            <?php } else { ?>
+                                <ul id="progressbar" class="text-center">
+                                    <?php
+                                    if ($orderinfo['ostatus'] >= 0) { ?>
+                                        <li class="active step0"></li>
+                                    <?php } else { ?>
+                                        <li class="step0"></li>
+                                    <?php }
+                                    ?>
+                                    <?php
+                                    if ($orderinfo['ostatus'] >= 1) { ?>
+                                        <li class="active step0"></li>
+                                    <?php } else { ?>
+                                        <li class="step0"></li>
+                                    <?php }
+                                    ?>
+                                    <?php
+                                    if ($orderinfo['ostatus'] >= 2) { ?>
+                                        <li class="active step0"></li>
+                                    <?php } else { ?>
+                                        <li class="step0"></li>
+                                    <?php }
+                                    ?>
+                                    <?php
+                                    if ($orderinfo['ostatus'] >= 3) { ?>
+                                        <li class="active step0"></li>
+                                    <?php } else { ?>
+                                        <li class="step0"></li>
+                                    <?php }
+                                    ?>
+                                </ul>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between top">
+                        <?php
+                        if ($orderinfo['ostatus'] >= 4) { ?>
+                            <div> </div>
+                        <?php
+                        } else { ?>
+                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold none">Order<br>Placed </p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold none">Order<br>Confirmed </p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold none">Order<br>Shipping </p>
+                                </div>
+                            </div>
+                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                                <div class="d-flex flex-column">
+                                    <p class="font-weight-bold none">Order<br>Delivered </p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+
                 </div>
             </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Confirmed </p>
-                </div>
-            </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Shipping </p>
-                </div>
-            </div>
-            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
-                <div class="d-flex flex-column">
-                    <p class="font-weight-bold none">Order<br>Delivered </p>
-                </div>
-            </div>
-            <?php }?>      
-        </div>
-                
-        
-    </div>
-    </div>
             <!-- End Content Wishlist -->
             <!-- Support -->
             <div class=" support-box full-width bg-red support_box_v2">
