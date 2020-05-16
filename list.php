@@ -49,6 +49,86 @@ $subtot = 0;
 <head>
     <?php include 'lander-pages/csslink.php'; ?>
     <style>
+        .box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button11 {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button11:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup11 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 60%;
+  position: relative;
+}
+
+.popup11 h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup11 .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup11 .close:hover {
+  color: #06D85F;
+}
+.popup11 .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup11{
+    width: 70%;
+  }
+}
         .qty-input {
             /* border: 1px solid black; */
             height: 35px;
@@ -363,6 +443,7 @@ $subtot = 0;
             </div>
             <!-- End Breadcrumb -->
             <!-- Content Shoping Cart -->
+            <form class="form">
             <div class="relative container-web">
                 <div class="container">
                     <div class="row relative">
@@ -406,13 +487,40 @@ $subtot = 0;
                                         //calculate subtotal
                                         $subtot = $subtot + ($getallitems['iprice'] * $getallitems['lqty']);
                                         ?>
+                                <div id="popup11" class="overlay">     
+                                <div class="popup11">Egross
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                    <th>Store</th>
+                                    <th>Item Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                            <tbody>
+                            <tr>
+                            <td><?php echo $storename; ?></td>
+                            <td><?php echo $getallitems['iname']; ?></td>
+                            <td><?php echo $getallitems['lqty']; ?></td>
+                            <td><?php echo $getallitems['iprice']; ?></td>   
+                            </tr>
+                            </tbody>
+                            </table>
+                                </div>
+                                </div>
+                                </div>
                                     <?php } ?>
 
                                     <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                        <a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
-
-                                        <button class="mycartButton">Update List</button>
+                                    <div id="editor"></div>
+                                    </form>
+                                    <a class="button11 mycartButton" href="#popup11"> Export PDF</a>      
+                                    <input type=button class="mycartButton clipboard" value="Share"></input>
                                     </aside>
+                                    <center><span></span></center>
                                 </div>
                                 <!-- </form> -->
                                 <!-- End Content Shoping Cart -->
@@ -553,10 +661,8 @@ $subtot = 0;
                                         </div>
                                     <?php } ?>
 
-                                    <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                        <a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
-
-                                        <button onclick="location.reload()" class="mycartButton">Update List</button>
+                                    <aside style="padding-left:390px; text-align:center;"class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
+                                    <a href="index.php" class="clear-margin animate-default">Continue Shopping</a>
                                     </aside>
                                 </div>
 
@@ -574,6 +680,7 @@ $subtot = 0;
                     </div>
                 </div>
             </div>
+            
             <!-- End Content Shoping Cart -->
             <!-- Support -->
             <div class=" support-box full-width bg-red support_box_v2">
@@ -614,4 +721,26 @@ $subtot = 0;
 
 </body>
 
+<script>
+$(document).ready(function() {
+    var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+} );
+//copy link  
+var $temp = $("<input>");
+var $url = $(location).attr('href');
+
+$('.clipboard').on('click', function() {
+  $("body").append($temp);
+  $temp.val($url).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $("span").text("URL copied!");
+})
+</script>  
 </html>
