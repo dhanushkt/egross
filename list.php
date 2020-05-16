@@ -123,10 +123,10 @@ $subtot = 0;
 
 @media screen and (max-width: 700px){
   .box{
-    width: 70%;
+    width: 100%;
   }
   .popup11{
-    width: 70%;
+    width: 100%;
   }
 }
         .qty-input {
