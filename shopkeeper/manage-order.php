@@ -312,7 +312,7 @@ if (isset($_POST['updateorder'])) {
 
                                             <?php if ($orderinfo['ostatus'] >= '1' && $orderinfo['ostatus'] < '4') { ?>
                                                 <form method="post">
-                                                    <!-- check condition here -->
+                                                    <?php if($orderinfo['otype']=='offline') {?><!-- check condition here -->
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-sm-5 col-form-label text-left">Order Status</label>
                                                         <div class="col-sm-12">
@@ -326,21 +326,21 @@ if (isset($_POST['updateorder'])) {
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <!-- close condition here -->
+                                                    <?php } ?><!-- close condition here -->
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-sm-5 col-form-label text-left">Update Order Status Message</label>
                                                         <div class="col-sm-12">
                                                             <input name="nmsg" class="form-control" type="text" value="<?php echo $orderinfo['oreason']; ?>">
                                                         </div>
                                                     </div>
-                                                    <!-- check cnodition for online here -->
+                                                    <?php if($orderinfo['otype']=='online') {?><!-- check cnodition for online here -->
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-sm-5 col-form-label text-left">Tracking Link</label>
                                                         <div class="col-sm-12">
                                                             <input class="form-control" type="text" value="<?php echo ($orderinfo['otrackingid'] != '0' ? $orderinfo['otrackingid'] : ""); ?>" name="ntlink">
                                                         </div>
                                                     </div>
-                                                    <!-- end it here -->
+                                                    <?php } ?><!-- end it here -->
                                                 <?php } ?>
                                         </div>
                                     </div>
