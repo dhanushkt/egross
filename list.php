@@ -292,6 +292,7 @@ $subtot = 0;
             font-weight: bold;
             text-decoration: none;
             color: #000;
+            
         }
 
         .popup .close:hover {
@@ -305,6 +306,9 @@ $subtot = 0;
         @media screen and (max-width: 700px) {
             .box {
                 width: 70%;
+            }
+            .mobile{
+                display: none;
             }
 
             .popup {
@@ -636,7 +640,7 @@ $subtot = 0;
                                         <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
 
-                                            <div class="col-md-6 product-in-cart-col-2">
+                                            <div class=" mobile col-md-6 product-in-cart-col-2">
                                                 <p class="title-hover-black">
                                                     <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
                                                     <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
@@ -644,24 +648,40 @@ $subtot = 0;
                                                     </a>
                                                 </p>
                                             </div>
-
-                                            <div  class="col-md-3 product-in-cart-col-2">
+                                            
+                                            <div class="mobile col-md-3 product-in-cart-col-2">
                                                 <p>Items in list: <?php echo $itemcount; ?> </p>
                                             </div>
+                                            
+                                            
 
-                                            <div class="col-md-3" style="text-align: right; line-height: 3;">
-
+                                            <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
                                                 <input type="hidden" value="" name="listno">
-
                                                 <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
-
                                                 <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
                                             </div>
+                                            <!--Mobile-->
+                                            <div class="col-md-6" style="padding-top: 10px;">
+                                                  <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
+                                                    <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
+                                                        <?php echo $getcartitem['sname']; ?>
+                                                    </a></p>
+                                                    <hr>
+                                            <p style="text-align: center;">Items in list: <?php echo $itemcount; ?> </p>
+                                            <p style="text-align: center;"class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
+                                            </div>
+                                            <div>
+                                                <input type="hidden" value="" name="listno">
+                                                <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
+                                                <i class="fa fa-trash" style="font-size: 15px"></i>
+                                                </button>
+                                            </div>
+                                            <!--End Mobile-->
                                         </div>
                                     <?php } ?>
 
                                     <aside style="text-align:left;"class="justify-content top-margin-default bottom-margin-default">
-                                    <a href="index.php" class="clear-margin mycartButton animate-default">Continue Shopping</a>
+                                    <a href="index.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Continue Shopping</a>
                                     </aside>
                                 </div>
 
