@@ -29,7 +29,7 @@ if (isset($_POST['cstatus'])) {
     }
 }
 
-if(isset($_POST['updateorder'])){
+if (isset($_POST['updateorder'])) {
     $nstatus = $_POST['nstate'];
     $nmsg = $_POST['nmsg'];
     $ntlink = (empty($_POST['ntlink']) ? "0" : $_POST['ntlink']);
@@ -309,42 +309,46 @@ if(isset($_POST['updateorder'])){
                                                 <h4 class="mt-0 header-title">This Order is <span style="color: #dc291b">Canceled</span></h4>
                                                 <p>Reason: <?php echo $orderinfo['oreason']; ?></p>
                                             <?php } ?>
-                                            
+
                                             <?php if ($orderinfo['ostatus'] >= '1' && $orderinfo['ostatus'] < '4') { ?>
                                                 <form method="post">
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-5 col-form-label text-left">Order Status</label>
-                                                <div class="col-sm-12">
-                                                    <select name="nstate" class="form-control form-control-lg mb-1">
-                                                        <?php if($orderinfo['ostatus']=='1'){ ?>
-                                                        <option selected hidden disabled>1. Confermed</option>
-                                                        <?php } else { ?>
-                                                        <option <?php if($orderinfo['ostatus']=='2') echo "selected"; ?> value="2">2. Shipped</option>
-                                                        <option <?php if($orderinfo['ostatus']=='3') echo "selected"; ?> value="3">3. Deliverd</option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-5 col-form-label text-left">Update Order Status Message</label>
-                                                <div class="col-sm-12">
-                                                    <input name="nmsg" class="form-control" type="text" value="<?php echo $orderinfo['oreason']; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-5 col-form-label text-left">Tracking Link</label>
-                                                <div class="col-sm-12">
-                                                    <input class="form-control" type="text" value="<?php echo ($orderinfo['otrackingid'] != '0' ? $orderinfo['otrackingid'] : ""); ?>" name="ntlink">
-                                                </div>
-                                            </div>
-                                            <?php } ?>
+                                                    <!-- check condition here -->
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-sm-5 col-form-label text-left">Order Status</label>
+                                                        <div class="col-sm-12">
+                                                            <select name="nstate" class="form-control form-control-lg mb-1">
+
+                                                                <option <?php if ($orderinfo['ostatus'] == '1') echo "selected"; ?> value="1"> 1. Confirmed</option>
+
+                                                                <option <?php if ($orderinfo['ostatus'] == '2') echo "selected"; ?> value="2">2. Shipped</option>
+                                                                <option <?php if ($orderinfo['ostatus'] == '3') echo "selected"; ?> value="3">3. Deliverd</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- close condition here -->
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-sm-5 col-form-label text-left">Update Order Status Message</label>
+                                                        <div class="col-sm-12">
+                                                            <input name="nmsg" class="form-control" type="text" value="<?php echo $orderinfo['oreason']; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <!-- check cnodition for online here -->
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-sm-5 col-form-label text-left">Tracking Link</label>
+                                                        <div class="col-sm-12">
+                                                            <input class="form-control" type="text" value="<?php echo ($orderinfo['otrackingid'] != '0' ? $orderinfo['otrackingid'] : ""); ?>" name="ntlink">
+                                                        </div>
+                                                    </div>
+                                                    <!-- end it here -->
+                                                <?php } ?>
                                         </div>
                                     </div>
                                     <?php if ($orderinfo['ostatus'] >= '1' && $orderinfo['ostatus'] < '4') { ?>
-                                    <div class="text-center">
-                                        <button type="submit" name="updateorder" class="col-sm-3 btn btn-primary">Update</button>
-                                    </div>
-                                    </form>
+                                        <div class="text-center">
+                                            <button type="submit" name="updateorder" class="col-sm-3 btn btn-primary">Update</button>
+                                        </div>
+                                        </form>
                                     <?php } ?>
                                 </div>
                                 <!--end card-body-->
