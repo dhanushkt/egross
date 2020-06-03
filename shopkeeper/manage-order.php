@@ -5,6 +5,7 @@ if (isset($_GET['order'])) {
     $orderno = $_GET['order'];
     $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
     $orderinfo = mysqli_fetch_assoc($getorderinfo);
+    $otype=$orderinfo['otype'];
     if ($orderinfo['osid'] != $globalshopid) {
         echo "<script>window.location.href='view-order.php'; </script>";
     }
@@ -119,7 +120,10 @@ if (isset($_POST['updateorder'])) {
                             <!--end of error msg-->
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?></h4>
+                                <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?><span class="alert <?php echo $otype; ?> alert-success-shadow">                                  
+                                                                <?php echo $orderinfo['otype']; ?>
+                                                            </span></h4>
+                                    
                                     <hr>
                                     <!-- 1 -->
                                     <div class="row">
