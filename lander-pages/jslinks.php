@@ -5,7 +5,7 @@
 <script src="lander_plugins/js/owl.carousel.min.js" defer=""></script>
 <script src="lander_plugins/sync_owl_carousel.js" defer=""></script>
 <script src="lander_plugins/js/scripts.js" defer=""></script>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 <!-- script to stick nav bar on top when scrolling -->
 <script>

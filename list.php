@@ -247,15 +247,6 @@ $subtot = 0;
     <!-- for overlay -->
     <style>
         .overlay {
-            /*position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0.7, 0.7, 0.7, 0.7);
-  visibility: hidden;
-  opacity: 0;
-  */
             opacity: 0.8;
             background-color: rgba(0.7, 0.7, 0.7, 0.7);
             position: fixed;
@@ -617,9 +608,9 @@ $subtot = 0;
                                         }
                                     </script>
                                     <!--popup-->
-                                    <a href="#popup1"><button onclick="disableScroll()" class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing">Proceed to Checkout</button>
-                                    </a>
-                                </div>
+                                    <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="#popup1">
+                                    Proceed to Checkout</a>
+                                    </div>
                                 <!-- End Content Right -->
                             <?php } else { ?>
                                 <!-- Content Shoping Cart -->
