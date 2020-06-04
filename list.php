@@ -69,7 +69,7 @@ $subtot = 0;
   padding: 10px;
   color: #fff;
   border: 2px solid #06D85F;
-  border-radius: 20px/50px;
+  
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease-out;
@@ -517,7 +517,7 @@ $subtot = 0;
                                 </div>
                                     <?php } ?>
 
-                                    <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
+                                    <aside class="justify-content top-margin-default bottom-margin-default">
                                     <div id="editor"></div>
                                     </form>
                                     <a class="button11 mycartButton" href="#popup11"> Export PDF</a>      
