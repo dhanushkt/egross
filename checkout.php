@@ -477,7 +477,7 @@ $total = 0;
 								<p>Subtotal</p>
 								<p class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
 							</div>
-							<button class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-5-default">Place Offline Order</button>
+							<button class="btn btn-primary btn-lg btn-proceed-checkout full-width top-margin-5-default placeOrder">Place Offline Order</button>
 							<?php if (false) { ?>
 								<div class="relative border top-margin-15-default bottom-padding-15-default no-border-t no-border-r no-border-l">
 									<p class="bottom-margin-15-default">Shipping</p>
