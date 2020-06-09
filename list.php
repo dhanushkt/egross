@@ -518,19 +518,10 @@ $subtot = 0;
                             <?php } ?>
                             </tbody>
                             </table>
-<<<<<<< HEAD
                             </div>
                         </div>
                     </div>
                         <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-=======
-                                </div>
-                                </div>
-                                </div>
-                                    <?php } ?>
-
-                                    <aside class="justify-content top-margin-default bottom-margin-default">
->>>>>>> 175d4daec6c32d1ace97c6ec9b083312acd087e4
                                     <div id="editor"></div>
                                     </form>
                                     <a class="button11 mycartButton" href="#popup11"> Export PDF</a>      
