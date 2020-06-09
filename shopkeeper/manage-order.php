@@ -5,6 +5,7 @@ if (isset($_GET['order'])) {
     $orderno = $_GET['order'];
     $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
     $orderinfo = mysqli_fetch_assoc($getorderinfo);
+    $otype = $orderinfo['otype'];
     if ($orderinfo['osid'] != $globalshopid) {
         echo "<script>window.location.href='view-order.php'; </script>";
     }
@@ -119,7 +120,15 @@ if (isset($_POST['updateorder'])) {
                             <!--end of error msg-->
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?></h4>
+                                <?php if($otype=='offline'){ ?>
+                                <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-warning alert-success-shadow">
+                                            <?php echo $orderinfo['otype']; ?>
+                                        </span></h4>
+                            <?php }else{ ?>
+                                <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-success alert-success-shadow">
+                                            <?php echo $orderinfo['otype']; ?>
+                                        </span></h4>
+                            <?php } ?>
                                     <hr>
                                     <!-- 1 -->
                                     <div class="row">
@@ -312,35 +321,39 @@ if (isset($_POST['updateorder'])) {
 
                                             <?php if ($orderinfo['ostatus'] >= '1' && $orderinfo['ostatus'] < '4') { ?>
                                                 <form method="post">
-                                                    <?php if($orderinfo['otype']=='online') {?><!-- check condition here -->
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-sm-5 col-form-label text-left">Order Status</label>
-                                                        <div class="col-sm-12">
-                                                            <select name="nstate" class="form-control form-control-lg mb-1">
+                                                    <?php if ($orderinfo['otype'] == 'online') { ?>
+                                                        <!-- check condition here -->
+                                                        <div class="form-group row">
+                                                            <label for="example-text-input" class="col-sm-5 col-form-label text-left">Order Status</label>
+                                                            <div class="col-sm-12">
+                                                                <select name="nstate" class="form-control form-control-lg mb-1">
 
-                                                                <option <?php if ($orderinfo['ostatus'] == '1') echo "selected"; ?> value="1"> 1. Confirmed</option>
+                                                                    <option <?php if ($orderinfo['ostatus'] == '1') echo "selected"; ?> value="1"> 1. Confirmed</option>
 
-                                                                <option <?php if ($orderinfo['ostatus'] == '2') echo "selected"; ?> value="2">2. Shipped</option>
-                                                                <option <?php if ($orderinfo['ostatus'] == '3') echo "selected"; ?> value="3">3. Deliverd</option>
+                                                                    <option <?php if ($orderinfo['ostatus'] == '2') echo "selected"; ?> value="2">2. Shipped</option>
+                                                                    <option <?php if ($orderinfo['ostatus'] == '3') echo "selected"; ?> value="3">3. Deliverd</option>
 
-                                                            </select>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <?php } ?><!-- close condition here -->
+                                                    <?php } ?>
+                                                    <!-- close condition here -->
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-sm-5 col-form-label text-left">Update Order Status Message</label>
                                                         <div class="col-sm-12">
                                                             <input name="nmsg" class="form-control" type="text" value="<?php echo $orderinfo['oreason']; ?>">
                                                         </div>
                                                     </div>
-                                                    <?php if($orderinfo['otype']=='online') {?><!-- check cnodition for online here -->
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-sm-5 col-form-label text-left">Tracking Link</label>
-                                                        <div class="col-sm-12">
-                                                            <input class="form-control" type="text" value="<?php echo ($orderinfo['otrackingid'] != '0' ? $orderinfo['otrackingid'] : ""); ?>" name="ntlink">
+                                                    <?php if ($orderinfo['otype'] == 'online') { ?>
+                                                        <!-- check cnodition for online here -->
+                                                        <div class="form-group row">
+                                                            <label for="example-text-input" class="col-sm-5 col-form-label text-left">Tracking Link</label>
+                                                            <div class="col-sm-12">
+                                                                <input class="form-control" type="text" value="<?php echo ($orderinfo['otrackingid'] != '0' ? $orderinfo['otrackingid'] : ""); ?>" name="ntlink">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <?php } ?><!-- end it here -->
+                                                    <?php } ?>
+                                                    <!-- end it here -->
                                                 <?php } ?>
                                         </div>
                                     </div>
