@@ -25,6 +25,7 @@ if ($openlist) {
     $storename = $getlistinfo['sname'];
 
     $getallitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+    $getall = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
     if (mysqli_num_rows($getallitems) == 0) {
         echo "<script>window.location.href='list.php'; </script>";
     }
@@ -490,13 +491,14 @@ $subtot = 0;
                                         //calculate subtotal
                                         $subtot = $subtot + ($getallitems['iprice'] * $getallitems['lqty']);
                                         ?>
-                                <div id="popup11" class="overlay">     
-                                <div class="popup11">Egross
-                                <a class="close" href="#">&times;</a>
-                                <div class="content">
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                              <?php } ?>
+                    <div id="popup11" class="overlay">     
+                        <div class="popup11">Egross
+                        <a class="close" href="#">&times;</a>
+                            <div class="content">
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
-                                    <tr>
+                                <tr>
                                     <th>Store</th>
                                     <th>Item Name</th>
                                     <th>Quantity</th>
@@ -504,20 +506,22 @@ $subtot = 0;
                                 </tr>
                                 </thead>
                             <tbody>
-                            <tr>
-                            <td><?php echo $storename; ?></td>
-                            <td><?php echo $getallitems['iname']; ?></td>
-                            <td><?php echo $getallitems['lqty']; ?></td>
-                            <td><?php echo $getallitems['iprice']; ?></td>   
-                            </tr>
+                            <?php 
+                            foreach ($getall as $key => $getall) {
+                            ?>
+                                <tr>
+                                 <td><?php echo $storename; ?></td>
+                                 <td><?php echo $getall['iname']; ?></td>
+                                 <td><?php echo $getall['lqty']; ?></td>
+                                 <td><?php echo $getall['iprice']; ?></td>   
+                                </tr>
+                            <?php } ?>
                             </tbody>
                             </table>
-                                </div>
-                                </div>
-                                </div>
-                                    <?php } ?>
-
-                                    <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
+                            </div>
+                        </div>
+                    </div>
+                        <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
                                     <div id="editor"></div>
                                     </form>
                                     <a class="button11 mycartButton" href="#popup11"> Export PDF</a>      
