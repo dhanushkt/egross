@@ -7,8 +7,8 @@ if (isset($_POST['submit'])) {
     if ($count == 0) {
         echo "<script>alert('Not Found!');</script>";
     } else {
-        $productid = $getprod['itmid'];
-        echo "<script>window.location.href='product.php?product=$productid'; </script>";
+        $productid = $getprod['iname'];
+        echo "<script>window.location.href='search-product.php?product=$productid'; </script>";
     }
 }
 ?>
@@ -153,7 +153,7 @@ if (isset($_POST['submit'])) {
                             line-height: 30px;
                             padding: 1px 2px;
                             padding-left: 12px;
-                            width: 360px;
+                            width: 300px;
                         }
 
                         .typeahead {
@@ -206,7 +206,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="clearfix icon-search-mobile absolute">
                         <!--Mobile View-->
-                    <a href="#" data-target="#searchmob" data-toggle="modal"><i class="data-icon data-icon-basic icon-basic-magnifier"></i></a>
+                    <a href="#" data-target="#searchmob" data-toggle="modal"><i style="color:red" class="data-icon data-icon-basic icon-basic-magnifier"></i></a>
                     </div>
                     <?php if ($userlogin) { ?>
                         <div id="carticon" class="clearfix cart-website absolute" onclick="showCartBoxDetail()">

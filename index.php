@@ -206,7 +206,7 @@ $menuslide = false;
                 }
 
                 .close {
-                    color: black;
+                    color: white;
                     transform: scale(1.2)
                 }
 
