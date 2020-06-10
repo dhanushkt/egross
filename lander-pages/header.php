@@ -10,7 +10,17 @@ $(document).ready(function loadcartnumber() {
 </script>
 
 <header class="relative full-width box-shadow" id="myHeader">
-    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="typeahead.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $('input.typeahead').typeahead({
+            name: 'typeahead',
+            remote:'search.php?key=%QUERY',
+            limit : 10
+        });
+    });
+    </script>
     <div class="clearfix container-web relative">
         <div class=" container">
             <div class="row">
@@ -70,7 +80,7 @@ $(document).ready(function loadcartnumber() {
                                     <?php } ?>
                                 </select>
                             </div>
-                            <input type="text" name="search" placeholder="Enter keyword here . . .">
+                            <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . .">
                             <button type="submit" class="animate-default button-hover-red">Search</button>
                         </form>
                     </div>
@@ -150,7 +160,7 @@ $(document).ready(function loadcartnumber() {
             </div>
         </div>
     </div>
- <!--   <script type="text/javascript">
+    <!--   <script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
         }

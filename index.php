@@ -280,14 +280,14 @@ $menuslide = false;
                                                                         <li class="relative"><a class="wishlistItem" data-id="<?php echo $hp_getitm1['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
                                                                     <?php } ?>
 
-                                                                    <li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+                                                                    <li class="relative"><a href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-info" aria-hidden="true"></i></a></li>
                                                                 <?php } else { ?>
                                                                     <li class="relative"><a href="user-login.php"><i class="icon-list icons"></i></a>
                                                                     </li>
 
                                                                     <li class="relative"><a href="user-login.php"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
 
-                                                                    <li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+                                                                    <li class="relative"><a href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-info" aria-hidden="true"></i></a></li>
                                                                 <?php } ?>
                                                             </ul>
                                                         </div>
