@@ -4,6 +4,10 @@ if(isset($_POST['submit']))
     $prod=$_POST['typeahead'];
     $query=mysqli_query($con,"SELECT * FROM itemmaster WHERE iname='$prod'");
     $getprod=mysqli_fetch_assoc($query);
+    $count=mysqli_num_rows($query);
+    if($count<0){
+        echo "<script>alert('Not Found!'); location.href='index.php';</script>";    
+    }
     $productid=$getprod['itmid'];
     echo "<script>window.location.href='product.php?product=$productid'; </script>";
 }
