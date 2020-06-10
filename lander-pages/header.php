@@ -5,11 +5,12 @@ if(isset($_POST['submit']))
     $query=mysqli_query($con,"SELECT * FROM itemmaster WHERE iname='$prod'");
     $getprod=mysqli_fetch_assoc($query);
     $count=mysqli_num_rows($query);
-    if($count<0){
-        echo "<script>alert('Not Found!'); location.href='index.php';</script>";    
-    }
+    if($count==0){
+        echo "<script>alert('Not Found!');</script>";    
+    }else{
     $productid=$getprod['itmid'];
     echo "<script>window.location.href='product.php?product=$productid'; </script>";
+    }
 }
 ?>
 <script>
@@ -154,8 +155,11 @@ if(isset($_POST['submit']))
                                     <?php } ?>
                                 </select>
                             </div>
+                            <!--Desktop View -->
                             <input type="text" name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
                             <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
+                            <!--Mobile View-->
+
                         </form>
                     </div>
                     <div class="clearfix icon-search-mobile absolute">
