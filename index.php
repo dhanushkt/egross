@@ -4,6 +4,7 @@ $menuslide = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include 'lander-pages/csslink.php'; ?>
     <style>
@@ -25,6 +26,7 @@ $menuslide = false;
     </style>
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
 <body onload="myFunction()">
 
     <div id="loading"></div>
@@ -184,7 +186,97 @@ $menuslide = false;
                     </div>
                 </div>
             <?php } ?>
-            <!-- Content Product -->
+
+            <style>
+                /*Trigger Button*/
+                .login-trigger {
+                    font-weight: bold;
+                    color: #fff;
+                    background: linear-gradient(to bottom right, #B05574, #F87E7B);
+                    padding: 15px 30px;
+                    border-radius: 30px;
+                    position: relative;
+                    top: 50%;
+                }
+
+                /*Modal*/
+                h4 {
+                    font-weight: bold;
+                    color: white;
+                }
+
+                .close {
+                    color: black;
+                    transform: scale(1.2)
+                }
+
+                .modal-content {
+                    font-weight: bold;
+                    background: black;
+                }
+
+                .form-control {
+                    margin: 1em 0;
+                }
+
+                .form-control:hover,
+                .form-control:focus {
+                    box-shadow: none;
+                    border-color: #fff;
+                }
+
+                .username,
+                .password {
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    border-bottom: 2px solid #eee;
+                    padding-left: 0;
+                    font-weight: normal;
+                    background: transparent;
+                }
+
+                .form-control::-webkit-input-placeholder {
+                    color: #eee;
+                }
+
+                .form-control:focus::-webkit-input-placeholder {
+                    font-weight: bold;
+                    color: grey;
+                }
+
+                .searchmob {
+                    padding: 6px 20px;
+                    border-radius: 20px;
+                    background: none;
+                    border: 2px solid Red;
+                    color: White;
+                    font-weight: bold;
+                    transition: all .5s;
+                    margin-top: 1em;
+                }
+
+                .searchmob:hover {
+                    background: #FAB87F;
+                    color: #fff;
+                }
+            </style>
+            <div id="searchmob" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button data-dismiss="modal" class="close">&times;</button>
+                            <h4>Search</h4>
+                            <form method="POST">
+                                <input type="text" name="typeahead" class="typeahead tt-query username form-control" autocomplete="off" spellcheck="false" placeholder="Search Prodcuts.." />
+                                <input class="btn searchmob" name="submit" type="submit" value="SEARCH" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
                 <div class="clearfix container-web">
                     <div class=" container">
@@ -258,8 +350,7 @@ $menuslide = false;
                                                                     <?php } else { ?>
 
                                                                         <li class="relative">
-                                                                            <a class="addCart" data-id="<?php echo $hp_getitm1['itmid']; ?>"
-                                                                            data-sid="<?php echo $hp_getitm1['isid']; ?>" href="javascript:void(0)">
+                                                                            <a class="addCart" data-id="<?php echo $hp_getitm1['itmid']; ?>" data-sid="<?php echo $hp_getitm1['isid']; ?>" href="javascript:void(0)">
                                                                                 <i class="icon-list icons"></i>
                                                                             </a>
                                                                         </li>

@@ -1,15 +1,14 @@
 <?php
-if(isset($_POST['submit']))
-{
-    $prod=$_POST['typeahead'];
-    $query=mysqli_query($con,"SELECT * FROM itemmaster WHERE iname='$prod'");
-    $getprod=mysqli_fetch_assoc($query);
-    $count=mysqli_num_rows($query);
-    if($count==0){
-        echo "<script>alert('Not Found!');</script>";    
-    }else{
-    $productid=$getprod['itmid'];
-    echo "<script>window.location.href='product.php?product=$productid'; </script>";
+if (isset($_POST['submit'])) {
+    $prod = $_POST['typeahead'];
+    $query = mysqli_query($con, "SELECT * FROM itemmaster WHERE iname='$prod'");
+    $getprod = mysqli_fetch_assoc($query);
+    $count = mysqli_num_rows($query);
+    if ($count == 0) {
+        echo "<script>alert('Not Found!');</script>";
+    } else {
+        $productid = $getprod['itmid'];
+        echo "<script>window.location.href='product.php?product=$productid'; </script>";
     }
 }
 ?>
@@ -102,8 +101,7 @@ if(isset($_POST['submit']))
                             background-color: #FFFFFF;
                         }
 
-                        .tt-query {
-                        }
+                        .tt-query {}
 
                         .tt-hint {
                             color: #999999;
@@ -131,7 +129,8 @@ if(isset($_POST['submit']))
                         .tt-suggestion p {
                             margin: 0;
                         }
-                        .sbtn{
+
+                        .sbtn {
                             color: red;
                             outline: none;
                             border: none;
@@ -141,8 +140,52 @@ if(isset($_POST['submit']))
                             font-size: 20px;
                         }
 
+                        @media screen and (max-width: 700px) {
+                        .mobile {
+                                display: none;
+                            }        
+                        .typeahead,
+                        .tt-query{
+                            font-size: 20px;
+                            height: 20px;
+                            outline: none;
+                            border: none;
+                            line-height: 30px;
+                            padding: 1px 2px;
+                            padding-left: 12px;
+                            width: 360px;
+                        }
+
+                        .typeahead {
+                            background-color: #FFFFFF;
+                        }
+
+                        .tt-dropdown-menu {
+                            background-color: #FFFFFF;
+                            border: none;
+                            margin-top: 0px;
+                            padding: 0px 0;
+                            width: 360%;
+                        }
+
+                        .tt-suggestion {
+                            font-size: 20px;
+                            line-height: 20px;
+                            padding: 20px 20px;
+                        }
+
+                        .tt-suggestion.tt-is-under-cursor {
+                            background-color: #0097CF;
+                            color: #FFFFFF;
+                        }
+
+                        .tt-suggestion p {
+                            margin: 0;
+                        }
+                         
+                        }
                     </style>
-                    <div class="clearfix search relative float-left">
+                    <div class="clearfix mobile search relative float-left">
                         <form method="POST" class="">
                             <div class="clearfix category-box relative">
                                 <select name="mcat">
@@ -158,12 +201,12 @@ if(isset($_POST['submit']))
                             <!--Desktop View -->
                             <input type="text" name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
                             <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
-                            <!--Mobile View-->
 
                         </form>
                     </div>
                     <div class="clearfix icon-search-mobile absolute">
-                        <i onclick="showBoxSearchMobile()" class="data-icon data-icon-basic icon-basic-magnifier"></i>
+                        <!--Mobile View-->
+                    <a href="#" data-target="#searchmob" data-toggle="modal"><i class="data-icon data-icon-basic icon-basic-magnifier"></i></a>
                     </div>
                     <?php if ($userlogin) { ?>
                         <div id="carticon" class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
