@@ -165,7 +165,7 @@ if (isset($_POST['submit'])) {
                             border: none;
                             margin-top: 0px;
                             padding: 0px 0;
-                            width: 320%;
+                            width: 320px;
                         }
 
                         .tt-suggestion {
