@@ -44,6 +44,8 @@ if(isset($_POST['login']))
     <!-- Header Box -->
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
+        <?php include 'mobile-search.php'; ?>
+        
         <!-- End Header Box -->
         <!-- Content Box -->
         <div class="relative full-width">

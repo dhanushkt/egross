@@ -218,6 +218,8 @@ $total = 0;
 	<!-- Header Box -->
 	<div class="wrappage">
 		<?php include 'lander-pages/header.php'; ?>
+		<?php include 'mobile-search.php'; ?>
+        
 		<!-- End Header Box -->
 		<!-- order placement info for ajax -->
 		<input type="hidden" value="<?php echo $_GET['list']; ?>" id="listId">
