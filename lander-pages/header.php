@@ -278,9 +278,11 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <!--   <script type="text/javascript">
+
+    <!--   < script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
         }
