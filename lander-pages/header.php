@@ -199,7 +199,7 @@ if (isset($_POST['submit'])) {
                                 </select>
                             </div>
                             <!--Desktop View -->
-                            <input type="text" name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
+                            <input type="text" required name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
                             <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
 
                         </form>
