@@ -3,9 +3,15 @@ include '../access/shopaccesscontrol.php';
 
 if (isset($_GET['order'])) {
     $orderno = $_GET['order'];
-    $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
-    $orderinfo = mysqli_fetch_assoc($getorderinfo);
+    $query = mysqli_query($con, "SELECT * from orders JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
+    $orderinfo = mysqli_fetch_assoc($query);
     $otype = $orderinfo['otype'];
+    if ($otype == "online") {
+        $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
+        $orderinfo = mysqli_fetch_assoc($getorderinfo);
+    }
+
+    //$otype = $orderinfo['otype'];
     if ($orderinfo['osid'] != $globalshopid) {
         echo "<script>window.location.href='view-order.php'; </script>";
     }
@@ -120,15 +126,15 @@ if (isset($_POST['updateorder'])) {
                             <!--end of error msg-->
                             <div class="card">
                                 <div class="card-body">
-                                <?php if($otype=='offline'){ ?>
-                                <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-warning alert-success-shadow">
-                                            <?php echo $orderinfo['otype']; ?>
-                                        </span></h4>
-                            <?php }else{ ?>
-                                <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-success alert-success-shadow">
-                                            <?php echo $orderinfo['otype']; ?>
-                                        </span></h4>
-                            <?php } ?>
+                                    <?php if ($otype == 'offline') { ?>
+                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-warning alert-success-shadow">
+                                                <?php echo $orderinfo['otype']; ?>
+                                            </span></h4>
+                                    <?php } else { ?>
+                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-success alert-success-shadow">
+                                                <?php echo $orderinfo['otype']; ?>
+                                            </span></h4>
+                                    <?php } ?>
                                     <hr>
                                     <!-- 1 -->
                                     <div class="row">
@@ -247,31 +253,33 @@ if (isset($_POST['updateorder'])) {
                                     </div>
 
                                     <!-- 5 -->
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-8  col-form-label text-left">Address</label>
-                                                <div class="col-sm-10">
-                                                    <p>
-                                                        <?php echo $orderinfo['afullname']; ?>
-                                                        <br>
-                                                        <?php echo $orderinfo['addrline1']; ?>
-                                                        <br>
-                                                        <?php echo $orderinfo['addrline2']; ?>
-                                                        <br>
-                                                        <?php echo $orderinfo['acity']; ?>, <?php echo $orderinfo['adistrict']; ?>
-                                                        <br>
-                                                        <?php echo $orderinfo['astate']; ?> - <?php echo $orderinfo['apin']; ?>
-                                                    </p>
-                                                    <p>
-                                                        Contact details: <?php echo $orderinfo['arphone']; ?>
+                                    <?php if ($otype == "online") { ?>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-sm-8  col-form-label text-left">Address</label>
+                                                    <div class="col-sm-10">
+                                                        <p>
+                                                            <?php echo $orderinfo['afullname']; ?>
+                                                            <br>
+                                                            <?php echo $orderinfo['addrline1']; ?>
+                                                            <br>
+                                                            <?php echo $orderinfo['addrline2']; ?>
+                                                            <br>
+                                                            <?php echo $orderinfo['acity']; ?>, <?php echo $orderinfo['adistrict']; ?>
+                                                            <br>
+                                                            <?php echo $orderinfo['astate']; ?> - <?php echo $orderinfo['apin']; ?>
+                                                        </p>
+                                                        <p>
+                                                            Contact details: <?php echo $orderinfo['arphone']; ?>
 
-                                                        <?php echo ($orderinfo['aaphone'] != '0' ? ', ' . $orderinfo['aaphone'] : " "); ?>
-                                                    </p>
+                                                            <?php echo ($orderinfo['aaphone'] != '0' ? ', ' . $orderinfo['aaphone'] : " "); ?>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php } ?>
                                     <?php if ($orderinfo['ostatus'] == 0) { ?>
                                         <form method="post">
                                             <div class="row">
