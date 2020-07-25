@@ -173,10 +173,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                             <div class="row">
                                                 <?php foreach ($getconfirmedorders as $key => $getconfirmedorders) { ?>
                                                     <?php
-                                                    $orderno = $getorders['orderno'];
-                                                    $getitems = mysqli_query($con, "SELECT * FROM order_items WHERE orderno='$orderno'");
-
-                                                    if ($getorders['otype'] == 'online') {
+                                                    if ($getconfirmedorders['otype'] == 'online') {
                                                         $ctype = 'bg-success';
                                                         $btntype = 'btn-success';
                                                         $atype = 'alert-outline-success';
@@ -195,7 +192,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                         <div class="card-body" style="background-color: #1b1e2b">
                                                             <!-- <h4 class="card-title mt-0">1</h4> -->
                                                             <span class="alert <?php echo $atype; ?> alert-success-shadow">
-                                                                <?php echo $getorders['otype']; ?>
+                                                                <?php echo $getconfirmedorders['otype']; ?>
                                                             </span>
                                                             <p class="card-text">
                                                                 <?php echo mysqli_num_rows($getitems); ?> Items
@@ -223,12 +220,23 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                     $orderno = $getshippedorder['orderno'];
                                                     $getitems = mysqli_query($con, "SELECT * FROM order_items WHERE orderno='$orderno'");
                                                     ?>
+                                                    <?php
+                                                    if ($getshippedorder['otype'] == 'online') {
+                                                        $ctype = 'bg-success';
+                                                        $btntype = 'btn-success';
+                                                        $atype = 'alert-outline-success';
+                                                    } else {
+                                                        $ctype = 'bg-warning';
+                                                        $btntype = 'btn-warning';
+                                                        $atype = 'alert-outline-warning';
+                                                    }
+                                                    ?>
                                                     <div class="div class=col-md-3 col-lg-3">
                                                         <h5 class="card-header <?php echo $ctype; ?> text-white mt-0 text-center">#<?php echo $orderno; ?></h5>
                                                         <div class="card-body" style="background-color: #1b1e2b">
                                                             <!-- <h4 class="card-title mt-0">1</h4> -->
                                                             <span class="alert <?php echo $atype; ?> alert-success-shadow">
-                                                                <?php echo $getorders['otype']; ?>
+                                                                <?php echo $getshippedorder['otype']; ?>
                                                             </span>
                                                             <p class="card-text">
                                                                 <?php echo mysqli_num_rows($getitems); ?> Items
