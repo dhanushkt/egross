@@ -187,9 +187,9 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                     $orderno = $getconfirmedorders['orderno'];
                                                     $getitems = mysqli_query($con, "SELECT * FROM order_items WHERE orderno='$orderno'");
                                                     ?>
-                                                    <div class="div class=col-md-3 col-lg-3">
+                                                    <div class="div class=col-md-3 col-lg-3 CardStyle">
                                                         <h5 class="card-header <?php echo $ctype; ?> text-white mt-0 text-center">#<?php echo $orderno; ?></h5>
-                                                        <div class="card-body" style="background-color: #1b1e2b">
+                                                        <div class="card-body cardColor">
                                                             <!-- <h4 class="card-title mt-0">1</h4> -->
                                                             <span class="alert <?php echo $atype; ?> alert-success-shadow">
                                                                 <?php echo $getconfirmedorders['otype']; ?>
@@ -231,9 +231,9 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                         $atype = 'alert-outline-warning';
                                                     }
                                                     ?>
-                                                    <div class="div class=col-md-3 col-lg-3">
+                                                    <div class="div class=col-md-3 col-lg-3 CardStyle">
                                                         <h5 class="card-header <?php echo $ctype; ?> text-white mt-0 text-center">#<?php echo $orderno; ?></h5>
-                                                        <div class="card-body" style="background-color: #1b1e2b">
+                                                        <div class="card-body cardColor">
                                                             <!-- <h4 class="card-title mt-0">1</h4> -->
                                                             <span class="alert <?php echo $atype; ?> alert-success-shadow">
                                                                 <?php echo $getshippedorder['otype']; ?>
@@ -264,9 +264,9 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                                     $orderno = $getcanceledorder['orderno'];
                                                     $getitems = mysqli_query($con, "SELECT * FROM order_items WHERE orderno='$orderno'");
                                                     ?>
-                                                    <div class="div class=col-md-3 col-lg-3">
+                                                    <div class="div class=col-md-3 col-lg-3 CardStyle">
                                                         <h5 class="card-header bg-info text-white mt-0 text-center" style="background: #c01627 !important;">#<?php echo $orderno; ?></h5>
-                                                        <div class="card-body" style="background-color: #1b1e2b">
+                                                        <div class="card-body cardColor">
                                                             <!-- <h4 class="card-title mt-0">1</h4> -->
                                                             <p class="card-text">
                                                                 <?php echo mysqli_num_rows($getitems); ?> Items
