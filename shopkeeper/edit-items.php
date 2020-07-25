@@ -47,13 +47,13 @@ if (isset($_POST['additem'])) {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <div class="float-right align-item-center mt-2">
+                        <!-- <div class="float-right align-item-center mt-2">
                             <a href=edit-items.php><button class="btn btn-info px-4 align-self-center report-btn"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                             </button>
-                        </div>
+                        </div> -->
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Items</a></li>
+                                <li class="breadcrumb-item"><a href="view-items.php">View Items</a></li>
                                 <li class="breadcrumb-item active">Edit Items</li>
                             </ol>
                         </div>
