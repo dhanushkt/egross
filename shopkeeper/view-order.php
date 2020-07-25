@@ -34,6 +34,20 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
         .CardStyle {
             padding-top: 20px;
         }
+
+        .onMobile {
+            display: none;
+        }
+
+        @media (max-width:800px) {
+            .onMobile {
+                display: block;
+            }
+
+            .offMobile {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -95,25 +109,32 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-pills nav-justified" role="tablist">
                                         <li class="nav-item waves-effect waves-light">
-                                            <a class="nav-link active" data-toggle="tab" href="#home-1" role="tab" aria-selected="true"> <i class="fa fa-truck" aria-hidden="true"></i> ORDERS</a>
+                                            <a class="nav-link active" data-toggle="tab" href="#home-1" role="tab" aria-selected="true"> <i class="fa fa-truck" aria-hidden="true"></i>
+                                                <span class="offMobile">ORDERS</span>
+                                            </a>
                                         </li>
                                         <li class="nav-item waves-effect waves-light">
-                                            <a class="nav-link" data-toggle="tab" href="#profile-1" role="tab" aria-selected="false"><i class="fa fa-check" aria-hidden="true"></i> CONFIRMED</a>
+                                            <a class="nav-link" data-toggle="tab" href="#profile-1" role="tab" aria-selected="false"><i class="fa fa-check" aria-hidden="true"></i>
+                                                <span class="offMobile">CONFIRMED</span>
+                                            </a>
                                         </li>
                                         <li class="nav-item waves-effect waves-light">
                                             <a class="nav-link" data-toggle="tab" href="#settings-1" role="tab" aria-selected="false"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                                DELIVERED</a>
+                                                <span class="offMobile"> DELIVERED </span>
+                                            </a>
                                         </li>
                                         <li class="nav-item waves-effect waves-light">
                                             <a class="nav-link" data-toggle="tab" href="#home-2" role="tab" aria-selected="true"><i class="fa fa-ban" aria-hidden="true"></i>
-                                                CANCELED</a>
+                                                <span class="offMobile"> CANCELED</span>
+
+                                            </a>
                                         </li>
                                     </ul>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div class="tab-pane p-3 active" id="home-1" role="tabpanel">
-                                            <!-- <p class="text-muted mb-0"> -->
+                                            <h4 class="text-uppercase onMobile text-center">orders</h4>
                                             <div class="row">
                                                 <?php foreach ($getorders as $key => $getorders) { ?>
 
@@ -169,7 +190,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
 
 
                                         <div class="tab-pane p-3" id="profile-1" role="tabpanel">
-                                            <!-- <p class="text-muted mb-0"> -->
+                                            <h4 class="text-uppercase onMobile text-center">CONFIRMED</h4>
                                             <div class="row">
                                                 <?php foreach ($getconfirmedorders as $key => $getconfirmedorders) { ?>
                                                     <?php
@@ -213,7 +234,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                             <!-- </p> -->
                                         </div>
                                         <div class="tab-pane p-3" id="settings-1" role="tabpanel">
-                                            <!-- <p class="text-muted mb-0"> -->
+                                            <h4 class="text-uppercase onMobile text-center">DELIVERED</h4>
                                             <div class="row">
                                                 <?php foreach ($getshippedorder as $key => $getshippedorder) { ?>
                                                     <?php
@@ -257,7 +278,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                                             <!-- </p> -->
                                         </div>
                                         <div class="tab-pane p-3" id="home-2" role="tabpanel">
-                                            <!-- <p class="text-muted mb-0"> -->
+                                        <h4 class="text-uppercase onMobile text-center">CANCELED</h4>
                                             <div class="row">
                                                 <?php foreach ($getcanceledorder as $key => $getcanceledorder) { ?>
                                                     <?php

@@ -1,39 +1,33 @@
 <style>
     @media (max-width:629px) {
-  a#optionalstuff {
-    display: none;
-  }
-}
-    </style>
+        a#optionalstuff {
+            display: none;
+        }
+    }
+</style>
 <div class="topbar">
     <!-- Navbar -->
     <nav class="navbar-custom">
 
         <!-- LOGO -->
         <div class="topbar-left">
-            <a href="index.html" id="optionalstuff" class="logo">
-            <span>
-            <style>
-.img {
-  height:65px;
-  width:80px;
-  font-family: "Lucida Console", Courier, monospace;
-}
-</style>
-            <center>   <img class="img" src="../admin_plugins/images/egross_logo.png" alt="logo-small" class="logo-sm">E-Gross</center> 
-            </span>
-            <span>
-            </span>
+            <a href="index.php" class="logo">
+                <span>
+                     <img class="logo-img" src="../admin_plugins/images/egross_logo.png" alt="logo-small">
+                     <h4 class="logo-txt hidden-sm hidden-mobile hidden-md">E-GROSS</h4>
+                </span>
             </a>
         </div>
 
         <ul class="list-unstyled topbar-nav float-right mb-0">
 
             <li class="dropdown">
+
                 <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <i class="mdi mdi-bell-outline nav-icon"></i>
                     <span class="badge badge-danger badge-pill noti-icon-badge">2</span>
                 </a>
+
                 <div class="dropdown-menu dropdown-menu-right dropdown-lg">
                     <!-- item-->
                     <h6 class="dropdown-item-text">
