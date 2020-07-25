@@ -4,11 +4,11 @@ include '../access/shopaccesscontrol.php';
 $t_id = $_GET['id'];
 
 //get selected item info
-$getallitem = mysqli_query($con, "SELECT * FROM itemmaster where itmid='$t_id' ");
+$getallitem = mysqli_query($con, "SELECT * FROM itemmaster JOIN scat ON itemmaster.iscid=scat.scid JOIN mcat ON scat.smcid=mcat.mcid WHERE itmid='$t_id' ");
 $itemdata = mysqli_fetch_assoc($getallitem);
 
 if (isset($_POST['additem'])) {
-    
+
     $iscid = $_POST['iscid'];
     $iname = $_POST['iname'];
     $ibrand = $_POST['ibrand'];
@@ -80,57 +80,105 @@ if (isset($_POST['additem'])) {
                 <div class="container-fluid">
                     <!--error msg-->
                     <?php if (isset($ismsg)) { ?>
-                    <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
-                        <i class="mdi mdi-check-all alert-icon"></i>
-                        <div class="alert-text">
-                            <strong>Well done!</strong><?php echo $ismsg ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <strong>Well done!</strong><?php echo $ismsg ?>
+                            </div>
                         </div>
-                    </div>
                     <?php  } ?>
                     <?php if (isset($emsg)) { ?>
-                    <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show"
-                        role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
-                        </button>
-                        <strong>Oh snap!</strong><?php echo $emsg; ?>
-                    </div>
+                        <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
+                            </button>
+                            <strong>Oh snap!</strong><?php echo $emsg; ?>
+                        </div>
                     <?php } ?>
                     <!--end of error msg-->
                     <div class="row">
                         <div class="col-lg-12">
+                            <!-- product description -->
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="mt-0 header-title">Update Item</h4>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <img src="../uploads/item/<?php echo $itemdata['iimg']; ?>" class=" mx-auto  d-block" height="400">
+
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-lg-6">
+                                            <div class="single-pro-detail">
+                                                <p class="mb-1"><?php echo $itemdata['ibrand']; ?></p>
+                                                <div class="custom-border"></div>
+
+                                                <h3 class="pro-title"><?php echo $itemdata['iname']; ?></h3>
+                                                <p class="text-muted mb-2">
+                                                    <?php echo $itemdata['mcname']; ?>
+                                                    <i class="fa fa-angle-right"></i>
+                                                    <?php echo $itemdata['scname']; ?>
+                                                </p>
+
+                                                <h2 class="pro-price">
+                                                    ₹ <?php echo $itemdata['iprice']; ?>
+                                                    <!-- <span><del>$180.00</del></span>
+                                                    <small class="text-danger font-weight-bold ml-2">50% Off</small> -->
+                                                </h2>
+
+                                                <?php if(false){ ?>
+                                                <ul class="list-inline mb-2 product-review">
+                                                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                                    <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i></li>
+                                                    <li class="list-inline-item"><i class="mdi mdi-star-half text-warning"></i></li>
+                                                    <li class="list-inline-item text-muted">4.5 (30 reviews)</li>
+                                                </ul>
+                                                <?php } ?>
+
+                                                <h6 class="text-muted font-13">Description :</h6>
+                                                <p>
+                                                    <?php echo $itemdata['idesc']; ?>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                                <!--end card-body-->
+                            </div>
+
+                            <!-- edit item -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="mt-0 header-title">Edit Item Details</h4>
                                     <hr>
                                     <form method="POST">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Item Name</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname"
-                                                value="<?php echo $itemdata['iname']; ?>">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname" value="<?php echo $itemdata['iname']; ?>">
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h6 class="input-title mt-0">Select Category</h6>
-                                                <select
-                                                    class="select2 form-control mb-3 custom-select select2-hidden-accessible" name="iscid"
-                                                    aria-hidden="true">
+                                                <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" name="iscid" aria-hidden="true">
                                                     <?php
                                                     $main = mysqli_query($con, "select * from mcat");
                                                     while ($row = mysqli_fetch_assoc($main)) {
                                                         $id = $row["mcid"];
                                                     ?>
-                                                    <optgroup label="<?php echo $row["mcname"]; ?>">
-                                                        <?php
+                                                        <optgroup label="<?php echo $row["mcname"]; ?>">
+                                                            <?php
                                                             $sub = mysqli_query($con, "select * from scat where smcid='$id'");
                                                             while ($row2 = mysqli_fetch_assoc($sub)) {
                                                             ?>
-                                                        <option <?php if($itemdata['iscid']==$row2["scid"]) echo "selected" ?> value="<?php echo $row2["scid"]; ?>">
-                                                            <?php echo $row2["scname"]; ?></option>
-                                                        <?php } ?>
-                                                    </optgroup>
+                                                                <option <?php if ($itemdata['iscid'] == $row2["scid"]) echo "selected" ?> value="<?php echo $row2["scid"]; ?>">
+                                                                    <?php echo $row2["scname"]; ?></option>
+                                                            <?php } ?>
+                                                        </optgroup>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -138,16 +186,12 @@ if (isset($_POST['additem'])) {
 
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Brand</label>
-                                            <input type="text" class="form-control" name="ibrand"
-                                                id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                placeholder="Enter Item Brand"
-                                                value="<?php echo $itemdata['ibrand']; ?>">
+                                            <input type="text" class="form-control" name="ibrand" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Brand" value="<?php echo $itemdata['ibrand']; ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlTextarea1">Description</label>
-                                            <textarea class="form-control" name="idesc" id="exampleFormControlTextarea1"
-                                                rows="3"><?php echo $itemdata['idesc']; ?></textarea>
+                                            <textarea class="form-control" name="idesc" id="exampleFormControlTextarea1" rows="3"><?php echo $itemdata['idesc']; ?></textarea>
                                         </div>
 
                                         <div class="form-group mb-0 row">
@@ -155,17 +199,14 @@ if (isset($_POST['additem'])) {
                                             <div class="col-md-9" style="margin-top:-5px">
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        
-                                                        <input value="1" type="radio" id="customRadio7" name="istatus"
-                                                        <?php if($itemdata['istatus']=='1') echo "checked"; ?> class="custom-control-input">
-                                                        <label class="custom-control-label"
-                                                            for="customRadio7">Visible</label>
+
+                                                        <input value="1" type="radio" id="customRadio7" name="istatus" <?php if ($itemdata['istatus'] == '1') echo "checked"; ?> class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadio7">Visible</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-check-inline my-1">
                                                     <div class="custom-control custom-radio">
-                                                        <input value="0" type="radio" id="customRadio8" name="istatus"
-                                                        <?php if($itemdata['istatus']=='0') echo "checked"; ?> class="custom-control-input">
+                                                        <input value="0" type="radio" id="customRadio8" name="istatus" <?php if ($itemdata['istatus'] == '0') echo "checked"; ?> class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadio8">Not
                                                             visible</label>
                                                     </div>
@@ -175,15 +216,13 @@ if (isset($_POST['additem'])) {
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Price</label>
-                                            <input type="number" class="form-control" id="exampleInputPassword1"
-                                                name="iprice" placeholder="Enter price in ₹"
-                                                value="<?php echo $itemdata['iprice']; ?>">
+                                            <input type="number" class="form-control" id="exampleInputPassword1" name="iprice" placeholder="Enter price in ₹" value="<?php echo $itemdata['iprice']; ?>">
                                         </div>
 
 
                                         <button type="submit" name="additem" class="btn btn-primary">Update</button>
                                         <a href="view-items.php">
-                                        <button type="button" class="btn btn-danger">Go Back</button>
+                                            <button type="button" class="btn btn-danger">Go Back</button>
                                         </a>
                                     </form>
                                 </div>
