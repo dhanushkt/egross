@@ -65,8 +65,7 @@ include '../access/shopaccesscontrol.php';
                                             Available all products.
                                         </p> -->
                                     <hr>
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>Item-Name</th>
@@ -81,39 +80,40 @@ include '../access/shopaccesscontrol.php';
 
 
                                         <tbody>
-                                            <?php 
-                                            
-                                            $getallitem=mysqli_query($con, "SELECT * FROM itemmaster WHERE isid='$globalshopid'");
-                                            while($itemdata=mysqli_fetch_assoc($getallitem))
-                                            {
+                                            <?php
+
+                                            $getallitem = mysqli_query($con, "SELECT * FROM itemmaster WHERE isid='$globalshopid'");
+                                            while ($itemdata = mysqli_fetch_assoc($getallitem)) {
                                             ?>
-                                            <tr>
-                                                <td>
-                                                    <img src="assets/images/products/img-2.png" alt="" height="52">
-                                                    <p class="d-inline-block align-middle mb-0">
-                                                        <a href=""
-                                                            class="d-inline-block align-middle mb-0 product-name"><?php echo $itemdata['iname']; ?></a>
-                                                        <br>
-                                                        <!-- <span class="text-muted font-13">Size-05 (Model 2019)</span>  -->
-                                                    </p>
-                                                </td>
-                                                <td><?php echo $itemdata['ibrand'];?></td>
+                                                <tr>
+                                                    <td>
+                                                        <img src="assets/images/products/img-2.png" alt="" height="52">
+                                                        <p class="d-inline-block align-middle mb-0">
+                                                            <a href="" class="d-inline-block align-middle mb-0 product-name"><?php echo $itemdata['iname']; ?></a>
+                                                            <br>
+                                                            <!-- <span class="text-muted font-13">Size-05 (Model 2019)</span>  -->
+                                                        </p>
+                                                    </td>
+                                                    <td><?php echo $itemdata['ibrand']; ?></td>
 
-                                                <td>₹<?php echo $itemdata['iprice'];?></td>
-                                                <td><span class="badge badge-soft-warning">Stock</span></td>
+                                                    <td>₹<?php echo $itemdata['iprice']; ?></td>
+                                                    <td><span class="badge badge-soft-warning">Stock</span></td>
 
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-outline-secondary btn-sm">
-                                                            <a
-                                                                href="edit-items.php?id=<?php echo $itemdata['itmid']; ?>"><i
-                                                                    class="far fa-edit"></a></i></button>
-                                                        <button type="button" class="btn btn-outline-secondary btn-sm">
-                                                            <a href="delete.php?id=<?php echo $itemdata['itmid']; ?>">
-                                                                <i class="far fa-trash-alt"></a></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm">
+                                                                <a href="edit-items.php?id=<?php echo $itemdata['itmid']; ?>">
+                                                                    <i class="far fa-edit"></i>
+                                                                </a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm">
+                                                                <a href="delete.php?id=<?php echo $itemdata['itmid']; ?>">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>

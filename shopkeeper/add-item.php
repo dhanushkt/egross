@@ -83,7 +83,7 @@ if (isset($_POST['additem'])) {
 
 <head>
     <?php include 'assets/csslink.php'; ?>
-    
+
 </head>
 
 <body>
@@ -158,27 +158,27 @@ if (isset($_POST['additem'])) {
                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Item Name" name="iname" required>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h6 class="input-title mt-0">Select Category</h6>
-                                                <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" name="isid" aria-hidden="true">
-                                                    <option selected hidden>Select Category</option>
-                                                    <?php
-                                                    $main = mysqli_query($con, "select * from mcat");
-                                                    while ($row = mysqli_fetch_assoc($main)) {
-                                                        $id = $row["mcid"];
-                                                    ?>
-                                                        <optgroup label="<?php echo $row["mcname"]; ?>">
-                                                            <?php
-                                                            $sub = mysqli_query($con, "select * from scat where smcid='$id'");
-                                                            while ($row2 = mysqli_fetch_assoc($sub)) {
-                                                            ?>
-                                                                <option value="<?php echo $row2["scid"]; ?>"><?php echo $row2["scname"]; ?></option>
-                                                            <?php } ?>
-                                                        </optgroup>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
+                                        <div class="form-group">
+                                            <!-- <div class="col-md-12"> -->
+                                            <h6 class="input-title mt-0">Select Category</h6>
+                                            <select class="select2 form-control mb-3 custom-select select2-hidden-accessible" name="isid" aria-hidden="true">
+                                                <option selected hidden>Select Category</option>
+                                                <?php
+                                                $main = mysqli_query($con, "select * from mcat");
+                                                while ($row = mysqli_fetch_assoc($main)) {
+                                                    $id = $row["mcid"];
+                                                ?>
+                                                    <optgroup label="<?php echo $row["mcname"]; ?>">
+                                                        <?php
+                                                        $sub = mysqli_query($con, "select * from scat where smcid='$id'");
+                                                        while ($row2 = mysqli_fetch_assoc($sub)) {
+                                                        ?>
+                                                            <option value="<?php echo $row2["scid"]; ?>"><?php echo $row2["scname"]; ?></option>
+                                                        <?php } ?>
+                                                    </optgroup>
+                                                <?php } ?>
+                                            </select>
+                                            <!-- </div> -->
                                         </div>
 
                                         <div class="form-group">
@@ -217,14 +217,10 @@ if (isset($_POST['additem'])) {
                                             <input type="number" class="form-control" id="exampleInputPassword1" name="iprice" placeholder="Enter price in ₹">
                                         </div>
 
-                                        <div class="row container" style="height:250px;">
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>Upload Item Image [ prefered size: 400x400, format: .png ]</label>
-                                                    <div class="custom-file mb-4">
-                                                        <input name="fileToUpload" type="file" id="input-file-now" class="dropify" />
-                                                    </div>
-                                                </div>
+                                        <div class="form-group" style="height:250px;">
+                                            <label>Upload Item Image [ prefered size: 400x400, format: .png ]</label>
+                                            <div class="custom-file mb-4">
+                                                <input name="fileToUpload" type="file" id="input-file-now" class="dropify" />
                                             </div>
                                         </div>
 

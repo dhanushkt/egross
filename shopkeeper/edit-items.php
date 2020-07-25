@@ -14,7 +14,7 @@ if (isset($_POST['additem'])) {
     $ibrand = $_POST['ibrand'];
     $idesc = $_POST['idesc'];
     $istatus = $_POST['istatus'];
-    $iimg = 2;
+    $iimg = $itemdata['iimg'];
     $iprice = $_POST['iprice'];
     $isearch = 3;
 
