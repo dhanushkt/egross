@@ -36,14 +36,16 @@ if (isset($_POST['cstatus'])) {
 }
 
 if (isset($_POST['updateorder'])) {
-    $nstatus = $_POST['nstate'];
+    $nstatus = (empty($_POST['nstate']) ? $orderinfo['ostatus'] : $_POST['nstate']);
     $nmsg = $_POST['nmsg'];
     $ntlink = (empty($_POST['ntlink']) ? "0" : $_POST['ntlink']);
 
     $updateorder = mysqli_query($con, "UPDATE orders SET ostatus='$nstatus', oreason='$nmsg', otrackingid='$ntlink' WHERE orderno='$orderno'");
     if ($updateorder) {
         $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
-        $smsg = "Updated order info";
+
+        $smsg = "Updated order info, redirected back to view orders";
+        echo "<script> window.setTimeout(function(){ window.location.href='view-order.php' }, 1000); </script>";
     } else {
         $fmsg = "Cannot update order";
     }
@@ -76,9 +78,8 @@ if (isset($_POST['updateorder'])) {
                         <h4 class="page-title mb-2"><i class="mdi mdi-monitor-dashboard mr-2"></i>Dashboard</h4>
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">App</a></li>
-                                <li class="breadcrumb-item active">Dashboard-3</li>
+                                <li class="breadcrumb-item"><a href="view-order.php">Orders</a></li>
+                                <li class="breadcrumb-item active">View Order</li>
                             </ol>
                         </div>
                     </div>
@@ -126,13 +127,17 @@ if (isset($_POST['updateorder'])) {
                             <div class="card">
                                 <div class="card-body">
                                     <?php if ($otype == 'offline') { ?>
-                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-warning alert-success-shadow">
+                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?>
+                                            <span class="text-warning pl-2">
                                                 <?php echo $orderinfo['otype']; ?>
-                                            </span></h4>
+                                            </span>
+                                        </h4>
                                     <?php } else { ?>
-                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?> <span class="alert <?php echo $otype; ?> alert-outline-success alert-success-shadow">
+                                        <h4 class="mt-0 header-title text-center">Order #<?php echo $orderno; ?>
+                                            <span class="text-success pl-2">
                                                 <?php echo $orderinfo['otype']; ?>
-                                            </span></h4>
+                                            </span>
+                                        </h4>
                                     <?php } ?>
                                     <hr>
                                     <!-- 1 -->
