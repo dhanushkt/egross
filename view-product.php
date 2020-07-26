@@ -1,16 +1,9 @@
 <?php
 include 'access/useraccesscontrol.php';
-$pagelength = 3;
 $adbanner = false;
 $wishlist = false;
 $cartlist = false;
-$allcount_query = "SELECT count(*) as allcount FROM itemmaster";
-$allcount_result = mysqli_query($con, $allcount_query);
-$allcount_fetch = mysqli_fetch_array($allcount_result);
-$allcount = $allcount_fetch['allcount'];
-
-$getalldata = mysqli_query($con, "SELECT * FROM itemmaster order by itmid asc limit 0,$pagelength");
-
+$getalldata = mysqli_query($con, "SELECT * FROM itemmaster order by itmid DESC limit 3");
 if (isset($_GET['scat'])) {
 	$scatid = $_GET['scat'];
 	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid");
@@ -360,8 +353,9 @@ if (isset($_GET['scat'])) {
 								</div>
 							</div>
 							<!-- Product Content Category -->
-							<div class="row">
+							<div class="row postList">
 								<?php
+								if($getalldata->num_rows > 0){ 
 								while ($itemdata = mysqli_fetch_assoc($getalldata)) {
 									$itmid = $itemdata['itmid'];
 									if ($userlogin) {
@@ -378,7 +372,7 @@ if (isset($_GET['scat'])) {
 											$cartlist = false;
 									}
 								?>
-									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" id="post_<?php echo $itmid; ?>">
+									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
 										<div class="image-product relative overfollow-hidden">
 											<div class="center-vertical-image">
 												<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
@@ -439,29 +433,57 @@ if (isset($_GET['scat'])) {
 								<?php } ?>
 							</div>
 							<style>
-								.load-more {
-									width: 15%;
-									margin-left: 45%;
-									background: red;
-									color: white;
-									padding: 10px 0px;
-									font-family: sans-serif;
+								.show_more_main {
+									margin: 15px 25px;
 								}
 
-								@media(max-width:480px) {
-									.load-more {
-										width: 30%;
-										margin-left: 36%;
-									}
+								.show_more {
+									background-color: #f8f8f8;
+									background-image: -webkit-linear-gradient(top, #fcfcfc 0, #f8f8f8 100%);
+									background-image: linear-gradient(top, #fcfcfc 0, #f8f8f8 100%);
+									border: 1px solid;
+									border-color: #d3d3d3;
+									color: #333;
+									font-size: 12px;
+									outline: 0;
 								}
 
-								.load-more:hover {
+								.show_more {
 									cursor: pointer;
+									display: block;
+									padding: 10px 0;
+									text-align: center;
+									font-weight: bold;
+								}
+
+								.loding {
+									background-color: #e9e9e9;
+									border: 1px solid;
+									border-color: #c6c6c6;
+									color: #333;
+									font-size: 12px;
+									display: block;
+									text-align: center;
+									padding: 10px 0;
+									outline: 0;
+									font-weight: bold;
+								}
+
+								.loding_txt {
+									background-image: url(loading.gif);
+									background-position: left;
+									background-repeat: no-repeat;
+									border: 0;
+									display: inline-block;
+									height: 16px;
+									padding-left: 20px;
 								}
 							</style>
-							<h4 class="load-more text-center">Load More</h4>
-							<input type="hidden" id="row" value="0">
-							<input type="hidden" id="all" value="<?php echo $allcount; ?>">
+							<div class="show_more_main" id="show_more_main<?php echo $itmid; ?>">
+								<span id="<?php echo $itmid; ?>" class="show_more" title="Load more posts">Show more</span>
+								<span class="loding" style="display: none;"><span class="loding_txt">Loading...</span></span>
+							</div>
+							<?php } ?>
 							<!-- <div class="row">
 								<div class="pagging relative">
 									<ul>
@@ -525,74 +547,23 @@ if (isset($_GET['scat'])) {
 		preloader.style.display = 'none';
 	};
 </script>
-<script>
-	$(document).ready(function() {
-
-		// Load more data
-		$('.load-more').click(function() {
-			var row = Number($('#row').val());
-			var allcount = Number($('#all').val());
-			row = row + 3;
-
-			if (row <= allcount) {
-				$("#row").val(row);
-
-				$.ajax({
-					url: 'loadproduct.php',
-					type: 'post',
-					data: {
-						row: row
-					},
-					beforeSend: function() {
-						$(".load-more").text("Loading...");
-					},
-					success: function(response) {
-
-						// Setting little delay while displaying new content
-						setTimeout(function() {
-							// appending posts after last post with class="post"
-							$(".post:last").after(response).show().fadeIn("slow");
-
-							var rowno = row + 3;
-
-							// checking row value is greater than allcount or not
-							if (rowno > allcount) {
-
-								// Change the text and background
-								$('.load-more').text("Hide");
-								$('.load-more').css("background", "red");
-							} else {
-								$(".load-more").text("Load more");
-							}
-						}, 2000);
-
-
-					}
-				});
-			} else {
-				$('.load-more').text("Loading...");
-
-				// Setting little delay while removing contents
-				setTimeout(function() {
-
-					// When row is greater than allcount then remove all class='post' element after 3 element
-					$('.post:nth-child(3)').nextAll('.post').remove().fadeIn("slow");
-
-					// Reset the value of row
-					$("#row").val(0);
-
-					// Change the text and background
-					$('.load-more').text("Load more");
-					$('.load-more').css("background", "red");
-
-				}, 2000);
-
-
-			}
-
-		});
-
-	});
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click','.show_more',function(){
+        var ID = $(this).attr('id');
+        $('.show_more').hide();
+        $('.loding').show();
+        $.ajax({
+            type:'POST',
+            url:'loadproduct.php',
+            data:'itmid='+ID,
+            success:function(html){
+                $('#show_more_main'+ID).remove();
+                $('.postList').append(html);
+            }
+        });
+    });
+});
 </script>
 
 
