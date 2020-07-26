@@ -29,6 +29,8 @@ if (isset($_POST['update'])) {
     $scategory = $_POST['scategory'];
     $upsetQuery = mysqli_query($con, "UPDATE shopkeeper SET sname='$sname',soname='$soname',soemail='$soemail',somobile='$somobile',saddress='$saddress',sstate='$sstate',scity='$scity',spin='$spin',scontact='$scontact',sgstno='$sgstno',scategory='$scategory' WHERE sid='$globalshopid'");
     if ($upsetQuery) {
+        $getprofile = mysqli_query($con, "SELECT * FROM shopkeeper WHERE sid='$globalshopid'");
+        $profileinfo = mysqli_fetch_assoc($getprofile);
         $upsMsg = "Setting Updated";
     } else {
         $upeMsg = "Cannot Update!!";
