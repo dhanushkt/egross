@@ -4,7 +4,36 @@ include '../access/shopaccesscontrol.php';
 //get profile details
 $getprofile = mysqli_query($con, "SELECT * FROM shopkeeper WHERE sid='$globalshopid'");
 $profileinfo = mysqli_fetch_assoc($getprofile);
-
+if (isset($_POST['change'])) {
+    $oldPass = md5($_POST['oldPass']);
+    $newPass = md5($_POST['newPass']);
+    $conPass = $_POST['conPass'];
+    if ($oldPass != $profileinfo['spassword']) {
+        $errMsg = "Old Password not Matching!!!";
+    } else {
+        $upPass = mysqli_query($con, "UPDATE shopkeeper SET spassword='$newPass' WHERE sid='$globalshopid'");
+        $upMsg = "Password Changed";
+    }
+}
+if (isset($_POST['update'])) {
+    $sname = $_POST['sname'];
+    $soname = $_POST['soname'];
+    $soemail = $_POST['soemail'];
+    $somobile = $_POST['somobile'];
+    $saddress = $_POST['saddress'];
+    $sstate = $_POST['sstate'];
+    $scity = $_POST['scity'];
+    $spin = $_POST['spin'];
+    $scontact = $_POST['scontact'];
+    $sgstno = $_POST['sname'];
+    $scategory = $_POST['scategory'];
+    $upsetQuery = mysqli_query($con, "UPDATE shopkeeper SET sname='$sname',soname='$soname',soemail='$soemail',somobile='$somobile',saddress='$saddress',sstate='$sstate',scity='$scity',spin='$spin',scontact='$scontact',sgstno='$sgstno',scategory='$scategory' WHERE sid='$globalshopid'");
+    if ($upsetQuery) {
+        $upsMsg = "Setting Updated";
+    } else {
+        $upeMsg = "Cannot Update!!";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,14 +231,31 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
 
                                         <div class="tab-pane fade" id="profile-activities">
                                             <h4 class="mt-0 header-title mb-3">Password</h4>
+                                            <?php if (isset($upMsg)) { ?>
+                                                <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                                                    <i class="mdi mdi-check-all alert-icon"></i>
+                                                    <div class="alert-text">
+                                                        <?php echo $upMsg ?>
+                                                        <!-- <a href="index.php">Click Here to login</a> -->
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+                                            <?php if (isset($errMsg)) { ?>
+                                                <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
+                                                    <i class="mdi mdi-alert-outline alert-icon"></i>
+                                                    <div class="alert-text">
+                                                        <?php echo $errMsg ?>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
                                             <form method="POST">
-                                                
+
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Old Password</label>
 
-                                                            <input type="text" class="form-control" id="Category" name="scategory" placeholder="Category">
+                                                            <input type="text" class="form-control" id="Category" name="oldPass" placeholder="Category">
 
                                                         </div>
                                                     </div>
@@ -217,23 +263,23 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="form-group">
-                                                            <label>Password</label>
+                                                            <label>New Password</label>
 
-                                                            <input required id="pass" type="password" class="form-control" name="spassword" id="password" placeholder="Enter password">
+                                                            <input required id="pass" type="password" class="form-control" name="newPass" id="password" placeholder="Enter password">
 
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="form-group">
                                                             <label>Confirm Password</label>
-                                                            <input required data-parsley-equalto="#pass" type="password" class="form-control" name="cpassword" id="password" placeholder="Enter password">
+                                                            <input required data-parsley-equalto="#pass" type="password" class="form-control" name="conPass" id="password" placeholder="Enter password">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group mb-0 row">
                                                     <div class="col-12 mt-2 text-center">
-                                                        <button style="padding-right: 30px; padding-left: 30px" name="register" class="btn btn-primary waves-effect waves-light" type="submit" style="width: 50%;"> Change Password </button>
+                                                        <button style="padding-right: 30px; padding-left: 30px" name="change" class="btn btn-primary waves-effect waves-light" type="submit" style="width: 50%;"> Change Password </button>
                                                     </div>
                                                 </div>
 
@@ -387,13 +433,30 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <h4 class="mt-0 header-title mb-3">Profile Settings</h4>
+                                                    <?php if (isset($upsMsg)) { ?>
+                                                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
+                                                            <i class="mdi mdi-check-all alert-icon"></i>
+                                                            <div class="alert-text">
+                                                                <?php echo $upsMsg ?>
+                                                                <!-- <a href="index.php">Click Here to login</a> -->
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
+                                                    <?php if (isset($upeMsg)) { ?>
+                                                        <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
+                                                            <i class="mdi mdi-alert-outline alert-icon"></i>
+                                                            <div class="alert-text">
+                                                                <?php echo $upeMsg ?>
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
                                                     <form enctype="multipart/form-data" method="POST">
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12">
                                                                 <div class="form-group">
                                                                     <label for="username">Shop name</label>
 
-                                                                    <input required type="text" class="form-control" name="sname" id="ShopName" placeholder="Enter Shop name">
+                                                                    <input required type="text" class="form-control" name="sname" value="<?php echo $profileinfo['sname']; ?>" id="ShopName" placeholder="Enter Shop name">
 
                                                                 </div>
                                                             </div>
@@ -403,7 +466,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label for="username">Ownername</label>
 
-                                                                    <input required type="text" class="form-control" name="soname" id="Ownername" placeholder="Enter Shop Ownername">
+                                                                    <input required type="text" class="form-control" value="<?php echo $profileinfo['soname']; ?>" name="soname" id="Ownername" placeholder="Enter Shop Ownername">
 
                                                                 </div>
                                                             </div>
@@ -413,7 +476,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label for="username">E-mail (used for login)</label>
 
-                                                                    <input required type="text" class="form-control" name="soemail" id="E-mail" placeholder="Enter Shop e-mail">
+                                                                    <input required type="text" class="form-control" value="<?php echo $profileinfo['soemail']; ?>" name="soemail" id="E-mail" placeholder="Enter Shop e-mail">
 
                                                                 </div>
                                                             </div>
@@ -421,7 +484,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label for="username">Mobile</label>
 
-                                                                    <input required type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Shop Mobile Number">
+                                                                    <input required type="number" class="form-control" value="<?php echo $profileinfo['somobile']; ?>" name=somobile id="Mobile" placeholder="Enter Shop Mobile Number">
 
                                                                 </div>
                                                             </div>
@@ -430,7 +493,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                             <div class="col-lg-12 col-md-12">
                                                                 <div class="form-group">
                                                                     <label for="username">Address</label>
-                                                                    <textarea required class="form-control" id="Address" name="saddress" placeholder="Enter Shop Address" rows="4" cols="50"></textarea>
+                                                                    <textarea required class="form-control" id="Address" name="saddress" placeholder="Enter Shop Address" rows="4" cols="50"><?php echo $profileinfo['saddress']; ?></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -439,7 +502,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label for="username">State</label>
 
-                                                                    <input required type="text" class="form-control" name="sstate" id="State" placeholder="Enter State">
+                                                                    <input required type="text" class="form-control" value="<?php echo $profileinfo['sstate']; ?>" name="sstate" id="State" placeholder="Enter State">
 
                                                                 </div>
                                                             </div>
@@ -447,7 +510,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label>City</label>
 
-                                                                    <input required type="text" class="form-control" name="scity" id="City" placeholder="Enter City">
+                                                                    <input required type="text" class="form-control" value="<?php echo $profileinfo['scity']; ?>" name="scity" id="City" placeholder="Enter City">
 
                                                                 </div>
                                                             </div>
@@ -455,7 +518,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label>Pincode</label>
 
-                                                                    <input required type="number" class="form-control" id="PinCode" name="spin" placeholder="Enter Pincode">
+                                                                    <input required type="number" class="form-control" value="<?php echo $profileinfo['spin']; ?>" id="PinCode" name="spin" placeholder="Enter Pincode">
 
                                                                 </div>
                                                             </div>
@@ -467,7 +530,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label>Personal Contact</label>
 
-                                                                    <input type="number" class="form-control" name="scontact" id="Contact" placeholder="Enter Owners Contact Number">
+                                                                    <input type="number" class="form-control" name="scontact" value="<?php echo $profileinfo['scontact']; ?>" id="Contact" placeholder="Enter Owners Contact Number">
 
                                                                 </div>
                                                             </div>
@@ -477,7 +540,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label>GST Number of shop</label>
 
-                                                                    <input required type="text" class="form-control" name="sgstno" placeholder="Enter shop GST Number">
+                                                                    <input required type="text" class="form-control" value="<?php echo $profileinfo['sgstno']; ?>" name="sgstno" placeholder="Enter shop GST Number">
 
                                                                 </div>
                                                             </div>
@@ -487,7 +550,7 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
                                                                 <div class="form-group">
                                                                     <label>Category</label>
 
-                                                                    <input type="text" class="form-control" id="Category" name="scategory" placeholder="Category">
+                                                                    <input type="text" class="form-control" value="<?php echo $profileinfo['scategory']; ?>" id="Category" name="scategory" placeholder="Category">
 
                                                                 </div>
                                                             </div>
