@@ -3,22 +3,24 @@
         <div class="clearfix container-web relative">
             <div class=" container">
                 <div class="row">
+                    <!-- SIGN UP FOR NEWSLETTER
                     <div class="clearfix col-md-9 col-sm-12 clear-padding col-xs-12">
                         <div class="clearfix text-subscribe text-subscribe">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                             <p>sign up for newsletter</p>
                             <p>Get updates on discount & counpons.</p>
-                        </div>
+                        </div> 
                         <div class="clearfix form-subscribe">
                             <input type="text" name="email-subscribe" placeholder="Enter your email . . .">
                             <button class="animate-default button-hover-red">subscribe</button>
-                        </div>
-                    </div>
+                        </div> 
+                    </div> -->
+                    <!-- ICONS
                     <div class="clearfix col-md-3 col-sm-12 col-xs-12 clear-padding social-box text-right">
                         <a href="#"><img src="lander-template/img/social_tw-min.png" alt="Icon Social Twiter"></a>
                         <a href="#"><img src="lander-template/img/social_fa-min.png" alt="Icon Social Facebook"></a>
                         <a href="#"><img src="lander-template/img/social_int-min.png" alt="Icon Social Instagram"></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -41,8 +43,8 @@
                     <ul class="list-footer">
                         <li><a href="#">Information</a></li>
                         <li><a href="account.php">Orders History</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Site Map</a></li>
+                        <!--<li><a href="#">Privacy Policy</a></li>-->
+                        <!--<li><a href="#">Site Map</a></li>-->
                     </ul>
                 </div>
                 <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
@@ -50,7 +52,7 @@
                     <ul class="list-footer">
                         <li><a href="#">Product Recall</a></li>
                         <li><a href="#">Gift Vouchers</a></li>
-                        <li><a href="#">Returns And Exchanges</a></li>
+                        <!--<li><a href="#">Returns And Exchanges</a></li>-->
                         <li><a href="#">Shipping Options</a></li>
                         <li><a href="#">Terms Of Use</a></li>
                     </ul>

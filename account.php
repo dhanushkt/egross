@@ -337,8 +337,11 @@ if (isset($_POST['update'])) {
             </div>
             <!-- End Content Checkout -->
             <!-- Support -->
+            
+            <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
             <div class=" support-box full-width bg-red support_box_v2">
                 <div class="container-web">
+                
                     <div class=" container">
                         <div class="row">
                             <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
@@ -362,9 +365,9 @@ if (isset($_POST['update'])) {
                                 <p>+07 (0) 7782 9137</p>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- End Content Box -->
         <!-- Footer Box -->

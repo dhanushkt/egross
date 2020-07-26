@@ -384,6 +384,7 @@ $menuslide = false;
             <!-- Support -->
             <div class=" support-box full-width clear-padding bottom-margin-default">
                 <div class="container-web clearfix">
+                <!--    FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
                     <div class=" container border top-padding-default bottom-padding-default">
                         <div class="row">
                             <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
@@ -409,6 +410,7 @@ $menuslide = false;
                         </div>
                     </div>
                 </div>
+                -->
             </div>
             <!-- End Support Box -->
         </div>

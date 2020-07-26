@@ -598,6 +598,8 @@ if ($userlogin) {
 		</div>
 		<!-- End Sider Bar -->
 		<!-- Support -->
+
+		 <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
 		<div class=" support-box full-width bg-red support_box_v2">
 			<div class="container-web">
 				<div class=" container">
@@ -625,7 +627,7 @@ if ($userlogin) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<!-- End Content Box -->
 	<!-- Footer Box -->

@@ -528,6 +528,8 @@ $total = 0;
 				<?php } ?>
 				<!-- End Content Checkout -->
 				<!-- Support -->
+
+				 <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
 				<div class=" support-box full-width bg-red support_box_v2">
 					<div class="container-web">
 						<div class=" container">
@@ -555,7 +557,8 @@ $total = 0;
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
+				
 				</div>
 				<!-- End Content Box -->
 				<!-- Footer Box -->

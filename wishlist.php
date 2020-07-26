@@ -160,6 +160,7 @@ if (isset($_POST['delwl'])) {
             </div>
             <!-- End Content Wishlist -->
             <!-- Support -->
+            <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
             <div class=" support-box full-width bg-red support_box_v2">
                 <div class="container-web">
                     <div class=" container">
@@ -187,7 +188,7 @@ if (isset($_POST['delwl'])) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- End Content Box -->
         <!-- Footer Box -->
