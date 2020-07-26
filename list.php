@@ -527,7 +527,7 @@ $subtot = 0;
                                     <div id="editor"></div>
                                     </form>
                                     <a class="button11 mycartButton" href="#popup11"> Export PDF</a>      
-                                    <input type=button class="mycartButton clipboard" value="Share"></input>
+                                    <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
                                     </aside>
                                     <center><span></span></center>
                                 </div>
