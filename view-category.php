@@ -103,6 +103,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<?php } ?>
 								</ul>
 							</div>
+							<!--   BRANDS
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold">BRANDS</p>
 								<ul class="check-box-custom clear-margin clear-margin">
@@ -162,6 +163,9 @@ $photo = mysqli_fetch_assoc($getalldata);
 									</li>
 								</ul>
 							</div>
+							-->
+
+							<!--	PRICE
 							<div class="col-md-12 col-sm-12 col-xs-12 relative border bottom-margin-default sider-bar-category">
 								<div class="relative border no-border-t no-border-l no-border-r bottom-padding-default">
 									<p class="title-siderbar bold">price</p>
@@ -289,6 +293,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 									</ul>
 								</div>
 							</div>
+							-->
 							<?php if ($adbanner) { ?>
 								<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
 									<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
@@ -320,7 +325,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
 										<p class=" float-left">Showing 1–20 of 75 results</p>
 										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
-										<a href="#" class=" float-left"><span class="icon-bar-category border ti-layout-list-thumb"></span></a>
+										<a href="#" class=" float-left"><!--<span class="icon-bar-category border ti-layout-list-thumb"></span>--></a>
 									</div>
 								</div>
 							</div>
@@ -368,7 +373,8 @@ $photo = mysqli_fetch_assoc($getalldata);
 				</div>
 			</div>
 			<!-- End Sider Bar -->
-			<!-- Support -->
+
+			<!-- Support --> <!--
 			<div class=" support-box full-width bg-red support_box_v2">
 				<div class="container-web">
 					<div class=" container">
@@ -396,7 +402,8 @@ $photo = mysqli_fetch_assoc($getalldata);
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
+
 		</div>
 		<!-- End Content Box -->
 		<!-- Footer Box -->
