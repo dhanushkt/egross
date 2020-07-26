@@ -52,7 +52,7 @@
                     <ul class="list-footer">
                         <li><a href="#">Product Recall</a></li>
                         <li><a href="#">Gift Vouchers</a></li>
-                        <li><a href="#">Returns And Exchanges</a></li>
+                        <!--<li><a href="#">Returns And Exchanges</a></li>-->
                         <li><a href="#">Shipping Options</a></li>
                         <li><a href="#">Terms Of Use</a></li>
                     </ul>
