@@ -4,12 +4,13 @@ include '../access/shopaccesscontrol.php';
 //get profile details
 $getprofile = mysqli_query($con, "SELECT * FROM shopkeeper WHERE sid='$globalshopid'");
 $profileinfo = mysqli_fetch_assoc($getprofile);
+
 if (isset($_POST['change'])) {
     $oldPass = md5($_POST['oldPass']);
     $newPass = md5($_POST['newPass']);
     $conPass = $_POST['conPass'];
     if ($oldPass != $profileinfo['spassword']) {
-        $errMsg = "Old Password not Matching!!!";
+        $errMsg = "Invalid Old Password";
     } else {
         $upPass = mysqli_query($con, "UPDATE shopkeeper SET spassword='$newPass' WHERE sid='$globalshopid'");
         $upMsg = "Password Changed";
@@ -48,7 +49,7 @@ if (isset($_POST['update'])) {
 </head>
 
 <body>
-
+    
     <!-- Top Bar Start -->
     <?php include 'assets/topbar.php'; ?>
     <!-- Top Bar End -->
@@ -90,6 +91,44 @@ if (isset($_POST['update'])) {
             <!-- Page Content-->
             <div class="page-content">
                 <div class="container-fluid">
+                    <?php if (isset($upMsg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow mb-3" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <?php echo $upMsg ?>
+                                <!-- <a href="index.php">Click Here to login</a> -->
+                            </div>
+                        </div>
+                        <script>
+                            highlight()
+                        </script>
+                    <?php } ?>
+                    <?php if (isset($errMsg)) { ?>
+                    <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow fade show mb-3" role="alert">
+                        <i class="mdi mdi-alert-outline alert-icon"></i>
+                        <div class="alert-text">
+                            <?php echo $errMsg ?>
+                        </div>
+                    </div>
+                    <?php } ?>
+
+                    <?php if (isset($upsMsg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow mb-3" role="alert">
+                            <i class="mdi mdi-check-all alert-icon"></i>
+                            <div class="alert-text">
+                                <?php echo $upsMsg ?>
+                                <!-- <a href="index.php">Click Here to login</a> -->
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <?php if (isset($upeMsg)) { ?>
+                        <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-3 fade show" role="alert">
+                            <i class="mdi mdi-alert-outline alert-icon"></i>
+                            <div class="alert-text">
+                                <?php echo $upeMsg ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -173,6 +212,7 @@ if (isset($_POST['update'])) {
                                 <div class="card-body profile-nav">
                                     <div class="nav flex-column nav-pills" id="profile-tab" aria-orientation="vertical">
                                         <a class="nav-link active" id="profile-dash-tab" data-toggle="pill" href="#profile-dash" aria-selected="true">Overview</a>
+
                                         <a class="nav-link" id="profile-activities-tab" data-toggle="pill" href="#profile-activities" aria-selected="false">Change Password</a>
                                         <!-- <a class="nav-link d-flex justify-content-between align-items-center" id="profile-pro-stock-tab" data-toggle="pill" href="#profile-pro-stock" aria-selected="false">
                                             Products Stock
@@ -233,23 +273,7 @@ if (isset($_POST['update'])) {
 
                                         <div class="tab-pane fade" id="profile-activities">
                                             <h4 class="mt-0 header-title mb-3">Password</h4>
-                                            <?php if (isset($upMsg)) { ?>
-                                                <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
-                                                    <i class="mdi mdi-check-all alert-icon"></i>
-                                                    <div class="alert-text">
-                                                        <?php echo $upMsg ?>
-                                                        <!-- <a href="index.php">Click Here to login</a> -->
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                            <?php if (isset($errMsg)) { ?>
-                                                <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
-                                                    <i class="mdi mdi-alert-outline alert-icon"></i>
-                                                    <div class="alert-text">
-                                                        <?php echo $errMsg ?>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
+
                                             <form method="POST">
 
                                                 <div class="row">
@@ -257,7 +281,7 @@ if (isset($_POST['update'])) {
                                                         <div class="form-group">
                                                             <label>Old Password</label>
 
-                                                            <input type="text" class="form-control" id="Category" name="oldPass" placeholder="Category">
+                                                            <input type="password" class="form-control" id="Category" name="oldPass" placeholder="Enter Old Password">
 
                                                         </div>
                                                     </div>
@@ -267,14 +291,14 @@ if (isset($_POST['update'])) {
                                                         <div class="form-group">
                                                             <label>New Password</label>
 
-                                                            <input required id="pass" type="password" class="form-control" name="newPass" id="password" placeholder="Enter password">
+                                                            <input required id="pass" type="password" class="form-control" name="newPass" id="password" placeholder="Enter New Password">
 
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="form-group">
                                                             <label>Confirm Password</label>
-                                                            <input required data-parsley-equalto="#pass" type="password" class="form-control" name="conPass" id="password" placeholder="Enter password">
+                                                            <input required data-parsley-equalto="#pass" type="password" class="form-control" name="conPass" id="password" placeholder="Confirm New Password">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -435,23 +459,7 @@ if (isset($_POST['update'])) {
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <h4 class="mt-0 header-title mb-3">Profile Settings</h4>
-                                                    <?php if (isset($upsMsg)) { ?>
-                                                        <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
-                                                            <i class="mdi mdi-check-all alert-icon"></i>
-                                                            <div class="alert-text">
-                                                                <?php echo $upsMsg ?>
-                                                                <!-- <a href="index.php">Click Here to login</a> -->
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-                                                    <?php if (isset($upeMsg)) { ?>
-                                                        <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
-                                                            <i class="mdi mdi-alert-outline alert-icon"></i>
-                                                            <div class="alert-text">
-                                                                <?php echo $upeMsg ?>
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
+
                                                     <form enctype="multipart/form-data" method="POST">
                                                         <div class="row">
                                                             <div class="col-lg-12 col-md-12">
@@ -614,6 +622,27 @@ if (isset($_POST['update'])) {
 
     <!-- App js -->
     <script src="../admin_plugins/js/app.js"></script>
+    
+    <script>
+        function activeTag(tagname, tagname1) {
+            document.getElementById('profile-dash-tab').classList.remove("active");
+            document.getElementById('profile-dash').classList.remove("show", "active");
+
+            document.getElementById(tagname).classList.add("active");
+            document.getElementById(tagname1).classList.add("show", "active");
+        }
+    </script>
+
+    <?php if (isset($errMsg)) { ?>
+    <script>
+        activeTag("profile-activities-tab", "profile-activities");
+    </script>
+    <?php } if (isset($upeMsg)) { ?>
+    <script>
+        activeTag("profile-settings-tab", "profile-settings");
+    </script>
+    <?php } ?>
+
 </body>
 
 </html>
