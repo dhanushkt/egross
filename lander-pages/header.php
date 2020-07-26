@@ -1,14 +1,14 @@
 <?php
 if (isset($_POST['submit'])) {
     $prod = $_POST['typeahead'];
-    $query = mysqli_query($con, "SELECT * FROM itemmaster WHERE iname='$prod'");
+    $query=mysqli_query($con,"SELECT * FROM itemmaster WHERE iname LIKE '%{$prod}%'");
     $getprod = mysqli_fetch_assoc($query);
     $count = mysqli_num_rows($query);
-    if ($count == 0) {
-        echo "<script>alert('Not Found!');</script>";
-    } else {
-        $productid = $getprod['iname'];
-        echo "<script>window.location.href='search-product.php?product=$productid'; </script>";
+    if ($count != 0) {
+        echo "<script>window.location.href='search-product.php?product=$prod'; </script>";
+    }
+    else{
+        echo "<script>window.location.href='search-product.php?product=item_not_found'; </script>";
     }
 }
 ?>

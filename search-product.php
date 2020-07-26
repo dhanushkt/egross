@@ -457,7 +457,7 @@ if(isset($_GET['product'])){
 							<?php } else { ?>
                             <div style="background-color: white;" class="full-width relative col-md-12 mol-lg-12">
                                 <div class="container text-center" style="padding: 110px; line-height: 5;">
-                                    <i style="font-size: 100px;" class="fa fa-heart-o"></i>
+                                    <i style="font-size: 100px;" class="fa fa-search"></i>
                                     <h2>Product Not Found</h2>
                                     <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
                                 </div>
