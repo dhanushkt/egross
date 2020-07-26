@@ -1,13 +1,17 @@
 <?php
 include 'access/useraccesscontrol.php';
-
+$pagelength = 3;
 $adbanner = false;
 $wishlist = false;
 $cartlist = false;
+$allcount_query = "SELECT count(*) as allcount FROM itemmaster";
+$allcount_result = mysqli_query($con, $allcount_query);
+$allcount_fetch = mysqli_fetch_array($allcount_result);
+$allcount = $allcount_fetch['allcount'];
 
-$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
+$getalldata = mysqli_query($con, "SELECT * FROM itemmaster order by itmid asc limit 0,$pagelength");
 
-if(isset($_GET['scat'])){
+if (isset($_GET['scat'])) {
 	$scatid = $_GET['scat'];
 	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid");
 }
@@ -17,14 +21,14 @@ if(isset($_GET['scat'])){
 <html lang="en">
 
 <head>
-	
+
 	<?php include 'lander-pages/csslink.php'; ?>
 </head>
 
 <body onload="myFunction()">
 
 
-<div id="loading"></div>	
+	<div id="loading"></div>
 	<script src="lander_plugins/js/toast.js"></script>
 	<script>
 		$(document).ready(function() {
@@ -99,7 +103,7 @@ if(isset($_GET['scat'])){
 	<div class="wrappage">
 		<?php include 'lander-pages/header.php'; ?>
 		<?php include 'mobile-search.php'; ?>
-        
+
 		<!-- End Header Box -->
 		<!-- Content Box -->
 		<div class="relative full-width">
@@ -127,12 +131,11 @@ if(isset($_GET['scat'])){
 								<p class="title-siderbar bold">CATEGORIES</p>
 								<ul class="clear-margin list-siderbar">
 									<?php
-										$query=mysqli_query($con,"SELECT * FROM mcat");
-										while($row=mysqli_fetch_assoc($query))
-										{
+									$query = mysqli_query($con, "SELECT * FROM mcat");
+									while ($row = mysqli_fetch_assoc($query)) {
 									?>
-									<li><a href="#"><?php echo $row['mcname'];?></a></li>
-										<?php }?>
+										<li><a href="#"><?php echo $row['mcname']; ?></a></li>
+									<?php } ?>
 								</ul>
 							</div>
 							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
@@ -194,7 +197,7 @@ if(isset($_GET['scat'])){
 									</li>
 								</ul>
 							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12 relative border bottom-margin-default sider-bar-category">
+							<!-- <div class="col-md-12 col-sm-12 col-xs-12 relative border bottom-margin-default sider-bar-category">
 								<div class="relative border no-border-t no-border-l no-border-r bottom-padding-default">
 									<p class="title-siderbar bold">price</p>
 									<div class="range-slider">
@@ -320,7 +323,7 @@ if(isset($_GET['scat'])){
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<?php if ($adbanner) { ?>
 								<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
 									<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
@@ -361,21 +364,21 @@ if(isset($_GET['scat'])){
 								<?php
 								while ($itemdata = mysqli_fetch_assoc($getalldata)) {
 									$itmid = $itemdata['itmid'];
-									if($userlogin){
+									if ($userlogin) {
 										$getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
-										if(mysqli_num_rows($getwishlist) == 1)
+										if (mysqli_num_rows($getwishlist) == 1)
 											$wishlist = true;
 										else
 											$wishlist = false;
 
-											$getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
-											if (mysqli_num_rows($getcartlist) == 1)
-												$cartlist = true;
-											else
-												$cartlist = false;
+										$getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
+										if (mysqli_num_rows($getcartlist) == 1)
+											$cartlist = true;
+										else
+											$cartlist = false;
 									}
 								?>
-									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
+									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" id="post_<?php echo $itmid; ?>">
 										<div class="image-product relative overfollow-hidden">
 											<div class="center-vertical-image">
 												<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
@@ -384,7 +387,7 @@ if(isset($_GET['scat'])){
 											<ul class="option-product animate-default">
 												<?php if ($userlogin) { ?>
 
-													<?php if($cartlist) { ?>
+													<?php if ($cartlist) { ?>
 														<li class="relative">
 															<a href="javascript:void(0)">
 																<i style="color: red" class="fa fa-list"></i>
@@ -393,12 +396,12 @@ if(isset($_GET['scat'])){
 													<?php } else { ?>
 														<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
 													<?php } ?>
-													
 
-													<?php if($wishlist) { ?>
+
+													<?php if ($wishlist) { ?>
 														<li class="relative"><a href="javascript:void(0)">
-														<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
-													</a></li>
+																<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+															</a></li>
 													<?php } else { ?>
 														<li class="relative"><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
 													<?php } ?>
@@ -416,14 +419,15 @@ if(isset($_GET['scat'])){
 										</div>
 										<h3 class="title-product clearfix full-width title-hover-black"><a href="product.php?product=<?php echo $itemdata['itmid']; ?>"><?php echo $itemdata['iname']; ?></a></h3>
 										<p class="clearfix price-product">
-										₹ <?php echo $itemdata['iprice']; ?></p>
-											<div style="float: right; padding-right: 10px;">
-												<?php if($cartlist){ ?>
+											₹ <?php echo $itemdata['iprice']; ?></p>
+										<div style="float: right; padding-right: 10px;">
+											<?php if ($cartlist) { ?>
 												<i class="fa fa-list"></i>
-												<?php } if($wishlist) { ?>
+											<?php }
+											if ($wishlist) { ?>
 												<i class="fa fa-heart"></i>
-												<?php } ?>
-											</div>
+											<?php } ?>
+										</div>
 										<!-- <div class="clearfix ranking-product-category ranking-color">
 											<i class="fa fa-star" aria-hidden="true"></i>
 											<i class="fa fa-star" aria-hidden="true"></i>
@@ -434,7 +438,31 @@ if(isset($_GET['scat'])){
 									</div>
 								<?php } ?>
 							</div>
-							<div class="row">
+							<style>
+								.load-more {
+									width: 15%;
+									margin-left: 45%;
+									background: red;
+									color: white;
+									padding: 10px 0px;
+									font-family: sans-serif;
+								}
+
+								@media(max-width:480px) {
+									.load-more {
+										width: 30%;
+										margin-left: 36%;
+									}
+								}
+
+								.load-more:hover {
+									cursor: pointer;
+								}
+							</style>
+							<h4 class="load-more text-center">Load More</h4>
+							<input type="hidden" id="row" value="0">
+							<input type="hidden" id="all" value="<?php echo $allcount; ?>">
+							<!-- <div class="row">
 								<div class="pagging relative">
 									<ul>
 										<li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> First</a></li>
@@ -446,7 +474,7 @@ if(isset($_GET['scat'])){
 										<li><a href="#">Last <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<!-- End Product Content Category -->
 						</div>
 					</div>
@@ -491,9 +519,81 @@ if(isset($_GET['scat'])){
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
 <script>
-        var preloader = document.getElementById("loading");
-        function myFunction(){
-            preloader.style.display = 'none';
-        };
+	var preloader = document.getElementById("loading");
+
+	function myFunction() {
+		preloader.style.display = 'none';
+	};
 </script>
+<script>
+	$(document).ready(function() {
+
+		// Load more data
+		$('.load-more').click(function() {
+			var row = Number($('#row').val());
+			var allcount = Number($('#all').val());
+			row = row + 3;
+
+			if (row <= allcount) {
+				$("#row").val(row);
+
+				$.ajax({
+					url: 'loadproduct.php',
+					type: 'post',
+					data: {
+						row: row
+					},
+					beforeSend: function() {
+						$(".load-more").text("Loading...");
+					},
+					success: function(response) {
+
+						// Setting little delay while displaying new content
+						setTimeout(function() {
+							// appending posts after last post with class="post"
+							$(".post:last").after(response).show().fadeIn("slow");
+
+							var rowno = row + 3;
+
+							// checking row value is greater than allcount or not
+							if (rowno > allcount) {
+
+								// Change the text and background
+								$('.load-more').text("Hide");
+								$('.load-more').css("background", "red");
+							} else {
+								$(".load-more").text("Load more");
+							}
+						}, 2000);
+
+
+					}
+				});
+			} else {
+				$('.load-more').text("Loading...");
+
+				// Setting little delay while removing contents
+				setTimeout(function() {
+
+					// When row is greater than allcount then remove all class='post' element after 3 element
+					$('.post:nth-child(3)').nextAll('.post').remove().fadeIn("slow");
+
+					// Reset the value of row
+					$("#row").val(0);
+
+					// Change the text and background
+					$('.load-more').text("Load more");
+					$('.load-more').css("background", "red");
+
+				}, 2000);
+
+
+			}
+
+		});
+
+	});
+</script>
+
+
 </html>
