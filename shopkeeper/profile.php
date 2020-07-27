@@ -8,10 +8,14 @@ $profileinfo = mysqli_fetch_assoc($getprofile);
 if (isset($_POST['change'])) {
     $oldPass = md5($_POST['oldPass']);
     $newPass = md5($_POST['newPass']);
-    $conPass = $_POST['conPass'];
+    $conPass = md5($_POST['conPass']);
     if ($oldPass != $profileinfo['spassword']) {
         $errMsg = "Invalid Old Password";
-    } else {
+    }
+    else if($newPass!=$conPass){
+        $errMsg="New Password and Confirm Password not matching!!!";
+    } 
+    else {
         $upPass = mysqli_query($con, "UPDATE shopkeeper SET spassword='$newPass' WHERE sid='$globalshopid'");
         $upMsg = "Password Changed";
     }
