@@ -11,7 +11,7 @@
         <li>
             <a href="javascript: void(0);"><i class="mdi mdi-store"></i><span>Shops</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li><a href="app-chat.html"><span>View Shops</span></a></li>
+                <li><a href="view-shops.php"><span>View Shops</span></a></li>
             </ul>
         </li>
 
@@ -45,7 +45,7 @@
         <li>
             <a href="javascript: void(0);"><i class="mdi mdi-account-group"></i><span>Users</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
-                <li><a href="advanced-rangeslider.html">View Users</a></li>
+                <li><a href="view-users.php">View Users</a></li>
             </ul>
         </li>
 
