@@ -164,7 +164,7 @@ if (isset($_POST['login']))
                     <h4 class="mt-3">Welcome To EGrosss</h4>
                     <div class="border w-25 mx-auto border-primary"></div>
                     <!-- <h1 class="">Let's Get Started</h1> -->
-                    <p class="font-14 mt-3">Don't have an account ? <a href="" class="text-primary">Sign up</a></p>
+                    <p class="font-14 mt-3">Don't have an account ? <a href="register.php" class="text-primary">Sign up</a></p>
 
                 </div>
             </div>
