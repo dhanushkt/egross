@@ -67,7 +67,7 @@ $getshippedorder = mysqli_query($con, "SELECT * FROM orders WHERE ostatus='3' AN
                         <h4 class="page-title mb-2"><i class="mdi mdi-format-list-checkbox mr-2"></i>Product List</h4>
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Items</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item active">View Orders</li>
                             </ol>
                         </div>

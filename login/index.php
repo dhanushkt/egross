@@ -35,13 +35,13 @@ if (isset($_POST['login']))
 
 <head>
     <meta charset="utf-8" />
-    <title>EGrossary</title>
+    <title>EGross</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="online store" name="description" />
     <meta content="Mannatthemes" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="../admin_plugins/images/favicon.ico">
+    
 
     <!-- App css -->
     <link href="../admin_plugins/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -63,7 +63,7 @@ if (isset($_POST['login']))
                         <div class="media">
                             <a href="index.html" class="logo logo-admin"><img src="../admin_plugins/images/egross_logo.png" height="55" alt="logo" class="my-3"></a>
                             <div class="media-body ml-3 align-self-center">
-                                <h4 class="mt-0 mb-1">Login to EGrross</h4>
+                                <h4 class="mt-0 mb-1">Login to EGross</h4>
                                 <p class="text-muted mb-0">Sign in to continue to Egross.</p>
                             </div>
                         </div>
@@ -160,8 +160,8 @@ if (isset($_POST['login']))
         <div class="col-lg-9 p-0 d-flex justify-content-center">
             <div class="accountbg d-flex align-items-center">
                 <div class="account-title text-white text-center">
-                    <img src="../admin_plugins/images/logo-sm.png" alt="" class="thumb-sm">
-                    <h4 class="mt-3">Welcome To EGrosss</h4>
+                   
+                    <h4 class="mt-3">Welcome To EGross</h4>
                     <div class="border w-25 mx-auto border-primary"></div>
                     <!-- <h1 class="">Let's Get Started</h1> -->
                     <p class="font-14 mt-3">Don't have an account ? <a href="register.php" class="text-primary">Sign up</a></p>
@@ -169,6 +169,7 @@ if (isset($_POST['login']))
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- End Log In page -->
 

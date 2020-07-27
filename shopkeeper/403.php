@@ -8,7 +8,7 @@
         <meta content="team" name="author" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="../admin_plugins/images/favicon.ico">
+       
 
         <!-- App css -->
         <link href="../admin_plugins/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -43,7 +43,7 @@
                                                 <div class="error-content text-center">
                                                     <h1 class="">403!</h1>
                                                     <h4 class="text-primary">You dont have permission to access this page</h3><br>
-                                                    <a class="btn btn-primary mb-5 waves-effect waves-light" href="../login/">Go Back</a>
+                                                    <a class="btn btn-primary mb-5 waves-effect waves-light" href="../login/">Login</a>
                                                 </div>
                                             </div><!--end col-->
                                         </div><!--end row-->
@@ -54,8 +54,8 @@
                     </div><!-- container -->
 
                     <footer class="footer text-center text-sm-left">
-                        &copy; 2019 Frogetor <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
-                    </footer>
+    &copy; 2020 eGross <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Infinity Systems</span>
+</footer>
                 </div>
                 <!-- end page content -->
             </div>

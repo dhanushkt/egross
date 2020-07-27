@@ -86,7 +86,7 @@ if (isset($_POST['register'])) {
     <meta content="Infinity Systems" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="admin_plugins/images/favicon.ico">
+    
 
     <link href="../admin_plugins/plugins/dropify/css/dropify.min.css" rel="stylesheet">
     <!-- App css -->
@@ -269,6 +269,7 @@ if (isset($_POST['register'])) {
         <!--end card-->
 
     </div>
+    
     <!--end col-->
     <!-- </div> -->
 

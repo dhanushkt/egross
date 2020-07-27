@@ -98,12 +98,10 @@ if (isset($_POST['additem'])) {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <div class="float-right align-item-center mt-2">
-                            <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                        </div>
+                        
                         <div class="">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Items</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                 <li class="breadcrumb-item active">Add Item</li>
                             </ol>
                         </div>
