@@ -309,7 +309,7 @@ if (isset($_POST['update'])) {
                             </div>
                             <div>
                                 <div style="margin-top: 7%">
-                                    <h4>Change Password</h4>
+                                    <h2>Change Password</h2>
                                     <form method="POST">
                                         <div class="form-input full-width clearfix relative">
                                             <label>Old password</label>
