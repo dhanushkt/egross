@@ -1,5 +1,12 @@
+<?php
+//get shop logo
+$global_shoplogoquery=mysqli_query($con, "SELECT slogo from shopkeeper WHERE sid='$globalshopid'");
+$global_shoplogofecth = mysqli_fetch_assoc($global_shoplogoquery);
+$global_shoplogo = $global_shoplogofecth['slogo'];
+
+?>
 <div class="sidebar-user media">
-    <img src="../admin_plugins/images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
+    <img src="../uploads/slogo/<?php echo $global_shoplogo; ?>" class="rounded-circle img-thumbnail mb-1">
     <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
     <div class="media-body align-item-center">
         <h5><?php echo $globalshopname; ?></h5>

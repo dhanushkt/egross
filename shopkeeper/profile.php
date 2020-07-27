@@ -41,6 +41,16 @@ if (isset($_POST['update'])) {
         $upeMsg = "Cannot Update!!";
     }
 }
+
+//calculating total payment and total orders
+$getorders = mysqli_query($con, "SELECT * FROM orders WHERE osid='$globalshopid'");
+$itemscount = mysqli_num_rows($getorders);
+$totalamt = 0;
+while($orderinfo = mysqli_fetch_assoc($getorders)){
+    $totalamt = $totalamt + $orderinfo['ototalamt'];
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,7 +152,7 @@ if (isset($_POST['update'])) {
                                             <div class="col-lg-7 mb-3 mb-lg-0">
                                                 <div class="fro_profile-main">
                                                     <div class="fro_profile-main-pic">
-                                                        <img src="../admin_plugins/images/egross_logo.png" width="150" class="rounded-circle">
+                                                        <img src="../uploads/slogo/<?php echo $global_shoplogo; ?>" width="120" class="rounded-circle">
 
                                                         <span class="fro-profile_main-pic-change">
                                                             <i class="fas fa-camera"></i>
@@ -166,13 +176,16 @@ if (isset($_POST['update'])) {
                                                                 <?php echo $profileinfo['saddress']; ?>, <?php echo $profileinfo['scity']; ?> - <?php echo $profileinfo['spin']; ?>
                                                             </p>
                                                             <ul class="list-inline mb-0">
-                                                                <li class="mb-2 list-inline-item text-muted font-13"><i class="mdi mdi-label text-success mr-2"></i>
+                                                                <li class="mb-2 list-inline-item text-muted font-13">
+                                                                    <!-- <i class="mdi mdi-label text-success mr-2"></i> -->
                                                                     <?php echo $profileinfo['soemail']; ?>
                                                                 </li>
-                                                                <li class="mb-2 list-inline-item text-muted font-13"><i class="mdi mdi-label text-danger mr-2"></i>
+                                                                <li class="mb-2 list-inline-item text-muted font-13">
+                                                                    <!-- <i class="mdi mdi-label text-danger mr-2"></i> -->
                                                                     <?php echo $profileinfo['somobile']; ?>
                                                                 </li>
-                                                                <li class="mb-2 list-inline-item text-muted font-13"><i class="mdi mdi-label text-warning mr-2"></i>
+                                                                <li class="mb-2 list-inline-item text-muted font-13">
+                                                                    <!-- <i class="mdi mdi-label text-warning mr-2"></i> -->
                                                                     GST No:
                                                                     <?php echo $profileinfo['sgstno']; ?>
                                                                 </li>
@@ -246,7 +259,9 @@ if (isset($_POST['update'])) {
                                                                 <div class="card-icon">
                                                                     <i class="fas fa-coins"></i>
                                                                 </div>
-                                                                <h2 class="font-weight-bold text-white">$85750.00</h2>
+                                                                <h2 class="font-weight-bold text-white">
+                                                                    ₹<?php echo $totalamt; ?>
+                                                                </h2>
                                                                 <p class="text-white mb-0 font-16">Total payments</p>
                                                             </div>
                                                         </div>
@@ -259,10 +274,13 @@ if (isset($_POST['update'])) {
                                                         <div class="card-body bg-gradient1">
                                                             <div class="">
                                                                 <div class="card-icon">
-                                                                    <i class="far fa-user"></i>
+                                                                    <i class="far fa-star"></i>
                                                                 </div>
-                                                                <h2 class="font-weight-bold text-white">10</h2>
-                                                                <p class="text-white mb-0 font-16">Top 10 Best Saler This Month</p>
+                                                                <h2 class="font-weight-bold text-white">
+                                                                    
+                                                                    <?php echo $itemscount; ?>
+                                                                </h2>
+                                                                <p class="text-white mb-0 font-16">Orders Received</p>
                                                             </div>
                                                         </div>
 
