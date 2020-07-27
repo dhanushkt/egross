@@ -45,12 +45,12 @@
                             <button class="btn btn-info" onClick="window.location.reload();">Refresh
                             </button>
                             </div>
-                            <h4 class="page-title mb-2"><i class="mdi mdi-table-large mr-2"></i>User Details</h4>  
+                            <h4 class="page-title mb-2"><i class="mdi mdi-table-large mr-2"></i>Shop Details</h4>  
                             <div class="">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
-                                    <li class="breadcrumb-item active">User Details</li>
+                                    <li class="breadcrumb-item active">Shop Details</li>
                                 </ol>
                             </div>                                      
                         </div><!--end page title box-->
@@ -75,7 +75,7 @@
                                 <div class="card">
                                     <div class="card-body">
         
-                                        <h4 class="mt-0 header-title">View User Details</h4>
+                                        <h4 class="mt-0 header-title">View Shop Details</h4>
                                     
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
