@@ -1,12 +1,11 @@
 <?php
 include 'access/useraccesscontrol.php';
 $id = $_GET['id'];
-if(!isset($_GET['id']))
-{
+if (!isset($_GET['id'])) {
 	header("location:index.php");
 }
 $adbanner = false;
-$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
+$getalldata = mysqli_query($con, "SELECT * FROM itemmaster where iscid=$id");
 
 $getnamecat = mysqli_query($con, "SELECT * FROM mcat where mcid=$id");
 $name = mysqli_fetch_assoc($getnamecat);
@@ -54,13 +53,30 @@ $photo = mysqli_fetch_assoc($getalldata);
 			transform: translateY(150px);
 			-webkit-transform: translateY(60px);
 		}
+
+		.mtxt {
+			display: none;
+		}
+
+		@media(max-width:786px) {
+			.mtxt {
+				display: block;
+				text-align: center;
+				color: black;
+				font-weight: 600;
+			}
+			.mob{
+				display: none;
+			}
+
+		}
 	</style>
 </head>
 
 <body onload="myFunction()">
 
 
-<div id="loading"></div>	<!-- push menu-->
+	<div id="loading"></div> <!-- push menu-->
 	<?php include 'lander-pages/pushmenu.php'; ?>
 	<!-- end push menu-->
 	<!-- Menu Mobile -->
@@ -325,7 +341,8 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
 										<p class=" float-left">Showing 1–20 of 75 results</p>
 										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
-										<a href="#" class=" float-left"><!--<span class="icon-bar-category border ti-layout-list-thumb"></span>--></a>
+										<a href="#" class=" float-left">
+											<!--<span class="icon-bar-category border ti-layout-list-thumb"></span>--></a>
 									</div>
 								</div>
 							</div>
@@ -338,34 +355,37 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<a href="view-product.php?scat=<?php echo $catdata['smcid']; ?>">
 										<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" style="padding-bottom: 10px;">
 											<div class="example text center-vertical-image">
-												<img src="uploads/item/<?php echo $photo['iimg']; ?>" alt="Product">
-												<!--dont delete<img src="uploads/item/<?php //echo $catdata['scimg']; 
-																						?>" alt="Product">-->
+												<!-- <img src="uploads/item/<?php //echo $photo['iimg'];?>" alt="Product"> -->
+												<!-- dont delete -->
+												<img src="uploads/item/<?php echo $catdata['scimg']; ?>" alt="Product">
 											</div>
-											<!-- <div class="example text content">
+											<div class="example text content mob">
 												<p class="text">
-													<?php //echo $catdata['scdesc']; 
+													<?php echo $catdata['scdesc'];
 													?></p>
-											</div> -->
+											</div>
 											<h4 class="title-product clearfix full-width title-hover-black text-center"><?php echo $catdata['scname']; ?></h4>
+											<p class="text mtxt">
+												<?php echo $catdata['scdesc'];
+												?></p>
 										</div>
 									</a>
 								<?php } ?>
 							</div>
-							<?php if(false) { ?>
-							<div class="row">
-								<div class="pagging relative">
-									<ul>
-										<li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> First</a></li>
-										<li class="active-pagging"><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li class="dots-pagging">. . .</li>
-										<li><a href="#">102</a></li>
-										<li><a href="#">Last <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-									</ul>
+							<?php if (false) { ?>
+								<div class="row">
+									<div class="pagging relative">
+										<ul>
+											<li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> First</a></li>
+											<li class="active-pagging"><a href="#">1</a></li>
+											<li><a href="#">2</a></li>
+											<li><a href="#">3</a></li>
+											<li class="dots-pagging">. . .</li>
+											<li><a href="#">102</a></li>
+											<li><a href="#">Last <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
 								</div>
-							</div>
 							<?php } ?>
 							<!-- End Product Content Category -->
 						</div>
@@ -374,7 +394,8 @@ $photo = mysqli_fetch_assoc($getalldata);
 			</div>
 			<!-- End Sider Bar -->
 
-			<!-- Support --> <!--
+			<!-- Support -->
+			<!--
 			<div class=" support-box full-width bg-red support_box_v2">
 				<div class="container-web">
 					<div class=" container">
@@ -413,9 +434,11 @@ $photo = mysqli_fetch_assoc($getalldata);
 	<?php include 'lander-pages/jslinks.php'; ?>
 </body>
 <script>
-        var preloader = document.getElementById("loading");
-        function myFunction(){
-            preloader.style.display = 'none';
-        };
+	var preloader = document.getElementById("loading");
+
+	function myFunction() {
+		preloader.style.display = 'none';
+	};
 </script>
+
 </html>
