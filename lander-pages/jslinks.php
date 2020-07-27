@@ -5,7 +5,6 @@
 <script src="lander_plugins/js/owl.carousel.min.js" defer=""></script>
 <script src="lander_plugins/sync_owl_carousel.js" defer=""></script>
 <script src="lander_plugins/js/scripts.js" defer=""></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="typeahead.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
