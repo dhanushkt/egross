@@ -41,7 +41,8 @@ if (isset($_POST['login']))
     <meta content="Mannatthemes" name="author" />
 
     <!-- App favicon -->
-    
+    <link rel="shortcut icon" href="../admin_plugins/images/egross_logo_favicon.ico">
+
 
     <!-- App css -->
     <link href="../admin_plugins/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

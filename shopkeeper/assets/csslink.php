@@ -5,6 +5,7 @@
 <meta content="Mannatthemes" name="author" />
 
 <!-- App favicon -->
+<link rel="shortcut icon" href="../admin_plugins/images/egross_logo_favicon.ico">
 
 <link href="../admin_plugins/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 <!-- DataTables -->
