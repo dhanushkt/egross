@@ -10,7 +10,7 @@ if (isset($_POST['login']))
     $getadmindata = mysqli_fetch_assoc($adminquery);
     $getadminrow = mysqli_num_rows($adminquery);
     if ($getadminrow == 1) {
-        $_SESSION['aid'] = $getadmindata['adminid'];
+        $_SESSION['adminid'] = $getadmindata['adminid'];
         $_SESSION['auname'] = $getadmindata['auname'];
         $smsg = "Login Successful, Redirecting in 1 seconds..";
         echo "<script> window.setTimeout(function(){ window.location.href='../admin/index.php' }, 1000); </script>";
