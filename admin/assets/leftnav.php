@@ -4,8 +4,7 @@
 
 
         <li>
-            <a href="index.php"><i class="mdi mdi-view-dashboard-outline"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
-
+            <a href="index.php"><i class="mdi mdi-view-dashboard-outline"></i><span>Dashboard</span></a>
         </li>
 
         <li>
@@ -35,12 +34,12 @@
             </ul>
         </li>
 
-        <li>
+        <!-- <li>
             <a href="javascript: void(0);"><i class="mdi mdi-basket"></i><span>Items</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li><a href="ui-alerts.html">View Items</a></li>
             </ul>
-        </li>
+        </li> -->
 
         <li>
             <a href="javascript: void(0);"><i class="mdi mdi-account-group"></i><span>Users</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
