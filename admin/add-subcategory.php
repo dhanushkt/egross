@@ -1,5 +1,5 @@
 <?php
-include './../access/connection.php';
+include '../access/adminaccesscontrol.php';
 
 if (isset($_POST['addsubcat'])) {
     $smcid = $_POST['smcid'];

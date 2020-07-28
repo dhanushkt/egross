@@ -1,5 +1,6 @@
 <?php
-include './../access/connection.php';
+include '../access/adminaccesscontrol.php';
+
 if (isset($_POST['additem'])) {
     $mcname = $_POST['mcname'];
     $mcactive = $_POST['mcactive'];

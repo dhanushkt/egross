@@ -1,5 +1,5 @@
 <?php
-include './../access/connection.php';
+include '../access/adminaccesscontrol.php';
 
 $query = mysqli_query($con, "select * from mcat");
 
