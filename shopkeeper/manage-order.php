@@ -322,7 +322,7 @@ if (isset($_POST['updateorder'])) {
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <?php if ($orderinfo['ostatus'] >= '1' && $orderinfo['ostatus'] < '4') { ?>
-                                                <h4 class="mt-0 header-title">This Order is <span style="color: #1cf303">confermed</span></h4>
+                                                <h4 class="mt-0 header-title">This Order is <span style="color: #1cf303"> confirmed </span></h4>
                                             <?php } ?>
                                             <?php if ($orderinfo['ostatus'] == '4') { ?>
                                                 <h4 class="mt-0 header-title">This Order is <span style="color: #dc291b">Canceled</span></h4>
