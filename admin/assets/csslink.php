@@ -12,3 +12,20 @@
 <link href="../admin_plugins/css/icons.css" rel="stylesheet" type="text/css" />
 <link href="../admin_plugins/css/metismenu.min.css" rel="stylesheet" type="text/css" />
 <link href="../admin_plugins/css/style.css" rel="stylesheet" type="text/css" />
+
+<style>
+    /* top bar logo */
+    .logo-img {
+        width: 40px;
+    }
+
+    @media (min-width:629px) {
+        .logo-txt {
+            display: inline-block;
+        }
+
+        .logo-img {
+            width: 60px;
+        }
+    }
+</style>
