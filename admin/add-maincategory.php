@@ -47,10 +47,13 @@ if (isset($_POST['additem'])) {
                     <div class="page-title-box">
                         <div class="float-right align-item-center mt-2">
                         </div>
+                        <h4 class="page-title mb-2"><i class="mdi mdi-monitor-dashboard mr-2"></i>Dashboard</h4>
                         <div class="">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Add Main Category</li>
+                                <li class="breadcrumb-item"><a href="index.php">Category</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Main Category</a></li>
+                                <li class="breadcrumb-item active">Add</li>
                             </ol>
                         </div>
                     </div>

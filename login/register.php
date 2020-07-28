@@ -80,7 +80,7 @@ if (isset($_POST['register'])) {
 
 <head>
     <meta charset="utf-8" />
-    <title>ShopKeeper-Register</title>
+    <title>eGross</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="eCommerce developed by Infinity Systems" name="description" />
     <meta content="Infinity Systems" name="author" />

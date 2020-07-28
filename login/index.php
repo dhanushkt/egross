@@ -35,7 +35,7 @@ if (isset($_POST['login']))
 
 <head>
     <meta charset="utf-8" />
-    <title>EGross</title>
+    <title>eGross</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="online store" name="description" />
     <meta content="Mannatthemes" name="author" />
@@ -64,7 +64,7 @@ if (isset($_POST['login']))
                         <div class="media">
                             <a href="index.php" class="logo logo-admin"><img src="../admin_plugins/images/egross_logo.png" height="55" alt="logo" class="my-3"></a>
                             <div class="media-body ml-3 align-self-center">
-                                <h4 class="mt-0 mb-1">Login to EGross</h4>
+                                <h4 class="mt-0 mb-1">Login to eGross</h4>
                                 <p class="text-muted mb-0">Sign in to continue to Egross.</p>
                             </div>
                         </div>

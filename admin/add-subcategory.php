@@ -49,6 +49,7 @@ if (isset($_POST['addsubcat'])) {
                     <div class="page-title-box">
                         <div class="float-right align-item-center mt-2">
                         </div>
+                        <h4 class="page-title mb-2"><i class="mdi mdi-monitor-dashboard mr-2"></i>Dashboard</h4>
                         <div class="">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
