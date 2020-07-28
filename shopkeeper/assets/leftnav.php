@@ -5,7 +5,11 @@
         <li class="menu-title">Main</li>
 
         <li>
-            <a href="index.php"><i class="mdi mdi-view-dashboard-outline"></i><span>Dashboards</span><span class="badge badge-danger badge-pill float-right">9+</span></a>
+            <a href="index.php">
+                <i class="mdi mdi-view-dashboard-outline"></i>
+                <span>Dashboard</span>
+                <!-- <span class="badge badge-danger badge-pill float-right">9+</span> -->
+            </a>
         </li>
 
         <li>
@@ -16,7 +20,7 @@
             </ul>
         </li>
         <li>
-        <a href="view-order.php"><i class="ti-package"></i><span>Orders </span><span class="menu-arrow"></i></span></a>
+            <a href="view-order.php"><i class="ti-package"></i><span>Orders </span><span class="menu-arrow"></i></span></a>
         </li>
 
         <!-- <li>
