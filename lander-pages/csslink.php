@@ -14,6 +14,11 @@
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/effect.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/font-awesome.min.css">
 
+<!-- favicon -->
+
+<link rel="shortcut icon" href="lander_plugins/img/fev-icon.png">
+
+
 <!-- include specific file css here -->
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/home.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/cartpage.css">
