@@ -355,9 +355,9 @@ if(isset($_GET['product'])){
 										<p class="title-category-page clear-margin">Products</p>
 									</div>
 									<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
-										<p class=" float-left">Showing 1–20 of 75 results</p>
-										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
-										<a href="#" class=" float-left"><span class="icon-bar-category border ti-layout-list-thumb"></span></a>
+										<p class=" float-left">Showing -<b> <?php echo $iname;?></b></p>
+										<!-- <a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
+										<a href="#" class=" float-left"><span class="icon-bar-category border ti-layout-list-thumb"></span></a> -->
 									</div>
 								</div>
 							</div>
