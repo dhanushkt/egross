@@ -18,17 +18,16 @@ if (isset($_GET['scat'])) {
 	<?php include 'lander-pages/csslink.php'; ?>
 	<style>
 		.show_more_main {
-			margin: 15px 25px;
+			margin: 15px 350px;
+			width: 20%;
 		}
 
 		.show_more {
-			background-color: #f8f8f8;
-			background-image: -webkit-linear-gradient(top, #fcfcfc 0, #f8f8f8 100%);
-			background-image: linear-gradient(top, #fcfcfc 0, #f8f8f8 100%);
+			background-color: red;
 			border: 1px solid;
 			border-color: #d3d3d3;
-			color: #333;
-			font-size: 12px;
+			color: #fff;
+			font-size: 15px;
 			outline: 0;
 		}
 
@@ -41,11 +40,11 @@ if (isset($_GET['scat'])) {
 		}
 
 		.loding {
-			background-color: #e9e9e9;
+			background-color: red;
 			border: 1px solid;
 			border-color: #c6c6c6;
-			color: #333;
-			font-size: 12px;
+			color: #fff;
+			font-size: 15px;
 			display: block;
 			text-align: center;
 			padding: 10px 0;
@@ -61,6 +60,13 @@ if (isset($_GET['scat'])) {
 			display: inline-block;
 			height: 16px;
 			padding-left: 20px;
+			}
+		@media(max-width:786px) {
+			.show_more_main {
+			margin: 15px 25px;
+			width: 90%;
+			}
+	
 		}
 	</style>
 </head>
