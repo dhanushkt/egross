@@ -440,7 +440,7 @@ if(isset($_GET['product'])){
 									</div>
 								<?php } ?>
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								<div class="pagging relative">
 									<ul>
 										<li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i> First</a></li>
@@ -452,7 +452,7 @@ if(isset($_GET['product'])){
 										<li><a href="#">Last <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<!-- End Product Content Category -->
 							<?php } else { ?>
                             <div style="background-color: white;" class="full-width relative col-md-12 mol-lg-12">
