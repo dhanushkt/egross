@@ -63,7 +63,7 @@ if (isset($_GET['scat'])) {
 			}
 		@media(max-width:786px) {
 			.show_more_main {
-			margin: 15px 25px;
+			margin: 20px 20px;
 			width: 90%;
 			}
 	
