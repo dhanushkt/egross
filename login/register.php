@@ -38,13 +38,13 @@ if (isset($_POST['register'])) {
                     $uploadOk = 0;
                 }
                 //check file size
-                elseif ($_FILES["fileToUpload"]["size"] > 1000000) {
+                else if ($_FILES["fileToUpload"]["size"] > 1000000) {
                     $fmsg .= "Image size is more then 1Mb, please upload smaller size image  ";
                     $uploadOk = 0;
                 }
 
                 //allowing certain file formats
-                elseif ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                     $fmsg .= "Only JPG,JPEG,PNG & GIF files are allowed";
                     $uploadOk = 0;
                 } else {
