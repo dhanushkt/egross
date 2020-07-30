@@ -317,19 +317,41 @@ $itemcount = mysqli_num_rows($totalitems);
                         <?php
                         //get products
                         $getproducts = mysqli_query($con, "SELECT * FROM itemmaster WHERE isid=$globalshopid LIMIT 3");
+                        $getprod=mysqli_num_rows($getproducts);
                         ?>
+                        <?php if($getprod==0){?>
+                        <div class="col-lg-4">
+                            <div class="card carousel-bg-img">
+                                <div class="card-body dash-info-carousel">
+                                    <h4 class="mt-0 header-title">Populer Products</h4>
+                                            <div id="carousel_2" class="carousel slide" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <div class="media">
+                                                            <div class="media-body align-self-center">    
+                                                            <h3 class="text-center " style="padding-top: 80px;padding-bottom: 70px;">No Products Added</h3>                                  </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>            
+                                <!--end card-body-->
+                            </div>
+                            <!--end card-->
+                        </div>
+                        <?php }?>
+                        <?php if($getprod!=0){?>
                         <div class="col-lg-4">
                             <div class="card carousel-bg-img">
                                 <div class="card-body dash-info-carousel">
                                     <h4 class="mt-0 header-title">Populer Products</h4>
                                     <div id="carousel_2" class="carousel slide" data-ride="carousel">
                                         <div class="carousel-inner">
-
                                             <?php foreach ($getproducts as $key => $getproducts) { ?>
                                                 <?php if ($key == 0) { ?>
                                                     <div class="carousel-item active">
                                                         <div class="media">
-                                                            <img src="../uploads/item/<?php echo $getproducts['iimg']; ?>" height="200" class="mr-4" alt="...">
+                                                            <img src="../uploads/item/<?php echo $getproducts['iimg']; ?>" height="200" width="170" class="mr-4" alt="...">
                                                             <div class="media-body align-self-center">
                                                                 <!-- <span class="badge badge-primary mb-2">354 sold</span> -->
                                                                 <h4 class="mt-0"><?php echo $getproducts['iname'] ?></h4>
@@ -340,11 +362,11 @@ $itemcount = mysqli_num_rows($totalitems);
                                                 <?php continue; } ?>
                                                 <div class="carousel-item">
                                                     <div class="media">
-                                                        <img src="../uploads/item/<?php echo $getproducts['iimg']; ?>" height="200" class="mr-4" alt="...">
+                                                        <img src="../uploads/item/<?php echo $getproducts['iimg']; ?>" height="200" width="170" class="mr-4" alt="...">
                                                         <div class="media-body align-self-center">
                                                             <!-- <span class="badge badge-primary mb-2">354 sold</span> -->
                                                             <h4 class="mt-0"><?php echo $getproducts['iname'] ?></h4>
-                                                            <p class="text-muted mb-0">$<?php echo $getproducts['iprice'] ?></p>
+                                                            <p class="text-muted mb-0">₹<?php echo $getproducts['iprice'] ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,7 +389,7 @@ $itemcount = mysqli_num_rows($totalitems);
                             <!--end card-->
                         </div>
                     </div>
-
+                    <?php } ?>
                     <!--end row-->
                 </div><!-- container -->
 
@@ -399,5 +421,4 @@ $itemcount = mysqli_num_rows($totalitems);
     </script>
 
 </body>
-
 </html>

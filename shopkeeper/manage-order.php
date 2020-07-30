@@ -30,6 +30,7 @@ if (isset($_POST['cstatus'])) {
     if ($updateorder) {
         $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
         $smsg = "Updated order info";
+        echo "<script>window.location.href='view-order.php'; </script>";
     } else {
         $fmsg = "Cannot update order";
     }
