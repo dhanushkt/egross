@@ -295,7 +295,9 @@ if (isset($_POST['update'])) {
                                             <tr>
                                                 <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
                                                 <td><?php echo $getorderdetails['otimestamp']; ?></td>
-                                                <td><?php echo $getorderdetails['oreason']; ?></td>
+                                                <td><?php if($getorderdetails['oreason']=='0'){echo "No Status Available";} 
+                                                else 
+                                                echo $getorderdetails['oreason']; ?></td>
                                                 <td><?php echo $getorderdetails['ototalamt']; ?></td>
                                             </tr>
                                         <?php
