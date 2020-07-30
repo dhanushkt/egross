@@ -158,7 +158,7 @@ if (isset($_POST['register'])) {
                                 <div class="form-group">
                                     <label for="username">Mobile</label>
 
-                                    <input required type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Shop Mobile Number">
+                                    <input required type="number" class="form-control" name=somobile id="Mobile" placeholder="Enter Shop Mobile Number" autocomplete="off">
 
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ if (isset($_POST['updateorder'])) {
     if ($updateorder) {
         $getorderinfo = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN user ON orders.ouid=user.uid WHERE orderno=$orderno");
 
-        $smsg = "Updated order info, redirected back to view orders";
+        $smsg = "Updated order info,redirected back to view orders";
         echo "<script> window.setTimeout(function(){ window.location.href='view-order.php' }, 1000); </script>";
     } else {
         $fmsg = "Cannot update order";
