@@ -286,7 +286,6 @@ if (isset($_POST['update'])) {
                                         <tr>
                                             <th>ORDER</th>
                                             <th>DATE</th>
-                                            <th>PAYMENT STATUS</th>
                                             <th>FULFILMENT STATUS</th>
                                             <th>TOTAL</th>
                                         </tr>
@@ -296,7 +295,6 @@ if (isset($_POST['update'])) {
                                             <tr>
                                                 <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
                                                 <td><?php echo $getorderdetails['otimestamp']; ?></td>
-                                                <td><?php echo $getorderdetails['ostatus']; ?></td>
                                                 <td><?php echo $getorderdetails['oreason']; ?></td>
                                                 <td><?php echo $getorderdetails['ototalamt']; ?></td>
                                             </tr>
