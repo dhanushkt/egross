@@ -5,12 +5,27 @@ if (!$userlogin) {
 }
 $menuslide = false;
 
+if (isset($_GET['type'])) {
+    $otype = $_GET['type'];
+    $isOnline = ($otype == "online" ? true : false);
+} else {
+    echo "<script>window.location.href='account.php'; </script>";
+}
+
+
 if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
     $orderno = $_GET['orderno'];
-    $orderquery = mysqli_query($con, "SELECT * FROM orders JOIN user_address ON orders.oaddrid=user_address.uaddrid JOIN order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.oitmid=itemmaster.itmid WHERE orders.orderno=$orderno");
-    $orderinfo = mysqli_fetch_assoc($orderquery);
+
+    if ($isOnline) {
+        $orderquery = mysqli_query($con, "SELECT * FROM orders JOIN order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.oitmid=itemmaster.itmid JOIN user_address ON orders.oaddrid=user_address.uaddrid WHERE orders.orderno=$orderno");
+        $orderinfo = mysqli_fetch_assoc($orderquery);
+    } else {
+        $orderquery = mysqli_query($con, "SELECT * FROM orders JOIN order_items ON orders.orderno=order_items.orderno JOIN itemmaster ON order_items.oitmid=itemmaster.itmid WHERE orders.orderno=$orderno");
+        $orderinfo = mysqli_fetch_assoc($orderquery);
+    }
+
     if ($orderinfo['ouid'] != $globaluserid) {
-        echo "<script>window.location.href='account.php'; </script>";
+        //echo "<script>window.location.href='account.php'; </script>";
     }
     $total = $orderinfo['iprice'] * $orderinfo['oqty'];
 } else {
@@ -29,8 +44,8 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
             z-index: 0;
             background-color: #ECEFF1;
             padding-bottom: 20px;
-            margin-top: 90px;
-            margin-bottom: 90px;
+            margin-top: 30px;
+            margin-bottom: 20px;
             border-radius: 10px
         }
 
@@ -216,7 +231,7 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
         <?php include 'mobile-search.php'; ?>
-        
+
         <!-- End Header Box -->
         <!-- Content Box -->
         <div class="relative full-width">
@@ -258,24 +273,30 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                                 </table>
                             </div>
                         </div>
-                        <div>
-                            <a href="view-product.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                                Continue shopping</a>
-                        </div>
+
                     </div>
                 </div>
-                <div class="card">
+                <div class="row">
+                    <?php if ($orderinfo['ostatus'] >= 4) { ?>
+                        <div>
 
-                    <div class="d-flex flex-column text-sm-left" style="margin-left:20px; margin-top:20px;">
-                        <?php
-                        if ($orderinfo['ostatus'] >= 4) { ?>
-                            <div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-md-6 col-lg-6">
 
-                            </div>
-                        <?php
-                        } else { ?>
-                            <h5 class="font-weight-bold">Track your order:<a href="#"><span class="text-primary font-weight-bold" style="margin-right:10px" ;>#<?php echo $orderinfo['orderno']; ?></span></h5></a>
-                            <div class="d-flex flex-column text-sm-right" style="margin-right:10px;margin-right:10px;">
+                            <h5 class="font-weight-bold">Track your order:
+                                <a href="#">
+                                    <span class="text-primary font-weight-bold" style="margin-right:10px">
+                                        #<?php echo $orderinfo['orderno']; ?>
+                                    </span>
+                                </a>
+                            </h5>
+                            <h5 class="text-capitalize"><span class="font-weight-bold">Order type: </span> <?php echo $otype; ?></h5>
+
+                        </div>
+                        <div class="col-md-6 col-lg-6 text-sm-right">
+
+                            <?php if ($isOnline) { ?>
                                 <p class="mb-0"><b>Address :</b><span><?php echo $orderinfo['addrline1'];
                                                                         echo "<br>";
                                                                         echo $orderinfo['addrline2'];
@@ -285,16 +306,19 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                                                                         echo $orderinfo['apin'];
                                                                         "</b>" ?></span>
                                 </p>
-                                <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp']; ?></p>
-                            </div>
-                        <?php
-                        } ?>
-                    </div>
+                            <?php } ?>
+
+                            <p><span class="font-weight-bold">Date of Order:</span><?php echo $orderinfo['otimestamp']; ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="card">
 
                     <div class="row justify-content-between px-3 top">
 
-
                     </div> <!-- Add class 'active' to progress -->
+
                     <div class="row d-flex justify-content-center">
                         <div class="col-12">
                             <?php
@@ -311,38 +335,42 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                                 <div class="center">
                                     <i class="fa fa-close" style="font-size:50px;color:red"></i>
                                     <h3>YOUR ORDER IS CANCELLED</h3>
-                                    <h5>Reason:<?php echo $orderinfo['oreason']; ?>
+                                    <h5>Reason: <?php echo $orderinfo['oreason']; ?> </h5>
                                 </div>
                             <?php } else { ?>
-                                <ul id="progressbar" class="text-center">
+                                <ul id="progressbar" class="text-center" <?php if (!$isOnline) { ?> style="margin-left: 20%;" <?php } ?>>
                                     <?php
                                     if ($orderinfo['ostatus'] >= 0) { ?>
-                                        <li class="active step0"></li>
+                                        <li class="active step0" <?php if (!$isOnline) { ?> style="width: 35%;" <?php } ?>></li>
                                     <?php } else { ?>
                                         <li class="step0"></li>
                                     <?php }
                                     ?>
                                     <?php
                                     if ($orderinfo['ostatus'] >= 1) { ?>
-                                        <li class="active step0"></li>
+                                        <li class="active step0" <?php if (!$isOnline) { ?> style="width: 35%;" <?php } ?>></li>
                                     <?php } else { ?>
-                                        <li class="step0"></li>
+                                        <li class="step0" <?php if (!$isOnline) { ?> style="width: 35%;" <?php } ?>></li>
                                     <?php }
                                     ?>
-                                    <?php
-                                    if ($orderinfo['ostatus'] >= 2) { ?>
-                                        <li class="active step0"></li>
-                                    <?php } else { ?>
-                                        <li class="step0"></li>
-                                    <?php }
-                                    ?>
-                                    <?php
-                                    if ($orderinfo['ostatus'] >= 3) { ?>
-                                        <li class="active step0"></li>
-                                    <?php } else { ?>
-                                        <li class="step0"></li>
-                                    <?php }
-                                    ?>
+                                    <!-- check online order -->
+                                    <?php if ($isOnline) { ?>
+                                        <?php
+                                        if ($orderinfo['ostatus'] >= 2) { ?>
+                                            <li class="active step0"></li>
+                                        <?php } else { ?>
+                                            <li class="step0"></li>
+                                        <?php }
+                                        ?>
+                                        <?php
+                                        if ($orderinfo['ostatus'] >= 3) { ?>
+                                            <li class="active step0"></li>
+                                        <?php } else { ?>
+                                            <li class="step0"></li>
+                                        <?php }
+                                        ?>
+                                    <?php } ?>
+
                                 </ul>
                             <?php } ?>
                         </div>
@@ -363,20 +391,28 @@ if (isset($_GET['orderno']) && !empty($_GET['orderno'])) {
                                     <p class="font-weight-bold none">Order<br>Confirmed </p>
                                 </div>
                             </div>
-                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
-                                <div class="d-flex flex-column">
-                                    <p class="font-weight-bold none">Order<br>Shipping </p>
+
+                            <?php if ($isOnline) { ?>
+                                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                                    <div class="d-flex flex-column">
+                                        <p class="font-weight-bold none">Order<br>Shipping </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
-                                <div class="d-flex flex-column">
-                                    <p class="font-weight-bold none">Order<br>Delivered </p>
+                                <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                                    <div class="d-flex flex-column">
+                                        <p class="font-weight-bold none">Order<br>Delivered </p>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php } ?>
+
                         <?php } ?>
                     </div>
 
 
+                </div>
+                <div class="mb-5">
+                    <a href="view-product.php"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                        Continue shopping</a>
                 </div>
             </div>
             <!-- End Content Wishlist -->

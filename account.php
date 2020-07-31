@@ -293,7 +293,7 @@ if (isset($_POST['update'])) {
                                         while ($getorderdetails = mysqli_fetch_assoc($orderquery)) {
                                         ?>
                                             <tr>
-                                                <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
+                                                <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>&type=<?php echo $getorderdetails['otype']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
                                                 <td><?php echo $getorderdetails['otimestamp']; ?></td>
                                                 <td><?php if($getorderdetails['oreason']=='0'){echo "No Status Available";} 
                                                 else 
