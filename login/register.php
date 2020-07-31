@@ -1,7 +1,10 @@
 <?php
 include './../access/connection.php';
+
 if (isset($_POST['register'])) {
     $cmsg = "";
+    $fmsg = "";
+
     $sname = $_POST['sname'];
     $soname = $_POST['soname'];
     $soemail = $_POST['soemail'];
@@ -16,12 +19,12 @@ if (isset($_POST['register'])) {
     $spassword = md5($_POST['spassword']);
     $cpassword = md5($_POST['cpassword']);
     if ($spassword != $cpassword) {
-        $fmsg = "Passwords Do not match";
+        $fmsg .= "Passwords Do not match";
     } else {
         $qry = mysqli_query($con, "select * from shopkeeper where soemail='$soemail'");
         $count = mysqli_num_rows($qry);
         if ($count > 0) {
-            $fmsg = " Shop with this details already Exists";
+            $fmsg .= " Shop with this details already Exists";
         } else {
             //check logo is uploaded or not
             $slogo = $_FILES["fileToUpload"]["name"];
@@ -44,32 +47,39 @@ if (isset($_POST['register'])) {
                 }
 
                 //allowing certain file formats
-                else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                    $fmsg .= "Only JPG,JPEG,PNG & GIF files are allowed";
+                else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                    $fmsg .= "Only JPG,JPEG & PNG files are allowed";
                     $uploadOk = 0;
                 } else {
                     //check if image is in actual size f fake size
                     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                    if ($check !== false) {
+                    if ($check !== false && $check[0] == 100 && $check[1] == 100) {
                         //brought up the whole image upload code here
                         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                             $cmsg .= "The File <small>" . basename($_FILES["fileToUpload"]["name"]) . " </small>has been uploaded.";
 
                         } else {
-                            $fmsg = "Sorry,there was an error  in uploading your file.";
+                            $fmsg .= "Sorry,there was an error in uploading your file.";
+                            $uploadOk = 0;
                         }
                     } else {
-                        $fmsg .= "File is not an image.";
+                        $fmsg .= "Image should have a resolution of 100x100 or file uploaded is not an image.";
                         $uploadOk = 0;
                     }
                 }
-            } else { $slogo = "default.png"; }
-            $qury = mysqli_query($con, "insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword,slogo) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword','$slogo')");
-            if ($qury) {
-                $cmsg .= " Shop Registered Successfully";
-            } else {
-                $fmsg = "Error during registration";
+            } else { 
+                $uploadOk = 1;
+                $slogo = "default_egrossshop.png"; 
             }
+            if ($uploadOk == 1) {
+                $qury = mysqli_query($con, "insert into `shopkeeper` (sname,soname,soemail,somobile,saddress,scity,spin,sstate,scontact,sgstno,scategory,spassword,slogo) values ('$sname','$soname','$soemail','$somobile','$saddress','$scity','$spin','$sstate','$scontact','$sgstno','$scategory','$spassword','$slogo')");
+                if ($qury) {
+                    $cmsg .= " Shop Registered Successfully";
+                } else {
+                    $fmsg .= "Error during registration";
+                }
+            }
+
         }
     }
 }
@@ -105,7 +115,7 @@ if (isset($_POST['register'])) {
         <div class="col-lg-12" style="padding: 20px">
             <div class="card">
                 <div class="card-body">
-                    <?php if (isset($cmsg)) { ?>
+                    <?php if (isset($cmsg)&& ($cmsg!="")) { ?>
                         <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
                             <i class="mdi mdi-check-all alert-icon"></i>
                             <div class="alert-text">
@@ -114,7 +124,7 @@ if (isset($_POST['register'])) {
                             </div>
                         </div>
                     <?php } ?>
-                    <?php if (isset($fmsg)) { ?>
+                    <?php if (isset($fmsg) && ($fmsg!="")) { ?>
                         <div class="alert icon-custom-alert alert-outline-danger alert-danger-shadow mb-0 fade show" role="alert">
                             <i class="mdi mdi-alert-outline alert-icon"></i>
                             <div class="alert-text">
