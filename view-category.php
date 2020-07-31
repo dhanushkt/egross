@@ -28,7 +28,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 			color: #000;
 			background-color: #C0C0C0;
 			width: 100%;
-			height: 100%;
+			height: 85%;
 			-webkit-transition: all 400ms ease-out;
 			-moz-transition: all 400ms ease-out;
 			-o-transition: all 400ms ease-out;
@@ -63,7 +63,6 @@ $photo = mysqli_fetch_assoc($getalldata);
 				display: block;
 				text-align: center;
 				color: black;
-				font-weight: 600;
 			}
 
 			.mob {
@@ -366,10 +365,11 @@ $photo = mysqli_fetch_assoc($getalldata);
 													<?php echo $catdata['scdesc'];
 													?></p>
 											</div>
-											<h4 class="title-product clearfix full-width title-hover-black text-center"><?php echo $catdata['scname']; ?></h4>
+											<p class="text" style="color:black; text-align:center; padding-top:10px; font-weight:600;"><?php echo $catdata['scname'];
+											?></p>
 											<p class="text mtxt">
-												<?php echo $catdata['scdesc'];
-												?></p>
+												Description : <?php echo $catdata['scdesc'];
+											?></p>
 										</div>
 									</a>
 								<?php } ?>

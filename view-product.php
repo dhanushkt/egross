@@ -8,7 +8,6 @@ if (isset($_GET['scat'])) {
 	$scatid = $_GET['scat'];
 	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +73,7 @@ if (isset($_GET['scat'])) {
 
 <body onload="myFunction()">
 
-
+	<input type="hidden" id="scat" name="scat" value="<?php echo $scatid; ?>">
 	<div id="loading"></div>
 	<script src="lander_plugins/js/toast.js"></script>
 	<script>
@@ -243,8 +242,7 @@ if (isset($_GET['scat'])) {
 													$cartlist = false;
 											}
 									?>
-
-											<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
+									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
 												<div class="image-product relative overfollow-hidden">
 													<div class="center-vertical-image">
 														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" onerror="this.onerror=null; this.src='uploads/item/default_egross.png'">
@@ -331,7 +329,7 @@ if (isset($_GET['scat'])) {
 				</div>
 			</div>
 			<!-- End Sider Bar -->
-
+		</div>
 		</div>
 		<!-- End Content Box -->
 		<!-- Footer Box -->
@@ -365,6 +363,24 @@ if (isset($_GET['scat'])) {
 		});
 	});
 </script>
+<script>
+	$(document).ready(function() {
+    $( window ).on( "load", function() {
+                var scat = $('#scat').attr('value');
+                $.ajax({
+                    url: 'loadproduct.php',
+                    type: 'POST',
+                    data: {
+                        scat: scat
+					},
+					success: function() {
+                        console.log(scat);
+                    }
+                });
+            });
+            });
+    </script>
+    
 
 
 </html>
