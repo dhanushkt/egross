@@ -6,6 +6,9 @@ date_default_timezone_set('Asia/Kolkata');
 $iadate = date('m/d/Y h:i a');
 
 if (isset($_POST['additem'])) {
+    $smsg = "";
+    $fmsg = "";
+
     //shop id
     $isid = $globalshopid;
     //subcat id
@@ -25,10 +28,11 @@ if (isset($_POST['additem'])) {
     $count = mysqli_num_rows($query);
 
     if ($count > 0) {
-        $fmsg = "Item already Exists";
+        $fmsg .= "Item already Exists";
     } else {
         //check logo is uploaded or not
         $iimg = $_FILES["fileToUpload"]["name"];
+
         if (!empty($iimg)) {
             $target_dir = "../uploads/item/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -53,27 +57,30 @@ if (isset($_POST['additem'])) {
             } else {
                 //check if image is in actual size f fake size
                 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                if ($check !== false) {
+                if ($check !== false && $check[0] == 400 && $check[1] == 400) {
                     //brought up the whole image upload code here
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                        $cmsg .= "The File <small>" . basename($_FILES["fileToUpload"]["name"]) . " </small>has been uploaded.";
+                        $smsg .= "The File <small>" . basename($_FILES["fileToUpload"]["name"]) . " </small>has been uploaded.";
                     } else {
-                        $fmsg = "Sorry,there was an error  in uploading your file.";
+                        $fmsg .= "Sorry,there was an error  in uploading your file.";
+                        $uploadOk = 0;
                     }
                 } else {
-                    $fmsg .= "File is not an image.";
+                    $fmsg .= "Image should have a resolution of 400x400 or file uploaded is not an image.";
                     $uploadOk = 0;
                 }
             }
         } else {
+            $uploadOk = 1;
             $iimg = "default_egross.png";
         }
-
-        $qry = mysqli_query($con, "insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,isearch) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$isearch')");
-        if ($qry) {
-            $smsg = "Item Inserted successfully";
-        } else {
-            echo mysqli_error($con);
+        if ($uploadOk == 1) {
+            $qry = mysqli_query($con, "insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,isearch) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$isearch')");
+            if ($qry) {
+                $smsg = "Item Inserted successfully";
+            } else {
+                echo mysqli_error($con);
+            }
         }
     }
 }
@@ -98,7 +105,7 @@ if (isset($_POST['additem'])) {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        
+
                         <div class="">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -127,7 +134,7 @@ if (isset($_POST['additem'])) {
             <div class="page-content">
                 <div class="container-fluid">
                     <!--error msg-->
-                    <?php if (isset($smsg)) { ?>
+                    <?php if (isset($smsg) && ($smsg != "")) { ?>
                         <div class="alert icon-custom-alert alert-outline-success alert-success-shadow" role="alert">
                             <i class="mdi mdi-check-all alert-icon"></i>
                             <div class="alert-text">
@@ -135,7 +142,7 @@ if (isset($_POST['additem'])) {
                             </div>
                         </div>
                     <?php  } ?>
-                    <?php if (isset($fmsg)) { ?>
+                    <?php if (isset($fmsg) && ($fmsg != "")) { ?>
                         <div class="alert alert-outline-warning alert-warning-shadow mb-0 alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true"><i class="mdi mdi-close"></i></span>
