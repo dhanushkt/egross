@@ -60,13 +60,14 @@ if (isset($_GET['scat'])) {
 			display: inline-block;
 			height: 16px;
 			padding-left: 20px;
-			}
+		}
+
 		@media(max-width:786px) {
 			.show_more_main {
-			margin: 20px 20px;
-			width: 90%;
+				margin: 20px 20px;
+				width: 90%;
 			}
-	
+
 		}
 	</style>
 </head>

@@ -105,7 +105,7 @@ $menuslide = false;
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
         <?php include 'mobile-search.php'; ?>
-        
+
         <!-- End Header Box -->
         <!-- Content Box -->
         <div class="relative clearfix full-width">
@@ -189,7 +189,7 @@ $menuslide = false;
                 </div>
             <?php } ?>
 
-          <!-- Content Product -->
+            <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
                 <div class="clearfix container-web">
                     <div class=" container">
@@ -220,9 +220,7 @@ $menuslide = false;
                                 <div class="relative">
                                     <?php for ($n = 0; $n <= $max; $n++) { ?>
                                         <!-- default for only first category -->
-                                        <div class="good-deal-product animate-default <?php if ($n == 0) {
-                                                                                            echo "active-box-category";
-                                                                                        } ?> hidden-content-box" id="new_product<?php echo $n; ?>">
+                                        <div class="good-deal-product animate-default <?php if ($n == 0) { echo "active-box-category"; } ?> hidden-content-box" id="new_product<?php echo $n; ?>">
                                             <!-- Product Son -->
                                             <div class="owl-carousel owl-theme">
                                                 <?php
@@ -249,7 +247,7 @@ $menuslide = false;
                                                     <div class=" product-son ">
                                                         <div class="clearfix image-product relative animate-default">
                                                             <div class="center-vertical-image">
-                                                                <img src="uploads/item/<?php echo $hp_getitm1['iimg']; ?>" alt="Product . . ." />
+                                                                <img class="verifyImg" src="uploads/item/<?php echo $hp_getitm1['iimg']; ?>" alt="Product . . ." />
                                                             </div>
                                                             <ul class="option-product animate-default">
                                                                 <?php if ($userlogin) { ?>
@@ -335,7 +333,7 @@ $menuslide = false;
                             ?>
                                 <?php $mcid1 = $hp_getmcat2['mcid'];
                                 $hp_getitm2 = mysqli_query($con, "SELECT * FROM itemmaster JOIN scat ON itemmaster.iscid=scat.scid WHERE scat.smcid='$mcid1'");
-                                if (mysqli_num_rows($hp_getitm2) > 0) {
+                                if (mysqli_num_rows($hp_getitm2) > 1) {
                                 ?>
                                     <div class=" clearfix content-left col-md-6 col-sm-6" style="padding-top: 20px !important">
                                         <!-- Title Product -->
@@ -355,7 +353,7 @@ $menuslide = false;
                                             <?php foreach ($hp_getitm2 as $itmm => $hp_getitm2) { ?>
                                                 <div class="clearfix relative product-no-ranking border-collapsed-element percent-content-3">
                                                     <div class="effect-hover-zoom center-vertical-image">
-                                                        <img src="uploads/item/<?php echo $hp_getitm2['iimg']; ?>" alt="Product Image . . .">
+                                                        <img class="verifyImg" src="uploads/item/<?php echo $hp_getitm2['iimg']; ?>" alt="Product Image . . .">
                                                         <a href="product.php?product=<?php echo $hp_getitm2['itmid']; ?>"></a>
                                                     </div>
 
@@ -384,7 +382,7 @@ $menuslide = false;
             <!-- Support -->
             <div class=" support-box full-width clear-padding bottom-margin-default">
                 <div class="container-web clearfix">
-                <!--    FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
+                    <!--    FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
                     <div class=" container border top-padding-default bottom-padding-default">
                         <div class="row">
                             <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
@@ -411,15 +409,15 @@ $menuslide = false;
                     </div>
                 </div>
                 -->
+                </div>
+                <!-- End Support Box -->
             </div>
-            <!-- End Support Box -->
+            <!-- End Content Box -->
+            <!-- Footer Box -->
+            <?php include 'lander-pages/footer.php'; ?>
         </div>
-        <!-- End Content Box -->
-        <!-- Footer Box -->
-        <?php include 'lander-pages/footer.php'; ?>
-    </div>
-    <!-- End Footer Box -->
-    <?php include 'lander-pages/jslinks.php'; ?>
+        <!-- End Footer Box -->
+        <?php include 'lander-pages/jslinks.php'; ?>
 </body>
 <script>
     var preloader = document.getElementById("loading");
@@ -427,6 +425,20 @@ $menuslide = false;
     function myFunction() {
         preloader.style.display = 'none';
     };
+</script>
+<script>
+    $(document).ready(function() {
+        var getAllimg = document.getElementsByClassName("verifyImg");
+        var i;
+        for (i = 0; i < getAllimg.length; i++) {
+            var width = getAllimg[i].naturalWidth;
+            var height = getAllimg[i].naturalHeight;
+
+            if (width < 350 && height < 350) {
+                getAllimg[i].src = 'uploads/item/default_egross.png';
+            }
+        }
+    });
 </script>
 
 </html>

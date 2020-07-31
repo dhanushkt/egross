@@ -38,7 +38,7 @@ if (!empty($_POST["itmid"])) {
                 <div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
                     <div class="image-product relative overfollow-hidden">
                         <div class="center-vertical-image">
-                            <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
+                            <img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product" onerror="this.onerror=null; this.src='uploads/item/default_egross.png'">
                         </div>
                         <a href="#"></a>
                         <ul class="option-product animate-default">

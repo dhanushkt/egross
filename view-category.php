@@ -65,7 +65,8 @@ $photo = mysqli_fetch_assoc($getalldata);
 				color: black;
 				font-weight: 600;
 			}
-			.mob{
+
+			.mob {
 				display: none;
 			}
 
@@ -355,9 +356,10 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<a href="view-product.php?scat=<?php echo $catdata['smcid']; ?>">
 										<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" style="padding-bottom: 10px;">
 											<div class="example text center-vertical-image">
-												<!-- <img src="uploads/item/<?php //echo $photo['iimg'];?>" alt="Product"> -->
+												<!-- <img src="uploads/item/<?php //echo $photo['iimg'];
+																			?>" alt="Product"> -->
 												<!-- dont delete -->
-												<img src="uploads/item/<?php echo $catdata['scimg']; ?>" alt="Product">
+												<img class="verifyImg" src="uploads/item/<?php echo $catdata['scimg']; ?>" alt="Product">
 											</div>
 											<div class="example text content mob">
 												<p class="text">
@@ -440,5 +442,18 @@ $photo = mysqli_fetch_assoc($getalldata);
 		preloader.style.display = 'none';
 	};
 </script>
+<script>
+    $(document).ready(function() {
+        var getAllimg = document.getElementsByClassName("verifyImg");
+        var i;
+        for (i = 0; i < getAllimg.length; i++) {
+            var width = getAllimg[i].naturalWidth;
+            var height = getAllimg[i].naturalHeight;
 
+            if (width < 350 && height < 350) {
+                getAllimg[i].src = 'uploads/item/default_egross.png';
+            }
+        }
+    });
+</script>
 </html>
