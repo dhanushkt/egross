@@ -17,17 +17,22 @@ $neworders = 0;
 $confirmedorders = 0;
 $deliverd = 0;
 
-foreach($getorders as $key => $getorders){
-    if($getorders['ostatus'] == 0){
-        $neworders++;
-    } else if($getorders['ostatus'] == 1 || $getorders['ostatus'] == 2){
-        $confirmedorders++;
-    } else if($getorders['ostatus'] == 3) {
-        $deliverd++;
-    }
+foreach ($getorders as $key => $getorders) {
 
-    //get total revenue
-    $totalamt = $totalamt + $getorders['ototalamt'];
+    if ($getorders['ostatus'] == 0) {
+        $neworders++;
+        //get total revenue
+        $totalamt = $totalamt + $getorders['ototalamt'];
+    } else if ($getorders['ostatus'] == 1 || $getorders['ostatus'] == 2) {
+        $confirmedorders++;
+        //get total revenue
+        $totalamt = $totalamt + $getorders['ototalamt'];
+    } else if ($getorders['ostatus'] == 3) {
+        $deliverd++;
+        //get total revenue
+        $totalamt = $totalamt + $getorders['ototalamt'];
+    }
+    
 }
 
 //get items in store
