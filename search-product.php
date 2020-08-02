@@ -7,6 +7,10 @@ $cartlist = false;
 
 /*$getalldata = mysqli_query($con, "SELECT * FROM itemmaster");
 */
+if(!isset($_GET['product'])){
+	echo "<script>window.location.href='index.php'; </script>";	
+}
+
 if(isset($_GET['product'])){
 	$iname = $_GET['product'];
 	$getalldata = mysqli_query($con, "SELECT DISTINCT * FROM itemmaster WHERE iname LIKE '%{$iname}%'");
