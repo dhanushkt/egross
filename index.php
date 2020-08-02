@@ -382,10 +382,10 @@ $menuslide = false;
             <!-- Support -->
             <div class=" support-box full-width clear-padding bottom-margin-default">
                 <div class="container-web clearfix">
-                    <!--    FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
-                    <div class=" container border top-padding-default bottom-padding-default">
+                        
+                    <div class="container">
                         <div class="row">
-                            <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                          <!--  <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
                                 <img src="lander_plugins/img/icon_free_ship.png" alt="Icon Free Ship" class="absolute" />
                                 <p>free shipping</p>
                                 <p>on order over $500</p>
@@ -404,11 +404,11 @@ $menuslide = false;
                                 <img src="lander_plugins/img/icon_phone_big.png" alt="Icon Phone Tablet" class="absolute">
                                 <p>contact with us</p>
                                 <p>+07 (0) 7782 9137</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-                -->
+               
                 </div>
                 <!-- End Support Box -->
             </div>
