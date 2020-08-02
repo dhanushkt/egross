@@ -338,12 +338,12 @@ $photo = mysqli_fetch_assoc($getalldata);
 									<div class="col-md-5 col-sm-5 col-xs-4">
 										<p class="title-category-page clear-margin"><?php echo $name['mcname']; ?></p>
 									</div>
-									<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
+								<!--<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
 										<p class=" float-left">Showing 1–20 of 75 results</p>
 										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
 										<a href="#" class=" float-left">
-											<!--<span class="icon-bar-category border ti-layout-list-thumb"></span>--></a>
-									</div>
+											<!--<span class="icon-bar-category border ti-layout-list-thumb"></span></a>
+									</div>-->
 								</div>
 							</div>
 							<!-- Product Content Category -->
