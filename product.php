@@ -33,6 +33,8 @@ if ($userlogin) {
 		$cartlist = true;
 	else
 		$cartlist = false;
+} else {
+	$cartlist = false;
 }
 
 
@@ -53,6 +55,24 @@ if ($userlogin) {
 		.button-slide-related {
 			z-index: 0 !important;
 		}
+		.hvr-grow {
+            display: inline-block;
+            vertical-align: middle;
+            -webkit-transform: perspective(1px) translateZ(0);
+            transform: perspective(1px) translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+        }
+
+        .hvr-grow:hover,
+        .hvr-grow:focus,
+        .hvr-grow:active {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
 	</style>
 
 </head>
@@ -164,18 +184,14 @@ if ($userlogin) {
 							<div class="col-md-3 relative right-padding-default clear-padding" id="slide-bar-category">
 								<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 									<p class="title-siderbar bold">CATEGORIES</p>
+
 									<ul class="clear-margin list-siderbar">
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Mobile & Tablet</a></li>
-										<li><a href="#">Electric Appliances</a></li>
-										<li><a href="#">Electronics & Technology</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Health & Beauty</a></li>
-										<li><a href="#">Mother & Baby</a></li>
-										<li><a href="#">Books & Stationery</a></li>
-										<li><a href="#">Home & Life</a></li>
-										<li><a href="#">Sports & Outdoors</a></li>
-										<li><a href="#">Auto & Moto</a></li>
+										<?php
+										$query = mysqli_query($con, "SELECT * FROM mcat");
+										while ($row = mysqli_fetch_assoc($query)) {
+										?>
+											<li><a href="view-category.php?id=<?php echo $row['mcid']; ?>"><?php echo $row['mcname']; ?></a></li>
+										<?php } ?>
 									</ul>
 								</div>
 
@@ -311,36 +327,40 @@ if ($userlogin) {
 												<div class="item center-vertical-image">
 													<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
 												</div>
-												<div class="item center-vertical-image">
-													<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-												</div>
-												<div class="item center-vertical-image">
-													<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-												</div>
-												<div class="item center-vertical-image">
-													<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
-												</div>
+												<?php if (false) { ?>
+													<div class="item center-vertical-image">
+														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+													</div>
+													<div class="item center-vertical-image">
+														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+													</div>
+													<div class="item center-vertical-image">
+														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Big Slide">
+													</div>
+												<?php } ?>
 											</div>
-											<div class="relative thumbnail-slide-detail">
-												<div id="owl-thumbnail-slide" class="sync-owl-thumbnail-image" data-items="3,4,3,2">
-													<div class="item center-vertical-image">
-														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+											<?php if (false) { ?>
+												<div class="relative thumbnail-slide-detail">
+													<div id="owl-thumbnail-slide" class="sync-owl-thumbnail-image" data-items="3,4,3,2">
+														<div class="item center-vertical-image">
+															<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+														</div>
+														<div class="item center-vertical-image">
+															<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+														</div>
+														<div class="item center-vertical-image">
+															<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+														</div>
+														<div class="item center-vertical-image">
+															<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+														</div>
 													</div>
-													<div class="item center-vertical-image">
-														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+													<div class="relative nav-prev-detail btn-slide-detail">
 													</div>
-													<div class="item center-vertical-image">
-														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
-													</div>
-													<div class="item center-vertical-image">
-														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Image Thumbnail Slide">
+													<div class="relative nav-next-detail btn-slide-detail">
 													</div>
 												</div>
-												<div class="relative nav-prev-detail btn-slide-detail">
-												</div>
-												<div class="relative nav-next-detail btn-slide-detail">
-												</div>
-											</div>
+											<?php } ?>
 										</div>
 										<!-- Info Top Product -->
 										<div class="col-md-5 col-sm-12 col-xs-12">
@@ -368,7 +388,7 @@ if ($userlogin) {
 												<p class="clear-margin">Description :<?php echo $itemdata['idesc']; ?></p>
 											</div>
 
-											<?php if(!$cartlist) { ?>
+											<?php if (!$cartlist) { ?>
 												<div class="relative option-product-detail bottom-padding-15-default border no-border-r no-border-t no-border-l">
 
 													<div class="relative option-product-2 clearfix">
@@ -384,21 +404,21 @@ if ($userlogin) {
 											<div class="relative button-product-list clearfix full-width clear-margin">
 												<ul class="clear-margin top-margin-default clearfix bottom-margin-default">
 													<?php if (!$userlogin) { ?>
-														<li class="button-hover-red"><a href="user-login.php" class="animate-default">Add to list</a></li>
+														<li class="button-hover-red hvr-grow"><a href="user-login.php" class="animate-default">Add to list</a></li>
 
-														<li><a href="user-login.php" class="animate-default"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+														<li><a href="user-login.php" class="animate-default hvr-grow"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 													<?php } else { ?>
-														<?php if($cartlist) { ?>
-															<li class="button-hover-bla" ><a href="list.php" style="background: black !important;" class="animate-default">View List</a></li>
+														<?php if ($cartlist) { ?>
+															<li class="button-hover-bla hvr-grow"><a href="list.php" style="background: black !important;" class="animate-default">View List</a></li>
 														<?php } else { ?>
-															<li class="button-hover-red"><a href="javascript:void(0)" class="animate-default addList" data-id="<?php echo $itemdata['itmid']; ?>">
-															Add to List</a></li>
+															<li class="button-hover-red hvr-grow"><a href="javascript:void(0)" class="animate-default addList" data-id="<?php echo $itemdata['itmid']; ?>">
+																	Add to List</a></li>
 														<?php } ?>
-														
-														<?php if($wishlist){ ?>
-															<li><a style="background: red !important;" href="wishlist.php" class="animate-default"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+
+														<?php if ($wishlist) { ?>
+															<li class="hvr-grow"><a style="background: red !important;" href="wishlist.php" class="animate-default"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 														<?php } else {  ?>
-															<li><a class="animate-default wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+															<li class="hvr-grow"><a class="animate-default wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 														<?php } ?>
 													<?php } ?>
 												</ul>
@@ -446,7 +466,7 @@ if ($userlogin) {
 															$wish1 = false;
 														//$getcart = mysqli_query($con, "SELECT * FROM user_cart WHERE cuid='$globaluserid' AND citmid='$itmid'");
 														$getcartlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN user_list ON user_listitems.listno=user_list.listno WHERE user_listitems.litmid='$itmid' AND user_list.luid='$globaluserid'");
-	                                                    if (mysqli_num_rows($getcartlist) == 1)
+														if (mysqli_num_rows($getcartlist) == 1)
 															$cart1 = true;
 														else
 															$cart1 = false;
@@ -456,7 +476,7 @@ if ($userlogin) {
 														<div class="full-width product-category relative">
 															<div class="image-product  relative overfollow-hidden">
 																<div class="center-vertical-image">
-																	<img src="lander_plugins/img/product_home_31-min.png" alt="Product">
+																	<img src="uploads/item/<?php echo $row['iimg']; ?>" alt="Product">
 																</div>
 																<a href="#"></a>
 																<ul class="option-product animate-default">
@@ -599,7 +619,7 @@ if ($userlogin) {
 		<!-- End Sider Bar -->
 		<!-- Support -->
 
-		 <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
+		<!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
 		<div class=" support-box full-width bg-red support_box_v2">
 			<div class="container-web">
 				<div class=" container">
