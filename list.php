@@ -31,7 +31,7 @@ if ($openlist) {
     }
 } else {
     //when listno is not set
-    $getcartitem = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
+    $getcartitem = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid JOIN user_listitems ON user_list.listno=user_listitems.listno WHERE user_list.luid='$globaluserid'");
 
     if ($listcount = mysqli_num_rows($getcartitem) >= 1)
         $cart = true;
@@ -420,7 +420,7 @@ $subtot = 0;
                     success: function() {
                         iqwerty.toast.Toast('List Deleted', options);
                         window.setTimeout(function() {
-                            location.href = 'list.php'
+                            location.reload()
                         }, 1500);
                     }
                 });
