@@ -130,11 +130,11 @@ if(isset($_POST['login']))
             </div>
             <!-- End Content Checkout -->
             <!-- Support -->
-            <div class="support-box full-width bg-red support_box_v2" style="margin-top: 20px;">
+            <div class="support-box full-width clear-padding bottom-margin-default" style="margin-top: 20px;">
                 <div class="container-web">
                     <div class=" container">
                         <div class="row">
-                            <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                           <!-- <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
                                 <img src="lander_plugins/img/icon_free_ship_white-min.png" alt="Icon Free Ship" class="absolute" />
                                 <p>free shipping</p>
                                 <p>on order over $500</p>
@@ -153,7 +153,7 @@ if(isset($_POST['login']))
                                 <img src="lander_plugins/img/icon_phone_table_white-min.png" alt="Icon Phone Tablet" class="absolute">
                                 <p>contact with us</p>
                                 <p>+07 (0) 7782 9137</p>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

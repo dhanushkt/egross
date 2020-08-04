@@ -332,7 +332,7 @@ $menuslide = false;
                             foreach ($hp_getmcat2 as $mcat => $hp_getmcat2) {
                             ?>
                                 <?php $mcid1 = $hp_getmcat2['mcid'];
-                                $hp_getitm2 = mysqli_query($con, "SELECT * FROM itemmaster JOIN scat ON itemmaster.iscid=scat.scid WHERE scat.smcid='$mcid1'");
+                                $hp_getitm2 = mysqli_query($con, "SELECT * FROM itemmaster JOIN scat ON itemmaster.iscid=scat.scid WHERE scat.smcid='$mcid1' LIMIT 6");
                                 if (mysqli_num_rows($hp_getitm2) > 1) {
                                 ?>
                                     <div class=" clearfix content-left col-md-6 col-sm-6" style="padding-top: 20px !important">
@@ -382,10 +382,10 @@ $menuslide = false;
             <!-- Support -->
             <div class=" support-box full-width clear-padding bottom-margin-default">
                 <div class="container-web clearfix">
-                    <!--    FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
-                    <div class=" container border top-padding-default bottom-padding-default">
+                        
+                    <div class="container">
                         <div class="row">
-                            <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                          <!--  <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
                                 <img src="lander_plugins/img/icon_free_ship.png" alt="Icon Free Ship" class="absolute" />
                                 <p>free shipping</p>
                                 <p>on order over $500</p>
@@ -404,11 +404,11 @@ $menuslide = false;
                                 <img src="lander_plugins/img/icon_phone_big.png" alt="Icon Phone Tablet" class="absolute">
                                 <p>contact with us</p>
                                 <p>+07 (0) 7782 9137</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-                -->
+               
                 </div>
                 <!-- End Support Box -->
             </div>
@@ -434,7 +434,7 @@ $menuslide = false;
             var width = getAllimg[i].naturalWidth;
             var height = getAllimg[i].naturalHeight;
 
-            if (width < 350 && height < 350) {
+            if (width < 200 && height < 200) {
                 getAllimg[i].src = 'uploads/item/default_egross.png';
             }
         }

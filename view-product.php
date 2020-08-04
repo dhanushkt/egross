@@ -4,9 +4,18 @@ $adbanner = false;
 $wishlist = false;
 $cartlist = false;
 $getalldata = mysqli_query($con, "SELECT * FROM itemmaster order by itmid DESC limit 3");
+
+//initilize it to zero for jquery
+$scatid = 0;
+
 if (isset($_GET['scat'])) {
+
+	if ($_GET['scat'] == 0) {
+		echo "<script>window.location.href='view-product.php'; </script>";
+	}
+
 	$scatid = $_GET['scat'];
-	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid");
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid order by itmid DESC limit 3");
 }
 ?>
 <!DOCTYPE html>
@@ -214,7 +223,7 @@ if (isset($_GET['scat'])) {
 									<div class="col-md-5 col-sm-5 col-xs-4">
 										<p class="title-category-page clear-margin">Products</p>
 									</div>
-								<!--<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
+									<!--<div class="col-md-5 col-sm-5 col-xs-8 right-category-bar float-right relative">
 										<p class=" float-left">Showing 1–20 of 75 results</p>
 										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
 										<a href="#" class=" float-left"><span class="icon-bar-category border ti-layout-list-thumb"></span></a>
@@ -242,7 +251,7 @@ if (isset($_GET['scat'])) {
 													$cartlist = false;
 											}
 									?>
-									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
+											<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
 												<div class="image-product relative overfollow-hidden">
 													<div class="center-vertical-image">
 														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" onerror="this.onerror=null; this.src='uploads/item/default_egross.png'">
@@ -330,10 +339,10 @@ if (isset($_GET['scat'])) {
 			</div>
 			<!-- End Sider Bar -->
 		</div>
-		</div>
-		<!-- End Content Box -->
-		<!-- Footer Box -->
-		<?php include 'lander-pages/footer.php'; ?>
+	</div>
+	<!-- End Content Box -->
+	<!-- Footer Box -->
+	<?php include 'lander-pages/footer.php'; ?>
 	</div>
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
@@ -349,12 +358,17 @@ if (isset($_GET['scat'])) {
 	$(document).ready(function() {
 		$(document).on('click', '.show_more', function() {
 			var ID = $(this).attr('id');
+			var scatid = $('#scat').attr('value');
+
 			$('.show_more').hide();
 			$('.loding').show();
 			$.ajax({
 				type: 'POST',
 				url: 'loadproduct.php',
-				data: 'itmid=' + ID,
+				data: {
+					itmid: ID,
+					scat: scatid
+				},
 				success: function(html) {
 					$('#show_more_main' + ID).remove();
 					$('.postList').append(html);
@@ -363,24 +377,6 @@ if (isset($_GET['scat'])) {
 		});
 	});
 </script>
-<script>
-	$(document).ready(function() {
-    $( window ).on( "load", function() {
-                var scat = $('#scat').attr('value');
-                $.ajax({
-                    url: 'loadproduct.php',
-                    type: 'POST',
-                    data: {
-                        scat: scat
-					},
-					success: function() {
-                        console.log(scat);
-                    }
-                });
-            });
-            });
-    </script>
-    
 
 
 </html>

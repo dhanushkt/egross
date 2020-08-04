@@ -553,7 +553,7 @@ $subtot = 0;
 
             <p class="title-shoping-cart">List Total</p>
             <div class="full-width relative cart-total bg-gray  clearfix">
-                <div class="relative justify-content bottom-padding-15-default">
+                <div class="relative justify-content bottom-padding-15-default border no-border-t no-border-r no-border-l">
                     <p>Subtotal</p>
                     <p class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
                 </div>

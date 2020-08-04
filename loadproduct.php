@@ -3,22 +3,26 @@ $wishlist = false;
 $cartlist = false;
 // Include the database configuration file
 include 'access/useraccesscontrol.php';
+
 if (!empty($_POST["itmid"])) {
+    $scatid = $_POST["scat"];
+    if ($scatid == 0) {
         // Count all records except already displayed
-    $query = $con->query("SELECT COUNT(*) as num_rows FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " ORDER BY itmid DESC");
-    $row = $query->fetch_assoc();
-    $totalRowCount = $row['num_rows'];
-    $showLimit = 3;
-    // Get records from the database
-    $query = $con->query("SELECT * FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " ORDER BY itmid DESC LIMIT $showLimit");
-    if (isset($_POST['scat'])) {
-        $scatid = $_POST['scat'];
-        $query = mysqli_query($con, "SELECT COUNT(*) as num_rows FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " AND iscid=$scatid ORDER BY itmid DESC");
+        $query = $con->query("SELECT COUNT(*) as num_rows FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " ORDER BY itmid DESC");
         $row = $query->fetch_assoc();
         $totalRowCount = $row['num_rows'];
-        $query = $con->query("SELECT * FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " AND iscid=$scatid ORDER BY itmid DESC LIMIT $showLimit");
+        $showLimit = 3;
+        // Get records from the database
+        $query = $con->query("SELECT * FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " ORDER BY itmid DESC LIMIT $showLimit");
+    } else {
+        $query = $con->query("SELECT COUNT(*) as num_rows FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " AND iscid='$scatid' ORDER BY itmid DESC");
+        $row = $query->fetch_assoc();
+        $totalRowCount = $row['num_rows'];
+        $showLimit = 3;
+        // Get records from the database
+        $query = $con->query("SELECT * FROM itemmaster WHERE itmid < " . $_POST['itmid'] . " AND iscid='$scatid' ORDER BY itmid DESC LIMIT $showLimit");
     }
-    
+
 ?>
     <div class="row">
         <?php
