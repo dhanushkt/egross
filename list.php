@@ -629,7 +629,7 @@ $subtot = 0;
                 }
             </script>
             <!--popup-->
-            <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="#popup1">
+            <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default hvr-shrink" onclick="disableScroll()" class="a" href="#popup1">
                 Proceed to Checkout</a>
         </div>
         <!-- End Content Right -->

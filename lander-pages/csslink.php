@@ -40,7 +40,8 @@
         .hidden-desktop {
             display: none;
         }
-        .customdwidth{
+
+        .customdwidth {
             width: 500px !important;
         }
 
@@ -64,13 +65,55 @@
         width: 100%;
         background-color: white !important;
     }
-    .product-cart-son:hover{
+
+    .product-cart-son:hover {
         background-color: #c2c2c2;
     }
-    .product-cart-son{
+
+    .product-cart-son {
         padding-left: 10px;
     }
+
+    /* hover styles for buttons */
+    .hvr-grow {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+    }
+
+    .hvr-grow:hover,
+    .hvr-grow:focus,
+    .hvr-grow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    .hvr-shrink {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+    }
+
+    .hvr-shrink:hover,
+    .hvr-shrink:focus,
+    .hvr-shrink:active {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
 </style>
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -101,8 +101,6 @@ if (isset($_POST['submit'])) {
                             background-color: #FFFFFF;
                         }
 
-                        .tt-query {}
-
                         .tt-hint {
                             color: #999999;
                         }
