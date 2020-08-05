@@ -46,10 +46,11 @@ $subtot = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css" rel="stylesheet">
     <?php include 'lander-pages/csslink.php'; ?>
     <style>
         .box {
@@ -385,11 +386,15 @@ $subtot = 0;
                         listitem: getid,
                         nqty: qty
                     },
-                    success: function() {
+                    success: function(data) {
                         iqwerty.toast.Toast('List Deleted', options);
-                        window.setTimeout(function() {
-                            location.href = 'list.php'
-                        }, 1500);
+                        
+                        var item = JSON.parse(data);
+                        if(item.listno != 0){
+                            location.href =  'list.php?list='+item.listno;
+                        } else {
+                            location.href =  'list.php';
+                        }
                     }
                 });
             });
@@ -417,11 +422,15 @@ $subtot = 0;
                     data: {
                         id: getid
                     },
-                    success: function() {
+                    success: function(data) {
                         iqwerty.toast.Toast('List Deleted', options);
-                        window.setTimeout(function() {
-                            location.href = 'list.php'
-                        }, 1500);
+
+                        var item = JSON.parse(data);
+                        if(item.listno != 0){
+                            location.href =  'list.php?list='+item.listno;
+                        } else {
+                            location.href =  'list.php';
+                        }
                     }
                 });
             });

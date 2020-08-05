@@ -1,7 +1,7 @@
 <?php
 include_once('access/useraccesscontrol.php');
 $header_subtot = 0;
-$header_getlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid JOIN user_listitems ON user_list.listno=user_listitems.listno WHERE user_list.luid='$globaluserid'");
+$header_getlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
 
 if (mysqli_num_rows($header_getlist) >= 1) {
 ?>
