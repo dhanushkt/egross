@@ -132,9 +132,10 @@ if (isset($_POST['submit'])) {
                             color: red;
                             outline: none;
                             border: none;
-                            margin-top: 4px;
-                            padding-left: 20px;
-                            padding-right: 20px;
+                            margin-top: 1px;
+                            margin-left: 100px;
+                            padding-left: 30px;
+                            padding-right: 30px;
                             font-size: 20px;
                         }
 
@@ -148,7 +149,7 @@ if (isset($_POST['submit'])) {
                             height: 20px;
                             outline: none;
                             border: none;
-                            line-height: 30px;
+                            line-height: 28px;
                             padding: 1px 2px;
                             padding-left: 12px;
                             width: 300px;
@@ -185,17 +186,6 @@ if (isset($_POST['submit'])) {
                     </style>
                     <div class="clearfix mobile search relative float-left">
                         <form method="POST" class="">
-                            <div class="clearfix category-box relative">
-                                <select name="mcat">
-                                    <option selected value="all">All Category</option>
-                                    <?php
-                                    $header_getmcat = mysqli_query($con, "SELECT * FROM mcat");
-                                    while ($header_mcat = mysqli_fetch_assoc($header_getmcat)) {
-                                    ?>
-                                        <option><?php echo $header_mcat['mcname']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
                             <!--Desktop View -->
                             <input type="text" required name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
                             <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
