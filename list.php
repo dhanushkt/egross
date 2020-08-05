@@ -650,13 +650,15 @@ $subtot = 0;
             <?php foreach ($getcartitem as $key => $getcartitem) { ?>
 
                 <?php
-                                        $listno = $getcartitem['listno'];
-                                        $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-                                        $itemcount = mysqli_num_rows($getlistitems);
+                    $listno = $getcartitem['listno'];
+                    $subtot = 0;
+                    
+                    $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+                    $itemcount = mysqli_num_rows($getlistitems);
 
-                                        while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
-                                        }
+                    while ($listitm = mysqli_fetch_assoc($getlistitems)) {
+                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
+                    }
 
                 ?>
                 <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
