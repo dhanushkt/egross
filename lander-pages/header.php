@@ -150,7 +150,7 @@ if (isset($_POST['submit'])) {
                             outline: none;
                             border: none;
                             line-height: 28px;
-                            padding: 1px 2px;
+                            padding: 0px 2px;
                             padding-left: 12px;
                             width: 300px;
                         }
@@ -184,14 +184,14 @@ if (isset($_POST['submit'])) {
                          
                         }
                     </style>
-                    <div class="clearfix mobile search relative float-left">
                         <form method="POST" class="">
+                        <div class="clearfix mobile search relative float-left">
                             <!--Desktop View -->
                             <input type="text" required name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
                             <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
-
+                        </div>
                         </form>
-                    </div>
+                    
                     <div class="clearfix icon-search-mobile absolute">
                         <!--Mobile View-->
                     <a href="#" data-target="#searchmob" data-toggle="modal"><i style="color:red" class="data-icon data-icon-basic icon-basic-magnifier"></i></a>

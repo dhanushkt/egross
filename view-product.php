@@ -69,6 +69,10 @@ if (isset($_GET['scat'])) {
 			height: 16px;
 			padding-left: 20px;
 		}
+		.not-allowed {
+            pointer-events: none; 
+            cursor: not-allowed;
+        }
 
 		@media(max-width:786px) {
 			.show_more_main {
@@ -182,6 +186,7 @@ if (isset($_GET['scat'])) {
                         }, 1000);
                     }
                 });
+				$(this).addClass("not-allowed");     
             });
         });
     </script>

@@ -23,6 +23,10 @@ $menuslide = false;
             color: black;
             margin: 0;
         }
+        .not-allowed {
+            pointer-events: none; 
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
@@ -65,6 +69,7 @@ $menuslide = false;
     <script>
         $(document).ready(function() {
             $('.addCart').click(function() {
+
                 var options = {
                     style: {
                         main: {
@@ -93,6 +98,7 @@ $menuslide = false;
                         }, 1000);
                     }
                 });
+                $(this).addClass("not-allowed");      //add the class to the clicked element
             });
         });
     </script>
@@ -440,5 +446,4 @@ $menuslide = false;
         }
     });
 </script>
-
 </html>
