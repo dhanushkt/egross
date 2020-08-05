@@ -342,7 +342,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 										<p class=" float-left">Showing 1–20 of 75 results</p>
 										<a href="#" class=" float-left active-view-bar"><span class="icon-bar-category border ti-layout-grid3"></span></a>
 										<a href="#" class=" float-left">
-											<!--<span class="icon-bar-category border ti-layout-list-thumb"></span></a>
+											<span class="icon-bar-category border ti-layout-list-thumb"></span></a>
 									</div>-->
 								</div>
 							</div>
@@ -352,7 +352,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 								$getsmid = mysqli_query($con, "SELECT * FROM scat where smcid=$id");
 								while ($catdata = mysqli_fetch_assoc($getsmid)) {
 								?>
-									<a href="view-product.php?scat=<?php echo $catdata['smcid']; ?>">
+									<a href="view-product.php?scat=<?php echo $catdata['scid']; ?>">
 										<div class="example col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default" style="padding-bottom: 10px;">
 											<div class="example text center-vertical-image">
 												<!-- <img src="uploads/item/<?php //echo $photo['iimg'];
