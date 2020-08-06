@@ -1,13 +1,12 @@
 <?php
 if (isset($_POST['submit'])) {
     $prod = $_POST['typeahead'];
-    $query=mysqli_query($con,"SELECT * FROM itemmaster WHERE iname LIKE '%{$prod}%'");
+    $query = mysqli_query($con, "SELECT * FROM itemmaster WHERE iname LIKE '%{$prod}%'");
     $getprod = mysqli_fetch_assoc($query);
     $count = mysqli_num_rows($query);
     if ($count != 0) {
         echo "<script>window.location.href='search-product.php?product=$prod'; </script>";
-    }
-    else{
+    } else {
         echo "<script>window.location.href='search-product.php?product=item_not_found'; </script>";
     }
 }
@@ -138,64 +137,170 @@ if (isset($_POST['submit'])) {
                             padding-right: 30px;
                             font-size: 20px;
                         }
+                        .smbtn {
+                            color: red;
+                            margin-top: 5px;
+                            margin-left: 80px;
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            margin-bottom: 5px;
+                            font-size: 18px;
+                            outline:black;
+                        }
+                        #overlay {
+                            /* we set all of the properties for our overlay */
+                            height: 120%;
+                            width: 80%;
+                            margin: 0 auto;
+                            background: white;
+                            color: red;
+                            padding: 10px;
+                            padding-top: -10px;
+                            position: absolute;
+                            top: 50%;
+                            left: 10%;
+                            z-index: 1000;
+                            display: none;
+                            /* CSS 3 */
+                            -webkit-border-radius: 10px;
+                            -moz-border-radius: 10px;
+                            -o-border-radius: 10px;
+                            border-radius: 10px;
+                        }
+
+                        #mask {
+                            /* create are mask */
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            background: rgba(0, 0, 0, 0.6);
+                            z-index: 500;
+                            width: 100%;
+                            height: 100%;
+                            display: none;
+                        }
+
+                        /* use :target to look for a link to the overlay then we find our mask */
+                        #overlay:target,
+                        #overlay:target+#mask {
+                            display: block;
+                            opacity: 1;
+                        }
+                        .close {
+                            /* to make a nice looking pure CSS3 close button */
+                            display: block;
+                            position: absolute;
+                            top: -20px;
+                            right: -20px;
+                            background: black;
+                            color: white;
+                            height: 40px;
+                            width: 40px;
+                            line-height: 40px;
+                            font-size: 20px;
+                            text-decoration: none;
+                            text-align: center;
+                            font-weight: bold;
+                            -webkit-border-radius: 40px;
+                            -moz-border-radius: 40px;
+                            -o-border-radius: 40px;
+                            border-radius: 40px;
+                        }
+                        hr{
+                            background-color: red;
+                            margin-top: -8px;
+                        }
 
                         @media screen and (max-width: 700px) {
-                        .mobile {
+                            .mobile {
                                 display: none;
-                            }        
-                        .typeahead,
-                        .tt-query{
-                            font-size: 20px;
-                            height: 20px;
-                            outline: none;
-                            border: none;
-                            line-height: 28px;
-                            padding: 0px 2px;
-                            padding-left: 12px;
-                            width: 300px;
+                            }
+
+                            .typeahead,
+                            .tt-query,
+                            .tt-hint {
+                                font-size: 20px;
+                                height: 20px;
+                                outline: black;
+                                border: black;
+                                outline: red;
+                                margin-top: -10px;
+                                border-bottom: red;
+                                line-height: 28px;
+                                padding: 0px 2px;
+                                padding-left: 12px;
+                                width: 250px;
+                            }
+
+                            .typeahead {
+                                background-color: #FFFFFF;
+                                border-bottom: red;
+                            }
+
+                            .marg {
+                                margin-top: -8px;
+                                margin-left: 10px;
+                                color: red;
+                            }
+
+                            .tt-dropdown-menu {
+                                background-color: #FFFFFF;
+                                border: none;
+                                margin-top: 0px;
+                                padding: 0px 0;
+                                width: 250px;
+                            }
+
+                            .tt-suggestion {
+                                font-size: 20px;
+                                line-height: 20px;
+                                padding: 20px 20px;
+                            }
+
+                            .tt-suggestion.tt-is-under-cursor {
+                                background-color: #0097CF;
+                                color: #FFFFFF;
+                            }
+
+                            .tt-suggestion p {
+                                margin: 0;
+                            }
+
                         }
 
-                        .typeahead {
-                            background-color: #FFFFFF;
-                        }
-
-                        .tt-dropdown-menu {
-                            background-color: #FFFFFF;
-                            border: none;
-                            margin-top: 0px;
-                            padding: 0px 0;
-                            width: 320px;
-                        }
-
-                        .tt-suggestion {
-                            font-size: 20px;
-                            line-height: 20px;
-                            padding: 20px 20px;
-                        }
-
-                        .tt-suggestion.tt-is-under-cursor {
-                            background-color: #0097CF;
-                            color: #FFFFFF;
-                        }
-
-                        .tt-suggestion p {
+                        * {
                             margin: 0;
+                            padding: 0;
                         }
-                         
-                        }
+
+                        
                     </style>
-                        <form method="POST" class="">
+                    <form method="POST" class="">
                         <div class="clearfix mobile search relative float-left">
                             <!--Desktop View -->
                             <input type="text" required name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ." />
-                            <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button></a>
+                            <button type="submit" name="submit" class="sbtn"><i class="fa fa-search"></i></button>
                         </div>
-                        </form>
-                    
-                    <div class="clearfix icon-search-mobile absolute">
-                        <!--Mobile View-->
-                    <a href="#" data-target="#searchmob" data-toggle="modal"><i style="color:red" class="data-icon data-icon-basic icon-basic-magnifier"></i></a>
+                    </form>
+
+                    <div class="clearfix icon-search-mobile absolute marg">
+                    <a href="#overlay" id="open-overlay"><i style="color:red;"class="fa fa-search"></i></a>
                     </div>
+                    <div id="overlay">
+                        <a href="#" class="close">&times;</a>
+                        <form method="POST">
+                        <h4 style="color: red;">Search Products</h4>
+                        <hr>
+                            <input type="text" class="typeahead tt-query tb" style="border-bottom:red; width:100%; outline:red;" name="typeahead" placeholder="Type Here..."></input>
+                            <br/>
+                            <button type="submit" name="submit" class="smbtn"><i class="fa fa-search"></i></button>
+                        </form>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div id="mask" onclick="document.location='#';"></div>
+
                     <?php if ($userlogin) { ?>
                         <div id="carticon" class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
                             <!-- <img alt="Icon Cart" src="lander_plugins/img/icon_cart.png" /> -->
