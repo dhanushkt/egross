@@ -5,9 +5,10 @@
 <!-- <script src="lander_plugins/js/bootstrap.min.js" defer=""></script> -->
 <script src="lander_plugins/js/multirange.js" defer=""></script>
 <script src="lander_plugins/js/slick.min.js" defer=""></script>
-<script src="lander_plugins/js/owl.carousel.min.js" defer=""></script>
-<!-- <script src="lander_plugins/sync_owl_carousel.js" defer=""></script> -->
+<!-- <script src="lander_plugins/js/owl.carousel.min.js" defer=""></script> -->
+<!-- <script src="lander_plugins/js/sync_owl_carousel.js" defer=""></script> -->
 <script src="lander_plugins/js/scripts.js" defer=""></script>
+<!-- <script src="lander_plugins/js/sync_owl_carousel.js" defer=""></script> -->
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->Q
 
@@ -20,6 +21,29 @@
             remote: 'search.php?key=%QUERY',
             limit: 10
         });
+        $('.good-deal-product .owl-theme').each(function(){
+			$(this).owlCarousel({
+				loop:true,
+				nav:false,
+				dots:false,
+			    autoplay:true,
+			    autoplayTimeout:5500,
+				autoplayHoverPause:true,
+				responsiveClass:true,
+			    margin:30,
+			    responsive:{
+			    	320:{
+			    		items:1
+			    	},
+			    	480:{
+			    		items:2
+			    	},
+			    	768:{
+			    		items:4
+			    	}
+			    }
+			});
+		});
     });
 </script>
 <!-- script to stick nav bar on top when scrolling -->

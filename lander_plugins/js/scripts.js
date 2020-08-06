@@ -303,6 +303,7 @@ function optionShiping(item){
 				autoplay: true,
 		  		autoplaySpeed: 5000,
 				focusOnSelect: true,
+				responsiveClass:true,
 				responsive: [
 					{
 				      breakpoint: 1170,
@@ -402,7 +403,8 @@ function optionShiping(item){
 				dots:false,
 			    autoplay:true,
 			    autoplayTimeout:5500,
-			    autoplayHoverPause:true,
+				autoplayHoverPause:true,
+				responsiveClass:true,
 			    margin:30,
 			    responsive:{
 			    	320:{
