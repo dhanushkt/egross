@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/icon-font-linea.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/multirange.css">
-<link rel="stylesheet" type="text/css" href="lander_plugins/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="lander_plugins/css/bootstrap.min.css"> -->
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/themify-icons.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/style.css">
@@ -114,6 +114,5 @@
     }
 </style>
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
