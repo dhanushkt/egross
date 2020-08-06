@@ -139,76 +139,89 @@ if (isset($_POST['submit'])) {
                         }
                         .smbtn {
                             color: red;
-                            margin-top: 5px;
-                            margin-left: 80px;
-                            padding-left: 30px;
+                            outline: black;
+                            margin-top: 1px;
+                            margin-left: 100px;
+                            padding-left: 10px;
                             padding-right: 30px;
-                            margin-bottom: 5px;
-                            font-size: 18px;
-                            outline:black;
-                        }
-                        #overlay {
-                            /* we set all of the properties for our overlay */
-                            height: 120%;
-                            width: 80%;
-                            margin: 0 auto;
-                            background: white;
-                            color: red;
-                            padding: 10px;
-                            padding-top: -10px;
-                            position: absolute;
-                            top: 50%;
-                            left: 10%;
-                            z-index: 1000;
-                            display: none;
-                            /* CSS 3 */
-                            -webkit-border-radius: 10px;
-                            -moz-border-radius: 10px;
-                            -o-border-radius: 10px;
-                            border-radius: 10px;
-                        }
-
-                        #mask {
-                            /* create are mask */
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            background: rgba(0, 0, 0, 0.6);
-                            z-index: 500;
-                            width: 100%;
-                            height: 100%;
-                            display: none;
-                        }
-
-                        /* use :target to look for a link to the overlay then we find our mask */
-                        #overlay:target,
-                        #overlay:target+#mask {
-                            display: block;
-                            opacity: 1;
-                        }
-                        .close {
-                            /* to make a nice looking pure CSS3 close button */
-                            display: block;
-                            position: absolute;
-                            top: -20px;
-                            right: -20px;
-                            background: black;
-                            color: white;
-                            height: 40px;
-                            width: 40px;
-                            line-height: 40px;
                             font-size: 20px;
-                            text-decoration: none;
-                            text-align: center;
-                            font-weight: bold;
-                            -webkit-border-radius: 40px;
-                            -moz-border-radius: 40px;
-                            -o-border-radius: 40px;
-                            border-radius: 40px;
                         }
-                        hr{
-                            background-color: red;
-                            margin-top: -8px;
+
+                        .overlay {
+                            background: rgba(0, 0, 0, 0.8);
+                            opacity: 0.8;
+                            filter: alpha(opacity=80);
+                            position: absolute;
+                            top: 0px;
+                            bottom: 0px;
+                            left: 0px;
+                            right: 0px;
+                            z-index: 100;
+                        }
+
+                        /* Popup */
+                        .popup {
+                            background: white;
+                            position: absolute;
+                            top: 100;
+                            border-radius: 5px;
+                            box-shadow: black;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            z-index: 101;
+                            margin-top: 10px;
+                            width: 300px;
+                            /*Change your width here*/
+                            height: 200px;
+                            /*Change your height here*/
+                            margin: auto;
+                        }
+                            @media(max-width:768px) {
+                                .popup{
+                                width: 90%;
+                                box-shadow: 5px 10px #888888;
+                                margin: auto 5%;
+                            }
+                        }
+
+                            /* Popup Inner */
+                            .popup-inner {
+                                position: relative;
+                                padding: 1em;
+                            }
+                                input .s3-btn-close {
+                                    position: absolute;
+                                    top: -0.5em;
+                                    right: -0.5em;
+
+                                    background: black;
+                                    border: solid 2px white;
+                                    color: white;
+                                    cursor: pointer;
+
+                                    border-radius: 15px;
+
+                                    outline: none;
+                                }
+                            
+                        input.s3-btn {
+                            background: #f1f1f1;
+                            border: none;
+                            width: 200px;
+                            height: 50px;
+                            cursor: pointer;
+
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            margin: auto;
+                        }
+
+                        .s3-center {
+                            text-align: center;
                         }
 
                         @media screen and (max-width: 700px) {
@@ -272,8 +285,6 @@ if (isset($_POST['submit'])) {
                             margin: 0;
                             padding: 0;
                         }
-
-                        
                     </style>
                     <form method="POST" class="">
                         <div class="clearfix mobile search relative float-left">
@@ -284,22 +295,8 @@ if (isset($_POST['submit'])) {
                     </form>
 
                     <div class="clearfix icon-search-mobile absolute marg">
-                    <a href="#overlay" id="open-overlay"><i style="color:red;"class="fa fa-search"></i></a>
+                        <a onclick="popupOpen();"><i style="color:red;" class="fa fa-search"></i></a>
                     </div>
-                    <div id="overlay">
-                        <a href="#" class="close">&times;</a>
-                        <form method="POST">
-                        <h4 style="color: red;">Search Products</h4>
-                        <hr>
-                            <input type="text" class="typeahead tt-query tb" style="border-bottom:red; width:100%; outline:red;" name="typeahead" placeholder="Type Here..."></input>
-                            <br/>
-                            <button type="submit" name="submit" class="smbtn"><i class="fa fa-search"></i></button>
-                        </form>
-                        <br />
-                        <br />
-                        <br />
-                    </div>
-                    <div id="mask" onclick="document.location='#';"></div>
 
                     <?php if ($userlogin) { ?>
                         <div id="carticon" class="clearfix cart-website absolute" onclick="showCartBoxDetail()">
@@ -374,7 +371,20 @@ if (isset($_POST['submit'])) {
 
         </div>
     </div>
+                        <div class="popup" id="popup" style="display:none;">
+                            <div class="popup-inner">
+                                <i class= "fa fa-close" onclick="popupClose();" value="&times;"></i>
 
+                                <h3>Search Products</h3>
+                                <hr style="margin-top:-10px; background-color:black; width:52%;" >
+                                <br>
+                                <form method="POST">
+                                    <input type="text"name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ."/>
+                                    <hr style="margin-top:-10px; background-color:red;" >
+                                    <button type="submit" name="submit" class="smbtn"><i class="fa fa-search">  Search</i></button> 
+                                </form>
+                            </div>
+                        </div>
     <!--   < script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
@@ -411,4 +421,16 @@ if (isset($_POST['submit'])) {
         }
         </style>
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+    <script>
+        // Popup Open
+        function popupOpen() {
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        // Popup Close
+        function popupClose() {
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
 </header>
