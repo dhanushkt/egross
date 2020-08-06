@@ -6,25 +6,24 @@
 <script src="lander_plugins/js/multirange.js" defer=""></script>
 <script src="lander_plugins/js/slick.min.js" defer=""></script>
 <script src="lander_plugins/js/owl.carousel.min.js" defer=""></script>
-<script src="lander_plugins/sync_owl_carousel.js" defer=""></script>
+<!-- <script src="lander_plugins/sync_owl_carousel.js" defer=""></script> -->
 <script src="lander_plugins/js/scripts.js" defer=""></script>
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-<script src="typeahead.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->Q
 
 <!--Search-->
 <script src="typeahead.min.js"></script>
 <script>
-    $(document).ready(function(){
-    $('input.typeahead').typeahead({
-        name: 'typeahead',
-        remote:'search.php?key=%QUERY',
-        limit : 10
+    $(document).ready(function() {
+        $('input.typeahead').typeahead({
+            name: 'typeahead',
+            remote: 'search.php?key=%QUERY',
+            limit: 10
+        });
     });
-});
-    </script>
+</script>
 <!-- script to stick nav bar on top when scrolling -->
-<script>
+<!-- <script>
     window.onscroll = function() {
         myFunction()
     };
@@ -39,4 +38,4 @@
             header.classList.remove("sticky");
         }
     }
-</script>
+</script> -->
