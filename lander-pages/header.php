@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
                     <style>
                         .search {
                             border: 2px solid #eb1a21;
-                            width: 791px;
+                            /* width: 791px; */
                             margin: 0 0 0 60px;
                         }
 
