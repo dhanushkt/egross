@@ -230,7 +230,7 @@ if (isset($_GET['scat'])) {
 									$query = mysqli_query($con, "SELECT * FROM mcat");
 									while ($row = mysqli_fetch_assoc($query)) {
 									?>
-										<li><a href="#"><?php echo $row['mcname']; ?></a></li>
+										<li><a href="view-category.php?id=<?php echo $row['mcid']; ?>"><?php echo $row['mcname']; ?></a></li>
 									<?php } ?>
 								</ul>
 							</div>
