@@ -179,8 +179,9 @@ if (isset($_POST['submit'])) {
                         }
                             @media(max-width:768px) {
                                 .popup{
+                                top:50;
                                 width: 90%;
-                                box-shadow: 5px 10px #888888;
+                                box-shadow: 5px 8px #888888;
                                 margin: auto 5%;
                             }
                         }
@@ -373,7 +374,7 @@ if (isset($_POST['submit'])) {
     </div>
                         <div class="popup" id="popup" style="display:none;">
                             <div class="popup-inner">
-                                <i class= "fa fa-close" onclick="popupClose();" value="&times;"></i>
+                                <i style="float: right;" class= "fa fa-close" onclick="popupClose();" value="&times;"></i>
 
                                 <h3>Search Products</h3>
                                 <hr style="margin-top:-10px; background-color:black; width:52%;" >
