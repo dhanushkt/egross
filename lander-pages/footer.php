@@ -31,7 +31,7 @@
                 <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
                     <p>my account</p>
                     <ul class="list-footer">
-                        <li><a href="#">My Account</a></li>
+                        <li><a href="account.php">My Account</a></li>
                         <li><a href="user-login.php">Login</a></li>
                         <li><a href="cart.php">My Cart</a></li>
                         <li><a href="wishlist.php">My Wishlist</a></li>
@@ -41,23 +41,22 @@
                 <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
                     <p>information</p>
                     <ul class="list-footer">
-                        <li><a href="#">Information</a></li>
+                        
                         <li><a href="account.php">Orders History</a></li>
                         <!--<li><a href="#">Privacy Policy</a></li>-->
                         <!--<li><a href="#">Site Map</a></li>-->
                     </ul>
                 </div>
                 <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
-                    <p>our services</p>
+                    <p>Become a seller</p>
                     <ul class="list-footer">
-                        <li><a href="#">Product Recall</a></li>
-                        <li><a href="#">Gift Vouchers</a></li>
+                        <li><a href="./login/index.php">Seller Login</a></li>
+                        <li><a href="./login/register.php">Seller Registration</a></li>
                         <!--<li><a href="#">Returns And Exchanges</a></li>-->
-                        <li><a href="#">Shipping Options</a></li>
-                        <li><a href="#">Terms Of Use</a></li>
+                        
                     </ul>
                 </div>
-                <div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
+                <!--<div class="clearfix col-md-3 col-sm-6 col-xs-12 text-footer">
                     <p>contact us</p>
                     <ul class="icon-footer">
                         <li><i class="fa fa-home" aria-hidden="true"></i> 262 Milacina Mrest, Behansed, Paris</li>
@@ -66,7 +65,7 @@
                         <li><i class="fa fa-fax" aria-hidden="true"></i> 070-7782-9138</li>
                         <li><i class="fa fa-clock-o" aria-hidden="true"></i> 09:00 AM - 18:00 PM</li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
