@@ -25,9 +25,9 @@
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/contact.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/loader.css">
 
-<link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.carousel.min.css">
-<link rel="stylesheet" type="text/css" href="lander_plugins/css/responsive.css">
+<!-- <link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/owl.carousel.min.css"> -->
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/responsivev2.css">
 
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/category.css">
 
@@ -114,5 +114,9 @@
     }
 </style>
 
+<link rel="stylesheet" type="text/css" href="lander_plugins/owl/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/owl/owl.theme.default.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="lander_plugins/owl/owl.carousel.js" defer=""></script>

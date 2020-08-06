@@ -35,6 +35,7 @@ $(document).ready(function() {
             smartSpeed: 200,
             margin:30,
             slideSpeed : 500,
+            responsiveClass:true,
             responsive:{
               320:{
                 items:data_items[3]
