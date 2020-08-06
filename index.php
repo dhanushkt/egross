@@ -6,7 +6,11 @@ $menuslide = false;
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <?php include 'lander-pages/csslink.php'; ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+
     <style>
         .title-gold-bg:before {
             border-left-color: red;
@@ -23,13 +27,13 @@ $menuslide = false;
             color: black;
             margin: 0;
         }
+
         .not-allowed {
-            pointer-events: none; 
+            pointer-events: none;
             cursor: not-allowed;
         }
     </style>
 </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 
 <body onload="myFunction()">
 
@@ -98,7 +102,7 @@ $menuslide = false;
                         }, 1000);
                     }
                 });
-                $(this).addClass("not-allowed");      //add the class to the clicked element
+                $(this).addClass("not-allowed"); //add the class to the clicked element
             });
         });
     </script>
@@ -113,8 +117,17 @@ $menuslide = false;
         <?php include 'mobile-search.php'; ?>
 
         <!-- End Header Box -->
+
         <!-- Content Box -->
         <div class="relative clearfix full-width">
+            <!-- Welcome -->
+            <div class=" container banner_full_width" style="margin-top: 40px; margin-bottom: 10px;">
+                <div class="row relative banners-effect5 overfollow-hidden">
+                    <img src="lander_plugins/img/banner_egross.png" alt="Banner Full Width . . .">
+                    <a href="#"></a>
+                </div>
+            </div>
+            <!-- Welcome end -->
             <!-- Menu & Slide -->
             <?php if ($menuslide) { ?>
                 <div class="clearfix container-web relative">
@@ -198,7 +211,7 @@ $menuslide = false;
             <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
                 <div class="clearfix container-web">
-                    <div class=" container">
+                    <div class="container">
                         <div class="row">
                             <!-- Title Product -->
                             <div class="clearfix title-box full-width bottom-margin-default border bg-white">
@@ -223,10 +236,12 @@ $menuslide = false;
                         </div>
                         <div class="clearfix content-product-box bottom-margin-default full-width">
                             <div class="row">
-                                <div class="relative">
+                                <div class="relative" style="width: 100%">
                                     <?php for ($n = 0; $n <= $max; $n++) { ?>
                                         <!-- default for only first category -->
-                                        <div class="good-deal-product animate-default <?php if ($n == 0) { echo "active-box-category"; } ?> hidden-content-box" id="new_product<?php echo $n; ?>">
+                                        <div class="good-deal-product animate-default <?php if ($n == 0) {
+                                                                                            echo "active-box-category";
+                                                                                        } ?> hidden-content-box" id="new_product<?php echo $n; ?>">
                                             <!-- Product Son -->
                                             <div class="owl-carousel owl-theme">
                                                 <?php
@@ -329,6 +344,38 @@ $menuslide = false;
             </div>
             <!-- End Content Product -->
 
+            <!-- carousel -->
+            <div class="container banner_full_width" style="margin-top: 30px; margin-bottom: 30px; padding: 0px !important;">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="lander_plugins/img/slides/1.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="lander_plugins/img/slides/2.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="lander_plugins/img/slides/3.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <!-- end carousel -->
+
+
             <!-- Product Category Percent 2 -->
             <div class=" full-width category-percent-two bottom-margin-default">
                 <div class="clearfix container-web">
@@ -388,10 +435,10 @@ $menuslide = false;
             <!-- Support -->
             <div class=" support-box full-width clear-padding bottom-margin-default">
                 <div class="container-web clearfix">
-                        
+
                     <div class="container">
                         <div class="row">
-                          <!--  <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
+                            <!--  <div class=" support-box-info relative col-md-3 col-sm-3 col-xs-6">
                                 <img src="lander_plugins/img/icon_free_ship.png" alt="Icon Free Ship" class="absolute" />
                                 <p>free shipping</p>
                                 <p>on order over $500</p>
@@ -413,8 +460,7 @@ $menuslide = false;
                             </div> -->
                         </div>
                     </div>
-                </div>
-               
+
                 </div>
                 <!-- End Support Box -->
             </div>
@@ -423,7 +469,10 @@ $menuslide = false;
             <?php include 'lander-pages/footer.php'; ?>
         </div>
         <!-- End Footer Box -->
+
+
         <?php include 'lander-pages/jslinks.php'; ?>
+
 </body>
 <script>
     var preloader = document.getElementById("loading");
@@ -444,6 +493,11 @@ $menuslide = false;
                 getAllimg[i].src = 'uploads/item/default_egross.png';
             }
         }
+        $('#carouselExampleIndicators').carousel({
+            interval: 2000,
+            cycle: true
+        })
     });
 </script>
+
 </html>
