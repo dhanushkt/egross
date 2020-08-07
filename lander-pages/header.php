@@ -413,7 +413,7 @@ if (isset($_POST['submit'])) {
                                 </div>
                             </li>
                             <li class="title-hover-red">
-                                <a class="animate-default" href="about.php">ABOUT</a>
+                                <a class="animate-default" href="team/meet.php">ABOUT</a>
                             </li>
                         </ul>
                     </div>
