@@ -148,7 +148,7 @@ if (isset($_POST['submit'])) {
                             font-size: 20px;
                         }
 
-                        .overlay {
+                        .overlays {
                             background: rgba(0, 0, 0, 0.8);
                             opacity: 0.8;
                             filter: alpha(opacity=80);
@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
                         }
 
                         /* Popup */
-                        .popup {
+                        .popups {
                             background: lightgrey;
                             position: absolute;
                             top: 15%;
@@ -180,7 +180,7 @@ if (isset($_POST['submit'])) {
                         }
 
                         @media(max-width:768px) {
-                            .popup {
+                            .popups {
                                 top: 15%;
                                 width: 90%;
                                 box-shadow: 5px 8px #888888;
@@ -423,7 +423,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
-    <div class="popup" id="popup" style="display:none;">
+    <div class="popups" id="popups" style="display:none;">
         <div class="popup-inner">
             <i style="float: right; margin-top: 15px; font-size: 25px;" class="fa fa-close" onclick="popupClose();" value="&times;"></i>
 
@@ -477,13 +477,13 @@ if (isset($_POST['submit'])) {
     <script>
         // Popup Open
         function popupOpen() {
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popups").style.display = "block";
+            document.getElementById("overlays").style.display = "block";
         }
         // Popup Close
         function popupClose() {
-            document.getElementById("popup").style.display = "none";
-            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popups").style.display = "none";
+            document.getElementById("overlays").style.display = "none";
         }
     </script>
 </header>
