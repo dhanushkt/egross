@@ -322,7 +322,7 @@ if (isset($_POST['submit'])) {
                         }
 
                         .cinput {
-                            width: 350px;
+                            width: calc(10vw + 260px);
                             height: calc(1.5em + 0.75rem + 5px);
                             padding: .375rem .75rem;
                             font-size: 1.5rem;
@@ -432,6 +432,7 @@ if (isset($_POST['submit'])) {
             <br>
             <form method="POST">
                 <input required type="text" name="typeahead" class="typeahead tt-query tb cinput" autocomplete="off" spellcheck="false" placeholder="Enter keyword here " />
+                <br>
                 <!-- <hr style="margin-top:-10px; background-color:red;"> -->
                 <button class="cbutton smbtn" name="submit" type="submit">Search</button>
             </form>
