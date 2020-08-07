@@ -531,7 +531,7 @@ $subtot = 0;
                                             $subtot = $subtot + ($getallitems['iprice'] * $getallitems['lqty']);
                                             ?>
                                         <?php } ?>
-                                        <div id="popup11" class="overlay">
+                                        <div id="popup11" class="overlay" style="display:none">
                                             <div class="popup11">Egross
                                                 <a class="close" href="#">&times;</a>
                                                 <div class="content">
@@ -563,7 +563,7 @@ $subtot = 0;
                                         <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
                                         <div id="editor"></div>
             </form>
-            <a class="button11 mycartButton" href="#popup11"> Export PDF</a>
+            <a class="button11 mycartButton" id="pdf"> Export PDF</a>
             <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
             </aside>
             <center><span></span></center>
@@ -796,8 +796,11 @@ $subtot = 0;
             buttons: ['pdf']
         });
 
-        table.buttons().container()
-            .appendTo('#example_wrapper .col-md-6:eq(0)');
+        // table.buttons().container()
+        //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+        $("#pdf").on("click", function() {
+        table.button( '.buttons-pdf' ).trigger();
+});
     });
     //copy link  
     var $temp = $("<input>");
