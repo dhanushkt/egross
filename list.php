@@ -1,10 +1,6 @@
 <?php
 include 'access/useraccesscontrol.php';
 
-if (!$userlogin) {
-    echo "<script>window.location.href='user-login.php'; </script>";
-}
-
 if (isset($_GET['list'])) {
     $openlist = true;
     $listno = $_GET['list'];
@@ -12,17 +8,26 @@ if (isset($_GET['list'])) {
     $openlist = false;
 }
 
+$grantlist = false;
+
 if ($openlist) {
     //when listno is set
-    $checkuserlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.listno='$listno' AND user_list.luid='$globaluserid'");
+    $checkuserlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.listno='$listno'");
+    //AND user_list.luid='$globaluserid'
+
+    $getlistinfo = mysqli_fetch_assoc($checkuserlist);
+    $storename = $getlistinfo['sname'];
+
+    $userid = $getlistinfo['luid'];
+    if ($userlogin && ($userid == $globaluserid)) {
+        $grantlist = true;
+    }
+
     if (mysqli_num_rows($checkuserlist) == 0) {
         echo "<script>window.location.href='index.php'; </script>";
     } else {
         $cart = true;
     }
-
-    $getlistinfo = mysqli_fetch_assoc($checkuserlist);
-    $storename = $getlistinfo['sname'];
 
     $getallitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
     $getall = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
@@ -31,6 +36,10 @@ if ($openlist) {
     }
 } else {
     //when listno is not set
+    if (!$userlogin) {
+        echo "<script>window.location.href='user-login.php'; </script>";
+    }
+
     $getcartitem = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
 
     if ($listcount = mysqli_num_rows($getcartitem) >= 1)
@@ -388,12 +397,12 @@ $subtot = 0;
                     },
                     success: function(data) {
                         iqwerty.toast.Toast('List Deleted', options);
-                        
+
                         var item = JSON.parse(data);
-                        if(item.listno != 0){
-                            location.href =  'list.php?list='+item.listno;
+                        if (item.listno != 0) {
+                            location.href = 'list.php?list=' + item.listno;
                         } else {
-                            location.href =  'list.php';
+                            location.href = 'list.php';
                         }
                     }
                 });
@@ -426,10 +435,10 @@ $subtot = 0;
                         iqwerty.toast.Toast('List Deleted', options);
 
                         var item = JSON.parse(data);
-                        if(item.listno != 0){
-                            location.href =  'list.php?list='+item.listno;
+                        if (item.listno != 0) {
+                            location.href = 'list.php?list=' + item.listno;
                         } else {
-                            location.href =  'list.php';
+                            location.href = 'list.php';
                         }
                     }
                 });
@@ -488,21 +497,33 @@ $subtot = 0;
 
 
                                                     <!-- <span class="ti-close relative remove-product"></span> -->
+                                                    <?php if ($grantlist) { ?>
+                                                        <button data-id="<?php echo $getallitems['listitem']; ?>" class="mycButton itmDelbtn"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+                                                    <?php } ?>
 
-                                                    <button data-id="<?php echo $getallitems['listitem']; ?>" class="mycButton itmDelbtn"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+                                                    <?php if ($grantlist) { ?>
+                                                        <div class="qty-input">
+                                                            <!-- <i class="less">-</i> -->
+                                                            <p style="padding-right: 10px;">Qty: </p>
 
+                                                            <input id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
+                                                            <!-- <i class="more">+</i> -->
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="qty-input" style="margin-top: 20px">
+                                                            <!-- <i class="less">-</i> -->
+                                                            <p style="padding-right: 10px;">Qty: </p>
 
-                                                    <div class="qty-input">
-                                                        <!-- <i class="less">-</i> -->
-                                                        <p style="padding-right: 10px;">Qty: </p>
-                                                        <input id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
-                                                        <!-- <i class="more">+</i> -->
-                                                    </div>
+                                                            <input readonly id="nqty<?php echo $getallitems['listitem']; ?>" type="number" value="<?php echo $getallitems['lqty']; ?>" />
+                                                            <!-- <i class="more">+</i> -->
+                                                        </div>
+                                                    <?php } ?>
 
                                                     <p style="font-size: 23px !important; margin-right: 10px;s margin-bottom: 10px;" class="text-red price-shoping-cart">₹ <?php echo ($getallitems['iprice'] * $getallitems['lqty']); ?></p>
 
-                                                    <button data-id="<?php echo $getallitems['listitem']; ?>" style="margin-bottom: 10px; margin-right: 10px;" class="btn saveBtn">Save</button>
-
+                                                    <?php if ($grantlist) { ?>
+                                                        <button data-id="<?php echo $getallitems['listitem']; ?>" style="margin-bottom: 10px; margin-right: 10px;" class="btn saveBtn">Save</button>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                             <?php
@@ -540,7 +561,7 @@ $subtot = 0;
                                             </div>
                                         </div>
                                         <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                            <div id="editor"></div>
+                                        <div id="editor"></div>
             </form>
             <a class="button11 mycartButton" href="#popup11"> Export PDF</a>
             <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
@@ -638,8 +659,10 @@ $subtot = 0;
                 }
             </script>
             <!--popup-->
-            <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="#popup1">
-                Proceed to Checkout</a>
+            <?php if ($grantlist) { ?>
+                <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="#popup1">
+                    Proceed to Checkout </a>
+            <?php } ?>
         </div>
         <!-- End Content Right -->
     <?php } else { ?>
@@ -652,14 +675,13 @@ $subtot = 0;
                 <?php
                     $listno = $getcartitem['listno'];
                     $subtot = 0;
-                    
+
                     $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
                     $itemcount = mysqli_num_rows($getlistitems);
 
                     while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
+                        $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
                     }
-
                 ?>
                 <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
