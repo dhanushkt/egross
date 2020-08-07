@@ -10,7 +10,7 @@
 <script src="lander_plugins/js/scripts.js" defer=""></script>
 <!-- <script src="lander_plugins/js/sync_owl_carousel.js" defer=""></script> -->
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->Q
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
 <!--Search-->
 <script src="typeahead.min.js"></script>

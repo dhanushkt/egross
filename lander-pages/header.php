@@ -137,6 +137,7 @@ if (isset($_POST['submit'])) {
                             padding-right: 30px;
                             font-size: 20px;
                         }
+
                         .smbtn {
                             color: red;
                             outline: black;
@@ -161,9 +162,9 @@ if (isset($_POST['submit'])) {
 
                         /* Popup */
                         .popup {
-                            background: white;
+                            background: lightgrey;
                             position: absolute;
-                            top: 100;
+                            top: 15%;
                             border-radius: 5px;
                             box-shadow: black;
                             left: 0;
@@ -177,35 +178,37 @@ if (isset($_POST['submit'])) {
                             /*Change your height here*/
                             margin: auto;
                         }
-                            @media(max-width:768px) {
-                                .popup{
-                                top:50;
+
+                        @media(max-width:768px) {
+                            .popup {
+                                top: 15%;
                                 width: 90%;
                                 box-shadow: 5px 8px #888888;
                                 margin: auto 5%;
                             }
                         }
 
-                            /* Popup Inner */
-                            .popup-inner {
-                                position: relative;
-                                padding: 1em;
-                            }
-                                input .s3-btn-close {
-                                    position: absolute;
-                                    top: -0.5em;
-                                    right: -0.5em;
+                        /* Popup Inner */
+                        .popup-inner {
+                            position: relative;
+                            padding: 1em;
+                        }
 
-                                    background: black;
-                                    border: solid 2px white;
-                                    color: white;
-                                    cursor: pointer;
+                        input .s3-btn-close {
+                            position: absolute;
+                            top: -0.5em;
+                            right: -0.5em;
 
-                                    border-radius: 15px;
+                            background: black;
+                            border: solid 2px white;
+                            color: white;
+                            cursor: pointer;
 
-                                    outline: none;
-                                }
-                            
+                            border-radius: 15px;
+
+                            outline: none;
+                        }
+
                         input.s3-btn {
                             background: #f1f1f1;
                             border: none;
@@ -233,16 +236,16 @@ if (isset($_POST['submit'])) {
                             .typeahead,
                             .tt-query,
                             .tt-hint {
-                                font-size: 20px;
+                                font-size: 15px;
                                 height: 20px;
                                 outline: black;
                                 border: black;
                                 outline: red;
-                                margin-top: -10px;
+                                /* margin-top: -10px; */
                                 border-bottom: red;
                                 line-height: 28px;
-                                padding: 0px 2px;
-                                padding-left: 12px;
+                                padding: 23px 3px;
+                                padding-left: 9px;
                                 width: 250px;
                             }
 
@@ -282,9 +285,56 @@ if (isset($_POST['submit'])) {
 
                         }
 
-                        * {
+                        /* * {
                             margin: 0;
                             padding: 0;
+                        } */
+
+                        .cbutton {
+                            box-sizing: border-box;
+                            font-family: inherit;
+                            display: inline-block;
+                            font-weight: 600;
+                            text-align: center;
+                            vertical-align: middle;
+                            line-height: 1.5;
+                            margin-top: 0 !important;
+                            margin-bottom: 0 !important;
+                            position: relative;
+                            overflow: hidden;
+                            user-select: none;
+                            -webkit-tap-highlight-color: transparent;
+                            margin: .375rem;
+                            text-transform: uppercase;
+                            white-space: normal;
+                            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+                            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+                            color: #ff3547 !important;
+                            background-color: transparent !important;
+                            border: 2px solid #ff3547 !important;
+                            appearance: none;
+                            border-radius: 10em;
+                            padding: .5rem 1.6rem;
+                            font-size: 1.4rem;
+                            cursor: pointer;
+                            padding-top: .38rem;
+                            padding-bottom: .38rem;
+                        }
+
+                        .cinput {
+                            width: 350px;
+                            height: calc(1.5em + 0.75rem + 5px);
+                            padding: .375rem .75rem;
+                            font-size: 1.5rem;
+                            font-weight: 400;
+                            color: #495057;
+                            background-color: lightgrey;
+                            background-clip: padding-box;
+                            /* border: 1px solid #ced4da; */
+                            border: 1px solid black;
+                            border-radius: .25rem;
+                            margin-bottom: 20px;
+                            margin-top: 5px;
                         }
                     </style>
                     <form method="POST" class="">
@@ -372,20 +422,21 @@ if (isset($_POST['submit'])) {
 
         </div>
     </div>
-                        <div class="popup" id="popup" style="display:none;">
-                            <div class="popup-inner">
-                                <i style="float: right; margin-top:30px;" class= "fa fa-close" onclick="popupClose();" value="&times;"></i>
 
-                                <h3>Search Products</h3>
-                                <hr style="margin-top:-10px; background-color:black; width:52%;" >
-                                <br>
-                                <form method="POST">
-                                    <input type="text"name="typeahead" class="typeahead tt-query tb" autocomplete="off" spellcheck="false" placeholder="Enter keyword here . . ."/>
-                                    <hr style="margin-top:-10px; background-color:red;" >
-                                    <button type="submit" name="submit" class="smbtn"><i class="fa fa-search">  Search</i></button> 
-                                </form>
-                            </div>
-                        </div>
+    <div class="popup" id="popup" style="display:none;">
+        <div class="popup-inner">
+            <i style="float: right; margin-top: 15px; font-size: 25px;" class="fa fa-close" onclick="popupClose();" value="&times;"></i>
+
+            <h3 class="text-uppercase mb-3" style="font-size: 17px;">Search Products</h3>
+            <!-- <hr style="margin-top:-10px; background-color:black; width:52%;"> -->
+            <br>
+            <form method="POST">
+                <input required type="text" name="typeahead" class="typeahead tt-query tb cinput" autocomplete="off" spellcheck="false" placeholder="Enter keyword here " />
+                <!-- <hr style="margin-top:-10px; background-color:red;"> -->
+                <button class="cbutton smbtn" name="submit" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <!--   < script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
