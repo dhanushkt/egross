@@ -438,9 +438,9 @@ if (isset($_POST['submit'])) {
             </form>
         </div>
     </div>
-    <!--   < script type="text/javascript">
+    <script type="text/javascript">
         function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'kn',autoDisplay: false}, 'google_translate_element');
+        new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element');
         }
 
         function triggerHtmlEvent(element, eventName) {
@@ -464,6 +464,7 @@ if (isset($_POST['submit'])) {
         location.reload();
         });
         </script>
+
         <style>
         .goog-te-banner-frame {
             display: none !important;
@@ -473,7 +474,7 @@ if (isset($_POST['submit'])) {
             top: 0px !important;
         }
         </style>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
         // Popup Open
         function popupOpen() {
