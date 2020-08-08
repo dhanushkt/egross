@@ -44,7 +44,8 @@
         .customdwidth {
             width: 500px !important;
         }
-        .icon_logo_footer{
+
+        .icon_logo_footer {
             float: right !important;
         }
 
@@ -58,6 +59,33 @@
         .custommobile-nav {
             position: fixed !important;
             background-color: rgba(24, 27, 46, 0.95) !important;
+        }
+    }
+
+    /*fix for header options on top */
+    @media only screen and (max-width: 420px) {
+        .menu-header-top li a {
+            padding: 5px 10px;
+        }
+
+        .menu-header-top>ul {
+            float: none !important;
+            margin: auto !important;
+        }
+    }
+
+    @media only screen and (max-width: 330px) {
+        .menu-header-top li a {
+            padding: 5px 5px;
+        }
+
+        .menu-header-top>ul {
+            float: none !important;
+            margin: auto !important;
+        }
+
+        .menu-header-top>ul>li a {
+            border: none;
         }
     }
 
