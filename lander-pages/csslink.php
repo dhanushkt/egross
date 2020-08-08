@@ -44,6 +44,9 @@
         .customdwidth {
             width: 500px !important;
         }
+        .icon_logo_footer{
+            float: right !important;
+        }
 
     }
 

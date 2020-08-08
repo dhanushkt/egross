@@ -77,7 +77,7 @@
                         <p>Copyright © 2020 Developed by <a href="https://infinitysystems.in/"> Infinity Systems</a>. </p>
                     </div>
                     <div class="clearfix footer-icon-bottom col-md-5 float-right clear-padding">
-                        <div class="icon_logo_footer float-right">
+                        <div class="icon_logo_footer">
                             <img width=130px" src="lander_plugins/img/is-logo.png" alt="">
                         </div>
                     </div>

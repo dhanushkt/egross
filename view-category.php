@@ -358,7 +358,7 @@ $photo = mysqli_fetch_assoc($getalldata);
 												<!-- <img src="uploads/item/<?php //echo $photo['iimg'];
 																			?>" alt="Product"> -->
 												<!-- dont delete -->
-												<img class="verifyImg" src="uploads/scat/<?php echo $catdata['scimg']; ?>" alt="Product">
+												<img class="verifyImg" src="uploads/scat/<?php echo $catdata['scimg']; ?>" onerror="this.onerror=null; this.src='uploads/item/default_egross.png'">
 											</div>
 											<div class="example text content mob">
 												<p class="text">
@@ -443,18 +443,18 @@ $photo = mysqli_fetch_assoc($getalldata);
 	};
 </script>
 <script>
-	$(document).ready(function() {
-		var getAllimg = document.getElementsByClassName("verifyImg");
-		var i;
-		for (i = 0; i < getAllimg.length; i++) {
-			var width = getAllimg[i].naturalWidth;
-			var height = getAllimg[i].naturalHeight;
+	// $(document).ready(function() {
+	// 	var getAllimg = document.getElementsByClassName("verifyImg");
+	// 	var i;
+	// 	for (i = 0; i < getAllimg.length; i++) {
+	// 		var width = getAllimg[i].naturalWidth;
+	// 		var height = getAllimg[i].naturalHeight;
 
-			if (width < 200 && height < 200) {
-				getAllimg[i].src = 'uploads/item/default_egross.png';
-			}
-		}
-	});
+	// 		if (width < 200 && height < 200) {
+	// 			getAllimg[i].src = 'uploads/item/default_egross.png';
+	// 		}
+	// 	}
+	// });
 </script>
 
 </html>
