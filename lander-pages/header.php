@@ -438,7 +438,7 @@ if (isset($_POST['submit'])) {
             </form>
         </div>
     </div>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element');
         }
@@ -463,7 +463,7 @@ if (isset($_POST['submit'])) {
         window.location = jQuery(this).attr('href');
         location.reload();
         });
-        </script>
+        </script>-->
 
         <style>
         .goog-te-banner-frame {
