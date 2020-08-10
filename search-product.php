@@ -140,11 +140,11 @@ if(isset($_GET['product'])){
 										while($row=mysqli_fetch_assoc($query))
 										{
 									?>
-									<li><a href="#"><?php echo $row['mcname'];?></a></li>
+									<li><a href="view-category.php?id=<?php echo $row['mcid']; ?>"><?php echo $row['mcname'];?></a></li>
 										<?php }?>
 								</ul>
 							</div>
-							<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+							<!--<div class="col-sm-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
 								<p class="title-siderbar bold">BRANDS</p>
 								<ul class="check-box-custom clear-margin clear-margin">
 									<li>
@@ -329,7 +329,7 @@ if(isset($_GET['product'])){
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div>-->
 							<?php if ($adbanner) { ?>
 								<div class="bottom-margin-default banner-siderbar col-md-12 col-sm-12 col-xs-12 clear-padding clearfix">
 									<div class="overfollow-hidden banners-effect5 relative center-vertical-image">
@@ -386,7 +386,7 @@ if(isset($_GET['product'])){
 									}
 								?>
 									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
-										<div class="image-product relative overfollow-hidden">
+										<div class="image-product relative overfollow-hidden" style="margin-left: 15%;">
 											<div class="center-vertical-image">
 												<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
 											</div>
