@@ -566,7 +566,7 @@ $subtot = 0;
             <a class="button11 mycartButton" id="pdf"> Export PDF</a>
             <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
             </aside>
-            <center><span></span></center>
+            <center><label></label></center>
         </div>
         <!-- </form> -->
         <!-- End Content Shoping Cart -->
@@ -811,7 +811,7 @@ $subtot = 0;
         $temp.val($url).select();
         document.execCommand("copy");
         $temp.remove();
-        $("span").text("URL copied!");
+        $("label").text("URL copied!");
     })
 </script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" defer=""></script>
