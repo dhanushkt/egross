@@ -228,89 +228,107 @@ ul.social-icons li  a .fa-linkedin:hover{
 			<h3>Meet Our Team</h3>
 			<label class="line"></label>
 			
+			
 			<div class="agile_team_grids">
-				<div class="col-md-4 agile_team_grid agile1">
-					<div class="agile_team_grid_main">
-						<img src="dhanush.jpg" alt=" " class="img-responsive" />
-						<div class="p-mask">
-							<ul class="social-icons">
-								<li><a href="https://github.com/dhanushkt/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.facebook.com/dhanushkt"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.instagram.com/im_mr_infinity/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
+				<div class="row">
+					<div class="col-md-4 agile_team_grid agile1">
+						<div class="agile_team_grid_main">
+							<img src="dhanush.jpg" alt=" " class="img-responsive" />
+							<div class="p-mask">
+								<ul class="social-icons">
+									<li><a href="https://github.com/dhanushkt/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/dhanushkt"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/im_mr_infinity/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="agile_team_grid1">
+							<h4>Dhanush KT</h4>
+							<p>Developer</p>
 						</div>
 					</div>
-					<div class="agile_team_grid1">
-						<h4>Dhanush KT</h4>
-						<p>Developer</p>
+					<div class="col-md-4 agile_team_grid agile2">
+						<div class="agile_team_grid_main">
+							<img src="jnanesh.jpg" alt=" " class="img-responsive" />
+							<div class="p-mask">
+								<ul class="social-icons">
+									<li><a href="https://github.com/Jnaneshballal/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/jnanesh.ballal"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/jnanesh024/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="agile_team_grid1">
+							<h4>Jnanesh Ballal</h4>
+							<p>Developer</p>
+						</div>
 					</div>
+					<div class="col-md-4 agile_team_grid agile3">
+						<div class="agile_team_grid_main">
+							<img src="nithin.jpg" alt=" " class="img-responsive" />
+							<div class="p-mask">
+								<ul class="social-icons">
+									<li><a href="https://github.com/nithin356/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/profile.php?id=100006531756197"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/nithin_bhandary_/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="agile_team_grid1">
+							<h4>Nithin Bhandary</h4>
+							<p>Testing</p>
+						</div>
+					</div>
+  				</div>
+
+  				<div>
+				  <div class="row">
+				  	<hr class="col-md-12" style="border:1px solid red">
+  				  </div>
 				</div>
-				<div class="col-md-4 agile_team_grid agile2">
-					<div class="agile_team_grid_main">
-						<img src="jnanesh.jpg" alt=" " class="img-responsive" />
-						<div class="p-mask">
-							<ul class="social-icons">
-								<li><a href="https://github.com/Jnaneshballal/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.facebook.com/jnanesh.ballal"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.instagram.com/jnanesh024/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
+
+				<div class="row">
+					<div class="col-md-4 agile_team_grid agile1">
+						<div class="agile_team_grid_main">
+							<img src="akash.jpg" alt=" " class="img-responsive" />
+							<div class="p-mask">
+								<ul class="social-icons">
+									<li><a href="https://github.com/akashraj22"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/akashraj.jain.3"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/_akashraj_22/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="agile_team_grid1">
+							<h4>Akash Raj</h4>
+							<p>UI/UX</p>
 						</div>
 					</div>
-					<div class="agile_team_grid1">
-						<h4>Jnanesh Ballal</h4>
-						<p>Developer</p>
+
+					<div class="col-md-4 agile_team_grid agile1">
+						
 					</div>
-				</div>
-				<div class="col-md-4 agile_team_grid agile3">
-					<div class="agile_team_grid_main">
-						<img src="nithin.jpg" alt=" " class="img-responsive" />
-						<div class="p-mask">
-							<ul class="social-icons">
-								<li><a href="https://github.com/nithin356/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.facebook.com/profile.php?id=100006531756197"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.instagram.com/nithin_bhandary_/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
+					
+					<div class="col-md-4 agile_team_grid agile2">
+						<div class="agile_team_grid_main">
+							<img src="nikhil.jpg" alt=" " class="img-responsive" />
+							<div class="p-mask">
+								<ul class="social-icons">
+									<li><a href="https://github.com/Nikhil298"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.facebook.com/profile.php?id=100004854783739"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/naik__nikhil/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div class="agile_team_grid1">
-						<h4>Nithin Bhandary</h4>
-						<p>Testing</p>
+						<div class="agile_team_grid1">
+							<h4>Nikhil</h4>
+							<p>UI/UX</p>
+						</div>
 					</div>
 				</div>
 
-				<div class="col-md-4 agile_team_grid agile1">
-					<div class="agile_team_grid_main">
-						<img src="akash.jpg" alt=" " class="img-responsive" />
-						<div class="p-mask">
-							<ul class="social-icons">
-								<li><a href="https://github.com/akashraj22"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.facebook.com/akashraj.jain.3"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.instagram.com/_akashraj_22/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="agile_team_grid1">
-						<h4>Akash Raj</h4>
-						<p>UI/UX</p>
-					</div>
-				</div>
-				<div class="col-md-4 agile_team_grid agile2">
-					<div class="agile_team_grid_main">
-						<img src="nikhil.jpg" alt=" " class="img-responsive" />
-						<div class="p-mask">
-							<ul class="social-icons">
-								<li><a href="https://github.com/Nikhil298"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.facebook.com/profile.php?id=100004854783739"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="https://www.instagram.com/naik__nikhil/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="agile_team_grid1">
-						<h4>Nikhil</h4>
-						<p>UI/UX</p>
-					</div>
-				</div>
 				<div class="clearfix"> </div>
+
 			</div>
 		</div>
 	</div>
