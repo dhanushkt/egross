@@ -516,9 +516,10 @@ $subtot = 0;
                                     <!-- <form method="post"> -->
                                     <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
                                         <p class="title-shoping-cart"><i class="fa fa-list"></i> <?php echo $storename; ?>
-                                            <a id="custlist" class="addborder pull-right"> <button onclick="getData(); return false;" type="button"class="buttoncustom "><i class="fa fa-plus"></i></button>Custom List</a></p>
-                                        <!--Custom List-->    
-                                        <div id="list" style="display: none;" class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
+                                            <!-- <a id="custlist" class="addborder pull-right"> <button onclick="getData(); return false;" type="button"class="buttoncustom "><i class="fa fa-plus"></i></button>Custom List</a>-->
+                                        </p>
+                                        <!--Custom List-->
+                                        <!-- <div id="list" style="display: none;" class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
                                             <div class="relative product-in-cart-col-1 center-vertical-image">
                                                 <img src="uploads/item/default_egross.png" alt="">
                                             </div>
@@ -529,28 +530,24 @@ $subtot = 0;
                                             <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
                                             <p></p>
                                                 <div class="qty-input">
-                                                    <!-- <i class="less">-</i> -->
                                                     <p style="padding-right: 10px;">Qty: </p>
 
                                                     <input type="number" value="" />
-                                                    <!-- <i class="more">+</i> -->
                                                 </div>
                                                 <br/>
                                                 <div class="qty-input">
-                                                    <!-- <i class="less">-</i> -->
                                                     <p style="padding-right: 10px;">Price: </p>
 
                                                     <input type="number" value="" />
-                                                    <!-- <i class="more">+</i> -->
                                                 </div>
                                                 <p></p>
                                                 <a class="btn btn-success"><i class="fa fa-folder"></i></a>
                                                 <a id="cancellist" style="margin-right:10px;"class="btn btn-danger"><i class="fa fa-close"></i></a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--end-->
                                         <?php foreach ($getallitems as $key => $getallitems) { ?>
-                                        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
+                                            <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
                                                 <div class="relative product-in-cart-col-1 center-vertical-image">
                                                     <img src="uploads/item/<?php echo $getallitems['iimg']; ?>" alt="">
                                                 </div>
@@ -877,12 +874,12 @@ $subtot = 0;
         $temp.remove();
         $("label").text("URL copied!");
     })
-    $('#custlist').on('click', function() {
-        $("#list").show();
-    });
-    $('#cancellist').on('click', function() {
-        $("#list").hide();
-    });
+    // $('#custlist').on('click', function() {
+    //     $("#list").show();
+    // });
+    // $('#cancellist').on('click', function() {
+    //     $("#list").hide();
+    // });
 </script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" defer=""></script>
