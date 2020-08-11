@@ -267,6 +267,38 @@ $subtot = 0;
     </style>
     <!-- for overlay -->
     <style>
+        .addborder {
+            cursor: pointer;
+            border: solid red;
+            border-radius: 25px;
+            font-size: 15px;
+            padding-right: 10px;
+
+        }
+
+        .inputcustom {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .buttoncustom {
+            background-color: none;
+            border-radius: 25px;
+            background: none;
+            border: none;
+            color: black;
+            padding: 5px 5px;
+            text-align: center;
+            text-decoration: none;
+            margin: 2px 2px;
+            cursor: pointer;
+        }
+
         .overlay {
             opacity: 0.8;
             background-color: rgba(0.7, 0.7, 0.7, 0.7);
@@ -483,10 +515,42 @@ $subtot = 0;
                                     <!-- Content Shoping Cart -->
                                     <!-- <form method="post"> -->
                                     <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                                        <p class="title-shoping-cart"><i class="fa fa-list"></i> <?php echo $storename; ?></p>
+                                        <p class="title-shoping-cart"><i class="fa fa-list"></i> <?php echo $storename; ?>
+                                            <a id="custlist" class="addborder pull-right"> <button onclick="getData(); return false;" type="button"class="buttoncustom "><i class="fa fa-plus"></i></button>Custom List</a></p>
+                                        <!--Custom List-->    
+                                        <div id="list" style="display: none;" class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
+                                            <div class="relative product-in-cart-col-1 center-vertical-image">
+                                                <img src="uploads/item/default_egross.png" alt="">
+                                            </div>
+                                            <div class="relative product-in-cart-col-2">
+                                                <p class="title-hover-black"><a class="animate-default">
+                                                        <input class="inputcustom" type="text" placeholder="Enter Product name"></input></a></p>
+                                            </div>
+                                            <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
+                                            <p></p>
+                                                <div class="qty-input">
+                                                    <!-- <i class="less">-</i> -->
+                                                    <p style="padding-right: 10px;">Qty: </p>
 
+                                                    <input type="number" value="" />
+                                                    <!-- <i class="more">+</i> -->
+                                                </div>
+                                                <br/>
+                                                <div class="qty-input">
+                                                    <!-- <i class="less">-</i> -->
+                                                    <p style="padding-right: 10px;">Price: </p>
+
+                                                    <input type="number" value="" />
+                                                    <!-- <i class="more">+</i> -->
+                                                </div>
+                                                <p></p>
+                                                <a class="btn btn-success"><i class="fa fa-folder"></i></a>
+                                                <a id="cancellist" style="margin-right:10px;"class="btn btn-danger"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        </div>
+                                        <!--end-->
                                         <?php foreach ($getallitems as $key => $getallitems) { ?>
-                                            <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
+                                        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden">
                                                 <div class="relative product-in-cart-col-1 center-vertical-image">
                                                     <img src="uploads/item/<?php echo $getallitems['iimg']; ?>" alt="">
                                                 </div>
@@ -561,7 +625,7 @@ $subtot = 0;
                                             </div>
                                         </div>
                                         <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                        <div id="editor"></div>
+                                            <div id="editor"></div>
             </form>
             <a class="button11 mycartButton" id="pdf"> Export PDF</a>
             <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
@@ -673,15 +737,15 @@ $subtot = 0;
             <?php foreach ($getcartitem as $key => $getcartitem) { ?>
 
                 <?php
-                    $listno = $getcartitem['listno'];
-                    $subtot = 0;
+                                        $listno = $getcartitem['listno'];
+                                        $subtot = 0;
 
-                    $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-                    $itemcount = mysqli_num_rows($getlistitems);
+                                        $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+                                        $itemcount = mysqli_num_rows($getlistitems);
 
-                    while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                        $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
-                    }
+                                        while ($listitm = mysqli_fetch_assoc($getlistitems)) {
+                                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
+                                        }
                 ?>
                 <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
@@ -799,8 +863,8 @@ $subtot = 0;
         // table.buttons().container()
         //     .appendTo('#example_wrapper .col-md-6:eq(0)');
         $("#pdf").on("click", function() {
-        table.button( '.buttons-pdf' ).trigger();
-});
+            table.button('.buttons-pdf').trigger();
+        });
     });
     //copy link  
     var $temp = $("<input>");
@@ -813,6 +877,12 @@ $subtot = 0;
         $temp.remove();
         $("label").text("URL copied!");
     })
+    $('#custlist').on('click', function() {
+        $("#list").show();
+    });
+    $('#cancellist').on('click', function() {
+        $("#list").hide();
+    });
 </script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" defer=""></script>
