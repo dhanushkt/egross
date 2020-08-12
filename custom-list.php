@@ -465,7 +465,9 @@ $subtot = 0;
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="list.php">Custom List</a></li>
+                                <li class="animate-default title-hover-red"><a href="list.php">Shopping List</a></li>
+                                <li class="animate-default title-hover-red"><a href="custom-list.php">Custom List</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -726,7 +728,7 @@ $subtot = 0;
             <?php } ?>
 
             <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
-                <a href="create-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Add item</a>
+                <a href="create-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Create a list</a>
                 <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
 
             </aside>

@@ -788,7 +788,7 @@ $subtot = 0;
             <?php } ?>
 
             <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
-                <a href="custom-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Create custom list</a>
+                <a href="custom-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">My list</a>
                 <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as pdf</a>
 
             </aside>
