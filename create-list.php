@@ -7,7 +7,7 @@ if($userlogin)
 }
 
 //button name: register
-if (isset($_POST['register'])) {
+/*if (isset($_POST['register'])) {
     $cname = $_POST['cname'];
     $cemail = $_POST['cemail'];
     $cmobile = $_POST['cmobile'];
@@ -31,7 +31,7 @@ if (isset($_POST['register'])) {
             }
         }
     }
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +64,9 @@ if (isset($_POST['register'])) {
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="user-registration.php">Register</a></li>
+                                <li class="animate-default title-hover-red"><a href="cutom-list.php">Custom list</a></li>
+                                <li class="animate-default title-hover-red"><a href="#">Create list</a></li>
+
                             </ul>
                         </div>
                     </div>
