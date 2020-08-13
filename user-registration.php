@@ -1,8 +1,7 @@
 <?php
 include 'access/useraccesscontrol.php';
 
-if($userlogin)
-{
+if ($userlogin) {
     echo "<script>window.location.href='index.php'; </script>";
 }
 
@@ -25,7 +24,17 @@ if (isset($_POST['register'])) {
         } else {
             $query = mysqli_query($con, "INSERT INTO user (uname,uemail,umobile,upassword) VALUES ('$cname','$cemail','$cmobile','$apassword')");
             if ($query) {
+                $user_id = mysqli_insert_id($con);
                 $smsg = "User Registered";
+                $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
+                $getlistnofetch = mysqli_fetch_assoc($getlistno);
+                do {
+                    $generatedlistno = random_int(10000, 99999);
+                } while ($getlistnofetch['clistno'] == $generatedlistno);
+                date_default_timezone_set('Asia/Kolkata');
+                $date = date("l, d-m-Y  h:i A");
+                $cl_name="wishlist";
+                $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
             } else {
                 echo $fmsg = "Registration Falied";
             }
@@ -43,7 +52,7 @@ if (isset($_POST['register'])) {
 <body onload="myFunction()">
 
 
-<div id="loading"></div>
+    <div id="loading"></div>
     <!-- push menu-->
     <?php include 'lander-pages/pushmenu.php'; ?>
     <!-- end push menu-->
@@ -53,7 +62,7 @@ if (isset($_POST['register'])) {
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
         <?php include 'mobile-search.php'; ?>
-        
+
         <!-- End Header Box -->
         <!-- Content Box -->
         <div class="relative full-width">
@@ -95,7 +104,7 @@ if (isset($_POST['register'])) {
                                     </div>
                                 <?php } ?>
 
-                                
+
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Enter the Name *</label>
@@ -184,9 +193,11 @@ if (isset($_POST['register'])) {
     <?php include 'lander-pages/jslinks.php'; ?>
 </body>
 <script>
-        var preloader = document.getElementById("loading");
-        function myFunction(){
-            preloader.style.display = 'none';
-        };
+    var preloader = document.getElementById("loading");
+
+    function myFunction() {
+        preloader.style.display = 'none';
+    };
 </script>
+
 </html>
