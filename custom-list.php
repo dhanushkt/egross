@@ -787,38 +787,45 @@ $subtot = 0;
 
         <!--NEW LIST-->
         <form method="POST">
-        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
-            <div class=" mobile col-md-12 product-in-cart-col-2">
-                <p></p>
-                <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
-                <label style="font-size: 20px;">Add List</label>
-                <hr>
-                <input type="text" value="" placeholder="Add List Name:" name="clist" class="form-text" />
-                <input type="button" class="savebtnalist" name="btnsaveList" value="Save" />
-                <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
-            </div>
+            <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
+                <div class=" mobile col-md-12 product-in-cart-col-2">
+                    <p></p>
+                    <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
+                    <label style="font-size: 20px;">Add List</label>
+                    <hr>
+                    <input type="text" value="" placeholder="Enter List Name" name="clist" class="form-text" />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="submit" class="savebtnalist" name="btnsaveList" value="save" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
+                        </div>
+                    </div>
+                </div>
 
-            <div class="mobile col-md-3 product-in-cart-col-2">
-                <p> </p>
+                <div class="mobile col-md-3 product-in-cart-col-2">
+                    <p> </p>
+                </div>
+                <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
+                    <input type="hidden" value="" name="listno">
+                    <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+                    <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹</p>
+                </div>
+                <!--Mobile-->
+                <div class="col-md-6" style="padding-top: 10px;">
+                    <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
+                        <a class="animate-default">
+                            <label style="font-size: 25px;">Add List</label>
+                        </a></p>
+                    <hr>
+                    <input type="text" placeholder="Enter List Name" value="" name="clist" class="form-text" />
+                    <input type="submit" class="savebtnalist" name="btnsaveList" value="save" />
+                    <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
+
+                </div>
+                <!--End Mobile-->
             </div>
-            <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
-                <input type="hidden" value="" name="listno">
-                <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
-                <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹</p>
-            </div>
-            <!--Mobile-->
-            <div class="col-md-6" style="padding-top: 10px;">
-                <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
-                    <a class="animate-default">
-                        <label style="font-size: 25px;">Add List</label>
-                    </a></p>
-                <hr>
-                <input type="text" value="" name="clist" class="form-text" />
-                <input type="submit"  class="savebtnalist" name="btnsaveList" value="save" />
-                <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
-            </div>
-            <!--End Mobile-->
-        </div>
         </form>
         <!--END NEW LIST-->
 
