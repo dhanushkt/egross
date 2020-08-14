@@ -1,5 +1,26 @@
 <?php
 include 'access/useraccesscontrol.php';
+
+/* Please Add List code here*/
+/*if (isset($_POST) & !empty($_POST) ) {
+$getnewlistname=$_POST['btnsaveList'];
+//get item info
+$getlistinfo = mysqli_query($con, "SELECT * FROM ");
+$listinfo = mysqli_fetch_assoc($getlistinfo);
+
+
+$sqllist = "INSERT INTO  () VALUES ('$getnewlistname')";
+$resultist = mysqli_query($con, $sqllist);
+if ($result) {
+    echo "List Added Successfully";
+    //echo '<script> window.location=""; </script>';
+} else {
+    echo "Error!";
+}
+}*/
+
+
+
 if (isset($_GET['list'])) {
     $openlist = true;
     $listno = $_GET['list'];
@@ -765,7 +786,7 @@ $subtot = 0;
         <?php } ?>
 
         <!--NEW LIST-->
-
+        <form method="POST">
         <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
             <div class=" mobile col-md-12 product-in-cart-col-2">
                 <p></p>
@@ -773,7 +794,7 @@ $subtot = 0;
                 <label style="font-size: 20px;">Add List</label>
                 <hr>
                 <input type="text" value="" placeholder="Add List Name:" name="clist" class="form-text" />
-                <input type="button" class="savebtnalist" value="Save" />
+                <input type="button" class="savebtnalist" name="btnsaveList" value="Save" />
                 <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
             </div>
 
@@ -793,12 +814,12 @@ $subtot = 0;
                     </a></p>
                 <hr>
                 <input type="text" value="" name="clist" class="form-text" />
-                <input type="button" class="savebtnalist" value="save" />
+                <input type="submit"  class="savebtnalist" name="btnsaveList" value="save" />
                 <input type="button" style="background:red;" class="savebtnalist cancelList" value="Cancel" />
             </div>
             <!--End Mobile-->
         </div>
-
+        </form>
         <!--END NEW LIST-->
 
         <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
