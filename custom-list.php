@@ -661,7 +661,7 @@ $subtot = 0;
             </script>
             <!--popup-->
             <?php if ($grantlist) { ?>
-                <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="#popup1">
+                <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default" onclick="disableScroll()" class="a" href="create-list.php">
                     Add an item </a>
             <?php } ?>
         </div>
@@ -728,7 +728,7 @@ $subtot = 0;
             <?php } ?>
 
             <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
-                <a href="create-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Create a list</a>
+                <a href="" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Add new list</a>
                 <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
 
             </aside>
