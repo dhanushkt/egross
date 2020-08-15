@@ -27,6 +27,25 @@ if(isset($_GET['product'])){
 <head>
 	
 	<?php include 'lander-pages/csslink.php'; ?>
+	<style>
+	@media only screen and (max-width: 420px){
+		.calign {
+			margin-left: 15% !important;
+		}
+	}
+	@media only screen and (max-width: 350px){
+		.calign {
+			margin-right: 10% !important;
+		}
+	}
+	
+	@media only screen and (max-width: 700px){
+		.calign {
+			margin-left: 10% !important;
+		}
+	}
+	
+	</style>
 </head>
 
 <body onload="myFunction()">
@@ -386,7 +405,7 @@ if(isset($_GET['product'])){
 									}
 								?>
 									<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
-										<div class="image-product relative overfollow-hidden" style="margin-left: 15%;">
+										<div class="image-product relative overfollow-hidden calign">
 											<div class="center-vertical-image">
 												<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" alt="Product">
 											</div>
