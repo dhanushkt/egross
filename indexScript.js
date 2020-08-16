@@ -27,21 +27,24 @@
 
     $(".btnSwicth").on('click', function() {
         var listid=$(this).attr('data-list');
-        $.ajax({
-            url: 'custom-add-list.php',
-            type: 'POST',
-            data: {
-                id: cItemId,
-                listid: listid 
-            },
-            success: function() {
-                $(this).addClass('btn-success');
-                $(this).find('.fa').addClass('fa-save');
-            }
-        });
-        if($(this).hasClass("btn-danger"))
+        
+        if($(this).hasClass("btn-success"))
         {
             $.ajax({
+                url: 'custom-add-list.php',
+                type: 'POST',
+                data: {
+                    id: cItemId,
+                    listid: listid 
+                },
+                success: function() {
+                    $(this).addClass('btn-success');
+                    $(this).find('.fa').addClass('fa-save');
+                }
+            });
+        }
+        else{    
+        $.ajax({
                 url: 'delete-customlist.php',
                 type: 'POST',
                 data: {
