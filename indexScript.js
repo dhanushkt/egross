@@ -27,18 +27,36 @@
 
     $(".btnSwicth").on('click', function() {
         var listid=$(this).attr('data-list');
+        
+        if($(this).hasClass("btn-success"))
+        {
+            $.ajax({
+                url: 'custom-add-list.php',
+                type: 'POST',
+                data: {
+                    id: cItemId,
+                    listid: listid 
+                },
+                success: function() {
+                    $(this).addClass('btn-success');
+                    $(this).find('.fa').addClass('fa-save');
+                }
+            });
+        }
+        else{    
         $.ajax({
-            url: 'custom-add-list.php',
-            type: 'POST',
-            data: {
-                id: cItemId,
-                listid: listid 
-            },
-            success: function() {
-                $(this).toggleClass('btn-success btn-danger');
-                $(this).find('.fa').toggleClass('fa-save fa-times');
-            }
-        });
+                url: 'delete-customlist.php',
+                type: 'POST',
+                data: {
+                    id: cItemId,
+                    listid: listid 
+                },
+                success: function() {
+                    $(this).removeClass( "btn-success" ).addClass( "btn-danger" );
+                    $(this).find('.fa').removeClass( "fa-save" ).addClass( "fa-times" );
+                }
+            });
+        }
     });
     $(".Click-here").on('click', function() {
         $(".custom-model-main").addClass('model-open');
