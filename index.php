@@ -1,6 +1,7 @@
 <?php
 include 'access/useraccesscontrol.php';
 $menuslide = false;
+$getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,38 +210,42 @@ $menuslide = false;
                 </div>
             <?php } ?>
 
-
+            <!--modal-->
             <div class="custom-model-main">
                 <div class="custom-model-inner">
-                    <div class="close-btn">×</div>
                     <div class="custom-model-wrap">
                         <div class="pop-up-content-wrap">
-                            <div class="form-group pull-right">
-                                <input type="text" class="searchs form-control" placeholder="What you looking for?">
+                            <div class="form-group">
+                                Selected Item :<label id="getitemname"></label>
+                                <span>
+                                    <input type="text" class="searchs form-control" placeholder="What you looking for?">
+                                </span>
                             </div>
                             <table class="table table-hover table-bordered results">
                                 <thead>
                                     <tr>
-                                        <th class="col-md-5 col-xs-5">List name</th>
-                                        <th class="col-md-3 col-xs-3">Action</th>
+                                        <th class="col-md-5 col-xs-5 bg-danger text-white">List name</th>
+                                        <th class="col-md-3 col-xs-3 bg-danger text-white">Action</th>
                                     </tr>
                                     <tr class="warning no-result">
-                                        <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                                        <td colspan="2" class="bg-warning"><i class=" fa fa-warning"></i> No result</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php foreach ($getalllistitems as $key => $getalllistitems) { ?>
                                     <tr>
-                                        <td>Vatanay Özbeyli</td>
-                                        <td>   
-                                        <button class="btnSwicth btn btn-success mview-btn"><i class="fa fa-save"></i></button>    
+                                        <td><?php echo $getalllistitems['sname']; ?></td>
+                                        <td>
+                                            <button class="btnSwicth btn btn-success mview-btn" data-list="<?php echo $getalllistitems['listno']; ?>"><i class="fa fa-save"></i></button>
                                         </td>
                                     </tr>
-                               </tbody>
+                                <?php } ?>
+                                </tbody>
                             </table>
                         </div>
                         <div class="button-container">
                             <hr>
-                            <input class="btn btn-primary" style="margin-bottom: 10px;" type="submit" name="" value="Save Changes" />
+                            <input class="btn btn-primary closebtn" style="margin-bottom: 10px;" type="submit" name="" value="Save Changes" />
                         </div>
 
                     </div>
@@ -248,7 +253,7 @@ $menuslide = false;
                 </div>
                 <div class="bg-overlay"></div>
             </div>
-
+            <!--MODAL END-->
 
             <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
@@ -333,10 +338,10 @@ $menuslide = false;
 
                                                                     <?php if ($wishlist) { ?>
                                                                         <li class="relative"><a href="javascript:void(0)">
-                                                                                <i style="color: red" class="Click-here data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+                                                                                <i style="color: red" class="Click-here fa fa-plus" data-id="<?php echo $hp_getitm1['itmid']; ?>" aria-hidden="true" data-item="<?php echo $hp_getitm1['iname']; ?>"></i>
                                                                             </a></li>
                                                                     <?php } else { ?>
-                                                                        <li class="relative"><a class="wishlistItem" data-id="<?php echo $hp_getitm1['itmid']; ?>" href="javascript:void(0)"><i class="Click-here data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+                                                                        <li class="relative"><a class="wishlistItem" data-id="<?php echo $hp_getitm1['itmid']; ?>" href="javascript:void(0)"><i class="Click-here fa fa-plus" aria-hidden="true" data-item="<?php echo $hp_getitm1['iname']; ?>"></i></a></li>
                                                                     <?php } ?>
 
                                                                     <li class="relative"><a href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-info" aria-hidden="true"></i></a></li>
@@ -516,72 +521,6 @@ $menuslide = false;
         <?php include 'lander-pages/jslinks.php'; ?>
 
 </body>
-<script>
-    var preloader = document.getElementById("loading");
-
-    function myFunction() {
-        preloader.style.display = 'none';
-    };
-</script>
-<script>
-    $(document).ready(function() {
-        var getAllimg = document.getElementsByClassName("verifyImg");
-        var i;
-        for (i = 0; i < getAllimg.length; i++) {
-            var width = getAllimg[i].naturalWidth;
-            var height = getAllimg[i].naturalHeight;
-
-            if (width < 200 && height < 200) {
-                getAllimg[i].src = 'uploads/item/default_egross.png';
-            }
-        }
-        $('#carouselExampleIndicators').carousel({
-            interval: 2000,
-            cycle: true
-        })
-    });
-    $(".btnSwicth").on('click', function() {
-        $('.btnSwicth').toggleClass('btn-success btn-danger');
-        $('.fa').toggleClass('fa-save fa-times'); 
-    });
-    $(".Click-here").on('click', function() {
-        $(".custom-model-main").addClass('model-open');
-    });
-    $(".close-btn, .bg-overlay").click(function() {
-        $(".custom-model-main").removeClass('model-open');
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $(".searchs").keyup(function() {
-            var searchTerm = $(".searchs").val();
-            var listItem = $('.results tbody').children('tr');
-            var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-
-            $.extend($.expr[':'], {
-                'containsi': function(elem, i, match, array) {
-                    return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-                }
-            });
-
-            $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e) {
-                $(this).attr('visible', 'false');
-            });
-
-            $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e) {
-                $(this).attr('visible', 'true');
-            });
-
-            var jobCount = $('.results tbody tr[visible="true"]').length;
-            $('.counter').text(jobCount + ' item');
-
-            if (jobCount == '0') {
-                $('.no-result').show();
-            } else {
-                $('.no-result').hide();
-            }
-        });
-    });
-</script>
+<script src="indexScript.js"></script>
 
 </html>
