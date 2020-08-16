@@ -81,6 +81,22 @@ if (isset($_GET['scat'])) {
 			}
 
 		}
+		@media only screen and (max-width: 420px){
+		.calign {
+			margin-left: 15% !important;
+		}
+	}
+	@media only screen and (max-width: 350px){
+		.calign {
+			margin-right: 10% !important;
+		}
+	}
+	
+	@media only screen and (max-width: 700px){
+		.calign {
+			margin-left: 10% !important;
+		}
+	}
 	</style>
 </head>
 
@@ -293,7 +309,7 @@ if (isset($_GET['scat'])) {
 											}
 									?>
 											<div class="col-md-4 col-sm-4 col-xs-12 product-category relative effect-hover-boxshadow animate-default">
-												<div class="image-product relative overfollow-hidden">
+												<div class="image-product relative overfollow-hidden calign">
 													<div class="center-vertical-image">
 														<img src="uploads/item/<?php echo $itemdata['iimg']; ?>" onerror="this.onerror=null; this.src='uploads/item/default_egross.png'">
 													</div>
