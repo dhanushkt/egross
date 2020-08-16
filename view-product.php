@@ -69,10 +69,11 @@ if (isset($_GET['scat'])) {
 			height: 16px;
 			padding-left: 20px;
 		}
+
 		.not-allowed {
-            pointer-events: none; 
-            cursor: not-allowed;
-        }
+			pointer-events: none;
+			cursor: not-allowed;
+		}
 
 		@media(max-width:786px) {
 			.show_more_main {
@@ -81,22 +82,24 @@ if (isset($_GET['scat'])) {
 			}
 
 		}
-		@media only screen and (max-width: 420px){
-		.calign {
-			margin-left: 15% !important;
+
+		@media only screen and (max-width: 420px) {
+			.calign {
+				margin-left: 15% !important;
+			}
 		}
-	}
-	@media only screen and (max-width: 350px){
-		.calign {
-			margin-right: 10% !important;
+
+		@media only screen and (max-width: 350px) {
+			.calign {
+				margin-right: 10% !important;
+			}
 		}
-	}
-	
-	@media only screen and (max-width: 700px){
-		.calign {
-			margin-left: 10% !important;
+
+		@media only screen and (max-width: 700px) {
+			.calign {
+				margin-left: 10% !important;
+			}
 		}
-	}
 	</style>
 </head>
 
@@ -172,40 +175,40 @@ if (isset($_GET['scat'])) {
 		});
 	</script> -->
 	<script>
-        $(document).ready(function() {
-            $('.addCart').click(function() {
-                var options = {
-                    style: {
-                        main: {
-                            background: "#e3171b",
-                            color: "white",
-                            'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-                            'width': '200px'
-                        }
-                    }
-                };
-                var itmid = $(this).attr('data-id');
-                var getqty = 1;
-                var shopid = $(this).attr('data-sid');
-                $.ajax({
-                    url: 'add-list.php',
-                    type: 'POST',
-                    data: {
-                        itmid: itmid,
-                        shopid: shopid,
-                        qty: getqty
-                    },
-                    success: function() {
-                        iqwerty.toast.Toast('Item added to list', options);
-                        window.setTimeout(function() {
-                            window.location.reload();
-                        }, 1000);
-                    }
-                });
-				$(this).addClass("not-allowed");     
-            });
-        });
-    </script>
+		$(document).ready(function() {
+			$('.addCart').click(function() {
+				var options = {
+					style: {
+						main: {
+							background: "#e3171b",
+							color: "white",
+							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+							'width': '200px'
+						}
+					}
+				};
+				var itmid = $(this).attr('data-id');
+				var getqty = 1;
+				var shopid = $(this).attr('data-sid');
+				$.ajax({
+					url: 'add-list.php',
+					type: 'POST',
+					data: {
+						itmid: itmid,
+						shopid: shopid,
+						qty: getqty
+					},
+					success: function() {
+						iqwerty.toast.Toast('Item added to list', options);
+						window.setTimeout(function() {
+							window.location.reload();
+						}, 1000);
+					}
+				});
+				$(this).addClass("not-allowed");
+			});
+		});
+	</script>
 	<!-- push menu-->
 	<?php include 'lander-pages/pushmenu.php'; ?>
 	<!-- end push menu-->
@@ -324,7 +327,7 @@ if (isset($_GET['scat'])) {
 																	</a>
 																</li>
 															<?php } else { ?>
-																<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" data-sid="<?php echo $itemdata['isid']; ?>"href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
+																<li class="relative"><a class="addCart" data-id="<?php echo $itemdata['itmid']; ?>" data-sid="<?php echo $itemdata['isid']; ?>" href="javascript:void(0)"><i class="fa fa-list"></i></a></li>
 															<?php } ?>
 
 
