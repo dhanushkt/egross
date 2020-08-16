@@ -1,32 +1,44 @@
 <?php
 include 'access/useraccesscontrol.php';
+date_default_timezone_set('Asia/Kolkata');
+$date = date("l, d-m-Y  h:i A");
 
-/* Please Add List code here*/
-/*if (isset($_POST) & !empty($_POST) ) {
-$getnewlistname=$_POST['btnsaveList'];
-//get item info
-$getlistinfo = mysqli_query($con, "SELECT * FROM ");
-$listinfo = mysqli_fetch_assoc($getlistinfo);
+/* Add List code here*/
+if (isset($_POST['btnsaveList'])) {
+    $cl_name = $_POST['clist'];
 
+    $user_id = $globaluserid;
 
-$sqllist = "INSERT INTO  () VALUES ('$getnewlistname')";
-$resultist = mysqli_query($con, $sqllist);
-if ($result) {
-    echo "List Added Successfully";
-    //echo '<script> window.location=""; </script>';
-} else {
-    echo "Error!";
+    $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
+    $getlistnofetch = mysqli_fetch_assoc($getlistno);
+    do {
+        $generatedlistno = random_int(10000, 99999);
+    } while ($getlistnofetch['clistno'] == $generatedlistno);
+
+    $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
 }
-}*/
 
+// separate add lislt for mobile since value is not accessible from same name
+if (isset($_POST['btnsaveMob'])) {
+    $cl_name = $_POST['clistMob'];
 
+    $user_id = $globaluserid;
+
+    $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
+    $getlistnofetch = mysqli_fetch_assoc($getlistno);
+    do {
+        $generatedlistno = random_int(10000, 99999);
+    } while ($getlistnofetch['clistno'] == $generatedlistno);
+
+    $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
+}
 
 //when listno is not set
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
 
-$getcartitem = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
+$getcartitem = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$globaluserid'");
 
 if ($listcount = mysqli_num_rows($getcartitem) >= 1)
     $cart = true;
@@ -482,140 +494,152 @@ $subtot = 0;
             </div>
             <!-- End Breadcrumb -->
             <!-- Content Shoping Cart -->
-            <form class="form">
-                <div class="relative container-web">
-                    <div class="container">
-                        <div class="row relative">
-                            <?php if ($cart) { ?>
-                                <!-- Content Shoping Cart -->
 
-                                <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                                    <p class="title-shoping-cart">Custom List</p>
+            <div class="relative container-web">
+                <div class="container">
+                    <div class="row relative">
+                        <?php if ($cart) { ?>
+                            <!-- Content Shoping Cart -->
 
-
-                                    <?php foreach ($getcartitem as $key => $getcartitem) { ?>
-
-                                        <?php
-                                        $listno = $getcartitem['listno'];
-                                        $subtot = 0;
-
-                                        $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-                                        $itemcount = mysqli_num_rows($getlistitems);
-
-                                        while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                                            $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
-                                        }
-                                        ?>
-                                        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
+                            <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
+                                <p class="title-shoping-cart">Custom List</p>
 
 
-                                            <div class=" mobile col-md-6 product-in-cart-col-2">
-                                                <p class="title-hover-black">
-                                                    <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
-                                                    <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
-                                                        <?php echo $getcartitem['sname']; ?>
-                                                    </a>
-                                                </p>
-                                            </div>
+                                <?php foreach ($getcartitem as $key => $getcartitem) { ?>
 
-                                            <div class="mobile col-md-3 product-in-cart-col-2">
-                                                <p>Items in list: <?php echo $itemcount; ?> </p>
-                                            </div>
+                                    <?php
+                                    $listno = $getcartitem['clistno'];
+                                    $subtot = 0;
+
+                                    // $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+                                    // $itemcount = mysqli_num_rows($getlistitems);
+
+                                    // while ($listitm = mysqli_fetch_assoc($getlistitems)) {
+                                    //     $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
+                                    // }
+                                    ?>
+                                    <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
 
-
-                                            <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
-                                                <input type="hidden" value="" name="listno">
-                                                <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
-                                                <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
-                                            </div>
-                                            <!--Mobile-->
-                                            <div class="col-md-6" style="padding-top: 10px;">
-                                                <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
-                                                    <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
-                                                        <?php echo $getcartitem['sname']; ?>
-                                                    </a></p>
-                                                <hr>
-                                                <p style="text-align: center;">Items in list: <?php echo $itemcount; ?> </p>
-                                                <p style="text-align: center;" class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
-                                            </div>
-                                            <div>
-                                                <input type="hidden" value="" name="listno">
-                                                <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
-                                                    <i class="fa fa-trash" style="font-size: 15px"></i>
-                                                </button>
-                                            </div>
-                                            <!--End Mobile-->
+                                        <div class=" mobile col-md-6 product-in-cart-col-2">
+                                            <p class="title-hover-black">
+                                                <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
+                                                <a href="#" class="animate-default">
+                                                    <?php echo $getcartitem['cl_name']; ?>
+                                                </a>
+                                            </p>
                                         </div>
-                                    <?php } ?>
 
-                                    <!--NEW LIST-->
-                                    <form method="POST">
-                                        <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
-                                            <div class=" mobile col-md-12 product-in-cart-col-2">
-                                                <p></p>
-                                                <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
-                                                <label style="font-size: 20px;">Add List</label>
-                                                <hr>
-                                                <input type="text" value="" placeholder="Enter List Name" name="clist" class="form-text" />
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
-                                                    </div>
+                                        <div class="mobile col-md-3 product-in-cart-col-2">
+                                            <p>Items in list: <?php echo 1; ?> </p>
+                                        </div>
+
+
+
+                                        <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
+
+                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['clistno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
+                                                <i class="fa fa-trash" style="font-size: 20px"></i>
+                                            </button>
+
+                                            <!-- <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹ <?php //echo $subtot; 
+                                                                                                                                ?></p> -->
+                                        </div>
+                                        <!--Mobile-->
+                                        <div class="col-md-6" style="padding-top: 10px;">
+                                            <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
+                                                <a href="#" class="animate-default">
+                                                    <?php echo $getcartitem['cl_name']; ?>
+                                                </a></p>
+                                            <hr>
+                                            <p style="text-align: center;">Items in list:
+                                                <?php echo 1; ?>
+                                            </p>
+                                            <!-- <p style="text-align: center;" class="text-red price-shoping-cart">₹ <?php //echo $subtot; ?></p> -->
+                                        </div>
+                                        <div>
+                                            <input type="hidden" value="" name="listno">
+                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php //echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
+                                                <i class="fa fa-trash" style="font-size: 15px"></i>
+                                            </button>
+                                        </div>
+                                        <!--End Mobile-->
+                                    </div>
+                                <?php } ?>
+
+                                <!--NEW LIST-->
+                                <form method="POST">
+                                    <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
+
+                                        <div class=" mobile col-md-12 product-in-cart-col-2">
+                                            <p></p>
+                                            <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
+                                            <label style="font-size: 20px;">Add List</label>
+                                            <hr>
+                                            <input type="text" value="" placeholder="Enter List Name" name="clist" class="form-text" />
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
                                                 </div>
                                             </div>
-
-                                            <div class="mobile col-md-3 product-in-cart-col-2">
-                                                <p> </p>
-                                            </div>
-                                            <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
-                                                <input type="hidden" value="" name="listno">
-                                                <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
-                                                <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹</p>
-                                            </div>
-                                            <!--Mobile-->
-                                            <div class="col-md-6" style="padding-top: 10px;">
-                                                <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
-                                                    <a class="animate-default">
-                                                        <label style="font-size: 25px;">Add List</label>
-                                                    </a></p>
-                                                <hr>
-                                                <input type="text" placeholder="Enter List Name" value="" name="clist" class="form-text" />
-                                                <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
-                                                <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
-
-                                            </div>
-                                            <!--End Mobile-->
                                         </div>
-                                    </form>
-                                    <!--END NEW LIST-->
 
-                                    <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
-                                        <a style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default" id="AddnList">Add new list</a>
-                                        <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
+                                        <div class="mobile col-md-3 product-in-cart-col-2">
+                                            <p> </p>
+                                        </div>
+                                        <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
+                                            <input type="hidden" value="" name="listno">
+                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+                                            <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹</p>
+                                        </div>
 
-                                    </aside>
-                                </div>
+                                        <!--Mobile-->
 
-                                <!-- End Content Shoping Cart -->
+                                        <div class="col-md-6" style="padding-top: 10px;">
+                                            <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
+                                                <a class="animate-default">
+                                                    <label style="font-size: 25px;">Add List</label>
+                                                </a>
+                                            </p>
+                                            <hr>
+                                            <input type="text" placeholder="Enter List Name" value="" name="clistMob" class="form-text" />
+                                            <input type="submit" class="savebtnalist" name="btnsaveMob" value="SAVE" />
+                                            <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
 
-                            <?php } else { ?>
-                                <div class="full-width relative col-md-12 mol-lg-12">
-                                    <div class="container text-center" style="padding: 110px; line-height: 5;">
-                                        <i style="font-size: 100px;" class="fa fa-list-alt"></i>
-                                        <h2>Your list is empty</h2>
-                                        <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
+                                        </div>
+
+                                        <!--End Mobile-->
                                     </div>
+                                </form>
+
+                                <!--END NEW LIST-->
+
+                                <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
+                                    <a style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default" id="AddnList">Add new list</a>
+                                    <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
+
+                                </aside>
+                            </div>
+
+                            <!-- End Content Shoping Cart -->
+
+                        <?php } else { ?>
+                            <div class="full-width relative col-md-12 mol-lg-12">
+                                <div class="container text-center" style="padding: 110px; line-height: 5;">
+                                    <i style="font-size: 100px;" class="fa fa-list-alt"></i>
+                                    <h2>Your list is empty</h2>
+                                    <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
                                 </div>
-                            <?php } ?>
-                        </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
+            </div>
 
-                <!-- End Content Shoping Cart -->
+            <!-- End Content Shoping Cart -->
         </div>
         <!-- End Content Box -->
         <!-- Footer Box -->
