@@ -1,4 +1,4 @@
-    var cItemId;
+    var citemid;
 
     var preloader = document.getElementById("loading");
 
@@ -26,34 +26,39 @@
 
 
     $(".btnSwicth").on('click', function() {
-        var listid=$(this).attr('data-list');
-        
-        if($(this).hasClass("btn-success"))
+        var clistid=$(this).attr('data-list');
+        var $this = $(this);
+        if($(this).find('.fa').hasClass("fa-save"))
         {
+            var clqty=1;
             $.ajax({
-                url: 'custom-add-list.php',
+                url: 'clist_additem.php',
                 type: 'POST',
                 data: {
-                    id: cItemId,
-                    listid: listid 
+                    citemid: citemid,
+                    clistid: clistid,
+                    clqty: clqty
                 },
                 success: function() {
-                    $(this).addClass('btn-success');
-                    $(this).find('.fa').addClass('fa-save');
+                    console.log("sav");
+                    $this.toggleClass('btn-success btn-danger');            
+                    $this.find('.fa').toggleClass('fa-save fa-times');
                 }
             });
         }
         else{    
         $.ajax({
-                url: 'delete-customlist.php',
+                url: 'clist_delitem.php',
                 type: 'POST',
                 data: {
-                    id: cItemId,
-                    listid: listid 
+                    citemid: citemid,
+                    clistid: clistid 
                 },
                 success: function() {
-                    $(this).removeClass( "btn-success" ).addClass( "btn-danger" );
-                    $(this).find('.fa').removeClass( "fa-save" ).addClass( "fa-times" );
+                    console.log("del");
+                    $this.toggleClass('btn-danger btn-success');            
+                    $this.find('.fa').toggleClass('fa-times fa-save');
+                
                 }
             });
         }
@@ -61,7 +66,7 @@
     $(".Click-here").on('click', function() {
         $(".custom-model-main").addClass('model-open');
         var getitemnane=$(this).attr('data-item');
-        cItemId=$(this).attr('data-id');
+        citemid=$(this).attr('data-id');
         $("#getitemname").text(getitemnane);
         
     });
