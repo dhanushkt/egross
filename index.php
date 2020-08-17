@@ -1,7 +1,7 @@
 <?php
 include 'access/useraccesscontrol.php';
 $menuslide = false;
-$getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +10,7 @@ $getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper O
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <?php include 'lander-pages/csslink.php'; ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
-    <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="clist_style.css">
 
     <style>
         .title-gold-bg:before {
@@ -117,7 +116,7 @@ $getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper O
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
         <?php include 'mobile-search.php'; ?>
-
+        <?php include 'clist_popup.php'; ?>
         <!-- End Header Box -->
 
         <!-- Content Box -->
@@ -210,50 +209,6 @@ $getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper O
                 </div>
             <?php } ?>
 
-            <!--modal-->
-            <div class="custom-model-main">
-                <div class="custom-model-inner">
-                    <div class="custom-model-wrap">
-                        <div class="pop-up-content-wrap">
-                            <div class="form-group">
-                                Selected Item :<label id="getitemname"></label>
-                                <span>
-                                    <input type="text" class="searchs form-control" placeholder="What you looking for?">
-                                </span>
-                            </div>
-                            <table class="table table-hover table-bordered results">
-                                <thead>
-                                    <tr>
-                                        <th class="col-md-5 col-xs-5 bg-danger text-white">List name</th>
-                                        <th class="col-md-3 col-xs-3 bg-danger text-white">Action</th>
-                                    </tr>
-                                    <tr class="warning no-result">
-                                        <td colspan="2" class="bg-warning"><i class=" fa fa-warning"></i> No result</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($getalllistitems as $key => $getalllistitems) { ?>
-                                    <tr>
-                                        <td><?php echo $getalllistitems['sname']; ?></td>
-                                        <td>
-                                            <button class="btnSwicth btn btn-success mview-btn" data-list="<?php echo $getalllistitems['listno']; ?>"><i class="fa fa-save"></i></button>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="button-container">
-                            <hr>
-                            <input class="btn btn-primary closebtn" style="margin-bottom: 10px;" type="submit" name="" value="Save Changes" />
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="bg-overlay"></div>
-            </div>
-            <!--MODAL END-->
 
             <!-- Content Product -->
             <div class="clearfix box-product full-width top-padding-default bg-gray">
@@ -339,9 +294,13 @@ $getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper O
                                                                     <?php if ($wishlist) { ?>
                                                                         <li class="relative"><a href="javascript:void(0)">
                                                                                 <i style="color: red" class="Click-here fa fa-plus" data-id="<?php echo $hp_getitm1['itmid']; ?>" aria-hidden="true" data-item="<?php echo $hp_getitm1['iname']; ?>"></i>
-                                                                            </a></li>
+                                                                            </a>
+                                                                        </li>
                                                                     <?php } else { ?>
-                                                                        <li class="relative"><a class="wishlistItem" data-id="<?php echo $hp_getitm1['itmid']; ?>" href="javascript:void(0)"><i class="Click-here fa fa-plus" aria-hidden="true" data-item="<?php echo $hp_getitm1['iname']; ?>"></i></a></li>
+                                                                        <li class="relative"><a class="wishlistItem" href="javascript:void(0)">
+                                                                                <i class="Click-here fa fa-plus" data-id="<?php echo $hp_getitm1['itmid']; ?>" aria-hidden="true" data-item="<?php echo $hp_getitm1['iname']; ?>"></i>
+                                                                            </a>
+                                                                        </li>
                                                                     <?php } ?>
 
                                                                     <li class="relative"><a href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-info" aria-hidden="true"></i></a></li>
@@ -516,11 +475,31 @@ $getalllistitems = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper O
             <?php include 'lander-pages/footer.php'; ?>
         </div>
         <!-- End Footer Box -->
+    </div>
 
+    <?php include 'lander-pages/jslinks.php'; ?>
 
-        <?php include 'lander-pages/jslinks.php'; ?>
+    <!-- script to check image size -->
+    <script>
+        $(document).ready(function() {
+            var getAllimg = document.getElementsByClassName("verifyImg");
+            var i;
+            for (i = 0; i < getAllimg.length; i++) {
+                var width = getAllimg[i].naturalWidth;
+                var height = getAllimg[i].naturalHeight;
+
+                if (width < 200 && height < 200) {
+                    getAllimg[i].src = 'uploads/item/default_egross.png';
+                }
+            }
+            $('#carouselExampleIndicators').carousel({
+                interval: 2000,
+                cycle: true
+            })
+        });
+    </script>
+    <script src="clist_script.js"></script>
 
 </body>
-<script src="indexScript.js"></script>
 
 </html>

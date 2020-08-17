@@ -12,39 +12,48 @@
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
+<!-- preloader script -->
+<script>
+	var preloader = document.getElementById("loading");
+
+	function myFunction() {
+		preloader.style.display = 'none';
+	};
+</script>
+
 <!--Search-->
 <script src="typeahead.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('input.typeahead').typeahead({
-            name: 'typeahead',
-            remote: 'search.php?key=%QUERY',
-            limit: 10
-        });
-        $('.good-deal-product .owl-theme').each(function(){
+	$(document).ready(function() {
+		$('input.typeahead').typeahead({
+			name: 'typeahead',
+			remote: 'search.php?key=%QUERY',
+			limit: 10
+		});
+		$('.good-deal-product .owl-theme').each(function() {
 			$(this).owlCarousel({
-				loop:true,
-				nav:false,
-				dots:false,
-			    autoplay:true,
-			    autoplayTimeout:5500,
-				autoplayHoverPause:true,
-				responsiveClass:true,
-			    margin:30,
-			    responsive:{
-			    	320:{
-			    		items:1
-			    	},
-			    	480:{
-			    		items:2
-			    	},
-			    	768:{
-			    		items:4
-			    	}
-			    }
+				loop: true,
+				nav: false,
+				dots: false,
+				autoplay: true,
+				autoplayTimeout: 5500,
+				autoplayHoverPause: true,
+				responsiveClass: true,
+				margin: 30,
+				responsive: {
+					320: {
+						items: 1
+					},
+					480: {
+						items: 2
+					},
+					768: {
+						items: 4
+					}
+				}
 			});
 		});
-    });
+	});
 </script>
 <!-- script to stick nav bar on top when scrolling -->
 <!-- <script>
