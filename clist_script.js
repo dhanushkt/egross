@@ -45,7 +45,7 @@ $("#loadcList").on('click', '.btnSwicth', function () {
                 clqty: clqty
             },
             success: function () {
-                console.log("sav");
+               
                 $this.toggleClass('btn-success btn-danger');
                 $this.find('.fa').toggleClass('fa-save fa-times');
             }
@@ -60,10 +60,9 @@ $("#loadcList").on('click', '.btnSwicth', function () {
                 clistid: clistid
             },
             success: function () {
-                console.log("del");
+                
                 $this.toggleClass('btn-danger btn-success');
                 $this.find('.fa').toggleClass('fa-times fa-save');
-
             }
         });
     }
