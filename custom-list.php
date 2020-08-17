@@ -369,7 +369,7 @@ $subtot = 0;
                 var options = {
                     style: {
                         main: {
-                            background: "#00ff00",
+                            background: "#EB1A21",
                             color: "white",
                             'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
                             'width': '200px'
@@ -379,7 +379,7 @@ $subtot = 0;
                 };
                 var getid = $(this).attr('data-id');
                 $.ajax({
-                    url: 'delete-list.php',
+                    url: 'clist_dellist.php',
                     type: 'POST',
                     data: {
                         id: getid
@@ -387,83 +387,8 @@ $subtot = 0;
                     success: function() {
                         iqwerty.toast.Toast('List Deleted', options);
                         window.setTimeout(function() {
-                            location.href = 'list.php'
+                            location.href = 'custom-list.php'
                         }, 1000);
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.saveBtn').click(function() {
-
-                var options = {
-                    style: {
-                        main: {
-                            background: "#00ff00",
-                            color: "white",
-                            'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-                            'width': '200px'
-
-                        }
-                    }
-                };
-                var getid = $(this).attr('data-id');
-                var qtyName = 'nqty' + getid;
-                var qty = document.getElementById(qtyName).value;
-                $.ajax({
-                    url: 'update-list.php',
-                    type: 'POST',
-                    data: {
-                        listitem: getid,
-                        nqty: qty
-                    },
-                    success: function(data) {
-                        iqwerty.toast.Toast('List Deleted', options);
-
-                        var item = JSON.parse(data);
-                        if (item.listno != 0) {
-                            location.href = 'list.php?list=' + item.listno;
-                        } else {
-                            location.href = 'list.php';
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.itmDelbtn').click(function() {
-
-                var options = {
-                    style: {
-                        main: {
-                            background: "#00ff00",
-                            color: "white",
-                            'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-                            'width': '200px'
-
-                        }
-                    }
-                };
-                var getid = $(this).attr('data-id');
-                $.ajax({
-                    url: 'delete-listitem.php',
-                    type: 'POST',
-                    data: {
-                        id: getid
-                    },
-                    success: function(data) {
-                        iqwerty.toast.Toast('List Deleted', options);
-
-                        var item = JSON.parse(data);
-                        if (item.listno != 0) {
-                            location.href = 'list.php?list=' + item.listno;
-                        } else {
-                            location.href = 'list.php';
-                        }
                     }
                 });
             });
@@ -564,7 +489,7 @@ $subtot = 0;
                                         </div>
                                         <div>
                                             <input type="hidden" value="" name="listno">
-                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php //echo $getcartitem['listno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
+                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" data-id="<?php echo $getcartitem['clistno']; ?>" class="mycButton listDelall" id="Delallbtn" type="submit">
                                                 <i class="fa fa-trash" style="font-size: 15px"></i>
                                             </button>
                                         </div>
@@ -597,7 +522,7 @@ $subtot = 0;
                                         </div>
                                         <div class="mobile col-md-3" style="text-align: right; line-height: 3;">
                                             <input type="hidden" value="" name="listno">
-                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton listDelall" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
+                                            <button onclick="event.cancelBubble=true;if(event.stopPropagation) event.stopPropagation();return false;" class="mycButton" id="Delallbtn" type="submit"><i class="fa fa-trash" style="font-size: 20px"></i></button>
                                             <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹</p>
                                         </div>
 
