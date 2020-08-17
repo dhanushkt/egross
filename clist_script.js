@@ -29,8 +29,9 @@ function loadCustomList() {
     });
 }
 
+//add or remove item from clist
 
-$(".btnSwicth").on('click', function () {
+$("#loadcList").on('click', '.btnSwicth', function () {
     var clistid = $(this).attr('data-list');
     var $this = $(this);
     if ($(this).find('.fa').hasClass("fa-save")) {
@@ -68,45 +69,6 @@ $(".btnSwicth").on('click', function () {
     }
 });
 
-
-// add and remove list item function 
-function modifyList(ele) {
-
-    var clistid = ele.getAttribute('data-list');
-    
-    if (ele.find('.fa').hasClass("fa-save")) {
-        var clqty = 1;
-        $.ajax({
-            url: 'clist_additem.php',
-            type: 'POST',
-            data: {
-                citemid: citemid,
-                clistid: clistid,
-                clqty: clqty
-            },
-            success: function () {
-                console.log("sav");
-                ele.toggleClass('btn-success btn-danger');
-                ele.find('.fa').toggleClass('fa-save fa-times');
-            }
-        });
-    }
-    else {
-        $.ajax({
-            url: 'clist_delitem.php',
-            type: 'POST',
-            data: {
-                citemid: citemid,
-                clistid: clistid
-            },
-            success: function () {
-                console.log("del");
-                ele.toggleClass('btn-danger btn-success');
-                ele.find('.fa').toggleClass('fa-times fa-save');
-            }
-        });
-    }
-}
 
 
 $(document).ready(function () {
