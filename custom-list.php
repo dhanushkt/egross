@@ -5,7 +5,8 @@ $date = date("l, d-m-Y  h:i A");
 
 /* Add List code here*/
 if (isset($_POST['btnsaveList'])) {
-    $cl_name = $_POST['clist'];
+
+    $cl_name = !empty($_POST['clist']) ? $_POST['clist'] : $_POST['clistMob'];
 
     $user_id = $globaluserid;
 
@@ -16,29 +17,33 @@ if (isset($_POST['btnsaveList'])) {
     } while ($getlistnofetch['clistno'] == $generatedlistno);
 
     $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
+
+    if($createnewlist){
+        $getcartitem = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$globaluserid' ORDER BY sortnumber");
+    }
 }
 
 // separate add lislt for mobile since value is not accessible from same name
-if (isset($_POST['btnsaveMob'])) {
-    $cl_name = $_POST['clistMob'];
+// if (isset($_POST['btnsaveMob'])) {
+//     $cl_name = $_POST['clistMob'];
 
-    $user_id = $globaluserid;
+//     $user_id = $globaluserid;
 
-    $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
-    $getlistnofetch = mysqli_fetch_assoc($getlistno);
-    do {
-        $generatedlistno = random_int(10000, 99999);
-    } while ($getlistnofetch['clistno'] == $generatedlistno);
+//     $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
+//     $getlistnofetch = mysqli_fetch_assoc($getlistno);
+//     do {
+//         $generatedlistno = random_int(10000, 99999);
+//     } while ($getlistnofetch['clistno'] == $generatedlistno);
 
-    $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
-}
+//     $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
+// }
 
 //when listno is not set
 if (!$userlogin) {
     echo "<script>window.location.href='user-login.php'; </script>";
 }
 
-$getcartitem = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$globaluserid'");
+$getcartitem = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$globaluserid' ORDER BY sortnumber");
 
 if ($listcount = mysqli_num_rows($getcartitem) >= 1)
     $cart = true;
@@ -606,7 +611,7 @@ $subtot = 0;
                                             </p>
                                             <hr>
                                             <input type="text" placeholder="Enter List Name" value="" name="clistMob" class="form-text" />
-                                            <input type="submit" class="savebtnalist" name="btnsaveMob" value="SAVE" />
+                                            <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
                                             <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
 
                                         </div>
