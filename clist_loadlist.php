@@ -41,11 +41,11 @@ $selitemid = $_POST['selitemid'];
                 <td>
                     <?php if($inList) { ?>
 
-                        <button onclick="modifyList(this)" class="btnSwicth btn btn-danger mview-btn" data-list="<?php echo $cListno ?>"><i class="fa fa-times"></i></button>
+                        <button class="btnSwicth btn btn-danger mview-btn" data-list="<?php echo $cListno ?>"><i class="fa fa-times"></i></button>
 
                     <?php } else { ?>
  
-                        <button onclick="modifyList(this)" class="btnSwicth btn btn-success mview-btn" data-list="<?php echo $cListno ?>"><i class="fa fa-save"></i></button>
+                        <button class="btnSwicth btn btn-success mview-btn" data-list="<?php echo $cListno ?>"><i class="fa fa-save"></i></button>
 
                     <?php } ?>
                 </td>

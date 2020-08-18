@@ -46,6 +46,8 @@ $("#loadcList").on('click', '.btnSwicth', function () {
             },
             success: function () {
                
+                $('#clistClose').val('SAVE CHANGES');
+                
                 $this.toggleClass('btn-success btn-danger');
                 $this.find('.fa').toggleClass('fa-save fa-times');
             }
@@ -61,6 +63,8 @@ $("#loadcList").on('click', '.btnSwicth', function () {
             },
             success: function () {
                 
+                $('#clistClose').val('SAVE CHANGES');
+
                 $this.toggleClass('btn-danger btn-success');
                 $this.find('.fa').toggleClass('fa-times fa-save');
             }
