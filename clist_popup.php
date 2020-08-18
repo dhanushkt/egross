@@ -23,7 +23,7 @@
             </div>
             <div class="button-container">
                 <hr>
-                <input class="btn btn-primary closebtn" style="margin-bottom: 10px;" type="submit" name="" value="Save Changes" />
+                <input id="clistClose" class="btn btn-primary closebtn" style="margin-bottom: 10px;" type="submit" name="" value="CLOSE" />
             </div>
 
         </div>
