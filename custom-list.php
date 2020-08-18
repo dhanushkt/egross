@@ -448,7 +448,7 @@ $subtot = 0;
                                     //     $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
                                     // }
                                     ?>
-                                    <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
+                                    <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='clist-items.php?list=<?php echo $listno; ?>'">
 
 
                                         <div class=" mobile col-md-6 product-in-cart-col-2">
