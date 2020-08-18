@@ -37,7 +37,7 @@ $selitemid = $_POST['selitemid'];
             ?>
 
             <tr>
-                <td><?php echo $getalllistitems['cl_name']; ?></td>
+            <td><?php echo $getalllistitems['cl_name']; ?><a class="btn btn-sm btn-light pull-right" style="text-decoration:none;" href="custom-list.php?clistid=<?php echo $getalllistitems['clistno']; ?>"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
                 <td>
                     <?php if($inList) { ?>
 
