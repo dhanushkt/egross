@@ -456,7 +456,10 @@ $subtot = 0;
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="list.php">My List</a></li>
+                                <li class="animate-default title-hover-red"><a href="custom-list.php">My List</a></li>
+                                <li class="animate-default title-hover-red">
+                                    <?php echo $listname; ?>
+                                </li>
                             </ul>
                         </div>
                     </div>
