@@ -18,7 +18,7 @@ if (isset($_POST['btnsaveList'])) {
 
     $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
 
-    if($createnewlist){
+    if ($createnewlist) {
         $getcartitem = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$globaluserid' ORDER BY sortnumber");
     }
 }
@@ -415,7 +415,7 @@ $subtot = 0;
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="custom-list.php">Custom List</a></li>
+                                <li class="animate-default title-hover-red"><a href="custom-list.php">My Lists</a></li>
 
                             </ul>
                         </div>
@@ -432,7 +432,7 @@ $subtot = 0;
                             <!-- Content Shoping Cart -->
 
                             <div class="col-md-12 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left">
-                                <p class="title-shoping-cart">Custom List</p>
+                                <p class="title-shoping-cart">My Lists</p>
 
 
                                 <?php foreach ($getcartitem as $key => $getcartitem) { ?>
@@ -441,12 +441,12 @@ $subtot = 0;
                                     $listno = $getcartitem['clistno'];
                                     $subtot = 0;
 
-                                    // $getlistitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-                                    // $itemcount = mysqli_num_rows($getlistitems);
+                                    $getlistitems = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid WHERE custom_listitems.clistno='$listno'");
+                                    $itemcount = mysqli_num_rows($getlistitems);
 
-                                    // while ($listitm = mysqli_fetch_assoc($getlistitems)) {
-                                    //     $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
-                                    // }
+                                    while ($listitm = mysqli_fetch_assoc($getlistitems)) {
+                                        $subtot = $subtot + ($listitm['iprice'] * $listitm['cl_qty']);
+                                    }
                                     ?>
                                     <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='clist-items.php?list=<?php echo $listno; ?>'">
 
@@ -461,7 +461,7 @@ $subtot = 0;
                                         </div>
 
                                         <div class="mobile col-md-3 product-in-cart-col-2">
-                                            <p>Items in list: <?php echo 1; ?> </p>
+                                            <p>Items in list: <?php echo $itemcount; ?> </p>
                                         </div>
 
 
@@ -472,8 +472,9 @@ $subtot = 0;
                                                 <i class="fa fa-trash" style="font-size: 20px"></i>
                                             </button>
 
-                                            <!-- <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹ <?php //echo $subtot; 
-                                                                                                                                ?></p> -->
+                                            <p style="font-size: 23px !important;" class="text-red price-shoping-cart">₹
+                                                <?php echo $subtot; ?>
+                                            </p>
                                         </div>
                                         <!--Mobile-->
                                         <div class="col-md-6" style="padding-top: 10px;">
@@ -483,9 +484,9 @@ $subtot = 0;
                                                 </a></p>
                                             <hr>
                                             <p style="text-align: center;">Items in list:
-                                                <?php echo 1; ?>
+                                                <?php echo $itemcount; ?>
                                             </p>
-                                            <!-- <p style="text-align: center;" class="text-red price-shoping-cart">₹ <?php //echo $subtot; ?></p> -->
+                                            <p style="text-align: center;" class="text-red price-shoping-cart">₹ <?php echo $subtot; ?></p>
                                         </div>
                                         <div>
                                             <input type="hidden" value="" name="listno">

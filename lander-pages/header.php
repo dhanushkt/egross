@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                                 <li class="relative"><a href="user-login.php">Login</a></li>
                             <?php } ?>
                             <?php if ($userlogin) { ?>
-                                <li class="relative"><a href="wishlist.php">Wishlist</a></li>
+                                <li class="relative"><a href="custom-list.php">My List</a></li>
                             <?php } ?>
                             <li id="language" class="relative">
                                 <a href="#">Language</a>
