@@ -507,7 +507,7 @@ $subtot = 0;
                                             <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
                                             <label style="font-size: 20px;">Add List</label>
                                             <hr>
-                                            <input type="text" value="" placeholder="Enter List Name" name="clist" class="form-text" />
+                                            <input required type="text" value="" placeholder="Enter List Name" name="clist" class="form-text" />
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
@@ -536,7 +536,7 @@ $subtot = 0;
                                                 </a>
                                             </p>
                                             <hr>
-                                            <input type="text" placeholder="Enter List Name" value="" name="clistMob" class="form-text" />
+                                            <input required type="text" placeholder="Enter List Name" value="" name="clistMob" class="form-text" />
                                             <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
                                             <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
 
