@@ -9,7 +9,7 @@
         <div class="custom-model-wrap">
             <div class="pop-up-content-wrap">
                 <div class="form-group">
-                    Selected Item : <label id="getitemname"></label>
+                    Selected Item : <label class="text-uppercase" id="getitemname"></label>
                     <form method="GET">
                         <input type="hidden" name="Thisitmid" value="" id="getItemId">
                     </form>
