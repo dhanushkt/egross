@@ -557,7 +557,7 @@ $subtot = 0;
                                 </div>
 
                                 <?php if ($grantlist) { ?>
-                                    <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default hvr-shrink" href="#">
+                                    <a class="btn btn-primary btn-lg btn-proceed-checkout button-hover-red full-width top-margin-15-default hvr-shrink" href="add-citem.php">
                                         Add a Custom item
                                     </a>
                                 <?php } ?>
@@ -575,6 +575,7 @@ $subtot = 0;
                                         <?php echo $listname; ?>
                                         list is empty
                                     </h2>
+                                    <a href="add-citem.php" style="background-color: #eb1a21; color: white;" class="btn">ADD A CUSTOM ITEM</a>
                                     <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
                                 </div>
                             </div>

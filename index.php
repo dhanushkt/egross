@@ -254,8 +254,10 @@ $menuslide = false;
                                                     <?php
                                                     $itmid = $hp_getitm1['itmid'];
                                                     if ($userlogin) {
-                                                        $getwishlist = mysqli_query($con, "SELECT * FROM user_wishlist WHERE wuid='$globaluserid' AND witmid='$itmid'");
-                                                        if (mysqli_num_rows($getwishlist) == 1)
+
+                                                        //check if item in custom list
+                                                        $getwishlist = mysqli_query($con, "SELECT * FROM custom_listitems JOIN custom_list ON custom_listitems.clistno=custom_list.clistno WHERE custom_listitems.cl_itemid='$itmid' AND custom_list.cl_uid='$globaluserid'");
+                                                        if (mysqli_num_rows($getwishlist) >= 1)
                                                             $wishlist = true;
                                                         else
                                                             $wishlist = false;
@@ -308,7 +310,7 @@ $menuslide = false;
                                                                     <li class="relative"><a href="user-login.php"><i class="icon-list icons"></i></a>
                                                                     </li>
 
-                                                                    <li class="relative"><a href="user-login.php"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+                                                                    <li class="relative"><a href="user-login.php"><i class="fa fa-plus" aria-hidden="true"></i></a></li>
 
                                                                     <li class="relative"><a href="product.php?product=<?php echo $hp_getitm1['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-info" aria-hidden="true"></i></a></li>
                                                                 <?php } ?>
@@ -332,7 +334,7 @@ $menuslide = false;
                                                                     <i class="icon-list icons"></i>
                                                                 <?php }
                                                                 if ($wishlist) { ?>
-                                                                    <i class="fa fa-heart"></i>
+                                                                    <i class="fa fa-plus"></i>
                                                                 <?php } ?>
                                                             <?php } ?>
                                                         </div>
