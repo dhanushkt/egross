@@ -21,8 +21,8 @@ if (isset($_POST['additem'])) {
 
     $iprice = $_POST['iprice'];
 
-    //search strings
-    $isearch = 3;
+    //default and custom item
+    $itype = "default";
 
     $query = mysqli_query($con, "select * from itemmaster where iname='$iname' and ibrand='$ibrand'");
     $count = mysqli_num_rows($query);
@@ -75,7 +75,7 @@ if (isset($_POST['additem'])) {
             $iimg = "default_egross.png";
         }
         if ($uploadOk == 1) {
-            $qry = mysqli_query($con, "insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,isearch) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$isearch')");
+            $qry = mysqli_query($con, "insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype')");
             if ($qry) {
                 $smsg = "Item Inserted successfully";
             } else {
