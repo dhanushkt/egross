@@ -1,8 +1,35 @@
 <?php
 include 'access/useraccesscontrol.php';
 
-if ($userlogin) {
-    echo "<script>window.location.href='index.php'; </script>";
+
+if(isset($_POST['addItem']))
+{
+    date_default_timezone_set('Asia/Kolkata');
+    $iadate=date("l, d-m-Y  h:i A");
+    $isid=0;
+    $iscid=0;
+    $iname=$_POST['iname'];
+    $ibrand=$_POST['ibrand'];
+    if($_POST['idesc']=="")
+    {
+        $idesc="";
+    }
+    else{
+        $idesc=$_POST['idesc'];
+    }
+    
+    $istatus=0;
+    $iimg="default_citem_egross.png";
+    $iprice=$_POST['iprice'];
+    $itype="custom";
+    $query=mysqli_query($con,"insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype')");
+    if($query)
+    {
+        $sucMsg="Item Added";
+    }
+    else{
+        $errMsg="Error!!!";
+    }
 }
 
 //button name: register
@@ -73,7 +100,7 @@ if ($userlogin) {
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="user-registration.php">Register</a></li>
+                                <li class="animate-default title-hover-red"><a href="user-registration.php">Add-custom-item</a></li>
                             </ul>
                         </div>
                     </div>
@@ -82,51 +109,51 @@ if ($userlogin) {
             <!-- End Breadcrumb -->
             <!-- Content Checkout -->
             <form method="POST">
-                <?php $msg ?>
                 <div class="relative container-web">
                     <div class="container">
                         <div class="row relative cmargin-login">
                             <!-- Content Shoping Cart -->
                             <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left ">
 
-                                <?php if (isset($fmsg)) { ?>
+                               
+
+                                <?php if (isset($errMsg)) { ?>
                                     <!-- custom alert -->
                                     <div class="alert" style="background-color: #eb1a21; color: white;">
                                         <div class="alert-text">
-                                            <?php echo $fmsg; ?>
+                                            <?php echo $errMsg; ?>
                                         </div>
                                     </div>
-                                <?php } else if (isset($smsg)) { ?>
+                                <?php } else if (isset($sucMsg)) { ?>
                                     <div class="alert" style="background-color: #3cb878">
                                         <div class="alert-text">
-                                            <?php echo $smsg; ?> , Proceed to <a href="user-login.php">login</a>
+                                            <?php echo $sucMsg; ?> 
                                         </div>
                                     </div>
                                 <?php } ?>
 
-
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Item Name *</label>
-                                        <input required class="full-width" type="text" name="">
+                                        <input required class="full-width" type="text" name="iname">
                                     </div>
                                 </div>
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Brand *</label>
-                                        <input required class="full-width" type="text" name="">
+                                        <input required class="full-width" type="text" name="ibrand">
                                     </div>
                                 </div>
                                 <div class="relative clearfix full-width">
                                     <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Discription</label>
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <textarea class="form-control" rows="3" name="idesc"></textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
                                         <label>Price</label>
-                                        <input required class="full-width" type="text" name="cmobile">
+                                        <input required class="full-width" type="number" name="iprice">
                                     </div><br>
                                 </div>
 
@@ -136,7 +163,7 @@ if ($userlogin) {
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input" style="padding-bottom: 25px">
                                 <div class="relative justify-content form-login-checkout">
-                                    <button type="submit" class="animate-default button-hover-red" name="register">ADD ITEM</button>
+                                    <button type="submit" class="animate-default button-hover-red" name="addItem">ADD ITEM</button>
                                 </div>
                             </div>
                             <!-- End Content Shoping Cart -->
