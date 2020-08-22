@@ -38,6 +38,7 @@ if ($clist) {
 	<title>
 		<?php echo $listname; ?>-eGross
 	</title>
+	<link rel="shortcut icon" href="lander_plugins/img/fev-icon.png">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -102,6 +103,7 @@ if ($clist) {
 	</div>
 	<div class="text-center">
 		<button class="btn btn-lg btn-primary pdf">Download PDF</button>
+		<button class="btn btn-lg btn-primary clipboard">Share List</button>
 	</div>
 </body>
 <script>
@@ -114,7 +116,15 @@ if ($clist) {
 		$(".pdf").on("click", function() {
 			table.button('.buttons-pdf').trigger();
 		});
-
+		var $temp = $("<input>");
+		var $url = $(location).attr('href');
+		$('.clipboard').on('click', function() {
+			$("body").append($temp);
+			$temp.val($url).select();
+			document.execCommand("copy");
+			$temp.remove();
+			$(".clipboard").text("URL copied!");
+		})
 	});
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" defer=""></script>
