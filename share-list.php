@@ -17,7 +17,16 @@ if (isset($_GET['clist'])) {
 }
 
 //query 
-if ($clist) {
+if ($list) {
+
+	$userlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.listno='$listno'");
+
+	$getlistinfo = mysqli_fetch_assoc($userlist);
+	$listname = $getlistinfo['sname'];
+
+	$getlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
+
+} else if ($clist) {
 
 	$customlist = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.clistno='$listno'");
 
@@ -51,7 +60,29 @@ if ($clist) {
 		</h4>
 	</div>
 	<div class="container-fluid table-responsive">
-		<?php if ($list || $clist) { ?>
+		<?php if ($list) { ?>
+			<table id="example" class="table table-bordered" style="width:100%">
+				<thead>
+					<tr>
+						<th>Item Name</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($getlist as $key => $getlist) { ?>
+						<tr>
+							<td class="text-capitalize">
+								<?php echo $getlist['iname']; ?>
+							</td>
+							<td> <?php echo $getlist['lqty']; ?> </td>
+							<td> <?php echo ($getlist['iprice'] * $getlist['lqty']); ?> </td>
+						</tr>
+					<?php } ?>
+
+				</tbody>
+			</table>
+		<?php } else if ($clist) { ?>
 			<table id="example" class="table table-bordered" style="width:100%">
 				<thead>
 					<tr>
@@ -74,6 +105,7 @@ if ($clist) {
 				</tbody>
 			</table>
 		<?php } else { ?>
+
 			<table id="example" class="table table-striped table-bordered" style="width:100%">
 				<thead>
 					<tr>
