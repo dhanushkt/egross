@@ -2,18 +2,22 @@
 include 'access/useraccesscontrol.php';
 
 $list = false;
-$alist = false;
 $clist = false;
+$alist = false;
 $aclist = false;
 
 if (isset($_GET['list'])) {
 	$list = true;
 	$listno = $_GET['list'];
-}
-
-if (isset($_GET['clist'])) {
+} else if (isset($_GET['clist'])) {
 	$clist = true;
 	$listno = $_GET['clist'];
+} else if (isset($_GET['alist'])) {
+	$alist = true;
+	$listno = $_GET['alist'];
+} else if (isset($_GET['aclist'])) {
+	$aclist = true;
+	$listno = $_GET['aclist'];
 }
 
 //query 
@@ -25,7 +29,6 @@ if ($list) {
 	$listname = $getlistinfo['sname'];
 
 	$getlist = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid WHERE user_listitems.listno='$listno'");
-
 } else if ($clist) {
 
 	$customlist = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.clistno='$listno'");
@@ -34,6 +37,18 @@ if ($list) {
 	$listname = $getlistinfo['cl_name'];
 
 	$getlist = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid WHERE custom_listitems.clistno='$listno'");
+} else if ($alist) {
+
+	$getuser = mysqli_query($con, "SELECT * FROM user WHERE uid='$listno'");
+
+	$getuserinfo = mysqli_fetch_assoc($getuser);
+	$listname = $getuserinfo['uname'];
+} else if ($aclist) {
+
+	$getuser = mysqli_query($con, "SELECT * FROM user WHERE uid='$listno'");
+
+	$getuserinfo = mysqli_fetch_assoc($getuser);
+	$listname = $getuserinfo['uname'];
 }
 
 ?>
@@ -57,7 +72,17 @@ if ($list) {
 <body>
 	<div class="p-4 text-uppercase">
 		<h4>
-			<?php echo $listname; ?>
+			<?php
+
+			if ($list || $clist) {
+				echo $listname;
+			} else if ($alist) {
+				echo "$listname's Lists";
+			} else if ($aclist) {
+				echo "$listname's Custom Lists";
+			}
+
+			?>
 		</h4>
 	</div>
 	<div class="container-fluid table-responsive">
@@ -105,29 +130,163 @@ if ($list) {
 
 				</tbody>
 			</table>
-		<?php } else { ?>
+		<?php } else if ($alist) { ?>
 
-			<table id="example" class="table table-striped table-bordered" style="width:100%">
+			<table id="noSortTable" class="table table-bordered" style="width:100%">
 				<thead>
+					<!-- <tr>
+						<th style="display: none;"></th>
+						<th style="display: none;"></th>
+						<th style="display: none;"></th>
+					</tr> -->
+
 					<tr>
 						<th>Item Name</th>
 						<th>Price</th>
 						<th>Quantity</th>
 					</tr>
+				</thead>
+
+				<tbody>
+					<?php
+					$getshops = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$listno'");
+
+					foreach ($getshops as $key => $getshops) {
+					?>
+						<tr>
+							<td class="text-center" colspan="3">
+								<h5> <?php echo $getshops['sname'];  ?> </h5>
+							</td>
+							<td style="display: none;"></td>
+							<td style="display: none;"></td>
+						</tr>
+						<?php
+						$getthislistno = $getshops['listno'];
+
+						$getcategory = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' GROUP BY scat.scid ");
+
+						foreach ($getcategory as $key1 => $getcategory) {
+						?>
+							<tr>
+								<td colspan="3">
+									<h6> <?php echo $getcategory['scname']; ?> </h6>
+								</td>
+								<td style="display: none;"></td>
+								<td style="display: none;"></td>
+							</tr>
+
+							<!-- <tr>
+								<th>Item Name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+							</tr> -->
+							<?php
+							$getscatid = $getcategory['scid'];
+
+							$getitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' AND scat.scid='$getscatid'");
+
+							foreach ($getitems as $key2 => $getitems) {
+							?>
+								<tr>
+									<td>
+										<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
+										<?php echo $getitems['iname']; ?>
+									</td>
+									<td>
+										<?php echo $getitems['lqty']; ?>
+									</td>
+									<td>
+										<?php echo ($getitems['iprice'] * $getitems['lqty']); ?>
+									</td>
+								</tr>
+							<?php } ?>
+						<?php } ?>
+					<?php } ?>
+				</tbody>
+			</table>
+		<?php } else if ($aclist) {  ?>
+
+			<table id="noSortTable" class="table table-bordered" style="width:100%">
+				<thead>
+					<!-- <tr>
+						<th style="display: none;"></th>
+						<th style="display: none;"></th>
+						<th style="display: none;"></th>
+					</tr> -->
+
 					<tr>
-						<th colspan="3" class="text-center">Shop Name</th>
-					</tr>
-					<tr>
-						<th colspan="3" class="text-center">Category</th>
+						<th>Item Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>Tiger Nixon</td>
-						<td>System Architect</td>
-						<td>Edinburgh</td>
-					</tr>
 
+				<tbody>
+					<?php
+					$getclists = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$listno'");
+
+					foreach ($getclists as $key => $getclists) {
+					?>
+						<tr>
+							<td class="text-center" colspan="3">
+								<h5> <?php echo $getclists['cl_name'];  ?> </h5>
+							</td>
+							<td style="display: none;"></td>
+							<td style="display: none;"></td>
+						</tr>
+						<?php
+						$getthisclistno = $getclists['clistno'];
+
+						$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
+
+						<?php if (mysqli_num_rows($getcategory)==0) { ?>
+							<tr>
+								<td colspan="3">
+									<h6> No Items </h6>
+								</td>
+								<td style="display: none;"></td>
+								<td style="display: none;"></td>
+							</tr>
+						<?php } ?>
+
+						<?php foreach ($getcategory as $key1 => $getcategory) {
+						?>
+
+							<tr>
+								<td colspan="3">
+									<h6> <?php echo $getcategory['scname']; ?> </h6>
+								</td>
+								<td style="display: none;"></td>
+								<td style="display: none;"></td>
+							</tr>
+
+							<!-- <tr>
+								<th>Item Name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+							</tr> -->
+							<?php
+							$getscatid = $getcategory['scid'];
+
+							$getitems = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' AND scat.scid='$getscatid'");
+
+							foreach ($getitems as $key2 => $getitems) {
+							?>
+								<tr>
+									<td>
+										<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
+										<?php echo $getitems['iname']; ?>
+									</td>
+									<td>
+										<?php echo $getitems['cl_qty']; ?>
+									</td>
+									<td>
+										<?php echo ($getitems['iprice'] * $getitems['cl_qty']); ?>
+									</td>
+								</tr>
+							<?php } ?>
+						<?php } ?>
+					<?php } ?>
 				</tbody>
 			</table>
 		<?php } ?>
@@ -135,6 +294,7 @@ if ($list) {
 	</div>
 	<div class="text-center">
 		<button class="btn btn-lg btn-primary pdf">Download PDF</button>
+		<a href="https://pdf-ace.com/pdfme/" target="_blank">Save as PDF</a>
 		<button class="btn btn-lg btn-primary clipboard">Share List</button>
 	</div>
 </body>
@@ -144,7 +304,16 @@ if ($list) {
 			lengthChange: false,
 			buttons: ['pdf']
 		});
+
+		var table = $('#noSortTable').DataTable({
+			lengthChange: false,
+			"bSort": false,
+			buttons: ['pdf']
+		});
+
 		$("#example_filter").hide();
+		$("#noSortTable_filter").hide();
+
 		$(".pdf").on("click", function() {
 			table.button('.buttons-pdf').trigger();
 		});
