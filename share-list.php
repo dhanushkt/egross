@@ -292,10 +292,9 @@ if ($list) {
 			</table>
 		<?php } ?>
 	</div>
-</div>
+<
 	<div class="text-center" style="padding-bottom: 10px;">
-		<a href="javascript:genPDF();" class="btn btn-lg btn-primary pdf">Download PDF</a>
-		<a href="https://pdf-ace.com/pdfme/" target="_blank">Save as PDF</a>
+		<a class="btn btn-lg btn-primary pdf" href="https://pdf-ace.com/pdfme/" target="_blank">Save as PDF</a>
 		<button class="btn btn-lg btn-primary clipboard">Share List</button>
 	</div>
 </body>
@@ -326,20 +325,7 @@ if ($list) {
 			$(".clipboard").text("URL copied!");
 		})
 	});
-
-	function genPDF() {
-		html2canvas(document.getElementById("Table-Data"), {
-			onrendered: function(canvas) {
-				var img = canvas.toDataURL("image/png");
-				var doc = new jsPDF();
-				doc.addImage(img, 'JPEG', 20, 20);
-				doc.save('egross.pdf');
-			}
-		});
-	}
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" defer=""></script>
