@@ -101,6 +101,7 @@ if (isset($_GET['scat'])) {
 			}
 		}
 	</style>
+    <link rel="stylesheet" href="clist_style.css">
 </head>
 
 <body onload="myFunction()">
@@ -108,7 +109,7 @@ if (isset($_GET['scat'])) {
 	<input type="hidden" id="scat" name="scat" value="<?php echo $scatid; ?>">
 	<div id="loading"></div>
 	<script src="lander_plugins/js/toast.js"></script>
-	<script>
+	<!-- <script>
 		$(document).ready(function() {
 			$('.wishlistItem').click(function() {
 				var options = {
@@ -138,7 +139,7 @@ if (isset($_GET['scat'])) {
 				});
 			});
 		});
-	</script>
+	</script> -->
 	<!-- <script>
 		$(document).ready(function() {
 			$('.addCart').click(function() {
@@ -218,6 +219,8 @@ if (isset($_GET['scat'])) {
 	<div class="wrappage">
 		<?php include 'lander-pages/header.php'; ?>
 		<?php include 'mobile-search.php'; ?>
+        <?php include 'clist_popup.php'; ?>
+
 
 		<!-- End Header Box -->
 		<!-- Content Box -->
@@ -333,10 +336,10 @@ if (isset($_GET['scat'])) {
 
 															<?php if ($wishlist) { ?>
 																<li class="relative"><a href="javascript:void(0)">
-																		<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+																		<i style="color: red" class="Click-here fa fa-plus" aria-hidden="true"data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>"></i>
 																	</a></li>
 															<?php } else { ?>
-																<li class="relative"><a class="wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+																<li class="relative"><a class="wishlistItem" ><i class="fa fa-plus Click-here" data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>" aria-hidden="true"></i></a></li>
 															<?php } ?>
 
 															<li class="relative"><a href="product.php?product=<?php echo $itemdata['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
@@ -437,6 +440,7 @@ if (isset($_GET['scat'])) {
 		});
 	});
 </script>
+<script src="clist_script.js"></script>
 
 
 </html>

@@ -56,13 +56,13 @@ if ($userlogin) {
 			z-index: 0 !important;
 		}
 	</style>
-
+    <link rel="stylesheet" href="clist_style.css">
 </head>
 
 <body>
 	<!--Script fot wishlist and add to cart-->
 	<script src="lander_plugins/js/toast.js"></script>
-	<script>
+	<!-- <script>
 		$(document).ready(function() {
 			$('.wishlistItem').click(function() {
 				var options = {
@@ -92,7 +92,7 @@ if ($userlogin) {
 				});
 			});
 		});
-	</script>
+	</script> -->
 	<script>
 		$(document).ready(function() {
 			$('.addList').click(function() {
@@ -139,6 +139,7 @@ if ($userlogin) {
 		<div class="wrappage">
 			<?php include 'lander-pages/header.php'; ?>
 			<?php include 'mobile-search.php'; ?>
+			<?php include 'clist_popup.php'; ?>
 			<!-- End Header Box -->
 			<!-- Content Box -->
 			<div class="relative full-width">
@@ -398,9 +399,10 @@ if ($userlogin) {
 														<?php } ?>
 
 														<?php if ($wishlist) { ?>
-															<li class="hvr-grow"><a style="background: red !important;" href="wishlist.php" class="animate-default"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+															<li class="hvr-grow"><a style="background: red !important;" class="animate-default"><i class="Click-here fa fa-plus" aria-hidden="true" data-id="<?php echo $itemdata['itmid']; ?>"
+															data-item="<?php echo $itemdata['iname']; ?>"></i></a></li>
 														<?php } else {  ?>
-															<li class="hvr-grow"><a class="animate-default wishlistItem" data-id="<?php echo $itemdata['itmid']; ?>" href="javascript:void(0)"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+															<li class="hvr-grow"><a class="animate-default wishlistItem" ><i class="Click-here fa fa-plus"data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>" aria-hidden="true"></i></a></li>
 														<?php } ?>
 													<?php } ?>
 												</ul>
@@ -638,6 +640,7 @@ if ($userlogin) {
 	</div>
 	<!-- End Footer Box -->
 	<?php include 'lander-pages/jslinks.php'; ?>
+	<script src="clist_script.js"></script>
 </body>
 
 </html>
