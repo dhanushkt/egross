@@ -74,7 +74,7 @@ if ($list) {
 	<div id="Table-Data">
 		<div class="p-4 text-uppercase">
 			<div class="pull-right">
-				<a class="btn btn-light" title="Save as PDF" href="https://pdf-ace.com/pdfme/" target="_blank"><i class="fa fa-save"></i></a>
+				<a class="btn btn-light" title="Save as PDF" href="https://pdf-ace.com/pdfme?cache=1&cache_for=86400" target="_blank"><i class="fa fa-save"></i></a>
 				<a class="btn btn-light clipboard"  title="Share URL"><i class="fa fa-share"></i></a>
 			</div>
 			<h4>
