@@ -70,6 +70,7 @@ if ($list) {
 </head>
 
 <body>
+<div id="Table-Data">
 	<div class="p-4 text-uppercase">
 		<h4>
 			<?php
@@ -239,7 +240,7 @@ if ($list) {
 
 						$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
 
-						<?php if (mysqli_num_rows($getcategory)==0) { ?>
+						<?php if (mysqli_num_rows($getcategory) == 0) { ?>
 							<tr>
 								<td colspan="3">
 									<h6> No Items </h6>
@@ -290,10 +291,10 @@ if ($list) {
 				</tbody>
 			</table>
 		<?php } ?>
-
 	</div>
-	<div class="text-center">
-		<button class="btn btn-lg btn-primary pdf">Download PDF</button>
+</div>
+	<div class="text-center" style="padding-bottom: 10px;">
+		<a href="javascript:genPDF();" class="btn btn-lg btn-primary pdf">Download PDF</a>
 		<a href="https://pdf-ace.com/pdfme/" target="_blank">Save as PDF</a>
 		<button class="btn btn-lg btn-primary clipboard">Share List</button>
 	</div>
@@ -302,21 +303,19 @@ if ($list) {
 	$(document).ready(function() {
 		var table = $('#example').DataTable({
 			lengthChange: false,
+			paging: false,
 			buttons: ['pdf']
 		});
 
 		var table = $('#noSortTable').DataTable({
 			lengthChange: false,
+			paging: false,
 			"bSort": false,
 			buttons: ['pdf']
 		});
 
 		$("#example_filter").hide();
 		$("#noSortTable_filter").hide();
-
-		$(".pdf").on("click", function() {
-			table.button('.buttons-pdf').trigger();
-		});
 		var $temp = $("<input>");
 		var $url = $(location).attr('href');
 		$('.clipboard').on('click', function() {
@@ -327,7 +326,20 @@ if ($list) {
 			$(".clipboard").text("URL copied!");
 		})
 	});
+
+	function genPDF() {
+		html2canvas(document.getElementById("Table-Data"), {
+			onrendered: function(canvas) {
+				var img = canvas.toDataURL("image/png");
+				var doc = new jsPDF();
+				doc.addImage(img, 'JPEG', 20, 20);
+				doc.save('egross.pdf');
+			}
+		});
+	}
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" defer=""></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" defer=""></script>
