@@ -67,236 +67,236 @@ if ($list) {
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap4.min.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
-<div id="Table-Data">
-	<div class="p-4 text-uppercase">
-		<h4>
-			<?php
+	<div id="Table-Data">
+		<div class="p-4 text-uppercase">
+			<div class="pull-right">
+				<a class="btn btn-light" title="Save as PDF" href="https://pdf-ace.com/pdfme/" target="_blank"><i class="fa fa-save"></i></a>
+				<a class="btn btn-light clipboard"  title="Share URL"><i class="fa fa-share"></i></a>
+			</div>
+			<h4>
+				<?php
 
-			if ($list || $clist) {
-				echo $listname;
-			} else if ($alist) {
-				echo "$listname's Lists";
-			} else if ($aclist) {
-				echo "$listname's Custom Lists";
-			}
+				if ($list || $clist) {
+					echo $listname;
+				} else if ($alist) {
+					echo "$listname's Lists";
+				} else if ($aclist) {
+					echo "$listname's Custom Lists";
+				}
 
-			?>
-		</h4>
-	</div>
-	<div class="container-fluid table-responsive">
-		<?php if ($list) { ?>
-			<table id="example" class="table table-bordered" style="width:100%">
-				<thead>
-					<tr>
-						<th>Item Name</th>
-						<th>Quantity</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($getlist as $key => $getlist) { ?>
+				?>
+			</h4>
+		</div>
+		<div class="container-fluid table-responsive">
+			<?php if ($list) { ?>
+				<table id="example" class="table table-bordered" style="width:100%">
+					<thead>
 						<tr>
-							<td class="text-capitalize">
-								<?php echo $getlist['iname']; ?>
-							</td>
-							<td> <?php echo $getlist['lqty']; ?> </td>
-							<td> <?php echo ($getlist['iprice'] * $getlist['lqty']); ?> </td>
+							<th>Item Name</th>
+							<th>Quantity</th>
+							<th>Price</th>
 						</tr>
-					<?php } ?>
+					</thead>
+					<tbody>
+						<?php foreach ($getlist as $key => $getlist) { ?>
+							<tr>
+								<td class="text-capitalize">
+									<?php echo $getlist['iname']; ?>
+								</td>
+								<td> <?php echo $getlist['lqty']; ?> </td>
+								<td> <?php echo ($getlist['iprice'] * $getlist['lqty']); ?> </td>
+							</tr>
+						<?php } ?>
 
-				</tbody>
-			</table>
-		<?php } else if ($clist) { ?>
-			<table id="example" class="table table-bordered" style="width:100%">
-				<thead>
-					<tr>
-						<th>Item Name</th>
-						<th>Quantity</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($getlist as $key => $getlist) { ?>
+					</tbody>
+				</table>
+			<?php } else if ($clist) { ?>
+				<table id="example" class="table table-bordered" style="width:100%">
+					<thead>
 						<tr>
-							<td class="text-capitalize">
-								<?php echo $getlist['iname']; ?>
-							</td>
-							<td> <?php echo $getlist['cl_qty']; ?> </td>
-							<td> <?php echo ($getlist['iprice'] * $getlist['cl_qty']); ?> </td>
+							<th>Item Name</th>
+							<th>Quantity</th>
+							<th>Price</th>
 						</tr>
-					<?php } ?>
+					</thead>
+					<tbody>
+						<?php foreach ($getlist as $key => $getlist) { ?>
+							<tr>
+								<td class="text-capitalize">
+									<?php echo $getlist['iname']; ?>
+								</td>
+								<td> <?php echo $getlist['cl_qty']; ?> </td>
+								<td> <?php echo ($getlist['iprice'] * $getlist['cl_qty']); ?> </td>
+							</tr>
+						<?php } ?>
 
-				</tbody>
-			</table>
-		<?php } else if ($alist) { ?>
+					</tbody>
+				</table>
+			<?php } else if ($alist) { ?>
 
-			<table id="noSortTable" class="table table-bordered" style="width:100%">
-				<thead>
-					<!-- <tr>
+				<table id="noSortTable" class="table table-bordered" style="width:100%">
+					<thead>
+						<!-- <tr>
 						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 					</tr> -->
 
-					<tr>
-						<th>Item Name</th>
-						<th>Price</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<?php
-					$getshops = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$listno'");
-
-					foreach ($getshops as $key => $getshops) {
-					?>
 						<tr>
-							<td class="text-center" colspan="3">
-								<h5> <?php echo $getshops['sname'];  ?> </h5>
-							</td>
-							<td style="display: none;"></td>
-							<td style="display: none;"></td>
+							<th>Item Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
 						</tr>
+					</thead>
+
+					<tbody>
 						<?php
-						$getthislistno = $getshops['listno'];
+						$getshops = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$listno'");
 
-						$getcategory = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' GROUP BY scat.scid ");
-
-						foreach ($getcategory as $key1 => $getcategory) {
+						foreach ($getshops as $key => $getshops) {
 						?>
 							<tr>
-								<td colspan="3">
-									<h6> <?php echo $getcategory['scname']; ?> </h6>
+								<td class="text-center" colspan="3">
+									<h5> <?php echo $getshops['sname'];  ?> </h5>
 								</td>
 								<td style="display: none;"></td>
 								<td style="display: none;"></td>
 							</tr>
+							<?php
+							$getthislistno = $getshops['listno'];
 
-							<!-- <tr>
+							$getcategory = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' GROUP BY scat.scid ");
+
+							foreach ($getcategory as $key1 => $getcategory) {
+							?>
+								<tr>
+									<td colspan="3">
+										<h6> <?php echo $getcategory['scname']; ?> </h6>
+									</td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+								</tr>
+
+								<!-- <tr>
 								<th>Item Name</th>
 								<th>Price</th>
 								<th>Quantity</th>
 							</tr> -->
-							<?php
-							$getscatid = $getcategory['scid'];
+								<?php
+								$getscatid = $getcategory['scid'];
 
-							$getitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' AND scat.scid='$getscatid'");
+								$getitems = mysqli_query($con, "SELECT * FROM user_listitems JOIN itemmaster ON user_listitems.litmid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE user_listitems.listno='$getthislistno' AND scat.scid='$getscatid'");
 
-							foreach ($getitems as $key2 => $getitems) {
-							?>
-								<tr>
-									<td>
-										<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
-										<?php echo $getitems['iname']; ?>
-									</td>
-									<td>
-										<?php echo $getitems['lqty']; ?>
-									</td>
-									<td>
-										<?php echo ($getitems['iprice'] * $getitems['lqty']); ?>
-									</td>
-								</tr>
+								foreach ($getitems as $key2 => $getitems) {
+								?>
+									<tr>
+										<td>
+											<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
+											<?php echo $getitems['iname']; ?>
+										</td>
+										<td>
+											<?php echo $getitems['lqty']; ?>
+										</td>
+										<td>
+											<?php echo ($getitems['iprice'] * $getitems['lqty']); ?>
+										</td>
+									</tr>
+								<?php } ?>
 							<?php } ?>
 						<?php } ?>
-					<?php } ?>
-				</tbody>
-			</table>
-		<?php } else if ($aclist) {  ?>
+					</tbody>
+				</table>
+			<?php } else if ($aclist) {  ?>
 
-			<table id="noSortTable" class="table table-bordered" style="width:100%">
-				<thead>
-					<!-- <tr>
+				<table id="noSortTable" class="table table-bordered" style="width:100%">
+					<thead>
+						<!-- <tr>
 						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 					</tr> -->
 
-					<tr>
-						<th>Item Name</th>
-						<th>Price</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<?php
-					$getclists = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$listno'");
-
-					foreach ($getclists as $key => $getclists) {
-					?>
 						<tr>
-							<td class="text-center" colspan="3">
-								<h5> <?php echo $getclists['cl_name'];  ?> </h5>
-							</td>
-							<td style="display: none;"></td>
-							<td style="display: none;"></td>
+							<th>Item Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
 						</tr>
+					</thead>
+
+					<tbody>
 						<?php
-						$getthisclistno = $getclists['clistno'];
+						$getclists = mysqli_query($con, "SELECT * FROM custom_list WHERE custom_list.cl_uid='$listno'");
 
-						$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
-
-						<?php if (mysqli_num_rows($getcategory) == 0) { ?>
-							<tr>
-								<td colspan="3">
-									<h6> No Items </h6>
-								</td>
-								<td style="display: none;"></td>
-								<td style="display: none;"></td>
-							</tr>
-						<?php } ?>
-
-						<?php foreach ($getcategory as $key1 => $getcategory) {
+						foreach ($getclists as $key => $getclists) {
 						?>
-
 							<tr>
-								<td colspan="3">
-									<h6> <?php echo $getcategory['scname']; ?> </h6>
+								<td class="text-center" colspan="3">
+									<h5> <?php echo $getclists['cl_name'];  ?> </h5>
 								</td>
 								<td style="display: none;"></td>
 								<td style="display: none;"></td>
 							</tr>
+							<?php
+							$getthisclistno = $getclists['clistno'];
 
-							<!-- <tr>
+							$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
+
+							<?php if (mysqli_num_rows($getcategory) == 0) { ?>
+								<tr>
+									<td colspan="3">
+										<h6> No Items </h6>
+									</td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+								</tr>
+							<?php } ?>
+
+							<?php foreach ($getcategory as $key1 => $getcategory) {
+							?>
+
+								<tr>
+									<td colspan="3">
+										<h6> <?php echo $getcategory['scname']; ?> </h6>
+									</td>
+									<td style="display: none;"></td>
+									<td style="display: none;"></td>
+								</tr>
+
+								<!-- <tr>
 								<th>Item Name</th>
 								<th>Price</th>
 								<th>Quantity</th>
 							</tr> -->
-							<?php
-							$getscatid = $getcategory['scid'];
+								<?php
+								$getscatid = $getcategory['scid'];
 
-							$getitems = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' AND scat.scid='$getscatid'");
+								$getitems = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' AND scat.scid='$getscatid'");
 
-							foreach ($getitems as $key2 => $getitems) {
-							?>
-								<tr>
-									<td>
-										<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
-										<?php echo $getitems['iname']; ?>
-									</td>
-									<td>
-										<?php echo $getitems['cl_qty']; ?>
-									</td>
-									<td>
-										<?php echo ($getitems['iprice'] * $getitems['cl_qty']); ?>
-									</td>
-								</tr>
+								foreach ($getitems as $key2 => $getitems) {
+								?>
+									<tr>
+										<td>
+											<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
+											<?php echo $getitems['iname']; ?>
+										</td>
+										<td>
+											<?php echo $getitems['cl_qty']; ?>
+										</td>
+										<td>
+											<?php echo ($getitems['iprice'] * $getitems['cl_qty']); ?>
+										</td>
+									</tr>
+								<?php } ?>
 							<?php } ?>
 						<?php } ?>
-					<?php } ?>
-				</tbody>
-			</table>
-		<?php } ?>
-	</div>
-<
-	<div class="text-center" style="padding-bottom: 10px;">
-		<a class="btn btn-lg btn-primary pdf" href="https://pdf-ace.com/pdfme/" target="_blank">Save as PDF</a>
-		<button class="btn btn-lg btn-primary clipboard">Share List</button>
-	</div>
+					</tbody>
+				</table>
+			<?php } ?>
+		</div>
 </body>
 <script>
 	$(document).ready(function() {
@@ -314,6 +314,7 @@ if ($list) {
 		});
 
 		$("#example_filter").hide();
+		$(".dataTables_info").hide();
 		$("#noSortTable_filter").hide();
 		var $temp = $("<input>");
 		var $url = $(location).attr('href');
@@ -322,7 +323,7 @@ if ($list) {
 			$temp.val($url).select();
 			document.execCommand("copy");
 			$temp.remove();
-			$(".clipboard").text("URL copied!");
+			$(".clipboard").text("Copied!");
 		})
 	});
 </script>
