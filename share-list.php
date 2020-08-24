@@ -75,7 +75,7 @@ if ($list) {
 		<div class="p-4 text-uppercase">
 			<div class="pull-right">
 				<a class="btn btn-light" title="Save as PDF" href="https://pdf-ace.com/pdfme?cache=0&cache_for=0" target="_blank"><i class="fa fa-save"></i></a>
-				<a class="btn btn-light clipboard"  title="Share URL"><i class="fa fa-share"></i></a>
+				<a class="btn btn-light clipboard" title="Share URL"><i class="fa fa-share"></i></a>
 			</div>
 			<h4>
 				<?php
@@ -233,22 +233,16 @@ if ($list) {
 
 						foreach ($getclists as $key => $getclists) {
 						?>
-							<tr>
-								<td class="text-center" colspan="3">
-									<h5> <?php echo $getclists['cl_name'];  ?> </h5>
-								</td>
-								<td style="display: none;"></td>
-								<td style="display: none;"></td>
-							</tr>
+
 							<?php
 							$getthisclistno = $getclists['clistno'];
 
 							$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
 
-							<?php if (mysqli_num_rows($getcategory) == 0) { ?>
+							<?php if (mysqli_num_rows($getcategory) >= 1) { ?>
 								<tr>
-									<td colspan="3">
-										<h6> No Items </h6>
+									<td class="text-center" colspan="3">
+										<h5> <?php echo $getclists['cl_name'];  ?> </h5>
 									</td>
 									<td style="display: none;"></td>
 									<td style="display: none;"></td>
