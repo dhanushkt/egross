@@ -10,6 +10,7 @@
             <div class="pop-up-content-wrap">
                 <div class="form-group">
                     Selected Item : <label class="text-uppercase" id="getitemname"></label>
+                    <a href="custom-list.php" title="Create Custom List" class="pull-right"><i style="color:black; font-size:20px" class="fa fa-edit"></i></a>
                     <form method="GET">
                         <input type="hidden" name="Thisitmid" value="" id="getItemId">
                     </form>

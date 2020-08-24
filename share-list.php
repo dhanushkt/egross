@@ -95,7 +95,7 @@ if ($list) {
 			<?php if ($list) { ?>
 				<table id="example" class="table table-bordered" style="width:100%">
 					<thead>
-						<tr>
+						<tr class="bg-danger text-white">
 							<th>Item Name</th>
 							<th>Quantity</th>
 							<th>Price</th>
@@ -103,7 +103,7 @@ if ($list) {
 					</thead>
 					<tbody>
 						<?php foreach ($getlist as $key => $getlist) { ?>
-							<tr>
+							<tr style="background-color: #ECECEC;">
 								<td class="text-capitalize">
 									<?php echo $getlist['iname']; ?>
 								</td>
@@ -117,7 +117,7 @@ if ($list) {
 			<?php } else if ($clist) { ?>
 				<table id="example" class="table table-bordered" style="width:100%">
 					<thead>
-						<tr>
+						<tr class="bg-danger text-white">
 							<th>Item Name</th>
 							<th>Quantity</th>
 							<th>Price</th>
@@ -125,7 +125,7 @@ if ($list) {
 					</thead>
 					<tbody>
 						<?php foreach ($getlist as $key => $getlist) { ?>
-							<tr>
+							<tr style="background-color: #ECECEC;">
 								<td class="text-capitalize">
 									<?php echo $getlist['iname']; ?>
 								</td>
@@ -220,7 +220,7 @@ if ($list) {
 						<th style="display: none;"></th>
 					</tr> -->
 
-						<tr>
+						<tr class="bg-danger text-white">
 							<th>Item Name</th>
 							<th>Price</th>
 							<th>Quantity</th>
@@ -240,7 +240,7 @@ if ($list) {
 							$getcategory = mysqli_query($con, "SELECT * FROM custom_listitems JOIN itemmaster ON custom_listitems.cl_itemid=itemmaster.itmid JOIN scat ON itemmaster.iscid = scat.scid WHERE custom_listitems.clistno='$getthisclistno' GROUP BY scat.scid "); ?>
 
 							<?php if (mysqli_num_rows($getcategory) >= 1) { ?>
-								<tr>
+								<tr style="background-color: #ECECEC;">
 									<td class="text-center" colspan="3">
 										<h5> <?php echo $getclists['cl_name'];  ?> </h5>
 									</td>

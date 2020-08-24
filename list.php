@@ -622,9 +622,9 @@ $subtot = 0;
                                             </div>
                                         </div>
                                         <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
-                                            <div id="editor"></div>
+            <div id="editor"></div>
             </form>
-            <a class="button11 mycartButton" id="pdf"> Export PDF</a>
+            <a href="share-list.php?list=<?php echo $listno;?>" class="button11 mycartButton" id="pdf"> Export PDF</a>
             <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
             </aside>
             <center><label></label></center>
@@ -789,7 +789,7 @@ $subtot = 0;
 
             <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
                 <a href="custom-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">My list</a>
-                <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as pdf</a>
+                <a href="share-list.php?alist=<?php echo $globaluserid ?>" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as pdf</a>
 
             </aside>
         </div>
@@ -853,18 +853,18 @@ $subtot = 0;
 </body>
 
 <script>
-    $(document).ready(function() {
-        var table = $('#example').DataTable({
-            lengthChange: false,
-            buttons: ['pdf']
-        });
+    // $(document).ready(function() {
+    //     var table = $('#example').DataTable({
+    //         lengthChange: false,
+    //         buttons: ['pdf']
+    //     });
 
-        // table.buttons().container()
-        //     .appendTo('#example_wrapper .col-md-6:eq(0)');
-        $("#pdf").on("click", function() {
-            table.button('.buttons-pdf').trigger();
-        });
-    });
+    //     // table.buttons().container()
+    //     //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+    //     $("#pdf").on("click", function() {
+    //         table.button('.buttons-pdf').trigger();
+    //     });
+    // });
     //copy link  
     var $temp = $("<input>");
     var $url = $(location).attr('href');

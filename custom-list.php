@@ -550,7 +550,7 @@ $subtot = 0;
 
                                 <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
                                     <a style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default" id="AddnList">Add new list</a>
-                                    <a href="#" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
+                                    <a href="share-list.php?aclist=<?php echo "$globaluserid";?>" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
 
                                 </aside>
                             </div>
