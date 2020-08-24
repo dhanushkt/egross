@@ -146,7 +146,7 @@ if ($list) {
 						<th style="display: none;"></th>
 					</tr> -->
 
-						<tr>
+						<tr class="bg-danger text-white">
 							<th>Item Name</th>
 							<th>Price</th>
 							<th>Quantity</th>
@@ -159,7 +159,7 @@ if ($list) {
 
 						foreach ($getshops as $key => $getshops) {
 						?>
-							<tr>
+							<tr style="background-color: #ECECEC;">
 								<td class="text-center" colspan="3">
 									<h5> <?php echo $getshops['sname'];  ?> </h5>
 								</td>
@@ -173,7 +173,7 @@ if ($list) {
 
 							foreach ($getcategory as $key1 => $getcategory) {
 							?>
-								<tr>
+								<tr class="table-light">
 									<td colspan="3">
 										<h6> <?php echo $getcategory['scname']; ?> </h6>
 									</td>
