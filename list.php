@@ -775,7 +775,7 @@ $subtot = 0;
     //     });
     // });
     //copy link  
-    var $temp = $("<a>");
+    var $temp = $("<input>");
     var urls = window.location.origin;
     var $url = " "+urls+"/share-list.php?list=<?php echo $listno; ?>";
    
