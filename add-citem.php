@@ -1,73 +1,54 @@
 <?php
 include 'access/useraccesscontrol.php';
 
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
+}
 
-if(isset($_POST['addItem']))
-{
+$clist = false;
+
+if (isset($_GET['clist'])) {
+    $clist = true;
+    $listno = $_GET['clist'];
+}
+
+if (isset($_POST['addItem'])) {
     date_default_timezone_set('Asia/Kolkata');
-    $iadate=date("l, d-m-Y  h:i A");
-    $isid=0;
-    $iscid=0;
-    $iname=$_POST['iname'];
-    $ibrand=$_POST['ibrand'];
-    if($_POST['idesc']=="")
-    {
-        $idesc="";
+    $iadate = date("l, d-m-Y  h:i A");
+    $isid = 0;
+    $iscid = 0;
+    $iname = $_POST['iname'];
+    $ibrand = $_POST['ibrand'];
+    if ($_POST['idesc'] == "") {
+        $idesc = "";
+    } else {
+        $idesc = $_POST['idesc'];
     }
-    else{
-        $idesc=$_POST['idesc'];
+
+    $istatus = 0;
+    $iimg = "default_citem_egross.png";
+
+    if ($_POST['iprice'] == "") {
+        $iprice = 0;
+    } else {
+        $iprice = $_POST['iprice'];
     }
+
     
-    $istatus=0;
-    $iimg="default_citem_egross.png";
-    $iprice=$_POST['iprice'];
-    $itype="custom";
-    $query=mysqli_query($con,"insert into itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype) values ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype')");
-    if($query)
-    {
-        $sucMsg="Item Added";
-    }
-    else{
-        $errMsg="Error!!!";
+    $itype = "custom";
+    $query = mysqli_query($con, "INSERT INTO itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype,iuid) VALUES ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype','$globaluserid')");
+    if ($query) {
+        $itemID = mysqli_insert_id($con);
+        if ($clist) {
+            $clqty = 1;
+            $addlist = mysqli_query($con, "INSERT INTO custom_listitems (clistno,cl_itemid,cl_qty) VALUES ('$listno','$itemID','$clqty')");
+        }
+        $sucMsg = "Item Added";
+    } else {
+        $errMsg = "Error!!!";
     }
 }
 
-//button name: register
-// if (isset($_POST['register'])) {
-//     $cname = $_POST['cname'];
-//     $cemail = $_POST['cemail'];
-//     $cmobile = $_POST['cmobile'];
-//     $apassword = md5($_POST['apassword']);
-//     $cpassword = md5($_POST['cpassword']);
-
-//     if ($apassword != $cpassword) {
-//         $fmsg = "Passwords do not match";
-//     } else {
-
-//         $check = mysqli_query($con, "SELECT * from user WHERE uemail='$cemail' OR umobile='$cmobile'");
-//         $count = mysqli_num_rows($check);
-//         if ($count > 0) {
-//             $fmsg = "User already Exists";
-//         } else {
-//             $query = mysqli_query($con, "INSERT INTO user (uname,uemail,umobile,upassword) VALUES ('$cname','$cemail','$cmobile','$apassword')");
-//             if ($query) {
-//                 $user_id = mysqli_insert_id($con);
-//                 $smsg = "User Registered";
-//                 $getlistno = mysqli_query($con, "SELECT clistno FROM custom_list");
-//                 $getlistnofetch = mysqli_fetch_assoc($getlistno);
-//                 do {
-//                     $generatedlistno = random_int(10000, 99999);
-//                 } while ($getlistnofetch['clistno'] == $generatedlistno);
-//                 date_default_timezone_set('Asia/Kolkata');
-//                 $date = date("l, d-m-Y  h:i A");
-//                 $cl_name="wishlist";
-//                 $createnewlist = mysqli_query($con, "INSERT INTO custom_list (clistno,cl_name,cl_uid,cl_timestamp) VALUES ('$generatedlistno','$cl_name','$user_id','$date')");
-//             } else {
-//                 echo $fmsg = "Registration Falied";
-//             }
-//         }
-//     }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +81,7 @@ if(isset($_POST['addItem']))
                         <div class="breadcrumb-web">
                             <ul class="clear-margin">
                                 <li class="animate-default title-hover-red"><a href="index.php">Home</a></li>
-                                <li class="animate-default title-hover-red"><a href="user-registration.php">Add-custom-item</a></li>
+                                <li class="animate-default title-hover-red"><a href="#"> Add Custom Item</a></li>
                             </ul>
                         </div>
                     </div>
@@ -115,46 +96,49 @@ if(isset($_POST['addItem']))
                             <!-- Content Shoping Cart -->
                             <div class="col-md-8 col-sm-12 col-xs-12 relative left-content-shoping clear-padding-left ">
 
-                               
 
-                                <?php if (isset($errMsg)) { ?>
+
+                                <?php if (isset($errMsg)) {
+                                ?>
                                     <!-- custom alert -->
                                     <div class="alert" style="background-color: #eb1a21; color: white;">
                                         <div class="alert-text">
                                             <?php echo $errMsg; ?>
                                         </div>
                                     </div>
-                                <?php } else if (isset($sucMsg)) { ?>
+                                <?php } else if (isset($sucMsg)) {
+                                ?>
                                     <div class="alert" style="background-color: #3cb878">
                                         <div class="alert-text">
-                                            <?php echo $sucMsg; ?> 
+                                            <?php echo $sucMsg; ?>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                <?php }
+                                ?>
 
-                                <div class="relative clearfix full-width">
-                                    <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>Item Name *</label>
-                                        <input required class="full-width" type="text" name="iname">
-                                    </div>
+                                <div class="relative clearfix full-width form-input">
+
+                                    <label>Item Name *</label>
+                                    <input required class="full-width" type="text" name="iname">
+
                                 </div>
-                                <div class="relative clearfix full-width">
-                                    <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>Brand *</label>
-                                        <input required class="full-width" type="text" name="ibrand">
-                                    </div>
+                                <div class="relative clearfix full-width form-input">
+
+                                    <label>Brand *</label>
+                                    <input required class="full-width" type="text" name="ibrand">
+
                                 </div>
-                                <div class="relative clearfix full-width">
-                                    <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>Discription</label>
-                                        <textarea class="form-control" rows="3" name="idesc"></textarea>
-                                    </div>
+                                <div class="relative clearfix full-width form-input">
+
+                                    <label>Discription</label>
+                                    <textarea class="form-control" rows="3" name="idesc"></textarea>
+
                                 </div>
-                                <div>
-                                    <div class="col-md-10 col-sm-10 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input">
-                                        <label>Price</label>
-                                        <input required class="full-width" type="number" name="iprice">
-                                    </div><br>
+                                <div class="relative clearfix full-width form-input">
+
+                                    <label>Price</label>
+                                    <input class="full-width" type="number" name="iprice">
+
                                 </div>
 
                                 <!--creating account-->
@@ -163,7 +147,13 @@ if(isset($_POST['addItem']))
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12 clearfix clear-padding-left clear-padding-480 relative form-input" style="padding-bottom: 25px">
                                 <div class="relative justify-content form-login-checkout">
-                                    <button type="submit" class="animate-default button-hover-red" name="addItem">ADD ITEM</button>
+                                    <button type="submit" class="animate-default button-hover-red hvr-shrink" name="addItem">Add Custom Item</button>
+
+                                    <a href="view-product.php?type=custom">
+                                        <button type="button" style="margin-left: 15px;" class="animate-default button-hover-red hvr-shrink">
+                                            View Custom Item
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                             <!-- End Content Shoping Cart -->

@@ -234,7 +234,7 @@ $subtot = 0;
 
         .mycartButton:hover {
             background-color: #333;
-            color: #dedede;
+            color: #dedede !important;
         }
 
         .customHoverRow:hover .mycButton {
