@@ -219,7 +219,8 @@ $subtot = 0;
         }
 
         .mycButton:hover {
-            color: #eb1a21;
+            background-color: #eb1a21;
+            color: white;
             box-shadow: 0px 0px 0px transparent;
             border: 0px solid transparent;
             text-shadow: 0px 0px 0px transparent;
@@ -245,7 +246,7 @@ $subtot = 0;
 
         .mycartButton:hover {
             background-color: #333;
-            color: #dedede;
+            color: white;
         }
 
         .customHoverRow:hover .mycButton {
@@ -568,7 +569,7 @@ $subtot = 0;
                                     <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
 
                                         <a target="_blank" href="share-list.php?list=<?php echo $listno; ?>" class="button11 mycartButton" id="pdf"> Export as PDF</a>
-                                        <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
+                                        <a class="mycartButton clipboard"  style="height: 42px; font-size: 140%;">Share</a>
                                     </aside>
                                    
                                 </div>
@@ -733,10 +734,8 @@ $subtot = 0;
                                     <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
                                         <a href="custom-list.php" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">My List</a>
                                         <a target="_blank" href="share-list.php?alist=<?php echo $globaluserid ?>" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as pdf</a>
-
                                     </aside>
                                 </div>
-
                                 <!-- End Content Shoping Cart -->
                             <?php } ?>
                         <?php } else { ?>
@@ -776,15 +775,16 @@ $subtot = 0;
     //     });
     // });
     //copy link  
-    var $temp = $("<input>");
-    var $url = $(location).attr('href');
-
+    var $temp = $("<a>");
+    var urls = window.location.origin;
+    var $url = " "+urls+"/share-list.php?list=<?php echo $listno; ?>";
+   
     $('.clipboard').on('click', function() {
         $("body").append($temp);
         $temp.val($url).select();
         document.execCommand("copy");
         $temp.remove();
-        $("label").text("URL copied!");
+        $(".clipboard").text("URL copied!");
     })
     // $('#custlist').on('click', function() {
     //     $("#list").show();
