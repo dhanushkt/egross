@@ -611,8 +611,8 @@ $subtot = 0;
     });
     //copy link  
     var $temp = $("<input>");
-    var $url = $(location).attr('href');
-
+    var urls = window.location.origin;
+    var $url = " "+urls+"/share-list.php?clist=<?php echo $listno; ?>";
     $('.clipboard').on('click', function() {
         $("body").append($temp);
         $temp.val($url).select();
