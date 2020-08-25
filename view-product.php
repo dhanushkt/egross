@@ -24,7 +24,7 @@ if (isset($_GET['scat'])) {
 	}
 	//display all custom items
 	$custom = true;
-	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE itype='custom'");
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE itype='custom' AND iuid=$globaluserid");
 } else {
 	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE itype='default' ORDER BY itmid DESC limit 3");
 }

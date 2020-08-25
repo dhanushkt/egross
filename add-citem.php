@@ -1,6 +1,12 @@
 <?php
 include 'access/useraccesscontrol.php';
 
+if (!$userlogin) {
+    echo "<script>window.location.href='user-login.php'; </script>";
+}
+
+$clist = false;
+
 if (isset($_GET['clist'])) {
     $clist = true;
     $listno = $_GET['clist'];
@@ -21,9 +27,16 @@ if (isset($_POST['addItem'])) {
 
     $istatus = 0;
     $iimg = "default_citem_egross.png";
-    $iprice = $_POST['iprice'];
+
+    if ($_POST['iprice'] == "") {
+        $iprice = 0;
+    } else {
+        $iprice = $_POST['iprice'];
+    }
+
+    
     $itype = "custom";
-    $query = mysqli_query($con, "INSERT INTO itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype) VALUES ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype')");
+    $query = mysqli_query($con, "INSERT INTO itemmaster (isid,iscid,iname,ibrand,idesc,istatus,iadate,iimg,iprice,itype,iuid) VALUES ('$isid','$iscid','$iname','$ibrand','$idesc','$istatus','$iadate','$iimg','$iprice','$itype','$globaluserid')");
     if ($query) {
         $itemID = mysqli_insert_id($con);
         if ($clist) {
@@ -124,7 +137,7 @@ if (isset($_POST['addItem'])) {
                                 <div class="relative clearfix full-width form-input">
 
                                     <label>Price</label>
-                                    <input required class="full-width" type="number" name="iprice">
+                                    <input class="full-width" type="number" name="iprice">
 
                                 </div>
 
