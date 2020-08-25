@@ -3,7 +3,9 @@ include 'access/useraccesscontrol.php';
 $adbanner = false;
 $wishlist = false;
 $cartlist = false;
-$getalldata = mysqli_query($con, "SELECT * FROM itemmaster order by itmid DESC limit 3");
+
+//custom item
+$custom = false;
 
 //initilize it to zero for jquery
 $scatid = 0;
@@ -15,7 +17,16 @@ if (isset($_GET['scat'])) {
 	}
 
 	$scatid = $_GET['scat'];
-	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid order by itmid DESC limit 3");
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid AND itype='default' ORDER BY itmid DESC limit 3");
+} else if (isset($_GET['type'])) {
+	if (!$userlogin) {
+		echo "<script>window.location.href='user-login.php'; </script>";
+	}
+	//display all custom items
+	$custom = true;
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE itype='custom'");
+} else {
+	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE itype='default' ORDER BY itmid DESC limit 3");
 }
 ?>
 <!DOCTYPE html>
@@ -101,7 +112,7 @@ if (isset($_GET['scat'])) {
 			}
 		}
 	</style>
-    <link rel="stylesheet" href="clist_style.css">
+	<link rel="stylesheet" href="clist_style.css">
 </head>
 
 <body onload="myFunction()">
@@ -175,41 +186,64 @@ if (isset($_GET['scat'])) {
 			});
 		});
 	</script> -->
-	<script>
-		$(document).ready(function() {
-			$('.addCart').click(function() {
-				var options = {
-					style: {
-						main: {
-							background: "#e3171b",
-							color: "white",
-							'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
-							'width': '200px'
+	<?php if ($custom) { ?>
+		<script>
+			$(document).ready(function() {
+				$('.addCart').click(function() {
+					var options = {
+						style: {
+							main: {
+								background: "#e3171b",
+								color: "white",
+								'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+								'width': '250px'
+							}
 						}
-					}
-				};
-				var itmid = $(this).attr('data-id');
-				var getqty = 1;
-				var shopid = $(this).attr('data-sid');
-				$.ajax({
-					url: 'add-list.php',
-					type: 'POST',
-					data: {
-						itmid: itmid,
-						shopid: shopid,
-						qty: getqty
-					},
-					success: function() {
-						iqwerty.toast.Toast('Item added to list', options);
-						window.setTimeout(function() {
-							window.location.reload();
-						}, 1000);
-					}
+					};
+
+					iqwerty.toast.Toast('Custom Items can only be added to Custom List', options);
+
+					$(this).addClass("not-allowed");
 				});
-				$(this).addClass("not-allowed");
 			});
-		});
-	</script>
+		</script>
+	<?php } else { ?>
+		<script>
+			$(document).ready(function() {
+				$('.addCart').click(function() {
+					var options = {
+						style: {
+							main: {
+								background: "#e3171b",
+								color: "white",
+								'box-shadow': '0 0 0px rgba(0, 0, 0, .9)',
+								'width': '200px'
+							}
+						}
+					};
+					var itmid = $(this).attr('data-id');
+					var getqty = 1;
+					var shopid = $(this).attr('data-sid');
+					$.ajax({
+						url: 'add-list.php',
+						type: 'POST',
+						data: {
+							itmid: itmid,
+							shopid: shopid,
+							qty: getqty
+						},
+						success: function() {
+							iqwerty.toast.Toast('Item added to list', options);
+							window.setTimeout(function() {
+								window.location.reload();
+							}, 1000);
+						}
+					});
+					$(this).addClass("not-allowed");
+				});
+			});
+		</script>
+	<?php } ?>
 	<!-- push menu-->
 	<?php include 'lander-pages/pushmenu.php'; ?>
 	<!-- end push menu-->
@@ -219,7 +253,7 @@ if (isset($_GET['scat'])) {
 	<div class="wrappage">
 		<?php include 'lander-pages/header.php'; ?>
 		<?php include 'mobile-search.php'; ?>
-        <?php include 'clist_popup.php'; ?>
+		<?php include 'clist_popup.php'; ?>
 
 
 		<!-- End Header Box -->
@@ -256,6 +290,14 @@ if (isset($_GET['scat'])) {
 									<?php } ?>
 								</ul>
 							</div>
+
+							<?php if ($custom) { ?>
+								<div class="col-md-12 col-sm-12 col-xs-12 sider-bar-category border bottom-margin-default">
+									<a class="btn btn-primary btn-lg button-hover-red full-width top-margin-15-default hvr-shrink" style="background: #DC141B" href="add-citem.php">
+										Add a Custom Item
+									</a>
+								</div>
+							<?php } ?>
 
 
 							<?php if ($adbanner) { ?>
@@ -294,7 +336,7 @@ if (isset($_GET['scat'])) {
 								</div>
 							</div>
 							<!-- Product Content Category -->
-							<div class="postList">
+							<div class="postList" style="padding-bottom: 30px;">
 								<div class="row">
 									<?php
 									if ($getalldata->num_rows > 0) {
@@ -336,13 +378,20 @@ if (isset($_GET['scat'])) {
 
 															<?php if ($wishlist) { ?>
 																<li class="relative"><a href="javascript:void(0)">
-																		<i style="color: red" class="Click-here fa fa-plus" aria-hidden="true"data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>"></i>
+																		<i style="color: red" class="Click-here fa fa-plus" aria-hidden="true" data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>"></i>
 																	</a></li>
 															<?php } else { ?>
-																<li class="relative"><a class="wishlistItem" ><i class="fa fa-plus Click-here" data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>" aria-hidden="true"></i></a></li>
+																<li class="relative"><a class="wishlistItem"><i class="fa fa-plus Click-here" data-id="<?php echo $itemdata['itmid']; ?>" data-item="<?php echo $itemdata['iname']; ?>" aria-hidden="true"></i></a></li>
 															<?php } ?>
 
-															<li class="relative"><a href="product.php?product=<?php echo $itemdata['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+															<?php if ($custom) { ?>
+																<li class="relative"><a href="javascript:void(0)">
+																		<i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i>
+																	</a></li>
+															<?php } else { ?>
+																<li class="relative"><a href="product.php?product=<?php echo $itemdata['itmid']; ?>"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
+															<?php } ?>
+
 														<?php } else { ?>
 															<li class="relative"><a href="user-login.php"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
 
@@ -377,10 +426,12 @@ if (isset($_GET['scat'])) {
 								</div>
 							</div>
 
-							<div class="show_more_main" id="show_more_main<?php echo $itmid; ?>">
-								<span id="<?php echo $itmid; ?>" class="show_more" title="Load more posts">Show more</span>
-								<span class="loding" style="display: none;"><span class="loding_txt">Loading...</span></span>
-							</div>
+							<?php if (!$custom) { ?>
+								<div class="show_more_main" id="show_more_main<?php echo $itmid; ?>">
+									<span id="<?php echo $itmid; ?>" class="show_more" title="Load more posts">Show more</span>
+									<span class="loding" style="display: none;"><span class="loding_txt">Loading...</span></span>
+								</div>
+							<?php } ?>
 						<?php } ?>
 						<!-- <div class="row">
 								<div class="pagging relative">

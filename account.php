@@ -140,7 +140,7 @@ if (isset($_POST['update'])) {
     <div class="wrappage">
         <?php include 'lander-pages/header.php'; ?>
         <?php include 'mobile-search.php'; ?>
-        
+
         <!-- End Header Box -->
         <!-- Content Box -->
         <script>
@@ -277,6 +277,23 @@ if (isset($_POST['update'])) {
                                 </div>
                             </div>
 
+                            <div style="padding-top: 60px;">
+                                <h3>Custom Items</h3>
+                                <hr>
+                                <div class="form-input full-width clearfix relative">
+                                    <a href="view-product.php?type=custom">
+                                        <button class="mycButtonaddr">
+                                            View Custom Items
+                                        </button>
+                                    </a>
+                                    <a href="add-citem.php">
+                                        <button class="mycButtonaddr">
+                                            Add Custom Item
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
                             <div>
                                 <div style="margin-top: 7%" id="orders">
                                     <h4>Order History</h4>
@@ -295,9 +312,10 @@ if (isset($_POST['update'])) {
                                             <tr>
                                                 <td><a href="view-order.php?orderno=<?php echo $getorderdetails['orderno']; ?>&type=<?php echo $getorderdetails['otype']; ?>" title="Track Order">#<?php echo $getorderdetails['orderno']; ?></a></td>
                                                 <td><?php echo $getorderdetails['otimestamp']; ?></td>
-                                                <td><?php if($getorderdetails['oreason']=='0'){echo "No Status Available";} 
-                                                else 
-                                                echo $getorderdetails['oreason']; ?></td>
+                                                <td><?php if ($getorderdetails['oreason'] == '0') {
+                                                        echo "No Status Available";
+                                                    } else
+                                                        echo $getorderdetails['oreason']; ?></td>
                                                 <td><?php echo $getorderdetails['ototalamt']; ?></td>
                                             </tr>
                                         <?php
@@ -337,7 +355,7 @@ if (isset($_POST['update'])) {
             </div>
             <!-- End Content Checkout -->
             <!-- Support -->
-            
+
             <!-- FREE SHIPPING, SUPPORT, HELP PARTNER, CONTACT US
             <div class=" support-box full-width bg-red support_box_v2">
                 <div class="container-web">
