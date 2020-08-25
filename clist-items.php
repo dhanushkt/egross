@@ -537,7 +537,7 @@ $subtot = 0;
                                 <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
 
                                     <a target="_blank" href="share-list.php?clist=<?php echo $listno;?>" class="button11 mycartButton" id="pdf"> Export as PDF</a>
-                                    <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
+                                    <a class="mycartButton clipboard" style="height: 42px; font-size: 140%;">Share</a>
                                 </aside>
 
                             </div>
@@ -618,7 +618,7 @@ $subtot = 0;
         $temp.val($url).select();
         document.execCommand("copy");
         $temp.remove();
-        $("label").text("URL copied!");
+        $(".clipboard").text("URL copied!");
     })
     // $('#custlist').on('click', function() {
     //     $("#list").show();
