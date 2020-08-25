@@ -259,7 +259,7 @@ $subtot = 0;
 
         .mycartButton:hover {
             background-color: #333;
-            color: #dedede;
+            color: #dedede !important;
         }
 
         .customHoverRow:hover .mycButton {
@@ -549,8 +549,10 @@ $subtot = 0;
                                 <!--END NEW LIST-->
 
                                 <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
-                                    <a style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default" id="AddnList">Add new list</a>
-                                    <a href="share-list.php?aclist=<?php echo "$globaluserid";?>" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
+                                    <a style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default" id="AddnList">
+                                        Create a New List
+                                    </a>
+                                    <a target="_blank" href="share-list.php?aclist=<?php echo "$globaluserid"; ?>" style="padding-top:10px; padding-bottom:10px; border-color: black;" class="clear-margin mycartButton animate-default">Export as PDF</a>
 
                                 </aside>
                             </div>

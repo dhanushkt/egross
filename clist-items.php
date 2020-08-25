@@ -536,7 +536,7 @@ $subtot = 0;
 
                                 <aside class="btn-shoping-cart justify-content top-margin-default bottom-margin-default">
 
-                                    <a href="share-list.php?clist=<?php echo $listno;?>" class="button11 mycartButton" id="pdf"> Export PDF</a>
+                                    <a target="_blank" href="share-list.php?clist=<?php echo $listno;?>" class="button11 mycartButton" id="pdf"> Export as PDF</a>
                                     <input type=button class="mycartButton clipboard" value="Share" style="height: 42px; font-size: 140%;"></input>
                                 </aside>
 
