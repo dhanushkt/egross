@@ -55,6 +55,16 @@ if (isset($_POST['addItem'])) {
 
 <head>
     <?php include 'lander-pages/csslink.php'; ?>
+
+    <style>
+        @media only screen and (max-width: 480px){
+
+            .button-side {
+                margin-right: 15px !important;
+            }
+
+        }
+    </style>
 </head>
 
 <body onload="myFunction()">
@@ -150,7 +160,7 @@ if (isset($_POST['addItem'])) {
                                     <button type="submit" class="animate-default button-hover-red hvr-shrink" name="addItem">Add Custom Item</button>
 
                                     <a href="view-product.php?type=custom">
-                                        <button type="button" style="margin-left: 15px;" class="animate-default button-hover-red hvr-shrink">
+                                        <button type="button" style="margin-left: 15px;" class="animate-default button-hover-red hvr-shrink button-side">
                                             View Custom Item
                                         </button>
                                     </a>
