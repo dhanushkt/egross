@@ -131,11 +131,10 @@ $menuslide = false;
             <!-- Welcome end -->
             <!-- Menu & Slide -->
             <?php if ($menuslide) { ?>
-                <div class="clearfix container-web relative">
+                <!--<div class="clearfix container-web relative">
                     <div class=" container relative">
                         <div class="row">
                             <div class="clearfix relative menu-slide clear-padding bottom-margin-default">
-                                <!-- Menu -->
                                 <div class="clearfix menu-web relative">
                                     <ul>
                                         <li><a href="#"><img src="lander_plugins/img/icon_hot.png" alt="Icon Hot Deals" />
@@ -179,7 +178,6 @@ $menuslide = false;
                                             </a></li>
                                     </ul>
                                 </div>
-                                <!-- Slide -->
                                 <div class="clearfix slide-box-home slide-v1 relative">
                                     <div class="clearfix slide-home owl-carousel owl-theme">
                                         <div class="item"><img src="lander_plugins/img/banner.png" alt="Banner Header 1">
@@ -203,10 +201,9 @@ $menuslide = false;
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Menu & Slide -->
                         </div>
                     </div>
-                </div>
+                </div>-->
             <?php } ?>
 
 

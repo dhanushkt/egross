@@ -53,3 +53,6 @@ $selitemid = $_POST['selitemid'];
         <?php } ?>
     </tbody>
 </table>
+<div style="background-color: white; height:50px;">
+
+</div>

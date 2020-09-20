@@ -477,20 +477,20 @@ if ($userlogin) {
 																		<?php } ?>
 																		<?php if ($wish1) { ?>
 																			<li class="relative"><a href="javascript:void(0)">
-																					<i style="color: red" class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i>
+																					<i style="color: red" class="fa fa-plus" aria-hidden="true"></i>
 																				</a></li>
 																		<?php } else { ?>
-																			<li class="relative"><a class="addList" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+																			<li class="relative"><a class="addList" data-id="<?php echo $row['itmid']; ?>" href="javascript:void(0)"><i class="Click-here fa fa-plus" data-id="<?php echo $row['itmid']; ?>" data-item="<?php echo $row['iname']; ?>" aria-hidden="true"></i></a></li>
 																		<?php } ?>
 																		<li class="relative"><a href="index.php"><i class="data-icon data-icon-basic icon-basic-home" aria-hidden="true"></i></a></li>
 																	<?php } else { ?>
 																		<li class="relative"><a href="user-login.php"><i class="data-icon data-icon-ecommerce icon-ecommerce-bag"></i></a></li>
-																		<li class="relative"><a href="user-login.php"><i class="data-icondata-icon-basic icon-basic-heart" aria-hidden="true"></i></a></li>
+																		<li class="relative"><a href="user-login.php"><i class="Click-here fa fa-plus"data-id="<?php echo $row['itmid']; ?>" data-item="<?php echo $row['iname']; ?>" aria-hidden="true"></i></a></li>
 																		<li class="relative"><a href="javascript:;"><i class="data-icon data-icon-basic icon-basic-magnifier" aria-hidden="true"></i></a></li>
 																	<?php } ?>
 																</ul>
 															</div>
-															<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="product.php?id=<?php echo $row['itmid']; ?>"><?php echo $row['iname']; ?></a></h3>
+															<h3 class="title-product animate-default title-hover-black clearfix full-width"><a href="product.php?product=<?php echo $row['itmid']; ?>"><?php echo $row['iname']; ?></a></h3>
 															<p class="clearfix price-product">₹<?php echo $row['iprice']; ?></p>
 															<div style="float: right; padding-right: 10px;">
 																<?php

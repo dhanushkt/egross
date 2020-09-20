@@ -502,7 +502,7 @@ $subtot = 0;
                                 <form method="POST">
                                     <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" id="addList" style="display: none;">
 
-                                        <div class=" mobile col-md-12 product-in-cart-col-2">
+                                        <div class="col-md-12 product-in-cart-col-4">
                                             <p></p>
                                             <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
                                             <label style="font-size: 20px;">Add List</label>
@@ -529,7 +529,7 @@ $subtot = 0;
 
                                         <!--Mobile-->
 
-                                        <div class="col-md-6" style="padding-top: 10px;">
+                                        <!-- <div class="col-md-6" style="padding-top: 10px;">
                                             <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-plus"></i>
                                                 <a class="animate-default">
                                                     <label style="font-size: 25px;">Add List</label>
@@ -540,7 +540,7 @@ $subtot = 0;
                                             <input type="submit" class="savebtnalist" name="btnsaveList" value="SAVE" />
                                             <input type="button" style="background:red;" class="savebtnalist cancelList" value="CANCEL" />
 
-                                        </div>
+                                        </div> -->
 
                                         <!--End Mobile-->
                                     </div>

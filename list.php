@@ -525,7 +525,7 @@ $subtot = 0;
                                                 <img src="uploads/item/<?php echo $getallitems['iimg']; ?>" alt="">
                                             </div>
                                             <div class="relative product-in-cart-col-2">
-                                                <p class="title-hover-black"><a href="product.php?id=<?php echo $getallitems['itmid']; ?>" class="animate-default"><?php echo $getallitems['iname']; ?></a></p>
+                                                <p class="title-hover-black"><a href="product.php?product=<?php echo $getallitems['itmid']; ?>" class="animate-default"><?php echo $getallitems['iname']; ?></a></p>
                                             </div>
                                             <div class="relative product-in-cart-col-4" style="text-align: right; line-height: 3;">
 
@@ -694,7 +694,7 @@ $subtot = 0;
                                             <div class=" mobile col-md-6 product-in-cart-col-2">
                                                 <p class="title-hover-black">
                                                     <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
-                                                    <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
+                                                    <a href="product.php?product=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
                                                         <?php echo $getcartitem['sname']; ?>
                                                     </a>
                                                 </p>
@@ -714,7 +714,7 @@ $subtot = 0;
                                             <!--Mobile-->
                                             <div class="col-md-6" style="padding-top: 10px;">
                                                 <p style="text-align: center;"> <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
-                                                    <a href="product.php?id=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
+                                                    <a href="product.php?product=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
                                                         <?php echo $getcartitem['sname']; ?>
                                                     </a></p>
                                                 <hr>

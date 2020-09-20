@@ -198,12 +198,13 @@ if ($list) {
 								?>
 									<tr>
 										<td>
-											<?php echo $getitems['idesc']; ?>
-										</td>
-										<td>
 											<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
 											<?php echo $getitems['iname']; ?>
 										</td>
+										<td>
+											<?php echo  $getitems['idesc']; ?>
+										</td>
+										
 										<td>
 											<?php echo $getitems['lqty']; ?>
 										</td>

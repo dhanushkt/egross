@@ -488,7 +488,7 @@ $subtot = 0;
                                         </div>
                                         <div class="relative product-in-cart-col-2">
                                             <p class="title-hover-black">
-                                                <a href="product.php?id=<?php echo $getallitems['itmid']; ?>" class="animate-default">
+                                                <a href="product.php?product=<?php echo $getallitems['itmid']; ?>" class="animate-default">
                                                     <?php echo $getallitems['iname']; ?>
                                                 </a>
                                             </p>
