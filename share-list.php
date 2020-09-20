@@ -119,6 +119,7 @@ if ($list) {
 					<thead>
 						<tr class="bg-danger text-white">
 							<th>Item Name</th>
+							<th>Description</th>
 							<th>Quantity</th>
 							<th>Price</th>
 						</tr>
@@ -129,6 +130,7 @@ if ($list) {
 								<td class="text-capitalize">
 									<?php echo $getlist['iname']; ?>
 								</td>
+								<td> <?php echo $getlist['idesc']; ?> </td>
 								<td> <?php echo $getlist['cl_qty']; ?> </td>
 								<td> <?php echo ($getlist['iprice'] * $getlist['cl_qty']); ?> </td>
 							</tr>
@@ -148,6 +150,7 @@ if ($list) {
 
 						<tr class="bg-danger text-white">
 							<th>Item Name</th>
+							<th>Description</th>
 							<th>Price</th>
 							<th>Quantity</th>
 						</tr>
@@ -160,7 +163,7 @@ if ($list) {
 						foreach ($getshops as $key => $getshops) {
 						?>
 							<tr style="background-color: #ECECEC;">
-								<td class="text-center" colspan="3">
+								<td class="text-center" colspan="4">
 									<h5> <?php echo $getshops['sname'];  ?> </h5>
 								</td>
 								<td style="display: none;"></td>
@@ -174,7 +177,7 @@ if ($list) {
 							foreach ($getcategory as $key1 => $getcategory) {
 							?>
 								<tr class="table-light">
-									<td colspan="3">
+									<td colspan="4">
 										<h6> <?php echo $getcategory['scname']; ?> </h6>
 									</td>
 									<td style="display: none;"></td>
@@ -194,6 +197,9 @@ if ($list) {
 								foreach ($getitems as $key2 => $getitems) {
 								?>
 									<tr>
+										<td>
+											<?php echo $getitems['idesc']; ?>
+										</td>
 										<td>
 											<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
 											<?php echo $getitems['iname']; ?>
