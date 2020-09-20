@@ -2,7 +2,7 @@
 include_once('access/useraccesscontrol.php');
 $header_subtot = 0;
 $header_getlist = mysqli_query($con, "SELECT * FROM user_list JOIN shopkeeper ON user_list.lsid=shopkeeper.sid WHERE user_list.luid='$globaluserid'");
-
+$indexlist=0;
 if (mysqli_num_rows($header_getlist) >= 1) {
 ?>
     <div class="relative">
@@ -13,13 +13,14 @@ if (mysqli_num_rows($header_getlist) >= 1) {
                 <!-- <div class="image-product-cart float-left center-vertical-image ">
                     <a href="#"><img src="uploads/item/<?php //echo $header_list['iimg']; ?>" alt="" /></a>
                 </div> -->
-
+                <?php if($header_list['sid'] > 0) {?>
                 <div class="info-product-cart float-left">
                     <p class="title-product title-hover-black"><?php echo $header_list['sname']; ?></p>
                     <p>Items in list: <?php echo $header_numberofitems; ?></p>
 
-                    <!-- <p class="clearfix price-product">₹ <?php //echo $header_list['ctotal']; ?> <span class="total-product-cart-son">(x<?php //echo $header_list['cqty']; ?>)</span></p> -->
+                    <!-- <p class="clearfix price-product">₹ <?php //echo $header_list['ctotal'];?> <span class="total-product-cart-son">(x<?php //echo $header_list['cqty'];?>)</span></p> -->
                 </div>
+                <?php } ?>
             </div>
         <?php //$header_subtot = $header_subtot + $header_list['ctotal'];
         } ?>

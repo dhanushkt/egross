@@ -688,6 +688,8 @@ $subtot = 0;
                                             $subtot = $subtot + ($listitm['iprice'] * $listitm['lqty']);
                                         }
                                         ?>
+                                        <?php if($getcartitem['sid'] > 0) {?>
+                
                                         <div class="relative full-width product-in-cart border no-border-l no-border-r overfollow-hidden customHoverRow" onclick="location.href='list.php?list=<?php echo $listno; ?>'">
 
 
@@ -729,6 +731,7 @@ $subtot = 0;
                                             </div>
                                             <!--End Mobile-->
                                         </div>
+                                    <?php } ?>
                                     <?php } ?>
 
                                     <aside style="text-align:left;" class="justify-content top-margin-default bottom-margin-default">
