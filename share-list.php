@@ -97,6 +97,7 @@ if ($list) {
 					<thead>
 						<tr class="bg-danger text-white">
 							<th>Item Name</th>
+							<th>Description</th>
 							<th>Quantity</th>
 							<th>Price</th>
 						</tr>
@@ -107,6 +108,7 @@ if ($list) {
 								<td class="text-capitalize">
 									<?php echo $getlist['iname']; ?>
 								</td>
+								<td> <?php echo $getlist['idesc']; ?> </td>
 								<td> <?php echo $getlist['lqty']; ?> </td>
 								<td> <?php echo ($getlist['iprice'] * $getlist['lqty']); ?> </td>
 							</tr>
@@ -204,7 +206,7 @@ if ($list) {
 										<td>
 											<?php echo  $getitems['idesc']; ?>
 										</td>
-										
+
 										<td>
 											<?php echo $getitems['lqty']; ?>
 										</td>
@@ -229,6 +231,7 @@ if ($list) {
 
 						<tr class="bg-danger text-white">
 							<th>Item Name</th>
+							<th>Description</th>
 							<th>Price</th>
 							<th>Quantity</th>
 						</tr>
@@ -248,7 +251,7 @@ if ($list) {
 
 							<?php if (mysqli_num_rows($getcategory) >= 1) { ?>
 								<tr style="background-color: #ECECEC;">
-									<td class="text-center" colspan="3">
+									<td class="text-center" colspan="4">
 										<h5> <?php echo $getclists['cl_name'];  ?> </h5>
 									</td>
 									<td style="display: none;"></td>
@@ -260,7 +263,7 @@ if ($list) {
 							?>
 
 								<tr>
-									<td colspan="3">
+									<td colspan="4">
 										<h6> <?php echo $getcategory['scname']; ?> </h6>
 									</td>
 									<td style="display: none;"></td>
@@ -284,6 +287,10 @@ if ($list) {
 											<img width="50" src="uploads/item/<?php echo $getitems['iimg']; ?>">
 											<?php echo $getitems['iname']; ?>
 										</td>
+										<td>
+											<?php echo $getitems['idesc']; ?>
+										</td>
+										
 										<td>
 											<?php echo $getitems['cl_qty']; ?>
 										</td>
