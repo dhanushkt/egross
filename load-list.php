@@ -37,6 +37,6 @@ if (mysqli_num_rows($header_getlist) >= 1) {
 <?php } else { ?>
     <div class="relative text-center">
         <i style="font-size: 100px;" class="fa fa-shopping-cart"></i>
-        <h4>YOUR LIST IS EMPTY</h4>
+        <h5>YOUR LIST IS EMPTY</h5>
     </div>
 <?php } ?>
