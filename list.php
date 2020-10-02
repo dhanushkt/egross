@@ -696,7 +696,7 @@ $subtot = 0;
                                             <div class=" mobile col-md-6 product-in-cart-col-2">
                                                 <p class="title-hover-black">
                                                     <i style="padding-right: 10px; font-size:20px;" class="fa fa-list"></i>
-                                                    <a href="product.php?product=<?php echo $getcartitem['itmid']; ?>" class="animate-default">
+                                                    <a href="javascript:void(0)" class="animate-default">
                                                         <?php echo $getcartitem['sname']; ?>
                                                     </a>
                                                 </p>
