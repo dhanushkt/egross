@@ -45,8 +45,8 @@ if (isset($_POST['submit'])) {
                                 <a href="#">Language</a>
                                 <ul>
                                     <li>
-                                        <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
-                                        <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
+                                        <!-- <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
+                                        <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a> -->
 
                                     </li>
                             </li>
