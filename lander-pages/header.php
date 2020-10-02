@@ -41,15 +41,15 @@ if (isset($_POST['submit'])) {
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="custom-list.php">My List</a></li>
                             <?php } ?>
-                            <li id="language" class="relative">
+                            <!-- <li id="language" class="relative">
                                 <a href="#">Language</a>
                                 <ul>
                                     <li>
-                                        <!-- <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
-                                        <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a> -->
+                                        <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
+                                        <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
 
                                     </li>
-                            </li>
+                            </li> -->
                         </ul>
                         </li>
                         <?php if ($userlogin) { ?>
