@@ -3,6 +3,7 @@ include 'access/useraccesscontrol.php';
 $adbanner = false;
 $wishlist = false;
 $cartlist = false;
+$scat = false;
 
 //custom item
 $custom = false;
@@ -18,6 +19,9 @@ if (isset($_GET['scat'])) {
 
 	$scatid = $_GET['scat'];
 	$getalldata = mysqli_query($con, "SELECT * FROM itemmaster WHERE iscid=$scatid AND itype='default' ORDER BY itmid DESC limit 3");
+	if(mysqli_num_rows($getalldata)==true){
+		$scat = true;
+	}
 } else if (isset($_GET['type'])) {
 	if (!$userlogin) {
 		echo "<script>window.location.href='user-login.php'; </script>";
@@ -447,6 +451,15 @@ if (isset($_GET['scat'])) {
 								</div>
 							</div> -->
 						<!-- End Product Content Category -->
+						<?php if (!$scat) {?>
+						<div style="background-color: white;" class="full-width relative col-md-12 mol-lg-12">
+									<div class="text-center" style="padding: 110px; line-height: 5;">
+										<i style="font-size: 100px;" class="fa fa-search"></i>
+										<h2>Product Not Available</h2>
+										<a href="view-category.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
+									</div>
+						</div>
+						<?php } ?>
 						</div>
 					</div>
 				</div>
