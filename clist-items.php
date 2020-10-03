@@ -568,17 +568,19 @@ $subtot = 0;
 
 
                         <?php } else { ?>
-                            <div class="full-width relative col-md-12 mol-lg-12">
-                                <div class="container text-center" style="padding: 110px; line-height: 5;">
-                                    <i style="font-size: 100px;" class="fa fa-list-alt"></i>
-                                    <h2 class="text-uppercase">
-                                        <?php echo $listname; ?>
-                                        list is empty
-                                    </h2>
-                                    <a href="add-citem.php" style="background-color: #eb1a21; color: white;" class="btn">ADD A CUSTOM ITEM</a>
-                                    <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
+                        <div style="background-color: white; padding: 85px;"  class="full-width relative col-md-12 mol-lg-12">
+                                <div class="text-center"  style="line-height: 5;">
+                                        <i style="font-size: 100px;" class="fa fa-list-alt"></i>
                                 </div>
-                            </div>
+                                <div class="text-center" style="line-height: 5;">
+                                <h3>List is Empty</h3>
+                                <a href="add-citem.php" style="background-color: #eb1a21; color: white;" class="btn">ADD A CUSTOM ITEM</a>
+                                <div class="hidden-lg" style="line-height: 0.1">
+                                </div>
+                                <a href="index.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
+                                <br>
+                                </div>
+                        </div>
                         <?php } ?>
                     </div>
                 </div>

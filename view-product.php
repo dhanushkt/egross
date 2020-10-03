@@ -453,11 +453,15 @@ if (isset($_GET['scat'])) {
 						<!-- End Product Content Category -->
 						<?php if (!$scat) {?>
 						<div style="background-color: white;" class="full-width relative col-md-12 mol-lg-12">
-									<div class="text-center" style="padding: 110px; line-height: 5;">
+								<div class="text-center"  style="line-height: 5;">
 										<i style="font-size: 100px;" class="fa fa-search"></i>
-										<h2>Product Not Available</h2>
-										<a href="view-category.php" style="background-color: #eb1a21; color: white;" class="btn">CONTINUE SHOPPING</a>
-									</div>
+								</div>
+								<div class="text-center">
+								<h3>No Products Available</h3>
+								<a href="view-category.php">
+								<button class="btn btn-danger">Continue Shopping</button>
+								</a>
+								</div>
 						</div>
 						<?php } ?>
 						</div>
