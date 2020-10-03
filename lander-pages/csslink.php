@@ -13,6 +13,8 @@
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/style.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/effect.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/account-user.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/header-custom.css">
 
 <!-- favicon -->
 

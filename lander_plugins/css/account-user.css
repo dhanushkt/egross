@@ -1,0 +1,79 @@
+.but {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        TD:nth-child(1) {
+            font-weight: bold
+        }
+
+        .mycButton {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            padding: 0;
+            background-color: #333;
+            outline: none;
+            text-decoration: none;
+            margin-top: 30px;
+            -webkit-transition: 0.5s all ease;
+            width: 100px;
+            line-height: 40px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #dedede;
+            color: #dedede;
+        }
+
+        .mycButton:hover {
+            background-color: transparent;
+            color: #333;
+        }
+
+        .mycButtonaddr {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            padding: 0;
+            background-color: #333;
+            outline: none;
+            text-decoration: none;
+            margin-top: 30px;
+            -webkit-transition: 0.5s all ease;
+            width: 200px;
+            line-height: 40px;
+            font-size: 18px;
+            text-align: center;
+            border: 1px solid #dedede;
+            color: #dedede;
+        }
+
+        .mycButtonaddr:hover {
+            background-color: transparent;
+            color: #333;
+        }
