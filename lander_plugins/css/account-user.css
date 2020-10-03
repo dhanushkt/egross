@@ -32,7 +32,7 @@
             font-weight: bold
         }
 
-        .mycButton {
+        .myaButton {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             font-family: 'Roboto', sans-serif;
             box-sizing: border-box;
@@ -50,12 +50,12 @@
             color: #dedede;
         }
 
-        .mycButton:hover {
+        .myaButton:hover {
             background-color: transparent;
             color: #333;
         }
 
-        .mycButtonaddr {
+        .myaButtonaddr {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             font-family: 'Roboto', sans-serif;
             box-sizing: border-box;
@@ -73,7 +73,7 @@
             color: #dedede;
         }
 
-        .mycButtonaddr:hover {
+        .myaButtonaddr:hover {
             background-color: transparent;
             color: #333;
         }

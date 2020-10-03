@@ -136,9 +136,9 @@ if (isset($_POST['update'])) {
                                     </fieldset>
                                     <div class="form-input full-width clearfix relative">
                                         <div id="tempdiv" style="margin-top: 30px;"></div>
-                                        <a href="JavaScript:Void(0);" style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;" id="editbtn" onClick="undisableField()" class="mycButton"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                        <a href="JavaScript:Void(0);" style="padding-right: 25px; padding-left: 25px; padding-top: 10px; padding-bottom: 10px;" id="editbtn" onClick="undisableField()" class="myaButton"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
 
-                                        <button id="savebtn" hidden class="mycButton" name="update" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+                                        <button id="savebtn" hidden class="myaButton" name="update" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -193,7 +193,7 @@ if (isset($_POST['update'])) {
                                         </tr>
                                     </table>
                                     <div class="form-input full-width clearfix relative">
-                                        <a href="view-address.php"> <button class="mycButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
+                                        <a href="view-address.php"> <button class="myaButtonaddr"><i class="fa fa-pencil" aria-hidden="true"></i> Manage Address</button>
                                         </a>
                                     </div>
                                 </div>
@@ -204,12 +204,12 @@ if (isset($_POST['update'])) {
                                 <hr>
                                 <div class="form-input full-width clearfix relative">
                                     <a href="view-product.php?type=custom">
-                                        <button class="mycButtonaddr">
+                                        <button class="myaButtonaddr">
                                             View Custom Items
                                         </button>
                                     </a>
                                     <a href="add-citem.php">
-                                        <button class="mycButtonaddr">
+                                        <button class="myaButtonaddr">
                                             Add Custom Item
                                         </button>
                                     </a>
@@ -264,7 +264,7 @@ if (isset($_POST['update'])) {
                                             <input class="full-width" type="password" name="newpsw2">
                                         </div>
                                         <div class="form-input full-width clearfix relative">
-                                            <button class="mycButton" name="changepsw"><i class="fa fa-refresh" aria-hidden="true"></i> Change</button>
+                                            <button class="myaButton" name="changepsw"><i class="fa fa-refresh" aria-hidden="true"></i> Change</button>
                                         </div>
                                     </form>
                                 </div>
