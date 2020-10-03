@@ -78,6 +78,7 @@ if ($list) {
 				<i class="fa fa-save"></i>
 				</a>
 				<a href="http://html2pdfrocket.com/html/topdf?apikey=ABCD-1234">Download PDF</a>
+<a href="http://api.html2pdfrocket.com/pdf?value=http://www.google.co.nz&apikey=ABCD-1234">Download PDF</a>
 
 				<a class="btn btn-light clipboard" title="Share URL"><i class="fa fa-share"></i></a>
 			</div>
