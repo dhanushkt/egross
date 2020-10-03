@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                                 <li class="relative"><a href="user-login.php">Login</a></li>
                             <?php } ?>
                             <?php if ($userlogin) { ?>
-                                <li class="relative"><a href="custom-list.php">My List</a></li>
+                                <li class="relative"><a href="list.php">My List</a></li>
                             <?php } ?>
                             <!-- <li id="language" class="relative">
                                 <a href="#">Language</a>
@@ -49,9 +49,10 @@ if (isset($_POST['submit'])) {
                                         <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
 
                                     </li>
+                                    </ul>
                             </li> -->
-                        </ul>
-                        </li>
+                        
+                        
                         <?php if ($userlogin) { ?>
                             <li class="relative"><a href="access/logoutuser.php">Logout <i class="fa fa-sign-out"></i></a>
                             </li>
