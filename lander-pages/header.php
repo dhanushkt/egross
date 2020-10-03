@@ -43,10 +43,9 @@ if (isset($_POST['submit'])) {
                             <?php } ?>
                             <li id="language" class="relative">
                                 <a href="#">
-                                <div id="google_translate_element"></div>
+                                <div class="custom-select" id="google_translate_element"></div>
                                 </a>
                             </li>
-                            &nbsp;&nbsp;
 
 
                             <?php if ($userlogin) { ?>

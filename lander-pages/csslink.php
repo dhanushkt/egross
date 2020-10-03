@@ -146,6 +146,19 @@
         -webkit-transform: scale(0.9);
         transform: scale(0.9);
     }
+
+    /* google translate element */
+
+    .custom-select select {
+        font: 400 12px/1.3 sans-serif;
+        -webkit-appearance: none;
+        appearance: none;
+        color: black;
+        border: none;
+        line-height: 1;
+        outline: 0;
+    }
+    
 </style>
 
 <link rel="stylesheet" type="text/css" href="lander_plugins/owl/owl.carousel.css">
