@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/account-user.css">
 <link rel="stylesheet" type="text/css" href="lander_plugins/css/header-custom.css">
+<link rel="stylesheet" type="text/css" href="lander_plugins/css/gtrans.css">
 
 <!-- favicon -->
 

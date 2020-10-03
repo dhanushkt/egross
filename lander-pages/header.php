@@ -41,16 +41,12 @@ if (isset($_POST['submit'])) {
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="list.php">My List</a></li>
                             <?php } ?>
-                            <!-- <li id="language" class="relative">
-                                <a href="#">Language</a>
-                                <ul>
-                                    <li>
-                                        <a href="#googtrans(kn)" class="lang-kn lang-select" data-lang="kn">ಕನ್ನಡ</a>
-                                        <a href="#googtrans(en)" class="lang-en lang-select" data-lang="en">English</a>
-
-                                    </li>
-                                    </ul>
-                            </li> -->
+                            <li id="language" class="relative">
+                                <a href="#">
+                                <div id="google_translate_element"></div>
+                                </a>
+                            </li>
+                            &nbsp;&nbsp;
 
 
                             <?php if ($userlogin) { ?>
@@ -171,44 +167,7 @@ if (isset($_POST['submit'])) {
             </form>
         </div>
     </div>
-    <!--<script type="text/javascript">
-        function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element');
-        }
-
-        function triggerHtmlEvent(element, eventName) {
-        var event;
-        if (document.createEvent) {
-        event = document.createEvent('HTMLEvents');
-        event.initEvent(eventName, true, true);
-        element.dispatchEvent(event);
-        } else {
-        event = document.createEventObject();
-        event.eventType = eventName;
-        element.fireEvent('on' + event.eventType, event);
-        }
-        }
-
-        jQuery('.lang-select').click(function() {
-        var theLang = jQuery(this).attr('data-lang');
-        jQuery('.goog-te-combo').val(theLang);
-
-        window.location = jQuery(this).attr('href');
-        location.reload();
-        });
-        </script>-->
-
-    <style>
-        .goog-te-banner-frame {
-            display: none !important;
-        }
-
-        body {
-            top: 0px !important;
-        }
-    </style>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
+<script>
         // Popup Open
         function popupOpen() {
             document.getElementById("popups").style.display = "block";
@@ -219,5 +178,5 @@ if (isset($_POST['submit'])) {
             document.getElementById("popups").style.display = "none";
             document.getElementById("overlays").style.display = "none";
         }
-    </script>
+</script>
 </header>
