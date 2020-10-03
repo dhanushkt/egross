@@ -51,12 +51,12 @@ if (isset($_POST['submit'])) {
                                     </li>
                                     </ul>
                             </li> -->
-                        
-                        
-                        <?php if ($userlogin) { ?>
-                            <li class="relative"><a href="access/logoutuser.php">Logout <i class="fa fa-sign-out"></i></a>
-                            </li>
-                        <?php } ?>
+
+
+                            <?php if ($userlogin) { ?>
+                                <li class="relative"><a href="access/logoutuser.php">Logout <i class="fa fa-sign-out"></i></a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -466,7 +466,7 @@ if (isset($_POST['submit'])) {
         });
         </script>-->
 
-        <style>
+    <style>
         .goog-te-banner-frame {
             display: none !important;
         }
@@ -474,8 +474,8 @@ if (isset($_POST['submit'])) {
         body {
             top: 0px !important;
         }
-        </style>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </style>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
         // Popup Open
         function popupOpen() {
