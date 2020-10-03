@@ -79,10 +79,9 @@ if ($list) {
 	<div id="Table-Data">
 		<div class="p-4 text-uppercase">
 			<div class="pull-right">
-				<a class="btn btn-light" title="Save as PDF" href="https://www.sejda.com/html-to-pdf?save-link" target="_blank">
+				<a class="btn btn-light" title="Save as PDF" href="https://www.sejda.com/html-to-pdf?save-link=<?php echo $link ?>" target="_blank">
 				<i class="fa fa-save"></i>
 				</a>
-				<a href="https://www.sejda.com/html-to-pdf?save-link=<?php echo $link ?>">Save to PDF</a>
 				<a class="btn btn-light clipboard" title="Share URL"><i class="fa fa-share"></i></a>
 			</div>
 			<h4>
