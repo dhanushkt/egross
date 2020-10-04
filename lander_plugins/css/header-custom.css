@@ -90,7 +90,7 @@
 
                         /* Popup */
                         .popups {
-                            background: lightgrey;
+                            background: #e0e0e0;
                             position: absolute;
                             top: 15%;
                             border-radius: 5px;
@@ -111,7 +111,7 @@
                             .popups {
                                 top: 15%;
                                 width: 90%;
-                                box-shadow: 5px 8px #888888;
+                                /* box-shadow: 5px 8px #888888; */
                                 margin: auto 5%;
                             }
                         }
@@ -256,7 +256,7 @@
                             font-size: 1.5rem;
                             font-weight: 400;
                             color: #495057;
-                            background-color: lightgrey;
+                            background-color: #e0e0e0;
                             background-clip: padding-box;
                             /* border: 1px solid #ced4da; */
                             border: 1px solid black;
