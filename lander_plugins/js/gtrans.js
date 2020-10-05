@@ -1,33 +1,12 @@
-$(function(){
-  
-  var $translateBar = $('#translate-a'),
-      $translateToggle = $('.translate-toggle'),
-      $picker = $translateBar.find('select'),
-      visibleClass = "visible",
-      hideOnChange = true; // hide bar after choice
-
-      $translateToggle.on('click', function(e){
-        e.preventDefault();
-        $translateBar.toggleClass(visibleClass);
-      });
-  
-      if(hideOnChange){
-        $translateBar.on('change', 'select', function(){
-          if($translateBar.hasClass(visibleClass)){
-            $translateBar.removeClass(visibleClass);
-          }
-        });
-      }
-  
-});
-
-
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    autoDisplay: false,
-    includedLanguages: 'en,kn',
-    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-  }, 'google_translate_element');
-
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+        }
+function translateLanguage(lang) {
+           var $frame = $('.goog-te-menu-frame:first');
+            if (!$frame.length) {
+                alert("Error: Could not find Google translate frame.");
+                return false;
+            }
+            $frame.contents().find('.goog-te-menu2-item span.text:contains(' + lang + ')').get(0).click();
+            return false;
 }

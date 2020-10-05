@@ -23,6 +23,9 @@ if (isset($_POST['submit'])) {
 </script>
 
 <header class="relative full-width box-shadow" id="myHeader">
+<div id="google_translate_element" style="display: none">
+</div>
+
     <div class="clearfix container-web relative">
         <div class=" container">
             <div class="row">
@@ -33,6 +36,15 @@ if (isset($_POST['submit'])) {
                     </p>
                     <div class="clear-padding menu-header-top text-right col-md-8 col-xs-12 col-sm-6">
                         <ul class="clear-margin">
+                            <li id="language" class="relative">
+                                <a href="#">Language </a>
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;" id="Kannada" onclick="translateLanguage(this.id);">ಕನ್ನಡ</a>
+                                        <a href="javascript:;" id="English" onclick="translateLanguage(this.id);">English</a>
+                                    </li>
+                                    </ul>
+                            </li>
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="account.php">My Account</a></li>
                             <?php } else { ?>
@@ -41,13 +53,6 @@ if (isset($_POST['submit'])) {
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="list.php">My List</a></li>
                             <?php } ?>
-                            <li id="language" class="relative">
-                                <a href="#">
-                                <div class="custom-select" id="google_translate_element"></div>
-                                </a>
-                            </li>
-
-
                             <?php if ($userlogin) { ?>
                                 <li class="relative"><a href="access/logoutuser.php">Logout <i class="fa fa-sign-out"></i></a>
                                 </li>
